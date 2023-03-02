@@ -7,7 +7,11 @@
     "pages/my_edit_information/index",
     "pages/index/wupin/wupin",
     "pages/index/jineng/jineng",
-    "pages/index/xvqiu/xvqiu"
+    "pages/index/xvqiu/xvqiu",
+    "pages/wupin/wupin",
+    "pages/jineng/jineng",
+    "pages/xvqiu/xvqiu",
+    "pages/add/add"
     
   ],
   "tabBar": {

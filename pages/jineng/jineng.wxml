@@ -1,0 +1,4 @@
+<scroll-view scroll-y style="height: 100%;">
+<text>技能</text>
+  
+</scroll-view>

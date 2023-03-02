@@ -1,5 +1,2 @@
 <!--pages/index/wupin/wupin.wxml-->
-<scroll-view scroll-y style="height: 100%;">
-<text>物品</text>
-  
-</scroll-view>
+<text>pages/index/wupin/wupin.wxml</text>

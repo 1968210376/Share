@@ -1,52 +1,164 @@
 /**index.wxss**/
-.container{
-  width: 100vw;
-  height: 100vw;
+.container {
+  display: flex;
+  flex-direction: column;
 }
-.searchBox{
-  width: 90%;
+
+.searchBox {
+  width:95vw;
   margin: 5rpx auto;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.location {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.location{
-  width: 20%;
-  padding: 10rpx;
-}
-.search{
-  width: 80%;
+
+.search {
+  width: 70%;
   border: 1px solid #ccc;
   border-radius: 25rpx;
   padding: 10rpx;
-  background-color: rgba(222,222, 222, .2);
+  box-shadow: inset 2px 2px 5px #eee;
 }
-.banner{
-  width: 90%;
-  height: 300rpx;
+
+
+
+.banner {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner image{
+  width: 100%;
   margin: 0 auto;
-  background-color: burlywood;
+  border-radius: 15rpx;
 }
-.tab{
+.tab {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.tab-item{
+
+.tab-item {
   padding: 10rpx;
 }
-.active{
+
+.active {
   color: #007AFF;
   border-bottom: 1px solid #007AFF;
 }
-.content {
-  flex: 1;
-}
 
-.content>.swiper{
+.contents {
+  width: 100vw;
   height: 100%;
 }
-.content .content_item{
-  background-color: #007AFF;
 
+.card {
+  width: 90%;
+  margin: 15rpx auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: #eee 1px 1px 1px 3px;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.img {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.img image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.weizhi {
+  font-size: 10px;
+  color: gray;
+}
+
+.info {
+  flex: 2;
+  margin-left: 5px;
+}
+
+.jianJie {
+  text-indent: 2rem;
+  padding: 5rpx;
+}
+
+.imgBox {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 35rpx 5rpx;
+  display: flex;
+}
+
+.imgBox view {
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 30rpx;
+}
+
+.imgBox view image {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  box-shadow:#007AFF -2px -2px 3px, 2px 2px 5px black;
+}
+.ftb{
+  position: fixed;
+  bottom: 50rpx;
+  right: 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #007AFF;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 100rpx;
+}
+.red{
+  color: red;
+}
+.btnBox{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+  padding-top: 10rpx;
+}
+
+.btn{
+  width: 100rpx;
+  text-align: center;
+  color: #007AFF;
+}
+.gold{
+  color: gold;
 }

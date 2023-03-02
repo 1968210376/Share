@@ -1,4 +1,2 @@
-<scroll-view scroll-y style="height: 100%;">
-<text>物品</text>
-  
-</scroll-view>
+<!--pages/index/jineng/jineng.wxml-->
+<text>pages/index/jineng/jineng.wxml</text>
