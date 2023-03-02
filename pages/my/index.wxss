@@ -1,0 +1,120 @@
+page,
+view,
+image,
+input {
+    display: block;
+    box-sizing: border-box;
+}
+
+.container {
+    min-height: 100%;
+    overflow: hidden;
+    overflow-y: hidden;
+}
+/* 头像 */
+.userinfo-avatar {
+    width: 160rpx;
+    height: 160rpx;
+    float: left;
+    /* background-color: rgb(185, 185, 126); */
+}
+
+.userinfo-nickname {
+    width: 400rpx;
+    font-size: 16px;
+    padding: 50rpx;
+    margin: 30rpx;
+    margin-left: 0rpx;
+    float: left;
+    color: rgb(109, 99, 99);
+    /* background-color: rgb(109, 83, 83); */
+}
+
+/* 导航 */
+.asset {
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #eee;
+    padding-top: 30rpx;
+    padding-bottom: 20rpx;
+    background-color: white;
+}
+
+.asset .item {
+    display: flex;
+    flex-direction: column;
+    width: 200rpx;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    color: #333;
+}
+
+.asset .right {
+    border-left: 1px solid #eee;
+}
+
+
+/* 绑定手机号 */
+.bind-phone-number {
+    margin: 20rpx;
+    width: 100%;
+}
+
+/* flex重新构建菜单 */
+.menu-item {
+    width: 98vw;
+    height: 95rpx;
+    padding: 0 32rpx;
+    margin-left: 1%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-item .l {
+    font-size: 28rpx;
+    color: #333;
+    line-height: 104rpx;
+}
+
+.menu-item .r {
+    font-size: 32rpx;
+    color: #999;
+    line-height: 104rpx;
+}
+
+/* .menu-item .next {
+    width: 40rpx;
+    height: 40rpx;
+} */
+.next {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.menu-item button {
+    margin: 0;
+}
+
+.space {
+    width: 100vw;
+    height: 16rpx;
+    background: #F4F5F9;
+}
+
+.line {
+    width: 718px;
+    height: 1px;
+    background: #EEEEEE;
+    margin-left: 32rpx;
+}
+
+.botombanquan{
+    color: #9e9a9a;
+    font-size: 22rpx;
+    text-align: center;
+    padding: 50rpx;
+    margin-top: 50rpx;
+}

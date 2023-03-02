@@ -1,0 +1,52 @@
+/**index.wxss**/
+.container{
+  width: 100vw;
+  height: 100vw;
+}
+.searchBox{
+  width: 90%;
+  margin: 5rpx auto;
+  display: flex;
+
+}
+.location{
+  width: 20%;
+  padding: 10rpx;
+}
+.search{
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 25rpx;
+  padding: 10rpx;
+  background-color: rgba(222,222, 222, .2);
+}
+.banner{
+  width: 90%;
+  height: 300rpx;
+  margin: 0 auto;
+  background-color: burlywood;
+}
+.tab{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.tab-item{
+  padding: 10rpx;
+}
+.active{
+  color: #007AFF;
+  border-bottom: 1px solid #007AFF;
+}
+.content {
+  flex: 1;
+}
+
+.content>.swiper{
+  height: 100%;
+}
+.content .content_item{
+  background-color: #007AFF;
+
+}

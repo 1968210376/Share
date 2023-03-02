@@ -1,0 +1,176 @@
+/* pages/niu_my_edit_information/index.wxss */
+
+/* flex重新构建菜单 */
+
+.menu-item {
+    width: 90vw;
+    /* height: 95rpx; */
+    height: 150rpx;
+    padding: 0 32rpx;
+    margin-left: 1%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.menu-item button{
+    height: 100%;
+    /* background-color: darkslategrey; */
+    padding-left: 0%;
+    padding-right: 0%;
+}
+.menu-item .l {
+    width: 40%;
+    font-size: 28rpx;
+    font-weight: normal;
+    color: #333;
+    line-height: 104rpx;
+    /* background-color: darkmagenta; */
+    float: left;
+    padding: 0%;
+    text-align: left;
+}
+
+.menu-item .r {
+    width: 55%;
+    height: 100%;
+    font-size: 28rpx;
+    color: #999;
+    padding: 0%;
+    /* background-color:darksalmon; */
+    float: right;
+    
+}
+/* 头像 */
+.userinfo-avatar {
+    width: 120rpx;
+    height: 120rpx;
+    float: right;
+    /* background-color: rgb(185, 185, 126); */
+}
+/* .menu-item .next {
+    width: 40rpx;
+    height: 40rpx;
+} */
+.next {
+    width: 40rpx;
+    height: 40rpx;
+    float: right;
+    margin-top: 35rpx;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+}
+.space {
+    width: 100vw;
+    height: 16rpx;
+    background: #F4F5F9;
+}
+.weui-input{
+    text-align: right;
+    line-height: 104rpx;
+    margin: 040rpx;
+    font-size: 28rpx;
+    font-weight: normal;
+}
+
+
+
+
+#nickname{
+    border: 1rpx solid #d8d2d2;text-align: left;border-radius: 5%;padding: 10rpx;
+}
+.button {
+    width: 90%;
+    /* background-color: red; */
+    position: absolute;
+    bottom: 100rpx;
+    left: 5%;
+    transform: translate(0, -50%);
+}
+.dialog-btn{
+    bottom: 60rpx;
+}
+#btn,#confirm{
+    /* display: block; */
+    width: 100%;
+    height: 88rpx;
+    /* margin: 0 auto; */
+    /* display: flex; */
+    background: #197FF0;
+    opacity: 1;
+    border-radius: 40rpx;
+    font-size: 32rpx;
+    font-family: PingFang SC;
+    font-weight: 400;
+    line-height: 88rpx;
+    color: #FFFFFF;
+    padding: 0;
+    margin: 0 !important;
+}
+/*模态框*/
+.modals {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modals-cancel {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.bottom-dialog-body {
+    position: absolute;
+    z-index: 10001;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30rpx;
+    height: 360rpx;
+    background-color: #fff;
+}
+
+/*动画前初始位置*/
+.bottom-pos {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+}
+.dialog-title{
+    font-size: 36rpx;
+    font-family: PingFang SC;
+    font-weight: bold;
+    line-height: 70rpx;
+    color: #041320;
+}
+.dialog-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    box-sizing: border-box;
+    padding: 10rpx;
+    /* background: pink; */
+}
+.dialog-item{
+    width: 200rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    background: #F6F6F6;
+    opacity: 1;
+    border-radius: 34rpx;
+    margin: 20rpx 8rpx;
+    text-align: center;
+}
+.bg-blue{
+    background: #197FF0;
+    color: #fff;
+}

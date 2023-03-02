@@ -1,0 +1,172 @@
+/* pages/niu_market_issue/index.wxss */
+
+.pages{
+    width: 98%;
+    margin: auto;
+    overflow: hidden;
+    background-color: white;
+  }
+  
+  .title{
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: rgb(255, 255, 255);
+    size: 30em;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* 隔行样式 */
+  .space {
+    width: 100vw;
+    height: 4rpx;
+    background-color: rgb(232, 232, 233);
+  }
+  /* 表单样式 */
+  .row-wrap{
+    width: 720rpx;
+    line-height: 88rpx;
+    margin-left: 30rpx;
+    border-bottom: 1rpx solid #eee;
+    display: flex;
+    font-size: 28rpx;
+    justify-content: space-between;
+  }
+  .row-wrap .label{
+    width: 140rpx;
+    color: #000
+  }
+  .row-wrap .label-right{
+    flex: 1;
+    line-height: 88rpx;
+  }
+  .row-wrap .label-right input{
+    height: 100%;
+    font-size: 28rpx;
+    padding-right: 30rpx;
+  }
+  .row-wrap .moren_address{
+    color: red;
+    border: none;
+    font-size: 32rpx;
+    flex: 0.3;
+  }
+  .row-wrap .moren_address image{
+    height: 100%;
+    width: 100%;
+  }
+  
+  .scrap_title{
+    height: 90rpx;
+    line-height: 90rpx;
+  }
+  
+  
+  .menu-item {
+    width: 100%;
+    height: 80rpx;
+    padding: 0 32rpx;
+    /* background: #fff; */
+    line-height: 80rpx;
+    /* align-items: center; */
+    font-size: 28rpx;
+  }
+  .detailText{
+    /* padding: 0 32rpx; */
+    /* margin-left: 4%; */
+    margin-right: 5%;
+    width: 100%;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    margin-left: -40rpx;
+    border: 2rpx solid rgb(192, 192, 194);
+    border-radius: 15rpx;
+    /* height: 300rpx; */
+    /* margin-bottom: 160rpx; */
+    height:80rpx;
+    padding: 20rpx;
+    line-height: normal;
+  }
+  
+  /* 图片 */
+  .images_box{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: white;
+  }
+  .img-box{
+    /* border: 5rpx;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.452); */
+    width: 200rpx;
+    height: 200rpx;
+    margin-left: 35rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    position: relative;
+  }
+  /* 删除图片 */
+  .img-delect{
+    width:50rpx;
+    height:50rpx;
+    border-radius:50%;
+    position:absolute;
+    right:-20rpx;
+    top:-20rpx;
+  }
+  .img{
+    width: 100%;
+    height: 100%;
+  }
+  .jiage{
+    height: 60rpx;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+  }
+  button{
+    margin-top: 20rpx;
+    /* background-color: green; */
+    /* border-radius: 98rpx; */
+    border-radius: 10rpx;
+    margin-bottom: 30rpx;
+  }
+  
+  
+  
+  .tab-h {
+    height: 80rpx;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    line-height: 80rpx;
+    background: #f7f7f7;
+    font-size: 16px;
+    white-space: nowrap;
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+  
+  radio {
+    transform:scale(0.8);
+    font-size: 36rpx;
+    /* line-height: 40rpx; */
+    /* border: 1rpx solid red; */
+    /* margin-left: -35rpx; */
+    /* margin-top: -30rpx; */
+  }
+
+.yinshi{
+    font-size: 26rpx;
+    padding: 30rpx;
+    color: green;
+    text-align: center;
+}

@@ -1,0 +1,13 @@
+<view class="container">
+    <view class="menu-item" bindtap='to_niu_my_edit_information' style="height: 220rpx;background-color: #f6f6f6;">
+        <image class="userinfo-avatar" src="{{avatarUrl}}" background-size="cover"></image>
+        <view class="userinfo-nickname">
+            <text>{{nickName}}</text>
+        </view>
+        <view style="float: right;">
+            <image class="next" src="/images/next.png"></image>
+        </view>
+    </view>
+    <view class="space"></view>
+
+</view>

@@ -1,0 +1,45 @@
+<view class="space"></view>
+<view class="menu-item">
+    <button style="width:100%" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <view class="l">我的头像</view>
+        <view class="r">
+            <image class="next" src="/images/next.png"></image>
+            <image class="userinfo-avatar avatar" src="{{avatarUrl}}"></image>
+        </view>
+    </button>
+</view>
+<view class="space"></view>
+<view class="menu-item">
+    <view class="l">昵称</view>
+    <view class="r" style="margin-top: 35rpx;" bindtap="modalinputnickName">
+        <image class="next" src="/images/next.png"></image>
+        <input class="weui-input" value="{{nickName}}" disabled="true" placeholder="请输入昵称" />
+    </view>
+</view>
+<modal hidden="{{hiddenmodalputnickName}}" title="修改昵称" confirm-text="提交" cancel-text="取消" bindcancel="modalinputnickName" bindconfirm="confirm">
+    <input type="nickname" class="weui-input" name="name" id="nickname" value="{{nickName}}" placeholder="请输入昵称" bindinput="setToName" bindblur = "setToName" /> 
+</modal>
+
+<view class="space"></view>
+
+<view class="menu-item">
+    <view class="l">性别</view>
+    <view class="r" style="margin-top: 35rpx;" bindtap="showModal">
+        <image class="next" src="/images/next.png"></image>
+        <input class="weui-input" value="{{sex}}" placeholder="请选择性别" disabled="true" />
+    </view>
+</view>
+
+<!--dialog隐藏区域  -->
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+    <view class="modals-cancel" bindtap="hideModal"></view>
+    <view class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+        <view class="dialog-title">选择性别</view>
+        <view class="dialog-box">
+            <view bindtap="change" wx:for="{{sexList}}" wx:key="index" class="dialog-item {{index==indexstatus?'bg-blue':''}}" hidden="{{index==0}}" data-dialogid="{{index}}" bindtap="modalinputgender">{{item}}</view>
+        </view>
+        <view class="button dialog-btn">
+            <button id="confirm" bindtap="hideModal">确定</button>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="searchBox">
+    <view class="location">
+      {{location}}
+    </view>
+    <input class="search" type="search" placeholder="宁可少，不可错" />
+  </view>
+  <view class="banner">
+
+  </view>
+  <!-- 标签页标题 -->
+  <view class="tab">
+    <view class="tab-item {{tab == 0? 'active':''}}" bindtap="changeItem" data-item="0">物品</view>
+    <view class="tab-item {{tab == 1? 'active':''}}" bindtap="changeItem" data-item="1">技能</view>
+    <view class="tab-item {{tab == 2? 'active':''}}" bindtap="changeItem" data-item="2">需求</view>
+  </view>
+  <!-- 内容区域 -->
+  <view class="content">
+    <view>
+      
+    </view>
+  </view>
+</view>
