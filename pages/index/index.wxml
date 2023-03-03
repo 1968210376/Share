@@ -1,41 +1,55 @@
 <!--index.wxml-->
-<scroll-view enhanced="true" 	show-scrollbar="false" scroll-with-animation scroll-y enable-flex class="container">
+<view class="container">
   <view class="searchBox">
     <view class="location" bindtap="getLocation">
-    <image style="width: 50rpx;height: 50rpx;" src="/images/Location.png" mode="aspectFill"/>
-     <view>
-       {{location}}
-     </view>
+      <image style="width: 50rpx;height: 50rpx;" src="/images/Location.png" mode="aspectFill" />
+      <view>
+        {{location}}
+      </view>
     </view>
     <input class="search" bindconfirm="search" type="search" placeholder="宁可少，不可错" />
   </view>
-  <!-- 标签页标题 -->
-  <view class="tab">
-    <view class="tab-item {{tab == 0? 'active':''}}" bindtap="changeTab" data-item="0">物品</view>
-    <view class="tab-item {{tab == 1? 'active':''}}" bindtap="changeTab" data-item="1">技能</view>
-    <view class="tab-item {{tab == 2? 'active':''}}" bindtap="changeTab" data-item="2">需求</view>
-  </view>
-  <view class="banner">
-    <!-- <swiper current="l_id">
-      <swiper-item>
-        <image src="/images/shouye.png" mode="aspectFill"/>
-      </swiper-item>
-    </swiper> -->
-    <image src="https://img.vinua.cn/images/nboV.png" mode=""/>
-  </view>
-  <!-- 内容区域 -->
-  <view class="content">
-    <view wx:if="{{tab == 0}}">
-      <include src="../wupin/wupin"></include>
+    <!-- 标签页标题 -->
+    <view class="tab">
+      <view class="tab-item {{tab == 0? 'active':''}}" bindtap="changeTab" data-item="0">物品</view>
+      <view class="tab-item {{tab == 1? 'active':''}}" bindtap="changeTab" data-item="1">技能</view>
+      <view class="tab-item {{tab == 2? 'active':''}}" bindtap="changeTab" data-item="2">需求</view>
     </view>
-    <view wx:if="{{tab == 1}}">
-      <include src="../jineng/jineng"></include>
+    <view class="space">
+      
     </view>
-    <view wx:if="{{tab == 2}}">
-      <include src="../xvqiu/xvqiu"></include>
+    <view class="tab" wx:if="{{tab == 0}}">
+    <view class="tab_item  {{tabs == 0? 'active':''}}" catchtap="changeItem" data-item="0">
+      闲置物品
+    </view>
+    <view class="tab_item {{tabs == 1? 'active':''}}" catchtap="changeItem" data-item="1">
+      出租物品
+    </view>
+    <view class="tab_item  {{tabs == 2? 'active':''}}" catchtap="changeItem" data-item="2">
+      回收物品
     </view>
   </view>
-  <view class="ftb" bindtap="add">
-    +
-  </view>
-</scroll-view>
+    <!-- <view class="banner">
+      <swiper bindchange="changeIndex">
+        <swiper-item wx:for="{{banner}}" wx:key="index">
+          <image src="{{item.image}}" mode="" />
+        </swiper-item>
+      </swiper>
+      <image src="https://img.vinua.cn/images/nboV.png" mode=""/>
+    </view> -->
+    <view class="space">
+      
+    </view>
+  <scroll-view scroll-y class="content">
+    <!-- 内容区域 -->
+      <view wx:if="{{tab == 0}}">
+        <include src="../wupin/wupin"></include>
+      </view>
+      <view wx:if="{{tab == 1}}">
+        <include src="../jineng/jineng"></include>
+      </view>
+      <view wx:if="{{tab == 2}}">
+        <include src="../xvqiu/xvqiu"></include>
+      </view>
+    </scroll-view>
+</view>

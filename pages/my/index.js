@@ -3,6 +3,9 @@ Page({
     data: {
         nickName: "编辑个人信息",
         avatarUrl: "/images/0.png",
+        bgImg:'https://img.vinua.cn/images/VR7R.jpeg',
+        item:0,
+        index:0
     },
 
     onShow(options) {

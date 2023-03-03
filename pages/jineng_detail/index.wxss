@@ -1,0 +1,155 @@
+/* pages/jineng_detail/index.wxss */
+.container{
+    color: white;
+    /* position: relative; */
+    font-size: 14px;
+}
+.top{
+    width: 100vw;
+    height: 40vh;
+    background-color: #007AFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.left{
+    position: absolute;
+    left: 45rpx;
+    top: 40rpx;
+}
+.avatar{
+    width: 200rpx;
+    height: 200rpx;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 50%;
+}
+.margin{
+    margin: 15rpx;
+}
+.font-large{
+    font-size: 20px;
+
+}
+.project{
+    width: 90vw;
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -20rpx;
+    padding: 10rpx;
+    border-radius: 8rpx;
+    box-shadow: #ccc 2px 2px 4px;
+    align-items: center;
+    
+}
+.icon{
+    width: 50rpx;
+    height: 50rpx;
+}
+.blod{
+    font-weight: bold;
+}
+.black{
+    color: black;
+}
+.gray{
+    color: rgb(172, 170, 170);
+}
+.blue{
+    color:blue;
+}
+.gap{
+    display: flex;
+    gap: 15rpx;
+    align-items: center;
+}
+.content{
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15rpx;
+    color: gray;
+}
+.padding{
+    padding: 15rpx;
+}
+.blank{
+    width: 100vw;
+    height: 30rpx;
+
+}
+.width{
+    width: 90%;
+    margin: 0 auto;
+}
+.space{
+    width: 100%;
+    height: 16rpx;
+    background-color: #eee;
+    border-radius: 8rpx;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    gap: 16rpx;
+    justify-content: center;
+
+}
+.border{
+    border-top: 1px solid #eee;
+    padding-top: 16rpx;
+}
+.button{
+    width: 50vw;
+    margin: 0 auto;
+    background-color: #007AFF;
+    margin-top: 56rpx;
+    padding: 30rpx;
+    text-align: center;
+}
+.button:active{
+    background-color: #003aff;
+}
+
+/* 模拟弹窗 */
+.dialog__mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    /* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+    display: none;
+}
+
+.dialog__container {
+    position: fixed;
+    bottom: 400rpx;
+    width: 650rpx; 
+    /* 弹窗布局宽 */
+    height: 350rpx; 
+    /* 弹窗布局高，与下面弹出距离transform有关 */
+    margin-left: 50rpx;
+    background: #f8f8f8;
+    transform: translateY(400%); 
+    /* 弹框弹出距离，与弹框布局高度有关，如400%表示弹起距离为4倍弹窗高度 */
+    transition: all 0.4s ease;
+    z-index: 12;
+    border-radius: 20rpx;
+    box-shadow: 0px 3px 3px 2px gainsboro;
+     /* 弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+
+.dialog--show .dialog__container {
+    transform: translateY(0);
+}
+
+.dialog--show .dialog__mask {
+    display: block;
+}

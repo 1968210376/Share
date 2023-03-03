@@ -1,0 +1,83 @@
+<view class="container">
+    <scroll-view scroll-y style="height: 100vh;">
+        <text class="left">信用正常</text>
+        <view class="top">
+            <image src="{{info.avatar}}" class="avatar" mode="" />
+            <text class="margin font-large">{{info.nickName}}</text>
+            <text>{{info.job}}</text>
+            <text>{{info.tag}}</text>
+            <text class="margin">17小时前在线</text>
+            <text>服务企业：9家 累计提交：0工时</text>
+            <text>更新于：2023-03-03 | 浏览：131</text>
+        </view>
+        <view class="project padding">
+            <view class="gap">
+                <image src="/images/project.png" class="icon" mode="" />
+                <text class="black blod">项目作品</text>
+            </view>
+            <view class="gray gap">
+                <text>获赞0</text>
+                <text>作品3</text>
+                <image src="/images/next.png" class="icon" mode="" />
+            </view>
+        </view>
+        <view class="content">
+            <view class="width padding column">
+                <view class="gap">
+                    <text class="blue">￥600/8h</text>
+                    <text class="gray">|</text>
+                    <text class="blue">￥{{info.price}}/月</text>
+                </view>
+
+                <text>可工作时间：工作日08：30-17：30</text>
+                <text>可工作地点：远程</text>
+            </view>
+
+            <view class="column width border">
+                <view class="gap">
+                    <text>好评度：</text>
+                    <view>
+                        <image src="/images/sc(2).png" class="icon" mode="" />
+                        <image src="/images/sc(2).png" class="icon" mode="" />
+                        <image src="/images/sc(2).png" class="icon" mode="" />
+                        <image src="/images/sc(2).png" class="icon" mode="" />
+                        <image src="/images/sc(2).png" class="icon" mode="" />
+                    </view>
+                    <view class="gap">
+                        <text>成功率：0%</text>
+                        <text>0人评论</text>
+                    </view>
+                </view>
+            </view>
+            <view class="space">
+            </view>
+            <view class="column width">
+                <text>技能</text>
+                <text>{{info.jineng}}</text>
+            </view>
+        </view>
+        <view class="button" bindtap="toggleDialog">聊一聊</view>>
+    </scroll-view>
+</view>
+
+
+<!-- 模拟弹窗 -->
+<view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
+    <view class="dialog__mask" bindtap="toggleDialog" />
+    <view class="dialog__container">
+        <view style=' display:flex; flex-direction: column; justify-content: center; padding:100rpx; gap: 10rpx;'>
+            <view class="lx" bindtap="call_phone" data-text="{{info.phone}}">
+                <image class="icon" src="/images/phone.png" mode="" />
+                <text>{{info.phone}}</text>
+            </view>
+            <view class="lx" bindtap="copy" data-text="{{info.wx}}">
+                <image src="/images/wx.png" class="icon" mode="" />
+                <text>{{info.wx}}</text>
+            </view>
+            <view class="lx" bindtap="copy" data-text="{{info.qq}}">
+                <image src="/images/qq.png" class="icon" mode="" />
+                <text>{{info.qq}}</text>
+            </view>
+        </view>
+    </view>
+</view>

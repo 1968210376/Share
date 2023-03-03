@@ -1,4 +1,25 @@
-<scroll-view scroll-y style="height: 100%;">
-<text>需求</text>
-  
-</scroll-view>
+<view class="container">
+    <scroll-view scroll-y="">
+        <view class="cards gap" wx:for="{{listss}}" wx:key="index" data-id="{{index}}" bindtap="xvqiu_detail">
+            <view class="userInfo">
+                <text>{{item.job}}</text>
+                <text class="blue">{{item.price}}</text>
+            </view>
+            <view>
+                <text class="tag black font-mini" style="white-space: nowrap;margin: 5rpx; background-color: #eee;" wx:for="{{item.xvqiu}}" wx:key="index">{{item}}</text>
+            </view>
+            <text class="gray font-mini">{{item.gongsi}}</text>
+            <view class="userInfo">
+            <view class="algin">
+                <image src="{{item.avatar}}" class="icon" mode=""/>
+                <text>{{item.nickName}}</text>
+            </view>
+                <text class="gray font-mini">刚刚活跃</text>
+            </view>
+            <view class="space">
+                
+            </view>
+        </view>
+
+    </scroll-view>
+</view>

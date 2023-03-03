@@ -1,3 +1,5 @@
+<view class="box">
+
 <form bindsubmit="formSubmit" bindreset="formReset">
     <view class='pages'>
         <view class="title">
@@ -86,7 +88,7 @@
 
         <!-- 提交按钮 -->
         <view class="btn-area">
-            <button formType="submit" type="primary" plain="true" style="width:70%;;color:white;border:none;background-color: rgb(47, 92, 190);color: aliceblue;">
+            <button formType="submit" type="primary" plain="true" style="width:70%;;color:white;border:none;background-color: #007AFF;color: aliceblue;">
                 确认发布
             </button>
         </view>
@@ -95,3 +97,5 @@
 
     </view>
 </form>
+    
+</view>

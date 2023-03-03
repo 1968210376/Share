@@ -1,0 +1,187 @@
+/* pages/wupin_detail/index.wxss */
+::-webkit-scrollbar{
+    border: 0;
+    display: none;
+}
+.container {
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    gap: 35rpx;
+}
+
+.alert {
+    background: rgb(240, 9, 9);
+    background: linear-gradient(90deg, rgb(245, 70, 70) 0%, rgba(245, 151, 151, 0.9) 0%, rgb(252, 244, 244) 100%);
+    font-size: 12px;
+    padding: 5rpx;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15rpx;
+    align-items: center;
+}
+
+.alert view {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+.userinfo {
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    font-size: 12px;
+    gap: 10rpx;
+    align-items: center;
+}
+
+.gray {
+    color: gray;
+}
+
+.font-mini {
+    font-size: 10px;
+}
+
+.font-bold {
+    font-weight: bolder;
+}
+
+.l {
+    margin-left: 15rpx;
+}
+
+.r {
+    margin-right: 15rpx;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: #00aaff;
+}
+
+.price_box {
+    display: flex;
+    align-items: center;
+    gap: 5rpx;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.imgBox {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgBox image {
+    border-radius: 20rpx;
+}
+
+.lx {
+    display: flex;
+    align-items: center;
+    gap: 5rpx;
+}
+
+.icon {
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.yellow {
+    background-color: rgb(235, 213, 14);
+
+}
+
+.btn {
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10rpx;
+    border-radius: 35rpx;
+    gap: 5rpx;
+    border: 1px solid #ccc;
+}
+
+.pl {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+
+/* 模拟弹窗 */
+.dialog__mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    /* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+    display: none;
+}
+
+.dialog__container {
+    position: fixed;
+    bottom: 400rpx;
+    width: 650rpx; 
+    /* 弹窗布局宽 */
+    height: 350rpx; 
+    /* 弹窗布局高，与下面弹出距离transform有关 */
+    margin-left: 50rpx;
+    background: #f8f8f8;
+    transform: translateY(400%); 
+    /* 弹框弹出距离，与弹框布局高度有关，如400%表示弹起距离为4倍弹窗高度 */
+    transition: all 0.4s ease;
+    z-index: 12;
+    border-radius: 20rpx;
+    box-shadow: 0px 3px 3px 2px gainsboro;
+     /* 弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+
+.dialog--show .dialog__container {
+    transform: translateY(0);
+}
+
+.dialog--show .dialog__mask {
+    display: block;
+}
+.space{
+    width: 100vw;
+    height: 50px;
+    position: relative;
+    bottom: -50rpx;
+}
+.center{
+    text-align: center;
+}
+.right{
+    position: absolute;
+    right: 15px;
+}
+.spaces{
+    width: 90vw;
+    margin: 0 auto;
+    border: 4px solid #F4F5F9;
+
+}

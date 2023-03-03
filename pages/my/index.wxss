@@ -16,7 +16,16 @@ input {
     width: 160rpx;
     height: 160rpx;
     float: left;
+    border-radius: 50%;
+    border: 2px solid #eee;
     /* background-color: rgb(185, 185, 126); */
+}
+.bg{
+    width: 100vw;
+    height: 30vh;
+}
+.bg image{
+    width: 100%;
 }
 
 .userinfo-nickname {
@@ -26,12 +35,13 @@ input {
     margin: 30rpx;
     margin-left: 0rpx;
     float: left;
-    color: rgb(109, 99, 99);
+    color: #000;
+    /* color: rgb(109, 99, 99); */
     /* background-color: rgb(109, 83, 83); */
 }
 
 /* 导航 */
-.asset {
+/* .asset {
     width: 100%;
     display: flex;
     border-top: 1px solid #eee;
@@ -56,18 +66,19 @@ input {
 
 
 /* 绑定手机号 */
-.bind-phone-number {
+/* .bind-phone-number { 
     margin: 20rpx;
     width: 100%;
-}
+} */
 
 /* flex重新构建菜单 */
 .menu-item {
-    width: 98vw;
+    width: 90vw;
     height: 95rpx;
-    padding: 0 32rpx;
-    margin-left: 1%;
-    background: #fff;
+    margin: 85rpx auto;
+    /* padding: 0 32rpx; */
+    /* margin-left: 1%; */
+    /* background: #fff; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -117,4 +128,8 @@ input {
     text-align: center;
     padding: 50rpx;
     margin-top: 50rpx;
+}
+.icon{
+    width: 80rpx;
+    height: 80rpx;
 }

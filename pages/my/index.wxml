@@ -1,6 +1,9 @@
 <view class="container">
-    <view class="menu-item" bindtap='to_niu_my_edit_information' style="height: 220rpx;background-color: #f6f6f6;">
-        <image class="userinfo-avatar" src="{{avatarUrl}}" background-size="cover"></image>
+    <view bindtap="chooseBackground" class="bg">
+        <image src="{{bgImg}}" mode="aspectFill" />
+    </view>
+    <view class="menu-item" bindtap='to_niu_my_edit_information'>
+        <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
         <view class="userinfo-nickname">
             <text>{{nickName}}</text>
         </view>
@@ -9,5 +12,17 @@
         </view>
     </view>
     <view class="space"></view>
+    <view class="space"></view>
+    <view class="menu-item" style="display: flex; align-items: center; justify-content:space-around;box-shadow:inset 2px 2px 4px #eee,2px  2px 4px #ccc ">
 
+        <image wx:if="{{item == 0}}" src="/images/sc(2).png" class="icon" mode="" />
+        <image wx:else src="/images/sc(1).png" class="icon" mode="" />
+        <image src="/images/ly.png" class="icon" mode="" />
+        <image src="/images/pengyouquan.png" class="icon" mode="" />
+    </view>
+    <swiper current="{{index}}" data-id="index" bindchange="changeItem">
+        <swiper-item>
+
+        </swiper-item>
+    </swiper>
 </view>

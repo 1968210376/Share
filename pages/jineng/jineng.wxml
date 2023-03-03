@@ -1,4 +1,46 @@
-<scroll-view scroll-y style="height: 100%;">
-<text>技能</text>
-  
-</scroll-view>
+<view class="container">
+    <scroll-view scroll-y="">
+        <view class="cards" wx:for="{{lists}}" wx:key="index" data-id="{{index}}" bindtap="jineng_detail">
+            <view class="userInfo">
+
+                <view class="img">
+                    <image src="{{item.avatar}}" mode="" />
+                    <view class="info flex_column">
+                        <text>{{item.nickName}}</text>
+                        <text class="blue font-mini">￥{{item.price}}/月</text>
+                    </view>
+                    <view class="flex_column job">
+                        <text>{{item.job}}</text>
+                        <view class="tags">
+                            <text wx:for="{{item.tag}}" wx:key="index" class="font-mini tag">{{item}}</text>
+                        </view>
+                    </view>
+
+                </view>
+            </view>
+            <view class="border_bottom">
+                <view class="jineng">
+                    技能： <text class=" gray font-mini">{{item.jineng}}</text>
+                </view>
+                <view>
+                    作品：<text class="gray font-mini">{{item.zuopin}}</text>
+                </view>
+            </view>
+            <view class="jingyan">
+                <view class="star">
+                    <image src="/images/sc(2).png" class="icon" mode="" />
+                    <image src="/images/sc(2).png" class="icon" mode="" />
+                    <image src="/images/sc(2).png" class="icon" mode="" />
+                    <image src="/images/sc(2).png" class="icon" mode="" />
+                    <image src="/images/sc(2).png" class="icon" mode="" />
+
+                </view>
+                <text class="gray font-mini ">{{item.jingyan}} | {{item.city}}</text>
+            </view>
+            <view class="space">
+
+            </view>
+        </view>
+
+    </scroll-view>
+</view>

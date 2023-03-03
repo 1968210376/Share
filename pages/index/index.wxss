@@ -2,10 +2,13 @@
 .container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
+
 .searchBox {
-  width:95vw;
+  width: 95vw;
   margin: 5rpx auto;
   display: flex;
   align-items: center;
@@ -28,19 +31,18 @@
 }
 
 
-
+/* 
 .banner {
-  width: 100%;
+  width: 100vw;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .banner image{
   width: 100%;
+  height: 100%;
   margin: 0 auto;
   border-radius: 15rpx;
-}
+} */
+
 .tab {
   width: 100%;
   display: flex;
@@ -57,9 +59,9 @@
   border-bottom: 1px solid #007AFF;
 }
 
-.contents {
-  width: 100vw;
-  height: 100%;
+.content {
+  flex: 1;
+  height: 1px;
 }
 
 .card {
@@ -68,11 +70,27 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  box-shadow: #eee 1px 1px 1px 3px;
+  box-shadow: #ccc 2px 2px 5px;
   padding: 10rpx;
   display: flex;
   flex-direction: column;
+  gap: 10rpx;
+
 }
+
+.cards{
+  width: 95vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+.space {
+  width: 100vw;
+  height: 16rpx;
+  background: #F4F5F9;
+}
+
 
 .userInfo {
   display: flex;
@@ -83,14 +101,36 @@
 .img {
   flex: 1;
   display: flex;
+  justify-content: space-around;
+}
+
+.fixed_box {
+  display: flex;
   justify-content: space-between;
 }
 
+.fixed_pic {
+  width: 300rpx;
+  height: 200rpx;
+  border-radius: 15rpx;
+}
+
 .img image {
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
   border: 1px solid #ccc;
+  box-shadow: #ccc 2px 2px 4px;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.blue {
+  color: #007AFF;
 }
 
 .weizhi {
@@ -98,67 +138,158 @@
   color: gray;
 }
 
+.job {
+  display: flex;
+  align-items: flex-end;
+}
+
 .info {
   flex: 2;
   margin-left: 5px;
 }
 
-.jianJie {
-  text-indent: 2rem;
+.tags {
+  display: flex;
+  justify-content: space-between;
+  gap: 15rpx;
+  color: gray;
+}
+
+.tag {
+  border: 1px solid #ccc;
   padding: 5rpx;
+}
+.jingyan{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.btnBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.jianJie {
+  /* text-indent: 2rem; */
+  /* padding: 5rpx;
+  margin: 5rpx; */
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  font-size: 14px;
+}
+
+.jineng {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.border_bottom{
+  padding-bottom: 10rpx;
+  margin-bottom: 10rpx;
+  border-bottom: 1px solid #ccc;
 }
 
 .imgBox {
   width: 100%;
-  box-sizing: border-box;
-  margin: 35rpx 5rpx;
-  display: flex;
+  /* box-sizing: border-box; */
+  /* display: flex;  */
+  margin: 35rpx auto;
 }
 
-.imgBox view {
+/* .imgBox view {
   width: 150rpx;
   height: 150rpx;
   margin-right: 30rpx;
+} */
+
+.imgBox image {
+  /* width: 100%; */
+  width: 100%;
+  /* border: 1px solid #ccc; */
+  border-radius: 15rpx;
+  /* box-shadow:#007AFF -2px -2px 3px, 2px 2px 5px black; */
 }
 
-.imgBox view image {
-  width: 100%;
-  height: 100%;
-  border: 1px solid #ccc;
-  box-shadow:#007AFF -2px -2px 3px, 2px 2px 5px black;
-}
-.ftb{
-  position: fixed;
-  bottom: 50rpx;
-  right: 20rpx;
-  width: 100rpx;
-  height: 100rpx;
-  background-color: #007AFF;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 100rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 100rpx;
-}
-.red{
+.red {
   color: red;
 }
-.btnBox{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #ccc;
-  padding-top: 10rpx;
-}
 
-.btn{
+.btn {
   width: 100rpx;
   text-align: center;
   color: #007AFF;
 }
-.gold{
+
+.gold {
   color: gold;
+}
+
+.txt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.font-mini {
+  font-size: 10px;
+}
+
+.gray {
+  color: gray;
+}
+
+.price {
+  margin: 5px;
+}
+
+.liushi_container {
+  padding: 0 20rpx;
+}
+
+/* 瀑布流布局 */
+.picture {
+  column-gap: 5rpx;
+  column-count: 2;
+  margin: 20rpx 0;
+}
+
+.item {
+  width: calc(100% - 30rpx);
+  break-inside: avoid;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10rpx;
+  margin: 0 15rpx;
+}
+
+.item .image {
+  width: 100%;
+  border-radius: 15rpx;
+}
+
+.null-wrap {
+  height: 30rpx;
+}
+
+.data-img {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+  /* border: 1px solid #eee; */
+  border-radius: 50%;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  position: relative;
+  right: -30%;
 }

@@ -4,6 +4,7 @@ Page({
   data: {
     latitude: 35.30351, //默认定位纬度
     longitude: 113.87523, //默认定位经度
+    scale:14,
     markers: [
       // {
       //   id: 0,
@@ -50,111 +51,41 @@ Page({
       // },
     ]
   },
-  // 微信获取地理位置 选择位置  授权位置信息
-  getUserLocation: function () {
-    let vm = this;
-    wx.getSetting({
-      success: (res) => {
-        console.log(JSON.stringify(res))
-        // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
-        // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
-        // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
-        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
-          wx.showModal({
-            title: '请求授权当前位置',
-            content: '需要获取您的地理位置，请确认授权',
-            success: function (res) {
-              if (res.cancel) {
-                wx.showToast({
-                  title: '拒绝授权',
-                  icon: 'none',
-                  duration: 1000
-                })
-              } else if (res.confirm) {
-                wx.openSetting({
-                  success: function (dataAu) {
-                    if (dataAu.authSetting["scope.userLocation"] == true) {
-                      wx.showToast({
-                        title: '授权成功',
-                        icon: 'success',
-                        duration: 1000
-                      })
-                      //再次授权，调用wx.getLocation的API
-                      vm.getLocation();
-                    } else {
-                      wx.showToast({
-                        title: '授权失败',
-                        icon: 'none',
-                        duration: 1000
-                      })
-                    }
-                  }
-                })
-              }
-            }
-          })
-        } else if (res.authSetting['scope.userLocation'] == undefined) {
-          //调用wx.getLocation的API
-          // vm.getLocation();
-        } else {
-          //调用wx.getLocation的API
-          // vm.getLocation();
-        }
-      }
-    })
-  },
 
-  // 获取当前位置定位
   onLoad: function () {
-    var that = this
-    that.getUserLocation()
-    that.selectMarket()
-    // getLocation
-    // wx.getFuzzyLocation({
-    //   type: "wgs84",
-    //   success: function (res) {
-    //     console.log("-----");
-    //     console.log(res);
-    //     that.setData({
-    //       latitude: res.latitude,
-    //       longitude: res.longitude,
-    //       markers: [{
-    //         latitude: res.latitude,
-    //         longitude: res.longitude
-    //       }]
-    //     })
-    //   }
-    // })
+    // 获取当前位置信息定位
+    this.mapCtx = wx.createMapContext('map')
+    app.getUserLocation()
   },
-  // 获取附近的共享
-
-
-
   onShow: function () {
     var that = this
-    // that.selectMarket()
-
-    var location = that.data.latitude + "," + that.data.longitude
-    console.log(location)
-
+    that.setData({
+      longitude: wx.getStorageSync('longitude'),
+      latitude: wx.getStorageSync('latitude')
+    })
+    // 获取周边信息
+    this.selectMarket()
   },
-
-  // 地图显示附近共享
-
-  // 点击共享进入详情页面
-
-
+  // 获取附近的共享 地图显示附近共享 已完成
   selectMarket: function () {
-    // var that = this
+    var that = this
     var userInfo = wx.getStorageSync('userInfo');
+    console.log(that.data.latitude, that.data.longitude)
     wx.request({
       url: app.globalData.serverApi + '/selectMarket',
       method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         wxOpenId: userInfo.wxOpenId,
         CategoryType: "1",
         title: "",
-        publictiy: 1
+        publictiy: 1,
+        latitude: that.data.latitude,
+        longitude: that.data.longitude,
+        pageIndex: 0,
+        pageSize: 20,
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -163,31 +94,17 @@ Page({
         console.log("selectmarket===>res");
         console.log(res);
         if (res.data.code == 1) {
-          // 如果没有查询出数据 load改变为已完成没有下一页了。
-          if (res.data.response.content == 0) {
-            return
-          }
           var list = res.data.response.content
           let arr = [];
-          // var item = {};
-
           list.forEach((mar, list) => {
-            // let d = new Date(item.target.create_time).getTime();
-            // item.target.create_time = this.commentTimeHandle(d);
-            // console.log(item.target.create_time)
-            // if (item.target.images != "") {
-            //   item.target.images = item.target.images.split(",");
-            // }
             var item = {};
-            item.id = mar.id;
+            item.id = mar.target.id;
             item.width = 30; //这个后端数据没反,就自己设置图标大小
             item.height = 35; //这个后端数据没反,就自己设置图标大小
             item.latitude = mar.target.latitude;
             item.longitude = mar.target.longitude;
-            // item.iconPath = '/images/delect.png';
             item.iconPath = mar.target.avatar_url;
             item.callout = {
-                // color:'#ffffff',
                 color: '#FF0000 ',
                 content: (mar.target.title.length > 10 ? mar.target.title.substr(0, 10) + "..." : mar.target.title) + "￥:" + mar.target.pirce,
                 fontSize: 12,
@@ -202,11 +119,9 @@ Page({
               },
               arr.push(item)
           })
-          let that = this
           that.setData({
             markers: arr,
           })
-
           // that.setData({
           //   mapCtx: wx.createMapContext('map')
           // })
@@ -236,20 +151,50 @@ Page({
       }
     })
   },
-
-
-
-  clickmap: function (res) {
-    console.log(res)
-    this.selectMarket()
+  // 视野发生变化时触发，已完成
+  regionchange: function (e) {
+    var that = this
+    
+    console.log(e)
+    if (e.type == 'end') {
+      this.mapCtx.getCenterLocation({
+        success: function (res) {
+          // 解决拖动地图执行三次该方法 导致的多次查询周边信息
+          if(that.data.longitude==res.longitude||that.data.latitude==res.latitude){
+            return
+          }
+          that.setData({
+            longitude: res.longitude,
+            latitude: res.latitude
+          })
+          // 获取周边信息
+          that.selectMarket()
+        }
+      })
+    }
   },
+  // 点击目标 回到初始位置 即刷新页面
+  controltap: function () {
+    var that = this
+    // that.mapCtx.moveToLocation()
+    // this.getMyLocation()
+    that.setData({
+      scale: 14
+    })
+    that.onShow()
+
+  },
+
+  // 点击共享进入详情页面
   // 点击标记点时触发
   markertap: function (res) {
     console.log(res)
   },
-  // 视野发生变化时触发，
-  // regionchange: function (res) {
 
+
+  // clickmap: function (res) {
+  //   console.log(res)
+  //   // this.selectMarket()
   // },
   // bindtap:function(res){
   //   console.log(res)
@@ -378,6 +323,5 @@ Page({
     //   }
     // })
   },
-
 
 })
