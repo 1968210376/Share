@@ -1,0 +1,27 @@
+<!--pages/map/map.wxml-->
+
+<view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 100%;">
+  <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="{{scale}}" show-location style="width: 100%; height: 100%;" bindmarkertap="markertap" bindcallouttap="clickCallout" show-scale="true" bindtap="bindtap" show-compass="true" bindregionchange="regionchange">
+    <!-- bindupdated="bindupdated"  -->
+    <cover-view class="cover-view" bindtap="controltap">
+      <cover-image class="station" src="../../images/position.png"></cover-image>
+    </cover-view>
+
+    <!-- <cover-view slot="callout">
+      <cover-view marker-id="22">666</cover-view>
+      <cover-view marker-id="26">888</cover-view>
+    </cover-view> -->
+
+    <!-- <cover-view slot="callout">
+      <block wx:for="{{customCalloutMarkerIds}}" wx:key="*this">
+        <cover-view class="customCallout" marker-id="{{item}}">
+          <cover-image class="icon" src="/image/voice.png"></cover-image>
+          <cover-view class="content">
+            {{num}}-{{item}}-{{index}}
+          </cover-view>
+        </cover-view>
+      </block>
+    </cover-view> -->
+
+  </map>
+</view>

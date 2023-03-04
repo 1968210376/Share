@@ -1,7 +1,7 @@
 {
   "pages": [
+    "pages/niu_map/map",
     "pages/index/index",
-    "pages/map/map",
     "pages/share_market_issue/index",
     "pages/my/index",
     "pages/my_edit_information/index",
@@ -28,7 +28,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/map/map",
+        "pagePath": "pages/niu_map/map",
         "iconPath": "images/pengyouquan(1).png",
         "selectedIconPath": "images/pengyouquan.png",
         "text": "周边"
