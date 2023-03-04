@@ -8,7 +8,8 @@ App({
     openid: null,
     navHeight: 100,
     // serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
-    serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
+    serverApi: "http://172.16.3.52:8081/wx/api", //内网穿透测试
+    // serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
     // serverApi: "http://150.158.107.188:8080/wx/api", //发布地址
   },
   //  初始化的时候执行

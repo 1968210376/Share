@@ -10,134 +10,23 @@ Page({
     item: 0,
     l_id: 0,
     navHeight: 100,
+    openid: '',
     location: "定位",
     time: '',
     chooseLocation: "", //位置
     banner: '',
     list: [{ //物品列表
         id: 0,
-        avatar: '/images/shouye.png',
-        nickName: 'MR.D',
-        time: '2023年3月1日',
-        location: '新乡学院D10',
+        avatar_url: '/images/shouye.png',
+        nick_name: 'MR.D',
+        create_time: '2023年3月1日',
+        address: '新乡学院D10',
         distance: '100M',
         title: "扩展屏",
         content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        imgBox: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
-        price: '188',
-        is_shouCang: true,
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-
-      },
-      {
-        id: 1,
-        avatar: '/images/shouye.png',
-        nickName: 'MR.D',
-        time: '2023年3月1日',
-        location: '新乡学院D10',
-        distance: '100M',
-        title: "扩展屏",
-        content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        imgBox: ['/images/home.png', '/images/pengyouquan.png'],
-        price: '188',
-        is_shouCang: false,
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-      {
-        id: 1,
-        avatar: '/images/shouye.png',
-        nickName: 'MR.D',
-        time: '2023年3月1日',
-        location: '新乡学院D10',
-        distance: '100M',
-        title: "扩展屏",
-        content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        imgBox: ['/images/home.png', '/images/pengyouquan.png'],
-        price: '188',
-        is_shouCang: false,
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-      {
-        id: 1,
-        avatar: '/images/shouye.png',
-        nickName: 'MR.D',
-        time: '2023年3月1日',
-        location: '新乡学院D10',
-        distance: '100M',
-        title: "扩展屏",
-        content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        imgBox: ['/images/home.png', '/images/pengyouquan.png'],
-        price: '188',
-        is_shouCang: false,
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-      { //物品列表
-        id: 0,
-        avatar: '/images/shouye.png',
-        nickName: 'MR.D',
-        time: '2023年3月1日',
-        location: '新乡学院D10',
-        distance: '100M',
-        title: "扩展屏",
-        content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        imgBox: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
-        price: '188',
-        is_shouCang: true,
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-
-      }, { //物品列表
-        id: 0,
-        avatar: '/images/shouye.png',
-        nickName: 'MR.D',
-        time: '2023年3月1日',
-        location: '新乡学院D10',
-        distance: '100M',
-        title: "扩展屏",
-        content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        imgBox: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
-        price: '188',
-        is_shouCang: true,
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-
-      }, { //物品列表
-        id: 0,
-        avatar: '/images/shouye.png',
-        nickName: 'MR.D',
-        time: '2023年3月1日',
-        location: '新乡学院D10',
-        distance: '100M',
-        title: "扩展屏",
-        content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        imgBox: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
-        price: '188',
-        is_shouCang: true,
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-
-      }, { //物品列表
-        id: 0,
-        avatar: '/images/shouye.png',
-        nickName: 'MR.D',
-        time: '2023年3月1日',
-        location: '新乡学院D10',
-        distance: '100M',
-        title: "扩展屏",
-        content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        imgBox: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
-        price: '188',
+        images: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
+        // price: '188',
+        pirce:188,
         is_shouCang: true,
         phone: '18738388052',
         wx: 'dzg18738388052',
@@ -149,7 +38,7 @@ Page({
         avatar: 'https://img.vinua.cn/images/VLmW.png',
         nickName: '海默之语',
         job: '前端开发工程师',
-        price: '13050',
+        pirce: '13050',
         tag: ['全职工作者', '协作开发者'],
         jineng: 'HTML5，CSS，JavaScript，Vue，Node.js，jQuery，TypeScript',
         zuopin: '龙源音乐，绿叶商城后台管理系统，秒选商城',
@@ -511,8 +400,51 @@ Page({
       complete: (res) => {},
     })
   },
+  getShuju() {
+    var openid = wx.getStorageSync('openid')
+
+    this.setData({
+      openid: openid
+    })
+    console.log('openid', openid);
+    var that = this
+    wx.request({
+      url: app.globalData.serverApi + '/selectMarket',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        wxOpenId: openid,
+        pageIndex: 0,
+        pageSize: 10,
+        title: '',
+        CategoryType: ''
+      },
+      success(res) {
+        console.log("shuju==>", res.data);
+
+        res.data.response.content.forEach(item => {
+          let d = new Date(item.target.create_time).getTime();
+          item.target.create_time = util.commentTimeHandle(d);
+          if (item.target.images != "") {
+              item.target.images = item.target.images.split(",");
+          } 
+          // let liked_post_wx_open_id = wx.getStorageSync('openid');
+          // console.log(liked_post_wx_open_id)
+          // console.log(item.target.wx_open_id)
+          // console.log(item.target.like_status)
+          // console.log("----")
+      })
+        that.setData({
+          list:res.data.response.content
+        })
+        console.log(that.data.list);
+      }
+    })
+  },
   onLoad() {
-    this.time()
+    // this.time()
     this.location()
     this.setData({
       navHeight: app.globalData.navHeight,
@@ -521,6 +453,8 @@ Page({
   onShow() {
     // 从地图选点插件返回后，在页面的onShow生命周期函数中能够调用插件接口，取得选点结果对象
     let location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
+
+    var city = wx.getStorageSync('city');
     console.log("location133:", location)
     // console.log("location144:", location.name)
     let that = this;
@@ -528,13 +462,14 @@ Page({
     // JSON.parse(location)
     this.setData({
       chooseLocation: location,
+      location:city
     })
-    if (location) {
-      this.setData({
-        location: location.district
-      })
-    }
+    // if (location) {
+    //   this.setData({
+    //     location: location.district
+    //   })
+    // }
     this.banner()
-
+    this.getShuju()
   }
 })

@@ -5,14 +5,14 @@
         <view class="card" wx:for="{{list}}" wx:key="index" data-id="{{index}}" bindtap="wupin_detail">
             <view class="userInfo">
               <view class="img">
-                <image src="{{item.avatar}}" />
+                <image src="{{item.target.avatar_url}}" />
               </view>
               <view class="info">
                 <view class="nickName">
-                  {{item.nickName}}
+                  {{item.target.nickName}}
                 </view>
                 <view class="time gray font-mini">
-                  {{item.time}}
+                  {{item.target.create_time}}
                 </view>
               </view>
               <view class="weizhi">
@@ -20,28 +20,28 @@
                   距离：{{item.distance}}
                 </view>
                 <view>
-                  位置：{{item.location}}
+                  位置：{{item.target.address}}
                 </view>
               </view>
             </view>
             <view class="txt">
               <view class="jianJie">
                 <view class="title">
-                  {{item.title}}
+                  {{item.target.title}}
                 </view>
                 <view class="font-mini gray">
-                  {{item.content}}
+                  {{item.target.content}}
                 </view>
               </view>
               <view class="red price">
-                ￥{{item.price}}
+                ￥{{item.target.pirce}}
               </view>
             </view>
             <view class="imgBox">
               <!-- <view wx:for="{{item.imgBox}}" wx:key="index">
               <image src="{{item}}" mode="scaleToFill" />
             </view> -->
-              <image src="{{item.imgBox[0]}}" mode=" widthFix" />
+              <image src="{{item.target.images[0]}}" mode=" widthFix" />
             </view>
           </view>
       </scroll-view>
