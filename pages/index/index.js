@@ -429,6 +429,7 @@ Page({
           item.target.create_time = util.commentTimeHandle(d);
           if (item.target.images != "") {
               item.target.images = item.target.images.split(",");
+              item.target.choose_location = JSON.parse(item.target.choose_location);
           } 
           // let liked_post_wx_open_id = wx.getStorageSync('openid');
           // console.log(liked_post_wx_open_id)

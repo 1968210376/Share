@@ -9,7 +9,7 @@
               </view>
               <view class="info">
                 <view class="nickName">
-                  {{item.target.nickName}}
+                  {{item.target.nick_name}}
                 </view>
                 <view class="time gray font-mini">
                   {{item.target.create_time}}
@@ -20,7 +20,7 @@
                   距离：{{item.distance}}
                 </view>
                 <view>
-                  位置：{{item.target.address}}
+                  {{item.target.choose_location.city}}{{item.target.choose_location.district}}
                 </view>
               </view>
             </view>
