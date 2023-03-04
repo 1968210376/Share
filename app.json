@@ -5,6 +5,7 @@
     "pages/share_market_issue/index",
     "pages/my/index",
     "pages/my_edit_information/index",
+    "pages/niu_my_fuwuyinshi/index",
 
     "pages/wupin/wupin",
     "pages/jineng/jineng",
@@ -15,6 +16,12 @@
     "pages/xvqiu_detail/index"
 
   ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#007AFF",
+    "navigationBarTitleText": "心愿享",
+    "navigationBarTextStyle": "white"
+  },
   "tabBar": {
     "color": "#6e6d6b",
     "selectedColor": "#3283fc",
@@ -52,12 +59,7 @@
     "downloadFile": 10000,
     "connectSocket": 10000
   },
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#007AFF",
-    "navigationBarTitleText": "心愿享",
-    "navigationBarTextStyle": "black"
-  },
+
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "plugins": {

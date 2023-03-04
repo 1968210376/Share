@@ -363,10 +363,10 @@ Page({
     },
 
     
-    // to_niu_my_fuwuyinshi:function(){
-    //     wx.navigateTo({
-    //         url: "/pages/niu_my_fuwuyinshi/index"
-    //     })
-    // },
+    to_niu_my_fuwuyinshi:function(){
+        wx.navigateTo({
+            url: "/pages/niu_my_fuwuyinshi/index"
+        })
+    },
 
 })
