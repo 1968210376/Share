@@ -4,7 +4,7 @@ Page({
   data: {
     latitude: 35.30351, //默认定位纬度
     longitude: 113.87523, //默认定位经度
-    scale:14,
+    scale: 14,
     markers: []
   },
   onReady: function (e) {
@@ -36,7 +36,7 @@ Page({
       },
       data: {
         wxOpenId: userInfo.wxOpenId,
-        CategoryType: "1",
+        CategoryType: "",
         title: "",
         publictiy: 1,
         latitude: that.data.latitude,
@@ -62,7 +62,7 @@ Page({
             item.longitude = mar.target.longitude;
             item.iconPath = mar.target.avatar_url;
             item.alpha = 0.8; //透明度 0-1 
-             //   title: "牛亚博",
+            //   title: "牛亚博",
             item.callout = {
                 color: '#000000 ',
                 content: (mar.target.title.length > 10 ? mar.target.title.substr(0, 10) + "..." : mar.target.title) + "￥:" + mar.target.pirce,
@@ -71,7 +71,7 @@ Page({
                 borderWidth: 1,
                 bgColor: '#FFFFFFcc',
                 width: 1,
-                borderColor:"#ff0000",
+                borderColor: "#ff0000",
                 padding: 8,
                 textAlign: 'center',
                 display: "ALWAYS",
@@ -128,7 +128,7 @@ Page({
       this.mapCtx.getCenterLocation({
         success: function (res) {
           // 解决拖动地图执行三次该方法 导致的多次查询周边信息
-          if(that.data.longitude==res.longitude||that.data.latitude==res.latitude){
+          if (that.data.longitude == res.longitude || that.data.latitude == res.latitude) {
             return
           }
           that.setData({
@@ -158,8 +158,13 @@ Page({
   // 点击标记点时触发
   markertap: function (res) {
     console.log(res)
+    console.log(res.markerId)
   },
-
+  // 点击气泡时触发
+  bindcallouttap:function(res){
+    console.log(res)
+    console.log(res.markerId)
+  },
 
   // clickmap: function (res) {
   //   console.log(res)

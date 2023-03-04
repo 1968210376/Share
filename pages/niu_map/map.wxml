@@ -1,7 +1,9 @@
 <!--pages/map/map.wxml-->
 
 <view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 100%;">
-  <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="{{scale}}" show-location style="width: 100%; height: 100%;" bindmarkertap="markertap" bindcallouttap="clickCallout" show-scale="true" bindtap="bindtap" show-compass="true" bindregionchange="regionchange">
+  <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="{{scale}}" 
+  show-location style="width: 100%; height: 100%;" bindmarkertap="markertap" bindcallouttap="clickCallout" 
+  show-scale="true" bindtap="bindtap" show-compass="true" bindregionchange="regionchange" bindcallouttap="bindcallouttap">
     <!-- bindupdated="bindupdated"  -->
     <cover-view class="cover-view" bindtap="controltap">
       <cover-image class="station" src="../../images/position.png"></cover-image>
