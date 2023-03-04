@@ -2,7 +2,7 @@
 .box{
   width: 100vw;
   height: 100vh;
-  background-color: blanchedalmond;
+  background-color: rgb(253, 253, 252);
 }
 .pages{
     width: 95%;
@@ -10,8 +10,8 @@
     margin: auto;
     overflow: hidden;
     background-color: white;
-    border: 1px solid #ccc;
-    box-shadow:inset 2px 2px 2px 4px #eee,2px 2px 4px #ccc;
+    /* border: 1px solid #ccc; */
+    /* box-shadow:inset 2px 2px 4px #eee,2px 2px 4px #ccc; */
   }
   
   .title{

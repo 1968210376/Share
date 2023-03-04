@@ -1,10 +1,9 @@
 <view class="box">
-
 <form bindsubmit="formSubmit" bindreset="formReset">
     <view class='pages'>
-        <view class="title">
+        <!-- <view class="title">
             可发布物品、需求、技能、服务等
-        </view>
+        </view> -->
         <!-- 选择分类 -->
         <scroll-view scroll-x="true" class="tab-h">
             <radio-group name="category_type">

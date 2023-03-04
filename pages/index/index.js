@@ -1,7 +1,6 @@
 // index.js
 const app = getApp()
 const chooseLocation = requirePlugin('chooseLocation');
-var COS = require('../../libs/cos-wx-sdk-v5.js')
 var util = require('../../libs/util.js')
 Page({
   data: {
@@ -367,7 +366,7 @@ Page({
   wupin_detail(e) {
     console.log(e);
     var info = this.data.list[e.currentTarget.dataset.id]
-    console.log(info);
+    console.log("info==>",info);
     info = JSON.stringify(info)
     wx.navigateTo({
       url: '/pages/wupin_detail/index?info=' + info,

@@ -11,9 +11,9 @@
   </view>
     <!-- 标签页标题 -->
     <view class="tab">
-      <view class="tab-item {{tab == 0? 'active':''}}" bindtap="changeTab" data-item="0">物品</view>
-      <view class="tab-item {{tab == 1? 'active':''}}" bindtap="changeTab" data-item="1">技能</view>
-      <view class="tab-item {{tab == 2? 'active':''}}" bindtap="changeTab" data-item="2">需求</view>
+      <view class="tab-items {{tab == 0? 'active':''}}" bindtap="changeTab" data-item="0">物品</view>
+      <view class="tab-items {{tab == 1? 'active':''}}" bindtap="changeTab" data-item="1">技能</view>
+      <view class="tab-items {{tab == 2? 'active':''}}" bindtap="changeTab" data-item="2">需求</view>
     </view>
     <view class="space">
       
@@ -37,9 +37,9 @@
       </swiper>
       <image src="https://img.vinua.cn/images/nboV.png" mode=""/>
     </view> -->
-    <view class="space">
+    <!-- <view class="space">
       
-    </view>
+    </view> -->
   <scroll-view scroll-y class="content">
     <!-- 内容区域 -->
       <view wx:if="{{tab == 0}}">

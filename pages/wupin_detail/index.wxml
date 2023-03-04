@@ -7,13 +7,13 @@
 </view>
 <view class="container detail">
     <view class="userinfo">
-        <image class="avatar" src="{{info.avatar}}" mode="" />
+        <image class="avatar" src="{{info.target.avatar_url}}" mode="" />
         <view>
             <view>
-                {{info.nickName}}
+                {{info.target.nick_name}}
             </view>
             <view class="gray font-mini">
-                {{info.time}} | {{info.location}} | 据您{{info.distance}}
+                {{info.target.create_time}} | {{info.target.choose_location.district}} | 据您200kM
             </view>
         </view>
         <view class="right" bindtap="is_shouCang">
@@ -22,13 +22,15 @@
         </view>
     </view>
     <view class="price_box">
-        <text class="price red">￥{{info.price}}</text> <text class="gray font-mini">|</text> <text class="font-mini blue">可自提</text>
+        <text class="price red">￥{{info.target.pirce}}</text> 
+        <!-- <text class="gray font-mini">|</text> -->
+        <!-- <text class="font-mini blue"></text> -->
     </view>
     <view class="content">
-        {{info.content}}
+        {{info.target.content}}
     </view>
     <view class="imgBox">
-        <view wx:for="{{info.imgBox}}" wx:key="index">
+        <view wx:for="{{info.target.images}}" wx:key="index">
             <image src="{{item}}" mode="" />
         </view>
     </view>
@@ -39,23 +41,26 @@
     <view class="spaces"></view>
 
     <view class="lx">
-        <image class="icon" src="{{info.avatar}}" mode="" />
-        <input class="btn" type="text" placeholder="看上了就留言~" />
+        <image class="icon radius" src="{{info.target.avatar_url}}" mode="" />
+        <input class="btn" type="text" bindconfirm="liuyan" value="{{liuyan_value}}" placeholder="看上了就留言~" />
     </view>
     <view class="spaces"></view>
     <view class="message">
-        <view class="pl">
-            <image class="icon" src="{{info.avatar}}" mode="" />
-            <view>
+        <view class="pl" wx:for="{{content}}" wx:key="index">
+        <view>
+            <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
+        </view>
+            <view class="gap">
                 <view class="lx gray">
-                    <text>{{info.nickName}}</text> <text class="font-mini ">· 8小时前</text> <text class="font-mini">ip:河南 </text>
+                    <text>{{item.target.nickName}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
                 </view>
-                <view>
-                    快来看看吧！
+                <view class="padding pl_content">
+                   {{item.target.content}}
                 </view>
             </view>
         </view>
         <view class="space center gray font-mini">
+        <image src="/images/no_result.png" class="icon" mode=""/>
             ~到底了~
         </view>
     </view>
@@ -66,17 +71,17 @@
     <view class="dialog__mask" bindtap="toggleDialog" />
     <view class="dialog__container">
         <view style=' display:flex; flex-direction: column; justify-content: center; padding:100rpx; gap: 10rpx;'>
-            <view class="lx" bindtap="call_phone" data-text="{{info.phone}}">
+            <view wx:if="{{info.target.phone}}" class="lx" bindtap="call_phone" data-text="{{info.target.phone}}">
                 <image class="icon" src="/images/phone.png" mode=""/>
-                <text>{{info.phone}}</text>
+                <text>{{info.target.phone}}</text>
             </view>
-            <view class="lx" bindtap="copy" data-text="{{info.wx}}">
+            <view wx:if="{{info.target.contact_wx}}" class="lx" bindtap="copy" data-text="{{info.target.contact_wx}}">
                 <image src="/images/wx.png" class="icon" mode=""/>
-                <text>{{info.wx}}</text>
+                <text>{{info.target.contact_wx}}</text>
             </view>
-            <view class="lx" bindtap="copy" data-text="{{info.qq}}">
+            <view wx:if="{{info.target.contact_qq}}" class="lx" bindtap="copy" data-text="{{info.target.contact_qq}}">
                 <image src="/images/qq.png" class="icon" mode=""/>
-                <text>{{info.qq}}</text>
+                <text>{{info.target.contact_qq}}</text>
             </view>
         </view>
     </view>

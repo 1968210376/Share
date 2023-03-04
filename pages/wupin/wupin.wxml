@@ -16,8 +16,9 @@
                 </view>
               </view>
               <view class="weizhi">
-                <view>
-                  距离：{{item.distance}}
+                <view class="distance">
+                 <!-- {{item.distance}} -->
+                 200km
                 </view>
                 <view>
                   {{item.target.choose_location.city}}{{item.target.choose_location.district}}
@@ -37,11 +38,14 @@
                 ￥{{item.target.pirce}}
               </view>
             </view>
-            <view class="imgBox">
+            <view  wx:if="{{item.target.images}}" class="imgBox">
               <!-- <view wx:for="{{item.imgBox}}" wx:key="index">
               <image src="{{item}}" mode="scaleToFill" />
             </view> -->
               <image src="{{item.target.images[0]}}" mode=" widthFix" />
+            </view>
+            <view wx:else="" style="height: 20rpx;">
+              
             </view>
           </view>
       </scroll-view>
@@ -66,7 +70,8 @@
                   距离：{{item.distance}}
                 </view>
                 <view>
-                  位置：{{item.location}}
+                  {{item.target.choose_location.city}}{{item.target.choose_location.district}}
+                
                 </view>
               </view>
             </view>
@@ -131,3 +136,4 @@
       </scroll-view>
     </swiper-item>
 </swiper>
+ 
