@@ -42,7 +42,7 @@
               <!-- <view wx:for="{{item.imgBox}}" wx:key="index">
               <image src="{{item}}" mode="scaleToFill" />
             </view> -->
-              <image src="{{item.target.images[0]}}" mode=" widthFix" />
+              <image src="{{item.target.images[0]}}" mode="widthFix" />
             </view>
             <view wx:else="" style="height: 20rpx;">
               
