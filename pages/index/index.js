@@ -471,5 +471,6 @@ Page({
     // }
     this.banner()
     this.getShuju()
-  }
+  },
+  
 })

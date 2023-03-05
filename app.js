@@ -8,11 +8,24 @@ App({
     openid: null,
     navHeight: 100,
     // serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
-    serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
-    // serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
+    serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
     // serverApi: "http://150.158.107.188:8080/wx/api", //发布地址
   },
-  //  初始化的时候执行
+
+  // 方法定义 lat,lng  计算距离
+GetDistance:function( lat1,  lng1,  lat2,  lng2){
+  var radLat1 = lat1*Math.PI / 180.0;
+  var radLat2 = lat2*Math.PI / 180.0;
+  var a = radLat1 - radLat2;
+  var  b = lng1*Math.PI / 180.0 - lng2*Math.PI / 180.0;
+  var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) +
+  Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
+  s = s *6378.137 ;// EARTH_RADIUS;
+  s = Math.round(s * 10000) / 10000;
+  return s;
+},
+
+//  初始化的时候执行
   onLaunch: function () {
     if (this.globalData.userInfo == null) {
       this.getwxopenid();

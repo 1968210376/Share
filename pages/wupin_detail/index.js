@@ -92,7 +92,7 @@ Page({
         content: res.detail.value,
         commentUserWxOpenId: info.wx_open_id, //物品发布人openid
         commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
-        city:city
+        city: city
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -118,6 +118,9 @@ Page({
     console.log('ok');
     var that = this
     var info = this.data.info.target
+    if (!info) {
+      return
+    }
     wx.request({
       url: app.globalData.serverApi + '/selectComment',
       method: 'POST',
@@ -129,7 +132,7 @@ Page({
       },
       success: (res) => {
         console.log(res.data);
-        if(res.data.response.content){
+        if (res.data.response.content) {
 
           res.data.response.content.forEach(item => {
             let d = new Date(item.target.create_time).getTime();
@@ -138,9 +141,9 @@ Page({
           that.setData({
             content: res.data.response.content
           })
-          console.log("pl--->",that.data.content);
+          console.log("pl--->", that.data.content);
         }
-        
+
       },
       fail: res => {
         wx.showToast({
@@ -149,10 +152,72 @@ Page({
       }
     })
   },
+
+  // 根据id查询信息 2023年3月5日 牛亚博
+  selctmarketid: function (options) {
+    var that = this
+    const promise = new Promise(function (resolve, reject) {
+      console.log("+++555+++++");
+      // 根据id查询信息
+      wx.request({
+        url: app.globalData.serverApi + '/selectMarket',
+        method: 'POST',
+        data: {
+          id: options.id,
+          wxOpenId: wx.getStorageSync('openid'),
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: (res) => {
+          console.log("------------------");
+          console.log(res.data);
+          if (res.data.response.content) {
+            res.data.response.content.forEach(item => {
+              let d = new Date(item.target.create_time).getTime();
+              item.target.create_time = util.commentTimeHandle(d);
+              if (item.target.images != "") {
+                item.target.images = item.target.images.split(",");
+                item.target.choose_location = JSON.parse(item.target.choose_location);
+              }
+            })
+            that.setData({
+              info: res.data.response.content[0]
+            })
+            console.log("pl--->", that.data.info);
+            resolve('200 OK');
+
+          }
+        },
+        fail: res => {
+          wx.showToast({
+            title: "加载留言失败",
+          })
+        }
+      })
+    })
+    promise.then(function (r) {
+      console.log("++++666++++");
+      that.show_liuyan()
+      console.log('ok: ' + r);
+    });
+
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
+  // 2023年3月5日 牛亚博
   onLoad(options) {
+    console.log("*************");
+    console.log(options)
+    var that = this
+    if (options.id) {
+      console.log("++++++++++++++++++++");
+      that.selctmarketid(options);
+      return
+    }
+    options.info = decodeURIComponent(options.info)
     var info = JSON.parse(options.info)
     console.log(info);
     this.setData({

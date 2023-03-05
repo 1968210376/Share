@@ -29,3 +29,5 @@
         <include src="./xvqiu/xvqiu.wxml" />
       </swiper-item>
     </swiper>
+
+    "navigationBarBackgroundColor": "#007AFF",

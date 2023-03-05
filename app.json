@@ -18,9 +18,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#007AFF",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "心愿享",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#6e6d6b",
