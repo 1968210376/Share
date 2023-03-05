@@ -13,7 +13,7 @@
                 {{info.target.nick_name}}
             </view>
             <view class="gray font-mini">
-                {{info.target.create_time}} | {{info.target.choose_location.district}} | 据您200kM
+                {{info.target.create_time}} | {{info.target.choose_location.district}} | {{info.target.distance?"据您"+info.target.distance:""}}
             </view>
         </view>
         <view class="right" bindtap="is_shouCang">

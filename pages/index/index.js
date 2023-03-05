@@ -13,6 +13,7 @@ Page({
     location: "定位",
     time: '',
     chooseLocation: "", //位置
+    CategoryType:4,
     banner: '',
     list: [{ //物品列表
       id: 0,
@@ -221,7 +222,7 @@ Page({
     })
   },
   changeItem(e) {
-    // console.log(e);
+    console.log(e);
     this.setData({
       item: e.target.dataset.item
     })
@@ -417,7 +418,7 @@ Page({
         pageIndex: 0,
         pageSize: 10,
         title: '',
-        CategoryType: ''
+        CategoryType: that.data.CategoryType
       },
     // var that = this
     // // console.log(that.data.latitude, that.data.longitude)
@@ -445,8 +446,23 @@ Page({
         if (res.data.response) {
 
           res.data.response.content.forEach(item => {
+            // var aa = wx.getStorageSync('latitude');
+            // console.log(aa)
+            // wx.getStorageSync('key')
+            // 调用 return的距离单位为km
+            // console.log(item.target.choose_location+"-----")
+            let aaa = "";
+            var uuu = item.target.latitude;
+            console.log(uuu+"0000000000")
+            if(uuu!=""){
+              aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
+              aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
+              console.log(aaa+"```````````")
+            }
+           
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
+            item.target.distance = aaa;
             if (item.target.images != "") {
               item.target.images = item.target.images.split(",");
               item.target.choose_location = JSON.parse(item.target.choose_location);

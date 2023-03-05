@@ -17,8 +17,8 @@
               </view>
               <view class="weizhi">
                 <view class="distance">
-                 <!-- {{item.distance}} -->
-                 200km
+                 {{item.target.distance}}
+                 <!-- 200km -->
                 </view>
                 <view>
                   {{item.target.choose_location.city}}{{item.target.choose_location.district}}

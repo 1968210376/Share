@@ -259,10 +259,9 @@ Page({
                 publictiy: 1,
                 CategoryType: category_type.type,
                 Address: e.detail.value.scrap_address,
-                chooseLocation: JSON.stringify(that.data.chooseLocation == null ? "" : that.data.chooseLocation),
-                latitude: JSON.stringify(that.data.chooseLocation.latitude == null ? "" : that.data.chooseLocation.latitude),
-                longitude: JSON.stringify(that.data.chooseLocation.longitude == null ? "" : that.data.chooseLocation.longitude),
-
+                chooseLocation: that.data.chooseLocation == null?"":JSON.stringify(that.data.chooseLocation),
+                latitude: that.data.chooseLocation == null?"":JSON.stringify(that.data.chooseLocation.latitude),
+                longitude: that.data.chooseLocation == null?"":JSON.stringify(that.data.chooseLocation.longitude),
             },
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
@@ -421,10 +420,10 @@ Page({
     },
 
 
-    // to_niu_my_fuwuyinshi:function(){
-    //     wx.navigateTo({
-    //         url: "/pages/niu_my_fuwuyinshi/index"
-    //     })
-    // },
+    to_niu_my_fuwuyinshi:function(){
+        wx.navigateTo({
+            url: "/pages/niu_my_fuwuyinshi/index"
+        })
+    },
 
 })
