@@ -11,6 +11,12 @@ Page({
         product_img: [], //上传完成后的图片路径需要保存到数据库
         categories: [], //分类
         issuePicSum: 9, //最多上传几张图片
+        father: '', //父分类
+        wupin: '',
+        jineng: '',
+        xvqiu: '',
+        array: '', //对应子分类
+        selected: 1, //默认reside
     },
 
     onLoad: function () {
@@ -19,6 +25,7 @@ Page({
 
     // 获取分类
     selectcategory: function () {
+        var that = this
         wx.request({
             url: app.globalData.serverApi + '/selectCategory',
             method: 'POST',
@@ -36,9 +43,21 @@ Page({
                         return
                     }
                     res.data.response.content[0].checked = true;
-                    this.setData({
+                    that.setData({
                         categories: res.data.response.content,
                     });
+                    var father = []
+
+                    res.data.response.content.forEach(item => {
+                        if (item.reside === 0) {
+                            father.push(item)
+                            that.setData({
+                                father: father
+                            })
+                            console.log('类别：', that.data.father);
+                        }
+                    })
+                    that.array()
                 }
             },
             fail: res => {
@@ -48,7 +67,46 @@ Page({
             }
         })
     },
+    getCategory(res) {
+        var that = this
+        console.log(res);
+        if (res.currentTarget.dataset !== '') {
+            var i = res.currentTarget.dataset.index
+            this.setData({
+                selected: i
+            })
+            console.log(this.data.selected);
+        }
 
+        this.array()
+
+    },
+    selected(e) {
+        console.log(e);
+        var i = e.currentTarget.dataset.index
+        
+    },
+    array() {
+        var that = this
+        var array =[]
+        this.data.categories.forEach(item => {
+            if (item.reside === that.data.selected) {
+                array.push(item)
+                array[0].checked = true
+                that.setData({
+                    array: array
+                })
+            }else if(item.id === that.data.selected){
+                that.setData({
+                    array:''
+                })
+            }
+
+        })
+
+        console.log('array==>', array);
+
+    },
     onShow() {
         var userInfo = wx.getStorageSync('userInfo');
         console.log("issue");
@@ -88,7 +146,7 @@ Page({
                 icon: 'none',
                 title: '请输入标题'
             });
-        } 
+        }
         // else if (!this.data.imgbox.length) {
         //     // !this.data.imgbox.length && !e.detail.value.information
         //     wx.showToast({
@@ -96,7 +154,7 @@ Page({
         //         title: '选择至少一张图片'
         //     });
         // }
-         else {
+        else {
             // 文件图片的上传
             // this.add_fileImages(e);
             this.add_COSfileImages(e);
@@ -201,9 +259,9 @@ Page({
                 publictiy: 1,
                 CategoryType: category_type.type,
                 Address: e.detail.value.scrap_address,
-                chooseLocation: JSON.stringify(that.data.chooseLocation==null?"":that.data.chooseLocation),
-                latitude:JSON.stringify(that.data.chooseLocation.latitude==null?"":that.data.chooseLocation.latitude),
-                longitude:JSON.stringify(that.data.chooseLocation.longitude==null?"":that.data.chooseLocation.longitude),
+                chooseLocation: JSON.stringify(that.data.chooseLocation == null ? "" : that.data.chooseLocation),
+                latitude: JSON.stringify(that.data.chooseLocation.latitude == null ? "" : that.data.chooseLocation.latitude),
+                longitude: JSON.stringify(that.data.chooseLocation.longitude == null ? "" : that.data.chooseLocation.longitude),
 
             },
             header: {
@@ -362,11 +420,11 @@ Page({
         })
     },
 
-    
-    to_niu_my_fuwuyinshi:function(){
-        wx.navigateTo({
-            url: "/pages/niu_my_fuwuyinshi/index"
-        })
-    },
+
+    // to_niu_my_fuwuyinshi:function(){
+    //     wx.navigateTo({
+    //         url: "/pages/niu_my_fuwuyinshi/index"
+    //     })
+    // },
 
 })

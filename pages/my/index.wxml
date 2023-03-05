@@ -2,8 +2,11 @@
     <view bindtap="chooseBackground" class="bg">
         <image src="{{bgImg}}" mode="aspectFill" />
     </view>
-    <view class="menu-item" bindtap='to_niu_my_edit_information'>
+    <view class="menu-item userinfo" bindtap='to_niu_my_edit_information'>
+        <view>
         <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
+            
+        </view>
         <view class="userinfo-nickname">
             <text>{{nickName}}</text>
         </view>
@@ -11,9 +14,12 @@
             <image class="next" src="/images/next.png"></image>
         </view>
     </view>
-    <view class="space"></view>
-    <view class="space"></view>
-    <view class="menu-item" style="display: flex; align-items: center; justify-content:space-around;box-shadow:inset 2px 2px 4px #eee,2px  2px 4px #ccc ">
+    <!-- <view class="space"></view>
+    <view class="space"></view> -->
+    <view style="height: 40rpx;">
+        
+    </view>
+    <view class="menu-item" style="display: flex; align-items: center; justify-content:space-around;box-shadow:inset 2px 2px 4px #fff,2px  2px 4px #eee ">
 
         <image wx:if="{{item == 0}}" src="/images/sc(2).png" class="icon" mode="" />
         <image wx:else src="/images/sc(1).png" class="icon" mode="" />

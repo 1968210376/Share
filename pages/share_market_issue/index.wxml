@@ -5,12 +5,33 @@
             可发布物品、需求、技能、服务等
         </view> -->
         <!-- 选择分类 -->
-        <scroll-view scroll-x="true" class="tab-h">
+        <!-- <scroll-view scroll-x="true" class="tab-h">
             <radio-group name="category_type">
                 <text style="margin-left:20rpx">分类:</text>
                 <label wx:for="{{categories}}" wx:key="category_type" wx:for-item="category">
                     <radio value='{"type":{{category.categoryType}},"name":"{{category.categoryName}}"}' checked="{{category.checked}}">
                         <text decode="{{true}}">{{category.categoryName}}</text>
+                    </radio>
+                </label>
+            </radio-group>
+        </scroll-view> -->
+
+        <scroll-view scroll-x="true" class="tab-h">
+            <radio-group name="category_type" >
+                <text style="margin-left:20rpx">分类:</text>
+                <label wx:for="{{father}}" wx:key="index" data-index="{{item.id}}" bindtap="getCategory">
+                    <radio value='{"type":{{item.categoryType}},"name":"{{item.categoryName}}"}' checked="{{item.checked}}">
+                        <text decode="{{true}}">{{item.categoryName}}</text>
+                    </radio>
+                </label>
+            </radio-group>
+        </scroll-view>
+        <scroll-view wx:if="{{array}}" scroll-x="true" class="tab-h">
+            <radio-group name="category_type" >
+                <text style="margin-left:20rpx">分类:</text>
+                <label  wx:for="{{array}}" wx:key="index" data-index="{{item.id}}" bindtap="selected">
+                    <radio value='{"type":{{item.categoryType}},"name":"{{item.categoryName}}"}' checked="{{item.checked}}">
+                        <text decode="{{true}}">{{item.categoryName}}</text>
                     </radio>
                 </label>
             </radio-group>
@@ -70,7 +91,7 @@
         <view class="space"></view>
         <view class="row-wrap">
             <view class="label-right">
-                <input name="scrap_address" class="input" value="{{chooseLocation.city}}{{chooseLocation.name}}" type="text" placeholder="请输入地址" />
+                <input name="scrap_address" class="input" disabled="true" value="{{chooseLocation.city}}{{chooseLocation.name}}" type="text" placeholder="请输入地址" />
             </view>
             <view class="moren_address" bindtap="getUserLocation">
                 点击定位

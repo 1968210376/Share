@@ -1,5 +1,5 @@
 <view class="container">
-    <scroll-view scroll-y="">
+    <scroll-view scroll-y style="height:{{navHeight}}px">
         <view class="cards gap" wx:for="{{listss}}" wx:key="index" data-id="{{index}}" bindtap="xvqiu_detail">
             <view class="userInfo">
                 <text>{{item.job}}</text>
@@ -20,6 +20,14 @@
                 
             </view>
         </view>
-
+           <!-- 空列表提示 -->
+           <view wx:if="{{ listss.length == 0 }}" class="center">
+              <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+              <view>还没有数据哦~</view>
+            </view>
+            <!-- 置底了 -->
+            <view class="center">
+              ~ 到底啦 ~
+            </view>
     </scroll-view>
 </view>

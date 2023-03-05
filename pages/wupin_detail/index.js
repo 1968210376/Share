@@ -118,6 +118,7 @@ Page({
     console.log('ok');
     var that = this
     var info = this.data.info.target
+    console.log('markeId-->',info);
     if (!info) {
       return
     }
@@ -131,8 +132,10 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: (res) => {
+        // console.log(res.data);
         console.log(res.data);
-        if (res.data.response.content) {
+        if(res.data.response !== undefined){
+        // if (res.data.response.content) {
 
           res.data.response.content.forEach(item => {
             let d = new Date(item.target.create_time).getTime();

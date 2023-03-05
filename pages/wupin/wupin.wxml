@@ -48,6 +48,15 @@
               
             </view>
           </view>
+           <!-- 空列表提示 -->
+           <view wx:if="{{ list.length == 0 }}" class="center">
+              <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+              <view>还没有数据哦~</view>
+            </view>
+            <!-- 置底了 -->
+            <view class="center">
+              ~ 到底啦 ~
+            </view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
@@ -99,6 +108,15 @@
 
             </view>
           </view>
+           <!-- 空列表提示 -->
+           <view wx:if="{{ list.length == 0 }}" class="center">
+              <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+              <view>还没有数据哦~</view>
+            </view>
+            <!-- 置底了 -->
+            <view class="center">
+              ~ 到底啦 ~
+            </view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
@@ -124,7 +142,7 @@
               </block>
             </view>
             <!-- 空列表提示 -->
-            <view wx:if="{{ list.length == 0 }}" class="flex flex-column flex-items-center">
+            <view wx:if="{{ list.length == 0 }}" class="center">
               <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
               <view>还没有数据哦~</view>
             </view>

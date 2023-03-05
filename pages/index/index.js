@@ -15,24 +15,23 @@ Page({
     chooseLocation: "", //位置
     banner: '',
     list: [{ //物品列表
-        id: 0,
-        avatar_url: '/images/shouye.png',
-        nick_name: 'MR.D',
-        create_time: '2023年3月1日',
-        address: '新乡学院D10',
-        distance: '100M',
-        title: "扩展屏",
-        content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-        images: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
-        // price: '188',
-        pirce:188,
-        is_shouCang: true,
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
+      id: 0,
+      avatar_url: '/images/shouye.png',
+      nick_name: 'MR.D',
+      create_time: '2023年3月1日',
+      address: '新乡学院D10',
+      distance: '100M',
+      title: "扩展屏",
+      content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
+      images: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
+      // price: '188',
+      pirce: 188,
+      is_shouCang: true,
+      phone: '18738388052',
+      wx: 'dzg18738388052',
+      qq: '1968210376'
 
-      },
-    ],
+    }, ],
     lists: [{ //技能
         avatar: 'https://img.vinua.cn/images/VLmW.png',
         nickName: '海默之语',
@@ -366,7 +365,7 @@ Page({
   wupin_detail(e) {
     console.log(e);
     var info = this.data.list[e.currentTarget.dataset.id]
-    console.log("info==>",info);
+    console.log("info==>", info);
     info = JSON.stringify(info)
     wx.navigateTo({
       url: '/pages/wupin_detail/index?info=' + info,
@@ -420,26 +419,49 @@ Page({
         title: '',
         CategoryType: ''
       },
+    // var that = this
+    // // console.log(that.data.latitude, that.data.longitude)
+    // wx.request({
+    //   url: app.globalData.serverApi + '/selectMarket',
+    //   method: 'POST',
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded'
+    //   },
+    //   data: {
+    //     wxOpenId: wx.getStorageSync('openid'),
+    //     CategoryType: "",
+    //     title: "",
+    //     publictiy: 1,
+    //     latitude: that.data.latitude,
+    //     longitude: that.data.longitude,
+    //     pageIndex: 0,
+    //     pageSize: 20,
+    //   },
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded'
+    //   },
       success(res) {
         console.log("shuju==>", res.data);
+        if (res.data.response) {
 
-        res.data.response.content.forEach(item => {
-          let d = new Date(item.target.create_time).getTime();
-          item.target.create_time = util.commentTimeHandle(d);
-          if (item.target.images != "") {
+          res.data.response.content.forEach(item => {
+            let d = new Date(item.target.create_time).getTime();
+            item.target.create_time = util.commentTimeHandle(d);
+            if (item.target.images != "") {
               item.target.images = item.target.images.split(",");
               item.target.choose_location = JSON.parse(item.target.choose_location);
-          } 
-          // let liked_post_wx_open_id = wx.getStorageSync('openid');
-          // console.log(liked_post_wx_open_id)
-          // console.log(item.target.wx_open_id)
-          // console.log(item.target.like_status)
-          // console.log("----")
-      })
-        that.setData({
-          list:res.data.response.content
-        })
-        console.log(that.data.list);
+            }
+            // let liked_post_wx_open_id = wx.getStorageSync('openid');
+            // console.log(liked_post_wx_open_id)
+            // console.log(item.target.wx_open_id)
+            // console.log(item.target.like_status)
+            // console.log("----")
+          })
+          that.setData({
+            list: res.data.response.content
+          })
+          console.log(that.data.list);
+        }
       }
     })
   },
@@ -462,7 +484,7 @@ Page({
     // JSON.parse(location)
     this.setData({
       chooseLocation: location,
-      location:city
+      location: city
     })
     // if (location) {
     //   this.setData({
@@ -471,6 +493,5 @@ Page({
     // }
     this.banner()
     this.getShuju()
-  },
-  
+  }
 })

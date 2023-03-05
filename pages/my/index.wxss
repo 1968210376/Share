@@ -73,15 +73,18 @@ input {
 
 /* flex重新构建菜单 */
 .menu-item {
-    width: 90vw;
+    width: 100vw;
     height: 95rpx;
-    margin: 85rpx auto;
+    margin: 0rpx auto;
     /* padding: 0 32rpx; */
     /* margin-left: 1%; */
     /* background: #fff; */
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.userinfo{
+    margin-top: 90rpx;
 }
 
 .menu-item .l {
