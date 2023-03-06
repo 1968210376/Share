@@ -22,8 +22,8 @@ Page({
     listss: [],
     searchKey: '',
     end: false,
-    state:false,
-    top:0,
+    state: false,
+    top: 0,
   },
   getCategory(e) { // 获取分类
     var that = this
@@ -194,7 +194,7 @@ Page({
         }
       },
       complete() {
-        that.data.setData({
+        that.setData({
           searchKey: ''
         })
       }
@@ -310,10 +310,10 @@ Page({
 
       },
       complete() {
-        setTimeout(()=>{
+        setTimeout(() => {
           wx.hideLoading();
           wx.hideNavigationBarLoading()
-         },3000)
+        }, 100)
       }
 
     })
@@ -327,10 +327,10 @@ Page({
     this.loading = true
     if (e) {
       var page = e
-      console.log("e:",e);
+      console.log("e:", e);
     } else {
       page = that.data.pageIndex
-      console.log("page:",page);
+      console.log("page:", page);
     }
     // console.log('openid', openid);
     var that = this
@@ -354,7 +354,7 @@ Page({
       success(res) {
         that.loading = false
         console.log("shuju==>", res.data);
-        if (res.data.response.content.length!==0) {
+        if (res.data.response.content.length !== 0) {
           res.data.response.content.forEach(item => {
             let aaa = "";
             var uuu = item.target.latitude;
@@ -395,10 +395,10 @@ Page({
 
       },
       complete() {
-       setTimeout(()=>{
-        wx.hideLoading();
-        wx.hideNavigationBarLoading()
-       },3000)
+        setTimeout(() => {
+          wx.hideLoading();
+          wx.hideNavigationBarLoading()
+        }, 500)
       }
 
     })
@@ -407,23 +407,23 @@ Page({
     console.log('上拉加载');
     var that = this
     // if(!this.loading && this.data.pageIndex<this.data.pages ){
-    console.log('当前页',that.data.pageIndex);
+    console.log('当前页', that.data.pageIndex);
     this.getShujus(this.data.pageIndex + 1)
     // this.setData({
 
     // })
     // }
   },
-  goTop(e){
-    if(wx.pageScrollTo){
+  goTop(e) {
+    if (wx.pageScrollTo) {
       wx.pageScrollTo({
-        scrollTop:0
+        scrollTop: 0
       })
       this.setData({
-        top:0
+        top: 0
       })
       console.log('top');
-    }else{
+    } else {
       wx.showModal({
         title: '提示',
         content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
@@ -435,7 +435,7 @@ Page({
     // if (!this.loading && this.data.pageIndex < this.data.pages) {
     wx.showNavigationBarLoading()
     this.setData({
-      pageIndex:0
+      pageIndex: 0
     })
     this.getShuju(0)
     console.log('下拉刷新');
@@ -465,10 +465,10 @@ Page({
   onPullDownRefresh() { //下拉刷新
     //显示顶部加载图标
     // if (!this.loading && this.data.pageIndex < this.data.pages) {
-     
+
     wx.showNavigationBarLoading()
     this.setData({
-      pageIndex:0
+      pageIndex: 0
     })
     this.getShuju()
     console.log('下拉刷新');
