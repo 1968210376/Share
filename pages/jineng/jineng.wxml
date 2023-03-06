@@ -1,9 +1,9 @@
 
 <!--主文件html中代码：-->
 <swiper data-item="{{tabs}}" bindchange="changeTabs" current="index" style="height:{{navHeight}}px">
-  <swiper-item wx:for="{{categories}}" wx:key="index">
-    <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px">
-      <view class="card" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="wupin_detail">
+  <swiper-item class="list" wx:for="{{categories}}" wx:key="index">
+    <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px"   upper-threshold="60" bindscrolltolower="refresh" bindscrolltoupper="ontopRefresh" scroll-top="{{top}}"	scroll-with-animation="true">
+      <view class="card"  style="background-color: #fff;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
         <view class="userInfo">
           <view class="img">
             <image src="{{item.target.avatar_url}}" />
@@ -31,8 +31,8 @@
           {{item.target.content}}
         </view>
         <view class="fixed_box" wx:if="{{item.target.images[0]}}">
-          <view  wx:for="{{item.target.images}}" wx:key="index">
-            <image class="image" lazy-load mode="widthFix" src="{{item}}" />
+          <view  wx:for="{{item.target.images}}" wx:key="index" style="max-height: 600rpx;">
+            <image class="image" lazy-load mode="heightFix" src="{{item}}" />
           </view>
         </view>
         <view class="btnBox">

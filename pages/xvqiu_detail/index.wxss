@@ -10,18 +10,20 @@
     background-color: #007AFF;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:flex-end;
     align-items: center;
 }
+.price{
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
 .left{
-    position: absolute;
-    left: 45rpx;
-    top: 40rpx;
+    position: relative;
 }
 .right{
-    position: absolute;
-    right: 45rpx;
-    top: 40rpx;
+    position: relative;
 }
 .avatar{
     width: 200rpx;

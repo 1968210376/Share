@@ -11,13 +11,13 @@ App({
     // serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
     // serverApi: "http://150.158.107.188:8080/wx/api", //发布地址
   },
-  // 点击定位 
+  // 点击定位
   clickdingwei: function (json) {
     console.log("options：", json)
-    // let key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key 
-    let key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key 
-    let referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称 
-    let endPoint = JSON.stringify({ //终点 
+    // let key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key
+    let key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key
+    let referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称
+    let endPoint = JSON.stringify({ //终点
       'id': 1,
       'name': json.name,
       'latitude': json.latitude,
@@ -27,6 +27,8 @@ App({
       url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
     });
   },
+
+
   // 方法定义 lat,lng  计算距离
   GetDistance: function (lat1, lng1, lat2, lng2) {
     var radLat1 = lat1 * Math.PI / 180.0;
@@ -39,8 +41,7 @@ App({
     s = Math.round(s * 10000) / 10000;
     return s;
   },
-
-  // 获取分类
+  // 获取分类 
   selectcategory: function (reside) {
     wx.request({
       url: this.globalData.serverApi + '/selectCategory',
@@ -52,17 +53,14 @@ App({
         categoryType: reside
       },
       success: (res) => {
-        // console.log("selectcategory===>res");
-        // console.log(res);
+        // console.log("selectcategory===>res"); 
+        // console.log(res); 
         wx.setStorageSync('categories', res.data.response.content)
       }
     })
   },
-
   //  初始化的时候执行
   onLaunch: function () {
-
-
     if (this.globalData.userInfo == null) {
       this.getwxopenid();
     }
@@ -81,10 +79,6 @@ App({
     });
     wx.getStorageSync('longitude');
     this.getLocal(wx.getStorageSync('latitude'), wx.getStorageSync('longitude'));
-
-    this.selectcategory(1)
-
-
   },
 
   // 获取当前所在城市

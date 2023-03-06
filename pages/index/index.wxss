@@ -76,7 +76,8 @@
   /* border: 1px solid #ccc; */
   border-radius: 5px;
   box-sizing: border-box;
-  box-shadow: #ccc 2px 2px 2px;
+  /* box-shadow: #ccc 2px 2px 2px; */
+  background-color: #fff ;
   padding: 10rpx;
   display: flex;
   flex-direction: column;
@@ -90,6 +91,7 @@
   display: flex;
   flex-direction: column;
   gap: 15rpx;
+
 }
 .space {
   width: 100vw;
@@ -111,7 +113,8 @@
 
 .fixed_box {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .fixed_pic {
@@ -125,7 +128,7 @@
   height: 50rpx;
   border-radius: 50%;
   border: 1px solid #ccc;
-  box-shadow: #ccc 2px 2px 4px;
+  /* box-shadow: #ccc 2px 2px 4px; */
 }
 
 .flex_column {
@@ -265,7 +268,7 @@
 .item {
   width: calc(100% - 30rpx);
   break-inside: avoid;
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1); */
   border-radius: 10rpx;
   margin: 0 15rpx;
 }
@@ -299,4 +302,17 @@
 .right {
   position: relative;
   right: -20%;
+}
+.list{
+  background-color: #eee;
+}
+.goTop{
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  right: 10rpx;
+  bottom: 55rpx;
+  border-radius: 50%;
+  z-index: 999;
+  background-color:rgba(255, 255, 2555, .6)
 }

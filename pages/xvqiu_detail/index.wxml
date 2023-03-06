@@ -1,12 +1,6 @@
 <view class="container">
     <scroll-view scroll-y style="height: 100vh;">
-        <text class="left blod">{{info.job}}</text>
-        <text class="right blod">{{info.price}}</text>
         <view class="top">
-            <view class="box">
-                <text>技能要求：Vue</text>
-                <text>经验要求：2-3年工作经验</text>
-            </view>
             <!-- <image src="{{info.avatar}}" class="avatar" mode="" />
             <text class="margin font-large">{{info.nickName}}</text>
             <text>{{info.job}}</text>
@@ -15,27 +9,38 @@
             <text>服务企业：9家 累计提交：0工时</text>
             <text>更新于：2023-03-03 | 浏览：131</text>
              -->
-             <view class="user">
-                <image src="{{info.avatar}}" class="icon_big" mode=""/>
-             <view>
-                 <text>{{info.nickName}}</text> 
-                 <text class="eee font-mini padding">22小时前在线</text>
-                 <text class="eee font-mini gap">{{info.gongsi}}</text>
-             </view>
-             </view>
-             <view class="title">
-                 职位详情
-             </view>
+            <view class="user">
+                <image src="{{info.target.avatar_url}}" class="icon_big" mode="" />
+                <view>
+                    <text>{{info.target.nick_name}}</text>
+                    <text class="eee font-mini padding">{{info.target.create_time}}</text>
+                    <text class="eee font-mini gap">{{info.target.choose_location.district}} | {{info.target.distance?"据您"+info.target.distance:""}}</text>
+                </view>
+            </view>
+            <view class="blank">
+
+            </view>
+            <view class="box">
+                <text>技能要求：Vue</text>
+                <text>经验要求：2-3年工作经验</text>
+            </view>
+            <view class="price"> 
+                <text class="left blod">职位：{{info.target.title}}</text>
+            <text class="right blod">薪酬： ￥{{info.target.pirce}}/月</text>
+            </view>
+            <view class="title">
+                职位详情
+            </view>
         </view>
         <view class="projects padding">
             <view class="gap">
                 <image src="/images/project.png" class="icon" mode="" />
-                <text class="black blod">项目编号：【26230】</text>
+                <text class="black blod">项目编号：【{{info.target.id}}】</text>
             </view>
         </view>
         <view class="content">
             <view class="width padding column">
-                <text>1.电脑报价需求，客户可以自主地参与报价，有特定的报价单号，每款型号价格先入库，客户直接点开网址就可以自主报价</text>
+                <text>{{info.target.content}}</text>
             </view>
 
             <view class="column width border">
