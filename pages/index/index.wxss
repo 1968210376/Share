@@ -76,7 +76,7 @@
   /* border: 1px solid #ccc; */
   border-radius: 5px;
   box-sizing: border-box;
-  box-shadow: #ccc 2px 2px 5px;
+  box-shadow: #ccc 2px 2px 2px;
   padding: 10rpx;
   display: flex;
   flex-direction: column;
@@ -213,7 +213,8 @@
 
 .imgBox image {
   /* width: 100%; */
-  width: 100%;
+  /* width: 100%; */
+  /* height: auto; */
   /* border: 1px solid #ccc; */
   border-radius: 15rpx;
   /* box-shadow:#007AFF -2px -2px 3px, 2px 2px 5px black; */
@@ -297,5 +298,5 @@
 
 .right {
   position: relative;
-  right: -30%;
+  right: -20%;
 }

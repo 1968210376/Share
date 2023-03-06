@@ -1,46 +1,66 @@
-<view class="container">
-    <scroll-view scroll-y="">
-        <view class="cards" wx:for="{{lists}}" wx:key="index" data-id="{{index}}" bindtap="jineng_detail">
-            <view class="userInfo">
 
-                <view class="img">
-                    <image src="{{item.avatar}}" mode="" />
-                    <view class="info flex_column">
-                        <text>{{item.nickName}}</text>
-                        <text class="blue font-mini">￥{{item.price}}/月</text>
-                    </view>
-                    <view class="flex_column job">
-                        <text>{{item.job}}</text>
-                        <view class="tags">
-                            <text wx:for="{{item.tag}}" wx:key="index" class="font-mini tag">{{item}}</text>
-                        </view>
-                    </view>
-
-                </view>
+<!--主文件html中代码：-->
+<swiper data-item="{{tabs}}" bindchange="changeTabs" current="index" style="height:{{navHeight}}px">
+  <swiper-item wx:for="{{categories}}" wx:key="index">
+    <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px">
+      <view class="card" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="wupin_detail">
+        <view class="userInfo">
+          <view class="img">
+            <image src="{{item.target.avatar_url}}" />
+          </view>
+          <view class="info">
+            <view class="nickName">
+              {{item.target.nick_name}}
             </view>
-            <view class="border_bottom">
-                <view class="jineng">
-                    技能： <text class=" gray font-mini">{{item.jineng}}</text>
-                </view>
-                <view>
-                    作品：<text class="gray font-mini">{{item.zuopin}}</text>
-                </view>
+            <view class="time">
+              {{item.target.create_time}}
             </view>
-            <view class="jingyan">
-                <view class="star">
-                    <image src="/images/sc(2).png" class="icon" mode="" />
-                    <image src="/images/sc(2).png" class="icon" mode="" />
-                    <image src="/images/sc(2).png" class="icon" mode="" />
-                    <image src="/images/sc(2).png" class="icon" mode="" />
-                    <image src="/images/sc(2).png" class="icon" mode="" />
-
-                </view>
-                <text class="gray font-mini ">{{item.jingyan}} | {{item.city}}</text>
+          </view>
+          <view class="weizhi">
+            <view wx:if="{{item.target.distance}}">
+              距离：{{item.target.distance}}
             </view>
-            <view class="space">
+            <view wx:if="{{item.target.choose_location}}">
+              {{item.target.choose_location.city}}{{item.target.choose_location.district}}
 
             </view>
+          </view>
         </view>
+        <view class="jianJie">
+          {{item.target.title}}
+          {{item.target.content}}
+        </view>
+        <view class="fixed_box" wx:if="{{item.target.images[0]}}">
+          <view  wx:for="{{item.target.images}}" wx:key="index">
+            <image class="image" lazy-load mode="widthFix" src="{{item}}" />
+          </view>
+        </view>
+        <view class="btnBox">
+          <view class="red price">
+            ￥{{item.target.pirce}}
+          </view>
+          <!-- <view class="btn {{item.target.is_shouCang ? gold :''}}" data-item="{{item.target.id}}" bindtap="is_shouCang"> -->
+          <view class="btn">
+            <image src="/images/sc(1).png" class="icon" mode="" />
+          </view>
+          <view class="btn">
+            <image src="/images/ly.png" class="icon" mode="" />
+          </view>
+          <view class="btn">
+            <image src="/images/xy.png" class="icon" mode="" />
+          </view>
 
+        </view>
+      </view>
+      <!-- 空列表提示 -->
+      <view wx:if="{{ list.length == 0 }}" class="center">
+        <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+        <view>还没有数据哦~</view>
+      </view>
+      <!-- 置底了 -->
+      <view class="center">
+        ~ 到底啦 ~
+      </view>
     </scroll-view>
-</view>
+  </swiper-item>
+</swiper>

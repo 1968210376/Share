@@ -1,21 +1,41 @@
 <view class="box">
-<form bindsubmit="formSubmit" bindreset="formReset">
-    <view class='pages'>
-        <!-- <view class="title">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class='pages'>
+            <!-- <view class="title">
             可发布物品、需求、技能、服务等
         </view> -->
-        <!-- 选择分类 -->
-        <!-- <scroll-view scroll-x="true" class="tab-h">
-            <radio-group name="category_type">
-                <text style="margin-left:20rpx">分类:</text>
-                <label wx:for="{{categories}}" wx:key="category_type" wx:for-item="category">
-                    <radio value='{"type":{{category.categoryType}},"name":"{{category.categoryName}}"}' checked="{{category.checked}}">
-                        <text decode="{{true}}">{{category.categoryName}}</text>
-                    </radio>
-                </label>
-            </radio-group>
-        </scroll-view> -->
-
+            <!-- 选择分类 -->
+            <scroll-view scroll-x="true" class="tab-h">
+                <radio-group name="category_type" bindchange="getCategory">
+                    <text style="margin-left:20rpx">分类:</text>
+                    <label  >
+                        <radio value='{"type":1,"name":"物品"}' checked="checked" >
+                            <text decode="{{true}}">物品</text>
+                        </radio>
+                    </label>
+                    <label>
+                        <radio value='{"type":2,"name":"技能"}'>
+                            <text decode="{{true}}">技能</text>
+                        </radio>
+                    </label>
+                    <label>
+                        <radio value='{"type":3,"name":"需求"}' >
+                            <text decode="{{true}}">需求</text>
+                        </radio>
+                    </label>
+                </radio-group>
+            </scroll-view>
+            <scroll-view wx:if="{{categories.length!==0}}" scroll-x="true" class="tab-h">
+                <radio-group name="category_type">
+                    <text style="margin-left:20rpx">分类:</text>
+                    <label wx:for="{{categories}}" wx:key="category_type" wx:for-item="category">
+                        <radio value='{"type":{{category.categoryType}},"name":"{{category.categoryName}}"}' checked="{{category.checked}}">
+                            <text decode="{{true}}">{{category.categoryName}}</text>
+                        </radio>
+                    </label>
+                </radio-group>
+            </scroll-view>
+            <!-- 
         <scroll-view scroll-x="true" class="tab-h">
             <radio-group name="category_type" >
                 <text style="margin-left:20rpx">分类:</text>
@@ -35,52 +55,52 @@
                     </radio>
                 </label>
             </radio-group>
-        </scroll-view>
+        </scroll-view> -->
 
-        <view class="space"></view>
-        <view class="row-wrap">
-            <view class="label"><text style="color: red;">*</text> 名称：</view>
-            <view class="label-right scrap_title">
-                <input name="scrap_title" class="input" type="text" placeholder="请输入标题" />
-            </view>
-        </view>
-
-        <view class="space"></view>
-        <view class="row-wrap">
-            <!-- <view class="label"><text style="color: red;">*</text> 价格￥：</view> -->
-            <view class="label"><text style="color: red;"></text> 价格￥：</view>
-            <view class="label-right">
-                <input name="scrap_price" class="input" type="digit" placeholder="请输入价格 如：1.5" />
-            </view>
-        </view>
-
-        <view class="space"></view>
-        <view class="row-wrap">
-            <view class="menu-item label" style="padding-left: 0rpx;">
-                <view class="l">描述：</view>
-            </view>
-            <textarea class="detailText" name="information" maxlength="-1" placeholder="{{placeholder}}" value="{{details}}"></textarea>
-        </view>
-        <view class="space"></view>
-        <view class="menu-item">
-            <view class="l"><text style="color: red;">*</text>上传图片(最多九张)</view>
-        </view>
-        <!-- 图片 -->
-        <view class="images_box">
-            <block wx:key="imgbox" wx:for="{{imgbox}}">
-                <view class='img-box'>
-                    <image class='img' mode="aspectFill" src='{{item}}'></image>
-                    <view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
-                        <image class='img' src='../../images/delect.png'></image>
-                    </view>
+            <view class="space"></view>
+            <view class="row-wrap">
+                <view class="label"><text style="color: red;">*</text> 名称：</view>
+                <view class="label-right scrap_title">
+                    <input name="scrap_title" class="input" type="text" placeholder="请输入标题" />
                 </view>
-            </block>
-            <view class='img-box' bindtap='addPic1' wx:if="{{imgbox.length<issuePicSum}}">
-                <image class='img' src='../../images/icon_add.png'></image>
             </view>
-        </view>
 
-        <!-- <view class="space"></view>
+            <view class="space"></view>
+            <view class="row-wrap">
+                <!-- <view class="label"><text style="color: red;">*</text> 价格￥：</view> -->
+                <view class="label"><text style="color: red;"></text> 价格￥：</view>
+                <view class="label-right">
+                    <input name="scrap_price" class="input" type="digit" placeholder="请输入价格 如：1.5" />
+                </view>
+            </view>
+
+            <view class="space"></view>
+            <view class="row-wrap">
+                <view class="menu-item label" style="padding-left: 0rpx;">
+                    <view class="l">描述：</view>
+                </view>
+                <textarea class="detailText" name="information" maxlength="-1" placeholder="{{placeholder}}" value="{{details}}"></textarea>
+            </view>
+            <view class="space"></view>
+            <view class="menu-item">
+                <view class="l"><text style="color: red;">*</text>上传图片(最多九张)</view>
+            </view>
+            <!-- 图片 -->
+            <view class="images_box">
+                <block wx:key="imgbox" wx:for="{{imgbox}}">
+                    <view class='img-box'>
+                        <image class='img' mode="aspectFill" src='{{item}}'></image>
+                        <view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
+                            <image class='img' src='../../images/delect.png'></image>
+                        </view>
+                    </view>
+                </block>
+                <view class='img-box' bindtap='addPic1' wx:if="{{imgbox.length<issuePicSum}}">
+                    <image class='img' src='../../images/icon_add.png'></image>
+                </view>
+            </view>
+
+            <!-- <view class="space"></view>
         <view class="row-wrap">
             <view class="label">联系方式：</view>
             <view class="label-right">
@@ -88,17 +108,17 @@
             </view>
         </view> -->
 
-        <view class="space"></view>
-        <view class="row-wrap">
-            <view class="label-right">
-                <input name="scrap_address" class="input" disabled="true" value="{{chooseLocation.city}}{{chooseLocation.name}}" type="text" placeholder="请输入地址" />
+            <view class="space"></view>
+            <view class="row-wrap">
+                <view class="label-right">
+                    <input name="scrap_address" class="input" disabled="true" value="{{chooseLocation.city}}{{chooseLocation.name}}" type="text" placeholder="请输入地址" />
+                </view>
+                <view class="moren_address" bindtap="getUserLocation">
+                    点击定位
+                </view>
             </view>
-            <view class="moren_address" bindtap="getUserLocation">
-                点击定位
-            </view>
-        </view>
 
-        <!-- <view class="space"></view>
+            <!-- <view class="space"></view>
         <view class="row-wrap">
             <view class="label">状态：</view>
             <view class="label-right">
@@ -106,16 +126,16 @@
             </view>
         </view> -->
 
-        <!-- 提交按钮 -->
-        <view class="btn-area">
-            <button formType="submit" type="primary" plain="true" style="width:70%;;color:white;border:none;background-color: #007AFF;color: aliceblue;">
-                确认发布
-            </button>
+            <!-- 提交按钮 -->
+            <view class="btn-area">
+                <button formType="submit" type="primary" plain="true" style="width:70%;;color:white;border:none;background-color: #007AFF;color: aliceblue;">
+                    确认发布
+                </button>
+            </view>
+
+            <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>
+
         </view>
+    </form>
 
-        <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>
-
-    </view>
-</form>
-    
 </view>

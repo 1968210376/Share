@@ -1,33 +1,40 @@
-<view class="container">
-    <scroll-view scroll-y style="height:{{navHeight}}px">
-        <view class="cards gap" wx:for="{{listss}}" wx:key="index" data-id="{{index}}" bindtap="xvqiu_detail">
-            <view class="userInfo">
-                <text>{{item.job}}</text>
-                <text class="blue">{{item.price}}</text>
+
+<!--主文件html中代码：-->
+<swiper data-item="{{tabs}}" bindchange="changeTabs" current="{{item}}" style="height:{{navHeight}}px">
+  <swiper-item wx:for="{{categories}} " wx:key="index">
+    <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px">
+      <view class="liushi_container">
+        <view class="picture">
+          <block wx:for="{{list}}" wx:key="index">
+            <view class="item" data-id="{{index}}" bindtap="wupin_detail">
+              <view wx:if="{{item.target.images[0]}}">
+                <view>
+                <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
+              </view>
+              </view>
+              <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
+
+              <view style="display: flex; align-items: center;">
+                <image class="icon" src="{{item.target.avatar_url}}" mode="" />
+                <text class="font-mini">{{item.target.nick_name}}</text>
+                <view class="red price right">
+                  ￥{{item.target.pirce}}
+                </view>
+              </view>
             </view>
-            <view>
-                <text class="tag black font-mini" style="white-space: nowrap;margin: 5rpx; background-color: #eee;" wx:for="{{item.xvqiu}}" wx:key="index">{{item}}</text>
-            </view>
-            <text class="gray font-mini">{{item.gongsi}}</text>
-            <view class="userInfo">
-            <view class="algin">
-                <image src="{{item.avatar}}" class="icon" mode=""/>
-                <text>{{item.nickName}}</text>
-            </view>
-                <text class="gray font-mini">刚刚活跃</text>
-            </view>
-            <view class="space">
-                
-            </view>
+            <view class="null-wrap"></view>
+          </block>
         </view>
-           <!-- 空列表提示 -->
-           <view wx:if="{{ listss.length == 0 }}" class="center">
-              <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
-              <view>还没有数据哦~</view>
-            </view>
-            <!-- 置底了 -->
-            <view class="center">
-              ~ 到底啦 ~
-            </view>
+        <!-- 空列表提示 -->
+        <view wx:if="{{ list.length == 0 }}" class="center">
+          <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+          <view>还没有数据哦~</view>
+        </view>
+        <!-- 置底了 -->
+        <view class="center">
+          ~ 到底啦 ~
+        </view>
+      </view>
     </scroll-view>
-</view>
+  </swiper-item>
+</swiper>

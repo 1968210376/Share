@@ -15,6 +15,35 @@ Page({
     content: '',
     liuyan_value: ''
   },
+
+  // 点击定位 2023年3月5日 牛亚博 
+  navigateToChooseLocation: function (e) {
+    console.log(e);
+    // let json = JSON.parse(e.currentTarget.dataset.id) 
+    let json = e.currentTarget.dataset.id
+    app.getUserLocation();
+
+    console.log("json===============：")
+    console.log(json)
+    if (json == undefined || json == null) {
+      return
+    }
+    app.clickdingwei(json);
+    // console.log("options：", json) 
+    // // let key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key 
+    // let key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key 
+    // let referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称 
+    // let endPoint = JSON.stringify({ //终点 
+    //   'id': 1, 
+    //   'name': json.name, 
+    //   'latitude': json.latitude, 
+    //   'longitude': json.longitude 
+    // }); 
+    // wx.navigateTo({ 
+    //   url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint 
+    // }); 
+  },
+
   // want() {
   //   var want = !this.data.want
   //   this.setData({
@@ -80,45 +109,52 @@ Page({
   },
   liuyan(res) {
     console.log(res.detail.value);
-    var that = this
-    var info = this.data.info.target
-    var city = wx.getStorageSync('city');
-    console.log(city);
-    wx.request({
-      url: app.globalData.serverApi + '/commentOn',
-      method: 'POST',
-      data: {
-        marketId: info.id,
-        content: res.detail.value,
-        commentUserWxOpenId: info.wx_open_id, //物品发布人openid
-        commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
-        city: city
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: (res) => {
-        console.log(res);
-        wx.showToast({
-          title: res.data.response,
-        })
-        that.setData({
-          liuyan_value: ''
-        })
-        that.show_liuyan()
-      },
-      fail: res => {
-        wx.showToast({
-          title: "加载类别失败",
-        })
-      }
-    })
+    if (res.detail.value) {
+      var that = this
+      var info = this.data.info.target
+      var city = wx.getStorageSync('city');
+      console.log(city);
+      wx.request({
+        url: app.globalData.serverApi + '/commentOn',
+        method: 'POST',
+        data: {
+          marketId: info.id,
+          content: res.detail.value,
+          commentUserWxOpenId: info.wx_open_id, //物品发布人openid
+          commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
+          city: city
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: (res) => {
+          console.log(res);
+          wx.showToast({
+            title: res.data.response,
+          })
+          that.setData({
+            liuyan_value: ''
+          })
+          that.show_liuyan()
+        },
+        fail: res => {
+          wx.showToast({
+            title: "加载类别失败",
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '内容不允许为空',
+        icon: "error"
+      })
+    }
   },
   show_liuyan() {
     console.log('ok');
     var that = this
     var info = this.data.info.target
-    console.log('markeId-->',info);
+    console.log('markeId-->', info);
     if (!info) {
       return
     }
@@ -134,8 +170,8 @@ Page({
       success: (res) => {
         // console.log(res.data);
         console.log(res.data);
-        if(res.data.response !== undefined){
-        // if (res.data.response.content) {
+        if (res.data.response !== undefined) {
+          // if (res.data.response.content) {
 
           res.data.response.content.forEach(item => {
             let d = new Date(item.target.create_time).getTime();
@@ -257,7 +293,14 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
+    // 获取当前页面栈
+    const pages = getCurrentPages();
+    // 获取上一级页面
+    const beforePage = pages[pages.length - 2];
 
+    beforePage.setData({ //直接修改上个页面的数据（可通过这种方式直接传递参数）
+      backRefresh: true //函数封装，传值为true时调接口刷新页面
+    })
   },
 
   /**

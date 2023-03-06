@@ -1,157 +1,62 @@
 <!--主文件html中代码：-->
-<swiper data-item="{{tabs}}" bindchange="changeTabs"  current="{{item}}" style="height:{{navHeight}}px">
-    <swiper-item>
-      <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px">
-        <view class="card" wx:for="{{list}}" wx:key="index" data-id="{{index}}" bindtap="wupin_detail">
-            <view class="userInfo">
-              <view class="img">
-                <image src="{{item.target.avatar_url}}" />
-              </view>
-              <view class="info">
-                <view class="nickName">
-                  {{item.target.nick_name}}
-                </view>
-                <view class="time gray font-mini">
-                  {{item.target.create_time}}
-                </view>
-              </view>
-              <view class="weizhi">
-                <view class="distance">
-                 {{item.target.distance}}
-                 <!-- 200km -->
-                </view>
-                <view>
-                  {{item.target.choose_location.city}}{{item.target.choose_location.district}}
-                </view>
-              </view>
+<swiper data-item="{{tabs}}" bindchange="changeTabs" current="index" style="height:{{navHeight}}px">
+  <swiper-item wx:for="{{categories}}" wx:key="index">
+    <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px">
+      <view class="card" wx:for="{{list}}" wx:key="index" data-id="{{index}}" bindtap="wupin_detail">
+        <view class="userInfo">
+          <view class="img">
+            <image src="{{item.target.avatar_url}}" />
+          </view>
+          <view class="info">
+            <view class="nickName">
+              {{item.target.nick_name}}
             </view>
-            <view class="txt">
-              <view class="jianJie">
-                <view class="title">
-                  {{item.target.title}}
-                </view>
-                <view class="font-mini gray">
-                  {{item.target.content}}
-                </view>
-              </view>
-              <view class="red price">
-                ￥{{item.target.pirce}}
-              </view>
+            <view class="time gray font-mini">
+              {{item.target.create_time}}
             </view>
-            <view  wx:if="{{item.target.images}}" class="imgBox">
-              <!-- <view wx:for="{{item.imgBox}}" wx:key="index">
+          </view>
+          <view class="weizhi">
+            <view class="distance">
+              {{item.target.distance}}
+              <!-- 200km -->
+            </view>
+            <view>
+              {{item.target.choose_location.city}}{{item.target.choose_location.district}}
+            </view>
+          </view>
+        </view>
+        <view class="txt">
+          <view class="jianJie">
+            <view class="title">
+              {{item.target.title}}
+            </view>
+            <view class="font-mini gray">
+              {{item.target.content}}
+            </view>
+          </view>
+          <view class="red price">
+            ￥{{item.target.pirce}}
+          </view>
+        </view>
+        <view wx:if="{{item.target.images}}" class="imgBox">
+          <!-- <view wx:for="{{item.imgBox}}" wx:key="index">
               <image src="{{item}}" mode="scaleToFill" />
             </view> -->
-              <image src="{{item.target.images[0]}}" mode="widthFix" />
-            </view>
-            <view wx:else="" style="height: 20rpx;">
-              
-            </view>
-          </view>
-           <!-- 空列表提示 -->
-           <view wx:if="{{ list.length == 0 }}" class="center">
-              <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
-              <view>还没有数据哦~</view>
-            </view>
-            <!-- 置底了 -->
-            <view class="center">
-              ~ 到底啦 ~
-            </view>
-      </scroll-view>
-    </swiper-item>
-    <swiper-item>
-      <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px">
-        <view class="card" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="wupin_detail">
-            <view class="userInfo">
-              <view class="img">
-                <image src="{{item.avatar}}" />
-              </view>
-              <view class="info">
-                <view class="nickName">
-                  {{item.nickName}}
-                </view>
-                <view class="time">
-                  {{item.time}}
-                </view>
-              </view>
-              <view class="weizhi">
-                <view>
-                  距离：{{item.distance}}
-                </view>
-                <view>
-                  {{item.target.choose_location.city}}{{item.target.choose_location.district}}
-                
-                </view>
-              </view>
-            </view>
-            <view class="jianJie">
-              {{item.content}}
-            </view>
-            <view class="fixed_box">
-              <view wx:for="{{item.imgBox}}" wx:key="index">
-                <image class="fixed_pic" src="{{item}}" mode="widthFix" />
-              </view>
-            </view>
-            <view class="btnBox">
-              <view class="red price">
-                ￥{{item.price}}
-              </view>
-              <view class="btn {{item.is_shouCang ? gold :''}}" data-item="{{item.id}}" bindtap="is_shouCang">
-                <image src="/images/sc(1).png" class="icon" mode="" />
-              </view>
-              <view class="btn">
-                <image src="/images/ly.png" class="icon" mode="" />
-              </view>
-              <view class="btn">
-                <image src="/images/xy.png" class="icon" mode="" />
-              </view>
+          <image lazy-load src="{{item.target.images[0]}}" mode="widthFix" />
+        </view>
+        <view wx:else="" style="height: 20rpx;">
 
-            </view>
-          </view>
-           <!-- 空列表提示 -->
-           <view wx:if="{{ list.length == 0 }}" class="center">
-              <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
-              <view>还没有数据哦~</view>
-            </view>
-            <!-- 置底了 -->
-            <view class="center">
-              ~ 到底啦 ~
-            </view>
-      </scroll-view>
-    </swiper-item>
-    <swiper-item>
-      <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px">
-        <view class="liushi_container">
-            <view class="picture">
-              <block wx:for="{{list}}" wx:key="index">
-                <view class="item" data-id="{{index}}" bindtap="wupin_detail">
-                  <view>
-                    <image class="image" lazy-load mode="widthFix" src="{{ item.imgBox[0] }}" />
-                  </view>
-                  <view style="font-size: 14px;padding-left: 10rpx;">{{ item.title }}</view>
-
-                  <view style="display: flex; align-items: center;">
-                    <image class="icon" src="{{item.avatar}}" mode="" />
-                    <text class="font-mini">{{item.nickName}}</text>
-                    <view class="red price right">
-                      ￥{{item.price}}
-                    </view>
-                  </view>
-                </view>
-                <view class="null-wrap"></view>
-              </block>
-            </view>
-            <!-- 空列表提示 -->
-            <view wx:if="{{ list.length == 0 }}" class="center">
-              <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
-              <view>还没有数据哦~</view>
-            </view>
-            <!-- 置底了 -->
-            <view class="center">
-              ~ 到底啦 ~
-            </view>
-          </view>
-      </scroll-view>
-    </swiper-item>
+        </view>
+      </view>
+      <!-- 空列表提示 -->
+      <view wx:if="{{ list.length == 0 }}" class="center">
+        <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+        <view>还没有数据哦~</view>
+      </view>
+      <!-- 置底了 -->
+      <view class="center">
+        ~ 到底啦 ~
+      </view>
+    </scroll-view>
+  </swiper-item>
 </swiper>
- 

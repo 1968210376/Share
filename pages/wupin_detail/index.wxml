@@ -1,88 +1,97 @@
 <!--pages/wupin_detail/index.wxml-->
 <view class="alert">
-    <view>
-        <image class="icon" src="/images/tz.png" mode="" /><text class="font-bold red l">网络安全防诈骗小提示</text>
-    </view>
-    <text class="font-mini gray r">请您注意自身财产安全</text>
+  <view>
+    <image class="icon" src="/images/tz.png" mode="" /><text class="font-bold red l">网络安全防诈骗小提示</text>
+  </view>
+  <text class="font-mini gray r">请您注意自身财产安全</text>
 </view>
 <view class="container detail">
-    <view class="userinfo">
-        <image class="avatar" src="{{info.target.avatar_url}}" mode="" />
-        <view>
-            <view>
-                {{info.target.nick_name}}
-            </view>
-            <view class="gray font-mini">
-                {{info.target.create_time}} | {{info.target.choose_location.district}} | {{info.target.distance?"据您"+info.target.distance:""}}
-            </view>
-        </view>
-        <view class="right" bindtap="is_shouCang">
-            <image wx:if="{{!is_shouCang}}" class="icon" src="/images/sc(1).png" mode=""/>
-            <image wx:if="{{is_shouCang}}" src="/images/sc(2).png" class="icon" />
-        </view>
+  <view class="userinfo">
+    <image class="avatar" src="{{info.target.avatar_url}}" mode="" />
+    <view>
+      <view>
+        {{info.target.nick_name}}
+      </view>
+      <view class="gray font-mini">
+        {{info.target.create_time}} | {{info.target.choose_location.district}} | {{info.target.distance?"据您"+info.target.distance:""}}
+      </view>
+      <view wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
+        点击定位
+      </view>
     </view>
-    <view class="price_box">
-        <text class="price red">￥{{info.target.pirce}}</text> 
-        <!-- <text class="gray font-mini">|</text> -->
-        <!-- <text class="font-mini blue"></text> -->
+    <view class="right" bindtap="is_shouCang">
+      <image wx:if="{{!is_shouCang}}" class="icon" src="/images/sc(1).png" mode="" />
+      <image wx:if="{{is_shouCang}}" src="/images/sc(2).png" class="icon" />
     </view>
-    <view class="content">
-        {{info.target.content}}
+  </view>
+  <view class="price_box">
+    <text class="price red">￥{{info.target.pirce}}</text>
+    <!-- <text class="gray font-mini">|</text> -->
+    <!-- <text class="font-mini blue"></text> -->
+  </view>
+  <view class="title">
+    {{info.target.title}}
+  </view>
+  <view class="content">
+    {{info.target.content}}
+  </view>
+  <view class="imgBox">
+    <view wx:for="{{info.target.images}}" wx:key="index">
+      <image src="{{item}}" mode="widthFix" />
     </view>
-    <view class="imgBox">
-        <view wx:for="{{info.target.images}}" wx:key="index">
-            <image src="{{item}}" mode="" />
-        </view>
-    </view>
-    <view class="btn yellow" bindtap="toggleDialog">
-        <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
-        <text>我想要</text>
-    </view>
-    <view class="spaces"></view>
+  </view>
+  <view class="btn yellow" bindtap="toggleDialog">
+    <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
+    <text>我想要</text>
+  </view>
+  <view class="spaces"></view>
 
-    <view class="lx">
-        <image class="icon radius" src="{{info.target.avatar_url}}" mode="" />
-        <input class="btn" type="text" bindconfirm="liuyan" value="{{liuyan_value}}" placeholder="看上了就留言~" />
+  <view class="lx">
+    <view>
+      <image class="icon radius" src="{{info.target.avatar_url}}" mode="" />
+
     </view>
-    <view class="spaces"></view>
-    <view class="message">
-        <view class="pl" wx:for="{{content}}" wx:key="index">
-        <view>
-            <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
+    <input class="btn center" type="text" bindconfirm="liuyan" value="{{liuyan_value}}" placeholder="看上了就留言~" />
+  </view>
+  <view class="spaces"></view>
+  <view class="message">
+    <view class="pl" wx:for="{{content}}" wx:key="index">
+      <view>
+        <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
+      </view>
+      <view class="gap">
+        <view class="lx gray">
+          <text>{{item.target.nick_name}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
         </view>
-            <view class="gap">
-                <view class="lx gray">
-                    <text>{{item.target.nickName}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
-                </view>
-                <view class="padding pl_content">
-                   {{item.target.content}}
-                </view>
-            </view>
+        <view class="padding pl_content">
+          {{item.target.content}}
         </view>
-        <view class="space center gray font-mini">
-        <image src="/images/no_result.png" class="icon" mode=""/>
-            ~到底了~
-        </view>
+      </view>
     </view>
+    <view class="space center gray font-mini">
+      <image src="/images/no_result.png" class="icon" mode="" />
+      ~到底了~
+    </view>
+  </view>
 </view>
 
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
-    <view class="dialog__mask" bindtap="toggleDialog" />
-    <view class="dialog__container">
-        <view style=' display:flex; flex-direction: column; justify-content: center; padding:100rpx; gap: 10rpx;'>
-            <view wx:if="{{info.target.phone}}" class="lx" bindtap="call_phone" data-text="{{info.target.phone}}">
-                <image class="icon" src="/images/phone.png" mode=""/>
-                <text>{{info.target.phone}}</text>
-            </view>
-            <view wx:if="{{info.target.contact_wx}}" class="lx" bindtap="copy" data-text="{{info.target.contact_wx}}">
-                <image src="/images/wx.png" class="icon" mode=""/>
-                <text>{{info.target.contact_wx}}</text>
-            </view>
-            <view wx:if="{{info.target.contact_qq}}" class="lx" bindtap="copy" data-text="{{info.target.contact_qq}}">
-                <image src="/images/qq.png" class="icon" mode=""/>
-                <text>{{info.target.contact_qq}}</text>
-            </view>
-        </view>
+  <view class="dialog__mask" bindtap="toggleDialog" />
+  <view class="dialog__container">
+    <view style=' display:flex; flex-direction: column; justify-content: center; padding:100rpx; gap: 10rpx;'>
+      <view wx:if="{{info.target.phone}}" class="lx" bindtap="call_phone" data-text="{{info.target.phone}}">
+        <image class="icon" src="/images/phone.png" mode="" />
+        <text>{{info.target.phone}}</text>
+      </view>
+      <view wx:if="{{info.target.contact_wx}}" class="lx" bindtap="copy" data-text="{{info.target.contact_wx}}">
+        <image src="/images/wx.png" class="icon" mode="" />
+        <text>{{info.target.contact_wx}}</text>
+      </view>
+      <view wx:if="{{info.target.contact_qq}}" class="lx" bindtap="copy" data-text="{{info.target.contact_qq}}">
+        <image src="/images/qq.png" class="icon" mode="" />
+        <text>{{info.target.contact_qq}}</text>
+      </view>
     </view>
+  </view>
 </view>

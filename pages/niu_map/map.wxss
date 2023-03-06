@@ -1,12 +1,13 @@
 /* pages/map/map.wxss */
-page{
+page {
   height: 100%;
 }
-.cover-view{
-  width: 35px;
-  height: 35px;
+
+.cover-view {
+  width: 60rpx;
+  height: 60rpx;
   float: right;
-  margin-right: 10px;
+  margin-right: 30rpx;
   margin-top: 150%;
   opacity: 0.8;
 }

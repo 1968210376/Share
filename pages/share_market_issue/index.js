@@ -11,105 +11,47 @@ Page({
         product_img: [], //上传完成后的图片路径需要保存到数据库
         categories: [], //分类
         issuePicSum: 9, //最多上传几张图片
-        father: '', //父分类
-        wupin: '',
-        jineng: '',
-        xvqiu: '',
-        array: '', //对应子分类
-        selected: 1, //默认reside
+        categories_id: 1,
     },
 
     onLoad: function () {
-        this.selectcategory();
-    },
-
-    // 获取分类
-    selectcategory: function () {
-        var that = this
-        wx.request({
-            url: app.globalData.serverApi + '/selectCategory',
-            method: 'POST',
-            // data: {
-            //     reside: 1,
-            // },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            success: (res) => {
-                console.log("selectcategory===>res");
-                console.log(res);
-                if (res.data.code == 1) {
-                    if (res.data.response.content == 0) {
-                        return
-                    }
-                    res.data.response.content[0].checked = true;
-                    that.setData({
-                        categories: res.data.response.content,
-                    });
-                    var father = []
-
-                    res.data.response.content.forEach(item => {
-                        if (item.reside === 0) {
-                            father.push(item)
-                            that.setData({
-                                father: father
-                            })
-                            console.log('类别：', that.data.father);
-                        }
-                    })
-                    that.array()
-                }
-            },
-            fail: res => {
-                wx.showToast({
-                    title: "加载类别失败",
-                })
-            }
-        })
+        // this.getCategory(1);
+        this.getCategory()
     },
     getCategory(res) {
         var that = this
-        console.log(res);
-        if (res.currentTarget.dataset !== '') {
-            var i = res.currentTarget.dataset.index
-            this.setData({
-                selected: i
-            })
-            console.log(this.data.selected);
+        if (res) {
+            // var type = res
+            console.log(JSON.parse(res.detail.value));
+            var type = JSON.parse(res.detail.value).type
+        } else {
+            var type = that.data.categories_id
         }
-
-        this.array()
-
-    },
-    selected(e) {
-        console.log(e);
-        var i = e.currentTarget.dataset.index
-        
-    },
-    array() {
-        var that = this
-        var array =[]
-        this.data.categories.forEach(item => {
-            if (item.reside === that.data.selected) {
-                array.push(item)
-                array[0].checked = true
+        wx.request({
+            url: app.globalData.serverApi + '/selectCategory',
+            method: 'POST',
+            data: {
+                categoryType: type,
+            },
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            success(res) {
+                console.log(res.data.response.content);
+                if(res.data.response.content.length!==0){
+                    res.data.response.content[0].checked = true
+                }
                 that.setData({
-                    array: array
+                    categories: res.data.response.content
                 })
-            }else if(item.id === that.data.selected){
-                that.setData({
-                    array:''
-                })
+                console.log(res.data.response.content);
             }
-
         })
-
-        console.log('array==>', array);
 
     },
     onShow() {
         var userInfo = wx.getStorageSync('userInfo');
-        console.log("issue");
+        // console.log("issue");
         if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "") {
             setTimeout(function () {
                 wx.showToast({
@@ -122,7 +64,7 @@ Page({
         }
         // 从地图选点插件返回后，在页面的onShow生命周期函数中能够调用插件接口，取得选点结果对象
         let location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
-        console.log("location133:", location)
+        // console.log("location133:", location)
         // console.log("location144:", location.name)
         // let that = this;
         // JSON.stringify(location)
@@ -236,9 +178,9 @@ Page({
     // 上传数据到数据库中
     add_sell_scrap: function (e) {
         let category_type = JSON.parse(e.detail.value.category_type);
-        console.log(category_type)
+        console.log('上传分类====', category_type)
         var userInfo = wx.getStorageSync('userInfo');
-        console.log(userInfo.wxOpenId);
+        // console.log(userInfo.wxOpenId);
         let that = this;
         wx.request({
             url: app.globalData.serverApi + '/addOrUpdateMarket',
@@ -257,18 +199,18 @@ Page({
                 CommentsNumber: 0,
                 // publictiy:e.detail.value.publictiy,
                 publictiy: 1,
-                CategoryType: category_type.type,
+                categoryType: category_type.type,
                 Address: e.detail.value.scrap_address,
-                chooseLocation: that.data.chooseLocation == null?"":JSON.stringify(that.data.chooseLocation),
-                latitude: that.data.chooseLocation == null?"":JSON.stringify(that.data.chooseLocation.latitude),
-                longitude: that.data.chooseLocation == null?"":JSON.stringify(that.data.chooseLocation.longitude),
+                chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),
+                latitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.latitude),
+                longitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.longitude),
             },
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success: (res) => {
-                console.log("addOrUpdateMarket===>res");
-                console.log(res);
+                // console.log("addOrUpdateMarket===>res");
+                // console.log(res);
                 wx.showToast({
                     title: "上传成功",
                 })
@@ -284,7 +226,7 @@ Page({
                         //页面跳转携带参数
                         url: '../../pages/index/index',
                         success: function () {
-                            console.log("跳转页面成功")
+                            // console.log("跳转页面成功")
                         },
                     })
                 }
@@ -302,7 +244,7 @@ Page({
         let vm = this;
         wx.getSetting({
             success: (res) => {
-                console.log(JSON.stringify(res))
+                // console.log(JSON.stringify(res))
                 // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
                 // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
                 // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
@@ -386,7 +328,7 @@ Page({
     // 选择图片 &&&
     addPic1: function (e) {
         var imgbox = this.data.imgbox;
-        console.log(imgbox)
+        // console.log(imgbox)
         var that = this;
         var n = that.data.issuePicSum;
         if (that.data.issuePicSum > imgbox.length > 0) {
@@ -420,7 +362,7 @@ Page({
     },
 
 
-    to_niu_my_fuwuyinshi:function(){
+    to_niu_my_fuwuyinshi: function () {
         wx.navigateTo({
             url: "/pages/niu_my_fuwuyinshi/index"
         })

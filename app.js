@@ -7,26 +7,62 @@ App({
     userInfo: null,
     openid: null,
     navHeight: 100,
-    // serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
-    serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
+    serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
+    // serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
     // serverApi: "http://150.158.107.188:8080/wx/api", //发布地址
   },
-
+  // 点击定位 
+  clickdingwei: function (json) {
+    console.log("options：", json)
+    // let key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key 
+    let key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key 
+    let referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称 
+    let endPoint = JSON.stringify({ //终点 
+      'id': 1,
+      'name': json.name,
+      'latitude': json.latitude,
+      'longitude': json.longitude
+    });
+    wx.navigateTo({
+      url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+    });
+  },
   // 方法定义 lat,lng  计算距离
-GetDistance:function( lat1,  lng1,  lat2,  lng2){
-  var radLat1 = lat1*Math.PI / 180.0;
-  var radLat2 = lat2*Math.PI / 180.0;
-  var a = radLat1 - radLat2;
-  var  b = lng1*Math.PI / 180.0 - lng2*Math.PI / 180.0;
-  var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) +
-  Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
-  s = s *6378.137 ;// EARTH_RADIUS;
-  s = Math.round(s * 10000) / 10000;
-  return s;
-},
+  GetDistance: function (lat1, lng1, lat2, lng2) {
+    var radLat1 = lat1 * Math.PI / 180.0;
+    var radLat2 = lat2 * Math.PI / 180.0;
+    var a = radLat1 - radLat2;
+    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+    var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) +
+      Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+    s = s * 6378.137; // EARTH_RADIUS;
+    s = Math.round(s * 10000) / 10000;
+    return s;
+  },
 
-//  初始化的时候执行
+  // 获取分类
+  selectcategory: function (reside) {
+    wx.request({
+      url: this.globalData.serverApi + '/selectCategory',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        categoryType: reside
+      },
+      success: (res) => {
+        // console.log("selectcategory===>res");
+        // console.log(res);
+        wx.setStorageSync('categories', res.data.response.content)
+      }
+    })
+  },
+
+  //  初始化的时候执行
   onLaunch: function () {
+
+
     if (this.globalData.userInfo == null) {
       this.getwxopenid();
     }
@@ -45,6 +81,10 @@ GetDistance:function( lat1,  lng1,  lat2,  lng2){
     });
     wx.getStorageSync('longitude');
     this.getLocal(wx.getStorageSync('latitude'), wx.getStorageSync('longitude'));
+
+    this.selectcategory(1)
+
+
   },
 
   // 获取当前所在城市
@@ -55,10 +95,10 @@ GetDistance:function( lat1,  lng1,  lat2,  lng2){
         longitude: longitude
       },
       success: function (res) {
-        console.log(JSON.stringify(res));
+        // console.log(JSON.stringify(res));
         let province = res.result.ad_info.province
         let city = res.result.ad_info.city
-        console.log("当前城市：", province, city)
+        // console.log("当前城市：", province, city)
         wx.setStorageSync('city', city);
         wx.setStorageSync('province', province);
 
@@ -96,7 +136,7 @@ GetDistance:function( lat1,  lng1,  lat2,  lng2){
     wx.login({
       success: (res) => {
         let code = res.code
-        console.log("获取code：", res);
+        // console.log("获取code：", res);
         // 通过code换取openId
         wx.request({
           url: this.globalData.serverApi + '/logingetopenid/' + code,
@@ -107,7 +147,7 @@ GetDistance:function( lat1,  lng1,  lat2,  lng2){
           success: (res) => {
             // console.log(res.data);
             if (res.data.code == 0) {
-              console.log(res.data.message);
+              // console.log(res.data.message);
             }
             let openid = res.data.response.wxOpenId
             if (openid) {
@@ -116,7 +156,7 @@ GetDistance:function( lat1,  lng1,  lat2,  lng2){
               wx.setStorageSync('openid', openid);
               wx.setStorageSync('userInfo', this.globalData.userInfo);
             }
-            console.log("app.js获取到的userInfo===>", this.globalData.userInfo);
+            // console.log("app.js获取到的userInfo===>", this.globalData.userInfo);
           }
         })
       }
@@ -179,7 +219,7 @@ GetDistance:function( lat1,  lng1,  lat2,  lng2){
     wx.getLocation({
       type: "wgs84",
       success(res) {
-        console.log(res);
+        // console.log(res);
         wx.setStorageSync('latitude', res.latitude);
         wx.setStorageSync('longitude', res.longitude);
 

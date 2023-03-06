@@ -55,6 +55,10 @@ Page({
           var list = res.data.response.content
           let arr = [];
           list.forEach((mar, list) => {
+            if (mar.target.images != "") {
+              mar.target.images = mar.target.images.split(",");
+              mar.target.choose_location = JSON.parse(mar.target.choose_location);
+            }
             console.log(that.data.latitude, that.data.longitude)
             // 调用 return的距离单位为km
             let aaa = app.GetDistance(that.data.latitude, that.data.longitude, mar.target.latitude, mar.target.longitude);
@@ -87,18 +91,39 @@ Page({
                 textAlign: 'center',
                 display: "ALWAYS",
               },
-              item.label = {
-                // borderColor:'#00ee00',
-                // borderWidth:1,
-                // borderRadius:3,
-                // width:33,
-                // height:33,
-                // anchorX:-17,
-                // anchorY:-32,
-                bgColor: '#ffffff',
-                color: '#ff6666',
-                content: aaa,
+              item.customCallout={
+                // content:999,
+                color: '#ff6666 ',
+                content: (mar.target.title.length > 10 ? mar.target.title.substr(0, 10) + "..." : mar.target.title),
+                price:"￥:" + mar.target.pirce,
+                image:mar.target.images != "" ? mar.target.images[0]:"",
+                fontSize: 12,
+                borderRadius: 5,
+                borderWidth: 1,
+                bgColor: '#ffffffff',
+                // bgColor: '#00ffff00',
+                width: 1,
+                // borderColor: "#ff0000",
+                // borderColor: "#00ff00",
+                borderColor: "#ff6666",
+                padding: 8,
+                textAlign: 'center',
+                display: "ALWAYS",
+              
               },
+              // item.label = {
+              //   borderColor:'#ff0033',
+              //   borderWidth:1,
+              //   borderRadius:5,
+              //   width:34,
+              //   height:34,
+              //   anchorX:-17,
+              //   anchorY:-33,
+              //   // bgColor: '#ffffff',
+              //   color: '#ff6666',
+              //   alpha:0,
+              //   // content: aaa,
+              // },
               arr.push(item)
           })
           that.setData({
@@ -175,10 +200,10 @@ Page({
   // 点击共享进入详情页面
   // 点击标记点时触发
   markertap: function (res) {
-    marker.addEventListener("dragend", function () {
-      var me = this;
-      attribute(dragFlag, this)
-    });
+    // marker.addEventListener("dragend", function () {
+    //   var me = this;
+    //   attribute(dragFlag, this)
+    // });
     console.log(res)
     console.log(res.markerId)
     this.to_wupin_detail(res.markerId)

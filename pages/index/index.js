@@ -7,347 +7,121 @@ Page({
     tab: 0,
     tabs: 0,
     item: 0,
-    l_id: 0,
     navHeight: 100,
     openid: '',
     location: "定位",
-    time: '',
     chooseLocation: "", //位置
-    CategoryType:4,
+    categories: [], //子分类
+    categoryType: 1,
+    reside: 1, //大分类
     banner: '',
-    list: [{ //物品列表
-      id: 0,
-      avatar_url: '/images/shouye.png',
-      nick_name: 'MR.D',
-      create_time: '2023年3月1日',
-      address: '新乡学院D10',
-      distance: '100M',
-      title: "扩展屏",
-      content: "DIY扩展屏，由14寸笔记本屏幕、主板、充电宝、微积木DIY拼成。",
-      images: ["https://img.vinua.cn/images/nSBX.jpeg", "https://img.vinua.cn/images/nE0b.jpeg"],
-      // price: '188',
-      pirce: 188,
-      is_shouCang: true,
-      phone: '18738388052',
-      wx: 'dzg18738388052',
-      qq: '1968210376'
+    list: [],//数据列表 
+  },
 
-    }, ],
-    lists: [{ //技能
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        pirce: '13050',
-        tag: ['全职工作者', '协作开发者'],
-        jineng: 'HTML5，CSS，JavaScript，Vue，Node.js，jQuery，TypeScript',
-        zuopin: '龙源音乐，绿叶商城后台管理系统，秒选商城',
-        star: "5",
-        city: "上海",
-        jingyan: '前端 3年',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      }, {
-        avatar: 'https://img.vinua.cn/images/V9CA.png',
-        nickName: 'tinys',
-        job: 'java高级开发',
-        price: '17400',
-        tag: ['全职自由工作者', '协作开发者'],
-        jineng: 'springboot,Python，Mybatis，Java,MySQL,Redis,RabbitMQ',
-        zuopin: '首农农业小程序，云乐汇小程序，惟视眼科',
-        star: "5",
-        city: "邢台",
-        jingyan: 'Java 6年',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
+  getCategory(e) {// 获取分类
+    var that = this
+    if(e){
+      var reside = e
+    }else{
+      var reside = that.data.categoryType
+    }
+    wx.request({
+      url: app.globalData.serverApi + '/selectCategory',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
       },
-      { //技能
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        price: '13050',
-        tag: ['全职工作者', '协作开发者'],
-        jineng: 'HTML5，CSS，JavaScript，Vue，Node.js，jQuery，TypeScript',
-        zuopin: '龙源音乐，绿叶商城后台管理系统，秒选商城',
-        star: "5",
-        city: "上海",
-        jingyan: '前端 3年',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      }, {
-        avatar: 'https://img.vinua.cn/images/V9CA.png',
-        nickName: 'tinys',
-        job: 'java高级开发',
-        price: '17400',
-        tag: ['全职自由工作者', '协作开发者'],
-        jineng: 'springboot,Python，Mybatis，Java,MySQL,Redis,RabbitMQ',
-        zuopin: '首农农业小程序，云乐汇小程序，惟视眼科',
-        star: "5",
-        city: "邢台",
-        jingyan: 'Java 6年',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
+      data: {
+        categoryType: reside
       },
-      { //技能
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        price: '13050',
-        tag: ['全职工作者', '协作开发者'],
-        jineng: 'HTML5，CSS，JavaScript，Vue，Node.js，jQuery，TypeScript',
-        zuopin: '龙源音乐，绿叶商城后台管理系统，秒选商城',
-        star: "5",
-        city: "上海",
-        jingyan: '前端 3年',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      }, {
-        avatar: 'https://img.vinua.cn/images/V9CA.png',
-        nickName: 'tinys',
-        job: 'java高级开发',
-        price: '17400',
-        tag: ['全职自由工作者', '协作开发者'],
-        jineng: 'springboot,Python，Mybatis，Java,MySQL,Redis,RabbitMQ',
-        zuopin: '首农农业小程序，云乐汇小程序，惟视眼科',
-        star: "5",
-        city: "邢台",
-        jingyan: 'Java 6年',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-      { //技能
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        price: '13050',
-        tag: ['全职工作者', '协作开发者'],
-        jineng: 'HTML5，CSS，JavaScript，Vue，Node.js，jQuery，TypeScript',
-        zuopin: '龙源音乐，绿叶商城后台管理系统，秒选商城',
-        star: "5",
-        city: "上海",
-        jingyan: '前端 3年',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      }, {
-        avatar: 'https://img.vinua.cn/images/V9CA.png',
-        nickName: 'tinys',
-        job: 'java高级开发',
-        price: '17400',
-        tag: ['全职自由工作者', '协作开发者'],
-        jineng: 'springboot,Python，Mybatis，Java,MySQL,Redis,RabbitMQ',
-        zuopin: '首农农业小程序，云乐汇小程序，惟视眼科',
-        star: "5",
-        city: "邢台",
-        jingyan: 'Java 6年',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-
-    ],
-    listss: [{
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        xvqiu: ['JavaScript', 'Vue', 'Node.js', 'jQuery', 'TypseScript', '2-3年经验', '一个月'],
-        gongsi: '杭州势然网络科技有限公司',
-        price: '￥1-6k/月',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-      {
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        xvqiu: ['JavaScript', 'Vue', 'Node.js', 'jQuery', 'TypseScript', '2-3年经验', '一个月'],
-        gongsi: '杭州势然网络科技有限公司',
-        price: '￥1-6k/月',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-      {
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        xvqiu: ['JavaScript', 'Vue', 'Node.js', 'jQuery', 'TypseScript', '2-3年经验', '一个月'],
-        gongsi: '杭州势然网络科技有限公司',
-        price: '￥1-6k/月',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-      {
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        xvqiu: ['JavaScript', 'Vue', 'Node.js', 'jQuery', 'TypseScript', '2-3年经验', '一个月'],
-        gongsi: '杭州势然网络科技有限公司',
-        price: '￥1-6k/月',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-      {
-        avatar: 'https://img.vinua.cn/images/VLmW.png',
-        nickName: '海默之语',
-        job: '前端开发工程师',
-        xvqiu: ['JavaScript', 'Vue', 'Node.js', 'jQuery', 'TypseScript', '2-3年经验', '一个月'],
-        gongsi: '杭州势然网络科技有限公司',
-        price: '￥1-6k/月',
-        phone: '18738388052',
-        wx: 'dzg18738388052',
-        qq: '1968210376'
-      },
-
-    ]
-  },
-  changeTab: function (e) {
-    // console.log(e);
-    this.setData({
-      tab: e.target.dataset.item
-    })
-  },
-  changeTabs: function (e) {
-    // console.log(e);
-    this.setData({
-      tabs: e.detail.current
-    })
-  },
-  changeItem(e) {
-    console.log(e);
-    this.setData({
-      item: e.target.dataset.item
-    })
-  },
-  search(e) {
-    wx.showToast({
-      title: '搜索' + e.detail.value,
-    })
-  },
-  add() {
-    // console.log('1');
-    wx.reLaunch({
-      url: '/pages/add/add',
-    })
-  },
-  is_shouCang(e) {
-    var i = e.target.dataset.item
-    var is = this.data.list[i].is_shouCang
-    var liNo = this.data.list[i]
-    console.log(is);
-    is = !is
-    console.log(this.data.list[i].is_shouCang);
-  },
-  time() {
-    var today = new Date()
-    var YY = today.getFullYear()
-    var MM = today.getMonth() + 1
-    var DD = today.getDate()
-    var RR = today.getDay()
-    var hh = today.getHours()
-    var mm = today.getMinutes()
-    var ss = today.getSeconds()
-    var time = YY + '年' + MM + '月' + DD + '日'
-    this.setData({
-      time: time
-    })
-    // console.log(time);
-  },
-  location() {
-    // 获取用户地理位置
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
-        console.log(res);
-      },
-    })
-  },
-  // 微信获取地理位置 选择位置  授权位置信息
-  getUserLocation: function () {
-    let vm = this;
-    wx.getSetting({
       success: (res) => {
-        console.log(JSON.stringify(res))
-        // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
-        // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
-        // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
-        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
-          wx.showModal({
-            title: '请求授权当前位置',
-            content: '需要获取您的地理位置，请确认授权',
-            success: function (res) {
-              if (res.cancel) {
-                wx.showToast({
-                  title: '拒绝授权',
-                  icon: 'none',
-                  duration: 1000
-                })
-              } else if (res.confirm) {
-                wx.openSetting({
-                  success: function (dataAu) {
-                    if (dataAu.authSetting["scope.userLocation"] == true) {
-                      wx.showToast({
-                        title: '授权成功',
-                        icon: 'success',
-                        duration: 1000
-                      })
-                      //再次授权，调用wx.getLocation的API
-                      vm.getLocation();
-                    } else {
-                      wx.showToast({
-                        title: '授权失败',
-                        icon: 'none',
-                        duration: 1000
-                      })
-                    }
-                  }
-                })
-              }
-            }
+        // console.log("selectcategory===>res");
+        // console.log(res);
+        // wx.setStorageSync('categories', res.data.response.content)
+        that.setData({
+          categories: res.data.response.content
+        })
+        if(that.data.categories[0]){
+          that.setData({
+            categoryType:that.data.categories[0].categoryType
           })
-        } else if (res.authSetting['scope.userLocation'] == undefined) {
-          //调用wx.getLocation的API
-          vm.getLocation();
-        } else {
-          //调用wx.getLocation的API
-          vm.getLocation();
+        }else{
+          that.setData({
+            categoryType:'3'
+          })
         }
+        this.getShuju()
+    
       }
     })
   },
+  changeTab: function (e) { //一级导航栏切换
+    var that = this
+    if (e) {
+      var reside = parseInt(e.target.dataset.tab) + 1
+      // console.log(reside);
 
-  // 微信选择位置 调用API 定位当前位置 获取坐标
-  getLocation: function () {
-    // const key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key
-    // const referer = 'wx789e5aabeb07bfef'; //调用插件的app的名称
-    const key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key
-    const referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称
-    wx.navigateTo({
-      url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer
-    });
+    } else {
+      var reside = 1
+    }
+    this.setData({
+      tab: e.target.dataset.tab
+    })
+    this.setData({
+      tabs:0
+    })
+    this.setData({
+      item:0
+    })
+    this.getCategory(reside)
+    
+  },
+  changeTabs: function (e) { //二级导航栏滑动切换
+    var that = this
+    console.log("tabs===>", e.detail.current);
+    this.setData({
+      tabs: e.detail.current
+    })
+    this.setData({
+      item: e.detail.current
+    })
+    if(that.data.categories.length !==0){
 
-    //选择地址
-    //  let that = this;
-    //  wx.chooseLocation({
-    //   success: function(res) {
-    //     console.info(res);
-    //     that.setData({
-    //       chooseLocation: res,
-    //     })
-    //   },
-    // })
+      this.setData({
+        // categoryType: that.data.tab+that.father.length +1
+        categoryType: that.data.categories[e.detail.current].categoryType
+      });
+    }
+    // console.log(this.data.categoryType);
+    this.getShuju()
+
+  },
+  changeItem(e) {//二级导航栏点击切换
+    var that = this
+    // console.log('+++++++++++', e);
+
+    if (e.currentTarget.dataset !== '') {
+
+      var i = e.target.dataset.id
+
+      this.setData({
+        tabs: e.currentTarget.dataset.item
+      })
+      this.setData({
+        item: e.currentTarget.dataset.item
+      })
+      // console.log('item--->', this.data.item);
+      this.setData({
+        categoryType: i
+      })
+      // console.log('分类id', this.data.categoryType);
+      this.getShuju()
+    }
+  },
+  search(e) {//搜索
+    wx.showToast({
+      title: '搜索' + e.detail.value,
+    })
   },
   banner() { //轮播图
     var that = this
@@ -355,57 +129,48 @@ Page({
       url: app.globalData.serverApi + '/selectAllBanner',
       method: 'POST',
       success(res) {
-        console.log('lunbo:', res.data.response);
+        // console.log('lunbo:', res.data.response);
         that.setData({
           banner: res.data.response
         })
       }
     })
   },
-  // 跳转物品详情页
-  wupin_detail(e) {
-    console.log(e);
-    var info = this.data.list[e.currentTarget.dataset.id]
-    console.log("info==>", info);
-    info = JSON.stringify(info)
-    wx.navigateTo({
-      url: '/pages/wupin_detail/index?info=' + info,
-      success: (result) => {},
-      fail: (res) => {},
-      complete: (res) => {},
-    })
+  wupin_detail(e) {// 跳转物品详情页
+    if (e) {
+      // console.log(e);
+      var info = this.data.list[e.currentTarget.dataset.id]
+      // console.log("info==>", info);
+      info = JSON.stringify(info)
+      wx.navigateTo({
+        url: '/pages/wupin_detail/index?info=' + info
+      })
+    }
   },
-  jineng_detail(e) {
-    console.log(e);
+  jineng_detail(e) {//跳转技能详情页
+    // console.log(e);
     var info = this.data.lists[e.currentTarget.dataset.id]
-    console.log(info);
+    // console.log(info);
     info = JSON.stringify(info)
     wx.navigateTo({
-      url: '/pages/jineng_detail/index?info=' + info,
-      success: (result) => {},
-      fail: (res) => {},
-      complete: (res) => {},
+      url: '/pages/jineng_detail/index?info=' + info
     })
   },
   xvqiu_detail(e) {
-    console.log(e);
+    // console.log(e);
     var info = this.data.listss[e.currentTarget.dataset.id]
     console.log(info);
     info = JSON.stringify(info)
     wx.navigateTo({
-      url: '/pages/xvqiu_detail/index?info=' + info,
-      success: (result) => {},
-      fail: (res) => {},
-      complete: (res) => {},
+      url: '/pages/xvqiu_detail/index?info=' + info
     })
   },
-  getShuju() {
+  getShuju: function (e) {//获取数据
     var openid = wx.getStorageSync('openid')
-
     this.setData({
       openid: openid
     })
-    console.log('openid', openid);
+    // console.log('openid', openid);
     var that = this
     wx.request({
       url: app.globalData.serverApi + '/selectMarket',
@@ -418,96 +183,56 @@ Page({
         pageIndex: 0,
         pageSize: 10,
         title: '',
-        CategoryType: that.data.CategoryType
+        categoryType: that.data.categoryType
       },
-    // var that = this
-    // // console.log(that.data.latitude, that.data.longitude)
-    // wx.request({
-    //   url: app.globalData.serverApi + '/selectMarket',
-    //   method: 'POST',
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded'
-    //   },
-    //   data: {
-    //     wxOpenId: wx.getStorageSync('openid'),
-    //     CategoryType: "",
-    //     title: "",
-    //     publictiy: 1,
-    //     latitude: that.data.latitude,
-    //     longitude: that.data.longitude,
-    //     pageIndex: 0,
-    //     pageSize: 20,
-    //   },
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded'
-    //   },
       success(res) {
         console.log("shuju==>", res.data);
         if (res.data.response) {
-
           res.data.response.content.forEach(item => {
-            // var aa = wx.getStorageSync('latitude');
-            // console.log(aa)
-            // wx.getStorageSync('key')
-            // 调用 return的距离单位为km
-            // console.log(item.target.choose_location+"-----")
             let aaa = "";
             var uuu = item.target.latitude;
-            console.log(uuu+"0000000000")
-            if(uuu!=""){
+            // console.log(uuu + "0000000000")
+            if (uuu !== "") {
               aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
               aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
-              console.log(aaa+"```````````")
+              // console.log(aaa + "```````````")
             }
-           
+
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
             item.target.distance = aaa;
-            if (item.target.images != "") {
-              item.target.images = item.target.images.split(",");
+            if (item.target.choose_location !== "") {
               item.target.choose_location = JSON.parse(item.target.choose_location);
             }
-            // let liked_post_wx_open_id = wx.getStorageSync('openid');
-            // console.log(liked_post_wx_open_id)
-            // console.log(item.target.wx_open_id)
-            // console.log(item.target.like_status)
-            // console.log("----")
+            if(item.target.images[0]!==""){
+              item.target.images = item.target.images.split(",");
+            }
           })
           that.setData({
             list: res.data.response.content
           })
-          console.log(that.data.list);
+          // console.log("list====>", that.data.list);
+        }else{
+          console.log('没有数据');
         }
       }
     })
   },
   onLoad() {
-    // this.time()
-    this.location()
-    this.setData({
+    this.setData({//动态高度
       navHeight: app.globalData.navHeight,
     })
   },
   onShow() {
-    // 从地图选点插件返回后，在页面的onShow生命周期函数中能够调用插件接口，取得选点结果对象
-    let location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
-
+    var that = this
     var city = wx.getStorageSync('city');
-    console.log("location133:", location)
-    // console.log("location144:", location.name)
-    let that = this;
-    // JSON.stringify(location)
-    // JSON.parse(location)
     this.setData({
       chooseLocation: location,
       location: city
     })
-    // if (location) {
-    //   this.setData({
-    //     location: location.district
-    //   })
-    // }
     this.banner()
-    this.getShuju()
+    if(this.data.categories.length==0){
+      that.getCategory()
+    }
   }
 })

@@ -151,7 +151,7 @@
     bottom: 400rpx;
     width: 650rpx; 
     /* 弹窗布局宽 */
-    height: 350rpx; 
+    /* height: 350rpx;  */
     /* 弹窗布局高，与下面弹出距离transform有关 */
     margin-left: 50rpx;
     background: #f8f8f8;
