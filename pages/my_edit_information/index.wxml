@@ -17,7 +17,7 @@
     </view>
 </view>
 <modal hidden="{{hiddenmodalputnickName}}" title="修改昵称" confirm-text="提交" cancel-text="取消" bindcancel="modalinputnickName" bindconfirm="confirm">
-    <input type="nickname" class="weui-input" name="name" id="nickname" value="{{nickName}}" placeholder="请输入昵称" bindinput="setToName" bindblur = "setToName" /> 
+    <input type="nickname" class="weui-input" name="name" id="nickname" value="{{nickName}}" placeholder="请输入昵称" bindinput="setToName" bindblur="setToName" />
 </modal>
 
 <view class="space"></view>
@@ -29,7 +29,30 @@
         <input class="weui-input" value="{{sex}}" placeholder="请选择性别" disabled="true" />
     </view>
 </view>
+<view class="space"></view>
 
+<view class="menu-item">
+    <view class="l">联系方式</view>
+    <view class="r" style="margin-top: 35rpx;" bindtap="model">
+        <image class="next" src="/images/next.png"></image>
+        <input class="weui-input" disabled="true" value="{{phone}}" placeholder="请输入联系方式" />
+    </view>
+</view>
+<modal class="modal" hidden="{{showModal}}" title="修改联系方式" confirm-text="提交" cancel-text="取消" bindcancel="cancels" bindconfirm="confirms">
+    <view class="menu-item" style="width: 100%;border-bottom: 1px solid #ccc;">
+        <view class="l" style="width: 20%;">手机号</view>
+        <input class="r" style="width:80%;margin-top: 35rpx;text-align: center; " type="phone" class="weui-input" name="phone" id="phone" value="{{phone}}" placeholder="请输入手机号" bindinput="setToPhone" bindblur="setToPhone" />
+    </view>
+    <view class="menu-item" style="width: 100%;border-bottom: 1px solid #ccc;">
+        <view class="l" style="width: 20%;">QQ号</view>
+        <input class="r" style="width:80%;margin-top: 35rpx;text-align: center; " type="phone" class="weui-input" name="qq" id="qq" value="{{contact_qq}}" placeholder="请输入QQ号（选填）" bindinput="setToQQ" bindblur="setToQQ" />
+    </view>
+    <view class="menu-item" style="width: 100%;">
+        <view class="l" style="width: 20%;">微信号</view>
+        <input class="r" style="width:80%;margin-top: 35rpx;text-align: center; " type="phone" class="weui-input" name="wx" id="wx" value="{{contact_wx}}" placeholder="请输入微信号（选填）" bindinput="setToWx" bindblur="setToWx" />
+    </view>
+
+</modal>
 <!--dialog隐藏区域  -->
 <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
     <view class="modals-cancel" bindtap="hideModal"></view>

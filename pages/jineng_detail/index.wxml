@@ -2,15 +2,13 @@
     <scroll-view scroll-y style="height: 100vh;">
         <text class="left">信用正常</text>
         <view class="top">
-            <image src="{{info.avatar}}" class="avatar" mode="" />
-            <text class="margin font-large">{{info.nickName}}</text>
-            <text>{{info.job}}</text>
-            <text>{{info.tag}}</text>
-            <text class="margin">17小时前在线</text>
-            <text>服务企业：9家 累计提交：0工时</text>
-            <text>更新于：2023-03-03 | 浏览：131</text>
+            <image src="{{info.target.avatar_url}}" class="avatar" mode="" />
+            <text class="margin font-large">{{info.target.nick_name}}</text>
+            <text>{{info.target.title}}</text>
+            <text>{{info.target.content}}</text>
+            <text>更新于：{{info.target.create_time}} | 浏览：131</text>
         </view>
-        <view class="project padding">
+        <!-- <view class="project padding">
             <view class="gap">
                 <image src="/images/project.png" class="icon" mode="" />
                 <text class="black blod">项目作品</text>
@@ -20,20 +18,21 @@
                 <text>作品3</text>
                 <image src="/images/next.png" class="icon" mode="" />
             </view>
-        </view>
-        <view class="content">
-            <view class="width padding column">
+        </view> -->
+        <view class="content" >
+            <view class="width padding column" >
                 <view class="gap">
-                    <text class="blue">￥600/8h</text>
-                    <text class="gray">|</text>
-                    <text class="blue">￥{{info.price}}/月</text>
+                    <!-- <text class="blue">{{info.target.pirce}}</text> -->
+                    <!-- <text class="gray">|</text>
+                    <text class="blue">￥{{info.target.pirce * 8*30}}/月</text> -->
                 </view>
 
                 <text>可工作时间：工作日08：30-17：30</text>
-                <text>可工作地点：远程</text>
+                <!-- <text>可工作地点：远程、线下</text> -->
+                
             </view>
 
-            <view class="column width border">
+            <!-- <view class="column width border">
                 <view class="gap">
                     <text>好评度：</text>
                     <view>
@@ -48,13 +47,13 @@
                         <text>0人评论</text>
                     </view>
                 </view>
-            </view>
+            </view> -->
             <view class="space">
             </view>
-            <view class="column width">
+            <!-- <view class="column width">
                 <text>技能</text>
-                <text>{{info.jineng}}</text>
-            </view>
+                <text>{{info.target.content}}</text>
+            </view> -->
         </view>
         <view class="button" bindtap="toggleDialog">聊一聊</view>>
     </scroll-view>

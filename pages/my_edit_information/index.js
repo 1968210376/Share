@@ -19,6 +19,10 @@ Page({
         sexList: [
             '请选择性别', '男', '女', //1男 2女
         ],
+        phone: '',
+        contact_qq: '',
+        contact_wx: '',
+        showModal: true, //模态框的状态  true-隐藏  false-显示
     },
     /**
      * 生命周期函数--监听页面加载
@@ -36,6 +40,10 @@ Page({
                 gender: user.gender != null ? user.gender : that.data.gender,
                 nickName: that.data.nickName != null ? user.nickName : that.data.nickName,
                 avatarUrl: user.avatarUrl != null ? user.avatarUrl : that.data.avatarUrl,
+                phone: that.data.phone != null ? user.phone : that.data.phone,
+                contact_qq: that.data.contact_qq != null ? user.contact_qq : that.data.contact_qq,
+                contact_wx: that.data.contact_wx != null ? user.contact_wx : that.data.contact_wx,
+
             })
         }
     },
@@ -129,12 +137,19 @@ Page({
                 wxOpenId: userInfo.wxOpenId,
                 nickName: userInfo.nickName,
                 gender: userInfo.gender,
-                avatarUrl: userInfo.avatarUrl
+                avatarUrl: userInfo.avatarUrl,
+                phone: userInfo.phone,
+                contact_qq: userInfo.contact_qq,
+                contact_wx: userInfo.contact_wx
+
             },
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success: (res) => {
+                wx.showToast({
+                    title: '提交成功！',
+                })
                 console.log("saveupdataniuuser===>res");
                 console.log(res);
             }
@@ -143,8 +158,8 @@ Page({
 
     //昵称确认 保存本地
     confirm: function (e) {
-      console.log(e);
-      let that = this
+        console.log(e);
+        let that = this
         this.setData({
             hiddenmodalputnickName: true,
         })
@@ -228,7 +243,7 @@ Page({
         // })
     },
 
-    // 昵称 显示遮罩层
+    // 性别 显示遮罩层
     showModal: function () {
         var that = this;
         that.setData({
@@ -260,5 +275,88 @@ Page({
             animationData: this.animation.export(),
         })
     },
+    model: function () {
+        var that = this;
+        that.setData({
+            showModal: false
+        })
+    },
 
+    //联系方式输入框取消按钮
+    cancels: function () {
+        this.setData({
+            showModal: true
+        });
+    },
+    //联系方式确认 保存本地
+    confirms: function (e) {
+        if(this.phone!==''){
+            console.log(e);
+        let that = this
+        this.setData({
+            showModal: true,
+        })
+        console.log("联系方式 phone:" + that.data.phone,"contact_qq:",that.data.contact_qq,"contact_wx:",that.data.contact_wx);
+        var userInfo = wx.getStorageSync('userInfo');
+        userInfo.phone = that.data.phone
+        userInfo.contact_qq=that.data.contact_qq
+        userInfo.contact_wx = that.data.contact_wx
+        app.globalData.userInfo = userInfo
+        wx.setStorageSync('userInfo', userInfo)
+        // 保存到数据库
+        this.saveupdataniuuser(userInfo);
+        }
+        
+        // setTimeout(function () {
+        //     that.setData({
+        //         phone: that.data.phone,
+        //         contact_qq:that.data.contact_qq,
+        //         contact_wx:that.data.contact_wx
+        //     })
+        // }, 200);
+        // 保存到本地
+       
+    },
+    //手机号输入框光标失去焦点触发保存局域
+    setToPhone: function (e) {
+        // console.log("输入内容===>" + e.detail.value);
+        // var that=this
+       if(e.detail.value !==''){
+        this.setData({
+            phone:e.detail.value
+        })
+        console.log("输入的手机号===》" + e.detail.value)
+       }else{
+           wx.showToast({
+             title: '手机号不能为空',
+           })
+       }
+        // this.setData({
+        //     nickName: e.detail.value,
+        // })
+    },
+    //qq号输入框光标失去焦点触发保存局域
+    setToQQ: function (e) {
+        // console.log("输入内容===>" + e.detail.value);
+        // var that=this
+        this.setData({
+            contact_qq:e.detail.value
+        })
+        console.log("输入的QQ号===》" + e.detail.value)
+        // this.setData({
+        //     nickName: e.detail.value,
+        // })
+    },
+    //wx号输入框光标失去焦点触发保存局域
+    setToWx: function (e) {
+        // console.log("输入内容===>" + e.detail.value);
+        // var that=this
+        this.setData({
+            contact_wx:e.detail.value
+        })
+        console.log("输入的微信号===》" + e.detail.value)
+        // this.setData({
+        //     nickName: e.detail.value,
+        // })
+    },
 })

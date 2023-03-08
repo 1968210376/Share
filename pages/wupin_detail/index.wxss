@@ -15,7 +15,7 @@
 }
 
 .alert {
-    background: rgb(240, 9, 9);
+    /* background: rgb(240, 9, 9); */
     background: linear-gradient(90deg, rgb(245, 70, 70) 0%, rgba(245, 151, 151, 0.9) 0%, rgb(252, 244, 244) 100%);
     font-size: 12px;
     padding: 5rpx;
@@ -90,6 +90,8 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .imgBox image {
@@ -97,9 +99,12 @@
 }
 
 .lx {
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 15rpx;
+    text-align: center;
 }
 
 .icon {
@@ -121,6 +126,7 @@
     padding: 10rpx;
     border-radius: 35rpx;
     gap: 5rpx;
+    text-align: center;
     border: 1px solid #ccc;
 }
 
@@ -129,10 +135,13 @@
     align-items: center;
     font-size: 14px;
     justify-content:left;
+    padding: 10rpx;
+    border-bottom: 1px solid #F4F5F9;
 }
-/* .pl_content{
-    text-indent: 1rem;
-} */
+.pl_content{
+    width: 100%;
+    word-break:break-all;
+}
 /* 模拟弹窗 */
 .dialog__mask {
     position: fixed;
@@ -193,4 +202,16 @@
 .padding{
     padding: 15rpx;
     box-sizing: border-box;
+}
+.location{
+    width: 150rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.border{
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 25rpx;
+    padding: 10rpx;
 }

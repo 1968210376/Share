@@ -22,7 +22,7 @@ input {
 }
 .bg{
     width: 100vw;
-    height: 30vh;
+    height: 29vh;
 }
 .bg image{
     width: 100%;

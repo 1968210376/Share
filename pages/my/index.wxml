@@ -1,6 +1,6 @@
 <view class="container">
     <view bindtap="chooseBackground" class="bg">
-        <image src="{{bgImg}}" mode="aspectFill" />
+        <image src="{{bgImg}}" mode="heightFix" />
     </view>
     <view class="menu-item userinfo" bindtap='to_niu_my_edit_information'>
         <view>

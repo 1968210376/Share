@@ -6,19 +6,18 @@
     width: 90vw;
     /* height: 95rpx; */
     height: 150rpx;
-    padding: 0 32rpx;
-    margin-left: 1%;
-    background: #fff;
+    padding: 0 10rpx;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
 }
 .menu-item button{
     height: 100%;
     /* background-color: darkslategrey; */
     padding-left: 0%;
     padding-right: 0%;
+    background-color: #Fff;
 }
 .menu-item .l {
     width: 40%;
@@ -42,11 +41,15 @@
     float: right;
     
 }
+.menu-items{
+    width: 100%;
+}
 /* 头像 */
 .userinfo-avatar {
     width: 120rpx;
     height: 120rpx;
     float: right;
+    border-radius: 50%;
     /* background-color: rgb(185, 185, 126); */
 }
 /* .menu-item .next {
@@ -66,6 +69,7 @@
     width: 100vw;
     height: 16rpx;
     background: #F4F5F9;
+    border-radius: 8rpx;
 }
 .weui-input{
     text-align: right;
@@ -74,8 +78,6 @@
     font-size: 28rpx;
     font-weight: normal;
 }
-
-
 
 
 #nickname{

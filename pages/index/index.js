@@ -5,11 +5,11 @@ var util = require('../../libs/util.js')
 Page({
   data: {
     tab: 0,
-    tabs: 0,
-    item: 0,
+    // tabs: 0,
+    items: 0,
     navHeight: 100,
     openid: '',
-    pageIndex: 0, //页数
+    pageIndex: 1, //页数
     loading: false, //加载状态
     location: "定位",
     chooseLocation: "", //位置
@@ -63,87 +63,71 @@ Page({
       }
     })
   },
+
   changeTab: function (e) { //一级导航栏切换
     var that = this
     if (e) {
       var reside = parseInt(e.target.dataset.tab) + 1
-      // console.log(reside);
+      console.log(reside);
 
     } else {
       var reside = 1
     }
     this.setData({
-      tab: e.target.dataset.tab
-    })
-    this.setData({
-      tabs: 0
-    })
-    this.setData({
-      item: 0
-    })
-    this.setData({
-      end: false
+      tab: e.target.dataset.tab,
+      items: 0,
+      end: false,
+      pageIndex:1
     })
     this.getCategory(reside)
 
   },
-  changeTabs: function (e) { //二级导航栏滑动切换
-    var that = this
-    console.log("tabs===>", e.detail.current);
-    this.setData({
-      tabs: e.detail.current
-    })
-    this.setData({
-      item: e.detail.current
-    })
-    if (that.data.categories.length !== 0) {
+  // changeTabs: function (e) { //二级导航栏滑动切换
+  //   var that = this
+  //   console.log("tabs===>", e.detail.current);
+  //   this.setData({
+  //     tabs: e.detail.current,
+  //     item: e.detail.current
 
-      this.setData({
-        // categoryType: that.data.tab+that.father.length +1
-        categoryType: that.data.categories[e.detail.current].categoryType
-      });
-    }
-    this.setData({
-      end: false
-    })
-    // console.log(this.data.categoryType);
-    this.getShuju()
+  //   })
+  //   if (that.data.categories.length !== 0) {
 
-  },
+  //     this.setData({
+  //       // categoryType: that.data.tab+that.father.length +1
+  //       categoryType: that.data.categories[e.detail.current].categoryType,
+  //     end: false
+
+  //     });
+  //   }
+  //   // console.log(this.data.categoryType);
+  //   this.getShuju()
+
+  // },
   changeItem(e) { //二级导航栏点击切换
     var that = this
-    // console.log('+++++++++++', e);
+    console.log('+++++++++++', e);
 
-    if (e.currentTarget.dataset !== '') {
+    if (e.target.dataset !== '') {
 
       var i = e.target.dataset.id
 
       this.setData({
-        tabs: e.currentTarget.dataset.item
+        items: e.target.dataset.item,
+        categoryType: i,
+        end: false,
+        pageIndex:1,
       })
-      this.setData({
-        item: e.currentTarget.dataset.item
-      })
-      // console.log('item--->', this.data.item);
-      this.setData({
-        categoryType: i
-      })
-      this.setData({
-        end: false
-      })
-      // console.log('分类id', this.data.categoryType);
+      console.log('items', this.data.item);
       this.getShuju()
     }
   },
   search(e) { //搜索
+    var openid = wx.getStorageSync('openid')
     wx.showToast({
       title: '搜索' + e.detail.value,
     })
     this.setData({
-      searchKey: e.detail.value
-    })
-    var openid = wx.getStorageSync('openid')
-    this.setData({
+      searchKey: e.detail.value,
       openid: openid
     })
     // console.log('openid', openid);
@@ -156,7 +140,7 @@ Page({
       },
       data: {
         wxOpenId: openid,
-        pageIndex: 0,
+        pageIndex: 1,
         pageSize: 10,
         title: that.data.searchKey,
         loading: false,
@@ -256,11 +240,11 @@ Page({
     }
     // console.log('openid', openid);
     var that = this
-    wx.showLoading({
+    // wx.showLoading({
 
-      title: '数据加载中...',
+    //   title: '数据加载中...',
 
-    });
+    // });
     wx.showNavigationBarLoading()
 
     wx.request({
@@ -311,7 +295,7 @@ Page({
       },
       complete() {
         setTimeout(() => {
-          wx.hideLoading();
+          // wx.hideLoading();
           wx.hideNavigationBarLoading()
         }, 100)
       }
@@ -334,9 +318,9 @@ Page({
     }
     // console.log('openid', openid);
     var that = this
-    wx.showLoading({
-      title: '数据加载中...',
-    });
+    // wx.showLoading({
+    //   title: '数据加载中...',
+    // });
     wx.showNavigationBarLoading()
     wx.request({
       url: app.globalData.serverApi + '/selectMarket',
@@ -389,14 +373,16 @@ Page({
           }
           // console.log("list====>", that.data.list);
         } else {
-          that.end = true
+          that.setData({
+            end: true
+          })
           console.log('没有数据');
         }
 
       },
       complete() {
         setTimeout(() => {
-          wx.hideLoading();
+          // wx.hideLoading();
           wx.hideNavigationBarLoading()
         }, 500)
       }
@@ -408,11 +394,22 @@ Page({
     var that = this
     // if(!this.loading && this.data.pageIndex<this.data.pages ){
     console.log('当前页', that.data.pageIndex);
-    this.getShujus(this.data.pageIndex + 1)
+    if (!this.data.end) {
+      this.getShujus(this.data.pageIndex + 1)
+    } else {
+      wx.showToast({
+        title: '数据已加载完毕！',
+      })
+    }
     // this.setData({
 
     // })
     // }
+  },
+  scroll(e){
+    this.setData({
+      top:e.detail.scrollTop
+    })
   },
   goTop(e) {
     if (wx.pageScrollTo) {
@@ -422,7 +419,7 @@ Page({
       this.setData({
         top: 0
       })
-      console.log('top');
+      // console.log('top');
     } else {
       wx.showModal({
         title: '提示',
@@ -433,34 +430,36 @@ Page({
   ontopRefresh() {
     //显示顶部加载图标
     // if (!this.loading && this.data.pageIndex < this.data.pages) {
-    wx.showNavigationBarLoading()
-    this.setData({
-      pageIndex: 0
-    })
-    this.getShuju(0)
-    console.log('下拉刷新');
+    // wx.showNavigationBarLoading()
+    // this.setData({
+    //   pageIndex: 0
+    // })
+    // this.getShuju(0)
+    // console.log('下拉刷新');
     // }
   },
   onLoad() {
+    var that = this
+
     this.setData({ //动态高度
       navHeight: app.globalData.navHeight,
     })
-
-  },
-  onShow() {
-    var that = this
+    if (this.data.categories.length == 0) {
+      that.getCategory()
+    }
     var city = wx.getStorageSync('city');
     this.setData({
       chooseLocation: location,
       location: city
     })
+  },
+  onShow() {
+
     this.banner()
-    if (this.data.categories.length == 0) {
-      that.getCategory()
-    }
-    wx.showLoading({
-      title: '数据加载中...',
-    });
+
+    // wx.showLoading({
+    //   title: '数据加载中...',
+    // });
   },
   onPullDownRefresh() { //下拉刷新
     //显示顶部加载图标
@@ -468,7 +467,7 @@ Page({
 
     wx.showNavigationBarLoading()
     this.setData({
-      pageIndex: 0
+      pageIndex: 1
     })
     this.getShuju()
     console.log('下拉刷新');

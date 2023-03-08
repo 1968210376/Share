@@ -11,13 +11,16 @@
   </view>
   <!-- 标签页标题 -->
   <view class="tab">
-    <view class="tab-item {{tab == 0? 'active':''}}" bindtap="changeTab" data-tab="0">
-     物品
+    <view class="tab-items {{tab == 0? 'active':''}}" bindtap="changeTab" data-tab="0">
+      <image src="/images/wupin.png" bindtap="changeTab" data-tab="0" class="icon" mode="" />
+      物品
     </view>
-    <view class="tab-item {{tab == 1? 'active' : ''}}" bindtap="changeTab" data-tab="1">
+    <view class="tab-items {{tab == 1? 'active' : ''}}" bindtap="changeTab" data-tab="1">
+      <image src="/images/jineng.png" bindtap="changeTab" data-tab="1" class="icon" mode="" />
       技能
     </view>
-    <view class="tab-item {{tab == 2? 'active' : ''}}" bindtap="changeTab" data-tab="2">
+    <view class="tab-items {{tab == 2? 'active' : ''}}" bindtap="changeTab" data-tab="2">
+      <image src="/images/xq.png" bindtap="changeTab" data-tab="2" class="icon" mode="" />
       需求
     </view>
   </view>
@@ -25,14 +28,14 @@
 
   </view>
   <view class="tab">
-    <view wx:for="{{categories}}" wx:key="index" class="tab-item {{tabs == index ? 'active' : ''}} " bindtap="changeItem" data-item="{{index}}" data-id="{{item.categoryType}}" >
+    <view wx:for="{{categories}}" wx:key="index" class="tab-item {{items == index ? 'active' : ''}} " bindtap="changeItem" data-item="{{index}}" data-id="{{item.categoryType}}">
       {{item.categoryName}}
     </view>
   </view>
-  <view class="goTop">
-    <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix"/>
+  <view class="goTop" wx:if="{{pageIndex>1}}">
+    <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
   </view>
-  <scroll-view scroll-y class="content" 	>
+  <scroll-view scroll-y class="content" scroll-with-animation="true" style="height:{{navHeight -navHight}}px" scroll-top="{{top}}" bindscrolltolower="refresh">
     <!-- 内容区域 -->
     <view wx:if="{{tab == 0}}">
       <include src="../wupin/wupin"></include>

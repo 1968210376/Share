@@ -3,9 +3,29 @@
   <view>
     <image class="icon" src="/images/tz.png" mode="" /><text class="font-bold red l">网络安全防诈骗小提示</text>
   </view>
-  <text class="font-mini gray r">请您注意自身财产安全</text>
+  <text class=" red r">请您注意自身财产安全</text>
 </view>
 <view class="container detail">
+  <view class="title font-bold center">
+    {{info.target.title}}
+  </view>
+  <view class="price_box">
+    <text class="price red right">￥{{info.target.pirce}}</text>
+    <!-- <text class="gray font-mini">|</text> -->
+    <!-- <text class="font-mini blue"></text> -->
+  </view>
+  <view class="content">
+    {{info.target.content}}
+  </view>
+  <view wx:if="{{info.target.images[0]}}" class="imgBox">
+    <view wx:for="{{info.target.images}}" wx:key="index">
+      <image src="{{item}}" mode="widthFix" />
+    </view>
+  </view>
+  <view class="btn yellow" bindtap="toggleDialog">
+    <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
+    <text>我想要</text>
+  </view>
   <view class="userinfo">
     <image class="avatar" src="{{info.target.avatar_url}}" mode="" />
     <view>
@@ -15,8 +35,10 @@
       <view class="gray font-mini">
         {{info.target.create_time}} | {{info.target.choose_location.district}} | {{info.target.distance?"据您"+info.target.distance:""}}
       </view>
-      <view wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
-        点击定位
+      <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
+        <image style="width: 50rpx;height: 50rpx;" src="/images/Location.png" mode="aspectFill" />
+        <!-- 点击定位 -->
+        点击导航
       </view>
     </view>
     <view class="right" bindtap="is_shouCang">
@@ -24,34 +46,14 @@
       <image wx:if="{{is_shouCang}}" src="/images/sc(2).png" class="icon" />
     </view>
   </view>
-  <view class="price_box">
-    <text class="price red">￥{{info.target.pirce}}</text>
-    <!-- <text class="gray font-mini">|</text> -->
-    <!-- <text class="font-mini blue"></text> -->
-  </view>
-  <view class="title">
-    {{info.target.title}}
-  </view>
-  <view class="content">
-    {{info.target.content}}
-  </view>
-  <view class="imgBox">
-    <view wx:for="{{info.target.images}}" wx:key="index">
-      <image src="{{item}}" mode="widthFix" />
-    </view>
-  </view>
-  <view class="btn yellow" bindtap="toggleDialog">
-    <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
-    <text>我想要</text>
-  </view>
   <view class="spaces"></view>
 
-  <view class="lx">
-    <view>
+    <!-- <view>
       <image class="icon radius" src="{{info.target.avatar_url}}" mode="" />
 
-    </view>
-    <input class="btn center" type="text" bindconfirm="liuyan" value="{{liuyan_value}}" placeholder="看上了就留言~" />
+    </view> -->
+  <view class="lx">
+    <input class="border center" type="text" bindconfirm="liuyan" value="{{liuyan_value}}" placeholder="看上了就留言~" />
   </view>
   <view class="spaces"></view>
   <view class="message">
@@ -63,7 +65,7 @@
         <view class="lx gray">
           <text>{{item.target.nick_name}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
         </view>
-        <view class="padding pl_content center">
+        <view class="padding pl_content ">
           {{item.target.content}}
         </view>
       </view>
