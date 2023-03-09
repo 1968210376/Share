@@ -204,6 +204,8 @@ Page({
     //   var me = this;
     //   attribute(dragFlag, this)
     // });
+
+    console.log("点击了标记点")
     console.log(res)
     console.log(res.markerId)
     this.to_wupin_detail(res.markerId)
@@ -225,6 +227,7 @@ Page({
   },
   // 根据id进入详情页
   to_wupin_detail: function (e) {
+    console.log(e)
     wx.navigateTo({
       url: "/pages/wupin_detail/index?id=" + e
     })

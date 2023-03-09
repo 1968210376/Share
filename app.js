@@ -74,10 +74,11 @@ App({
       }
     })
     this.getUserLocation();
+    // this.getLocation();
     qqmapsdk = new QQMapWX({
       key: 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'
     });
-    wx.getStorageSync('longitude');
+    // wx.getStorageSync('longitude');
     this.getLocal(wx.getStorageSync('latitude'), wx.getStorageSync('longitude'));
   },
 

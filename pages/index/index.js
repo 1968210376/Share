@@ -258,7 +258,8 @@ Page({
         pageIndex: page,
         pageSize: 10,
         title: '',
-        categoryType: that.data.categoryType
+        categoryType: that.data.categoryType,
+        status:1
       },
       success(res) {
         that.loading = false
@@ -447,16 +448,26 @@ Page({
     if (this.data.categories.length == 0) {
       that.getCategory()
     }
-    var city = wx.getStorageSync('city');
-    this.setData({
-      chooseLocation: location,
-      location: city
-    })
+
+    if (!wx.getStorageSync('userInfo')) {
+      app.getwxopenid();
+    } else {
+      app.globalData.userInfo = wx.getStorageSync('userInfo')
+    }
+    
   },
   onShow() {
 
     this.banner()
 
+    var city = wx.getStorageSync('city');
+    if(!wx.getStorageSync('city')){
+      app.getUserLocation();
+    }
+    this.setData({
+      chooseLocation: location,
+      location: city
+    })
     // wx.showLoading({
     //   title: '数据加载中...',
     // });

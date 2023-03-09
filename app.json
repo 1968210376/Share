@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/niu_start_page/index",
     "pages/index/index",
     "pages/niu_map/map",
     "pages/share_market_issue/index",
