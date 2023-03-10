@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/niu_start_page/index",
+    "pages/niu_start_page/index", 
     "pages/index/index",
+    "pages/wupin_add/index",
+    "pages/fenlei/index",
     "pages/niu_map/map",
     "pages/share_market_issue/index",
     "pages/my/index",
@@ -36,16 +38,22 @@
         "text": "首页"
       },
       {
+        "pagePath": "pages/fenlei/index",
+        "iconPath": "images/fenlei(1).png",
+        "selectedIconPath": "images/fenlei_select.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/add/add",
+        "iconPath": "images/add(1).png",
+        "selectedIconPath": "images/add_selected.png",
+        "text": "发布"
+      },
+      {
         "pagePath": "pages/niu_map/map",
         "iconPath": "images/pengyouquan(1).png",
         "selectedIconPath": "images/pengyouquan.png",
         "text": "周边"
-      },
-      {
-        "pagePath": "pages/share_market_issue/index",
-        "iconPath": "images/pengyouquan(1).png",
-        "selectedIconPath": "images/pengyouquan.png",
-        "text": "发布"
       },
       {
         "pagePath": "pages/my/index",

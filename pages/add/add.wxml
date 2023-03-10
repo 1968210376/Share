@@ -1,48 +1,26 @@
-<!--pages/add/add.wxml-->
 <view class="container">
-    <form bindsubmit="formSubmit">
-        <view class="form">
-            <view class="form_item">
-                <text>标题</text>
-                <input type="text" placeholder="请输入标题" />
-            </view>
-            <view class="space"></view>
-            <view class="form_item">
-                <picker bindchange="bindPickerChange" value="{{index}}" range="{{categories}}">
-                    <view class="picker">
-                        当前选择：{{categories[index]}}
-                    </view>
-                </picker>
-            </view>
-            <view class="space"></view>
-            <view class="form_item"  bindtap="getLocation">
-                <input disabled type="text" style="flex: 9;" placeholder="请输入位置" value="{{chooseLocation.address}}" />
-                <button style="flex: 1;background-color: #fff;">
-                    <image style="width: 80rpx;height: 80rpx;" src="/images/Location.png" mode="scaleToFit" />
-                </button>
-            </view>
-            <view class="space"></view>
-            <view class="form_items">
-                <textarea placeholder="{{placeholder}}" value="" />
-            </view>
-            <view class="space"></view>
-            <view>
-                <text>请选择图片</text>
-                <view class="img_box">
-                    <view bindtap="imgbox">
-                        <image class="imgs" bindtap="addPic1" src="/images/sc.png" mode="aspectFill" />
-                    </view>
-                    <view bindtap="imgDelete1" data-deindex="{{index}}" class="img" wx:for="{{imgbox}}" wx:key="index">
-                        <image src="{{item}}" mode="aspectFit" />
-                    </view>
-                </view>
-            </view>
-            <view class="space">
-
-            </view>
-            <view class="form_item">
-                <button type="primary" bindtap="formSubmit">提交</button>
-            </view>
+    <view class="class {{animation ? 'dong' : '' }}" >
+        <view class="fenlei" bindtap="wupin">
+        <view>
+            <image src="/images/wupin.png" class="icon" mode="" />
         </view>
-    </form>
+        物品
+    </view>
+    <view class="fenlei" bindtap="wupin">
+        <view>
+            <image src="/images/jineng.png" class="icon" mode="" />
+        </view>
+        技能
+    </view>
+    <view class="fenlei" bindtap="wupin">
+        <view>
+            <image src="/images/xq(2).png" class="icon" mode="" />
+        </view>
+        需求
+    </view>
+    
+    </view>
+    <view class="bottom {{animation ? 'move' : '' }}"  >
+        发布
+    </view>
 </view>

@@ -192,6 +192,7 @@ Page({
                 pirce: (Number(e.detail.value.scrap_price)),
                 // contact_qq: e.detail.value.scrap_qq,
                 // contact_wx: e.detail.value.scrap_wx,
+                // 2023年3月10日
                 status: 0,
                 content: e.detail.value.information,
                 Images: that.data.product_img,

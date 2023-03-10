@@ -7,8 +7,12 @@ App({
     userInfo: null,
     openid: null,
     navHeight: 100,
-    serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
-    // serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
+    city:'',
+    latitude:'',
+    longitude:'',
+    location:'',
+    // serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
+    serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
     // serverApi: "http://150.158.107.188:8080/wx/api", //发布地址
   },
   // 点击定位
@@ -74,16 +78,17 @@ App({
       }
     })
     this.getUserLocation();
-    // this.getLocation();
     qqmapsdk = new QQMapWX({
       key: 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'
     });
-    // wx.getStorageSync('longitude');
-    this.getLocal(wx.getStorageSync('latitude'), wx.getStorageSync('longitude'));
+    wx.getStorageSync('longitude');
+    // this.getLocal(wx.getStorageSync('latitude'), wx.getStorageSync('longitude'));
+    this.getLocal(this.globalData.latitude,this.globalData.longitude)
   },
 
   // 获取当前所在城市
   getLocal: function (latitude, longitude) {
+    var that = this
     qqmapsdk.reverseGeocoder({
       location: {
         latitude: latitude,
@@ -94,6 +99,7 @@ App({
         let province = res.result.ad_info.province
         let city = res.result.ad_info.city
         // console.log("当前城市：", province, city)
+        that.globalData.city = city
         wx.setStorageSync('city', city);
         wx.setStorageSync('province', province);
 
@@ -217,7 +223,9 @@ App({
         // console.log(res);
         wx.setStorageSync('latitude', res.latitude);
         wx.setStorageSync('longitude', res.longitude);
-
+        that.globalData.latitude = res.latitude
+        that.globalData.longitude = res.longitude
+        that.globalData.location = res
       }
     })
   },

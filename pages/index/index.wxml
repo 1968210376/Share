@@ -1,4 +1,3 @@
-<!--index.wxml-->
 <view class="container">
   <view class="searchBox">
     <view class="location" bindtap="getLocation">
@@ -9,42 +8,45 @@
     </view>
     <input class="search" bindconfirm="search" type="search" placeholder="搜索" />
   </view>
-  <!-- 标签页标题 -->
-  <view class="tab">
-    <view class="tab-items {{tab == 0? 'active':''}}" bindtap="changeTab" data-tab="0">
-      <image src="/images/wupin.png" bindtap="changeTab" data-tab="0" class="icon" mode="" />
-      物品
-    </view>
-    <view class="tab-items {{tab == 1? 'active' : ''}}" bindtap="changeTab" data-tab="1">
-      <image src="/images/jineng.png" bindtap="changeTab" data-tab="1" class="icon" mode="" />
-      技能
-    </view>
-    <view class="tab-items {{tab == 2? 'active' : ''}}" bindtap="changeTab" data-tab="2">
-      <image src="/images/xq.png" bindtap="changeTab" data-tab="2" class="icon" mode="" />
-      需求
-    </view>
-  </view>
-  <view class="space">
-
-  </view>
-  <view class="tab">
-    <view wx:for="{{categories}}" wx:key="index" class="tab-item {{items == index ? 'active' : ''}} " bindtap="changeItem" data-item="{{index}}" data-id="{{item.categoryType}}">
-      {{item.categoryName}}
-    </view>
-  </view>
-  <view class="goTop" wx:if="{{pageIndex>1}}">
-    <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
-  </view>
-  <scroll-view scroll-y class="content" scroll-with-animation="true" style="height:{{navHeight -navHight}}px" scroll-top="{{top}}" bindscrolltolower="refresh">
-    <!-- 内容区域 -->
-    <view wx:if="{{tab == 0}}">
-      <include src="../wupin/wupin"></include>
-    </view>
-    <view wx:if="{{tab == 1}}">
-      <include src="../jineng/jineng"></include>
-    </view>
-    <view wx:if="{{tab == 2}}">
-      <include src="../xvqiu/xvqiu"></include>
-    </view>
-  </scroll-view>
+  
+  <!--主文件html中代码：-->
+<!-- <swiper data-item="{{tabs}}" bindchange="changeTabs" current="{{item}}" style="height:{{navHeight}}px">
+  <swiper-item class="list" wx:for="{{categories}} " wx:key="index"> -->
+    <!-- <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px" upper-threshold="60" bindscrolltolower="refresh" bindscrolltoupper="ontopRefresh" scroll-top="{{top}}"	scroll-with-animation="true"> -->
+        <view class="liushi_container">
+        <view class="picture" >
+          <block wx:for="{{list}}" wx:key="index" >
+            <view class="item" data-id="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
+              <view wx:if="{{item.target.images[0]}}">
+                <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
+              </view>
+              <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
+              <view wx:if="{{item.target.images[0].length==''}}" style="height: 50rpx;">
+                
+              </view>
+              <view style="display: flex; align-items: center;">
+                <view>
+                  <image class="icon" src="{{item.target.avatar_url}}" mode="widthFix" />
+                </view>
+                <text class="font-mini">{{item.target.nick_name}}</text>
+                <view class="red price right">
+                  ￥{{item.target.pirce}}
+                </view>
+              </view>
+            </view>
+            <view class="null-wrap"></view>
+          </block>
+        </view>
+        <!-- 空列表提示 -->
+        <view wx:if="{{ list.length == 0 }}" class="center">
+          <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+          <view>还没有数据哦~</view>
+        </view>
+        <!-- 到底了 -->
+        <view wx:if="{{end == true}}" class="center">
+          ~ 到底啦 ~
+        </view>
+      </view>
+  <!-- </swiper-item>
+</swiper> -->
 </view>
