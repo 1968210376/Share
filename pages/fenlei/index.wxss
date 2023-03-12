@@ -309,10 +309,10 @@
   text-align: center;
 }
 
-.right {
+/* .right {
   position: relative;
   right: -20%;
-}
+} */
 .flocat_rihgt{
   float: right;
 }

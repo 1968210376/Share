@@ -10,15 +10,17 @@
                 <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
               </view>
               <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
-              <view wx:if="{{item.target.images[0].length==''}}" style="height: 50rpx;">
-                
+              <view wx:if="{{!item.target.images}}" style="height: 50rpx;">
+                <!-- 11 -->
               </view>
-              <view style="display: flex; align-items: center;">
-                <view>
+              <view style="display: flex; justify-content: space-between; align-items: center;">
+                <view style="display: flex; align-items: center;">
+                  <view>
                   <image class="icon" src="{{item.target.avatar_url}}" mode="widthFix" />
                 </view>
                 <text class="font-mini">{{item.target.nick_name}}</text>
-                <view class="red price right">
+                </view>
+                <view wx:if="{{item.target.pirce}}" class="red price right">
                   ￥{{item.target.pirce}}
                 </view>
               </view>

@@ -7,7 +7,7 @@
         {{location}}
       </view>
     </view>
-    <input class="search" bindconfirm="search" type="search" placeholder="搜索" />
+    <input class="search" bindconfirm="search" type="text" confirm-type="search" placeholder="搜索" />
   </view>
   <!-- 标签页标题 -->
   <view class="tab">

@@ -1,6 +1,6 @@
 <scroll-view scroll-y>
   <div class="form-container">
-  <p>物品</p>
+  <p>需求</p>
     <form class="form" bindsubmit="formSubmit" bindreset="formReset">
     <label>分类</label>
     <view hidden>
@@ -16,7 +16,7 @@
     <label><text style="color: red;">*</text>标题</label>
     <input type="text" class="input" name="title" placeholder="请输入标题" />
     <label>内容</label>
-    <textarea class="input" bindinput="input" name="details" value="" placeholder="请输入内容" />
+    <textarea class="input" name="details" value="" placeholder="请输入内容" />
     <label>价格</label>
     <input class="input" name="pirce" type="digit" bindinput="checkValue" value="{{price}}" placeholder="请输入价格" />
     <label>定位</label>
@@ -25,7 +25,7 @@
       <image src="/images/Location.png" class="icon position" mode="" />
     </view>
     <!-- 图片 -->
-    <label>图片</label>
+    <!-- <label>图片</label>
     <input type="text" hidden name="imgbox" value="{{imgbox}}"/>
     <view class="images_box">
       <block wx:key="imgbox"  wx:for="{{imgbox}}">
@@ -39,7 +39,7 @@
       <view class='img-box' name="imagebox" bindtap='addPic1' wx:if="{{imgbox.length<issuePicSum}}">
         <image class='img' src='/images/icon_add.png'></image>
       </view>
-    </view>
+    </view> -->
     <button form-type="submit">提交</button>
 
     <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>

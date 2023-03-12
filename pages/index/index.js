@@ -195,9 +195,11 @@ Page({
         pageIndex: page,
         pageSize: 10,
         title: '',
-        categoryType: that.data.categoryType,
+        // categoryType: that.data.categoryType,
         // 2023年3月10日
-        status:1 
+        status:1,
+        categoryParentType:1,
+
       },
       success(res) {
         that.loading = false

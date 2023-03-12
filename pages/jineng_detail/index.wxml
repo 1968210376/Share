@@ -6,7 +6,7 @@
             <text class="margin font-large">{{info.target.nick_name}}</text>
             <text>{{info.target.title}}</text>
             <text>{{info.target.content}}</text>
-            <text>更新于：{{info.target.create_time}} | 浏览：131</text>
+            <text>更新于：{{info.target.create_time}} | 浏览：{{count}}</text>
         </view>
         <!-- <view class="project padding">
             <view class="gap">

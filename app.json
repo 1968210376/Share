@@ -2,22 +2,22 @@
   "pages": [
     "pages/niu_start_page/index", 
     "pages/index/index",
-    "pages/wupin_add/index",
     "pages/fenlei/index",
     "pages/niu_map/map",
-    "pages/share_market_issue/index",
     "pages/my/index",
     "pages/my_edit_information/index",
+    "pages/share_market_issue/index",
     "pages/niu_my_fuwuyinshi/index",
-
     "pages/wupin/wupin",
-    "pages/jineng/jineng",
-    "pages/xvqiu/xvqiu",
-    "pages/add/add",
     "pages/wupin_detail/index",
+    "pages/jineng/jineng",
     "pages/jineng_detail/index",
-    "pages/xvqiu_detail/index"
-
+    "pages/xvqiu/xvqiu",
+    "pages/xvqiu_detail/index",
+    "pages/add/add",
+    "pages/wupin_add/index",
+    "pages/xvqiu_add/index",
+    "pages/jineng_add/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

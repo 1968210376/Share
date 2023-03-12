@@ -8,7 +8,7 @@ Page({
     location: "定位",
     chooseLocation: "", //位置
     categories: [], //子分类
-    categoryType: 1,
+    categoryType: 2,
     reside: 1, //大分类
     value: '',
     imgbox: [], //选择图片
@@ -17,6 +17,8 @@ Page({
     categories: [], //分类
     issuePicSum: 9,
     price:'',
+    time:'',
+    color:'#2e317c',
   },
   getCategory(e) { // 获取分类
     var that = this
@@ -50,16 +52,24 @@ Page({
   },
 
   changeValue(e) {
-    // console.log(this.data.categories[e.detail.value]);
-    var value = this.data.categories[e.detail.value]
+    console.log(this.data.categories[e.detail.value].categoryType);
+    var value = this.data.categories[e.detail.value].categoryType
     this.setData({
       value: value,
     })
     
     console.log(this.data.value);
   },
-  input(e){
-    console.log(e.detail.value);
+  changeColor(e){
+    if(e.detail.value === true){
+      this.setData({
+        // color:'#1677b3'
+      })
+    }
+  },
+  time(e){
+    var time = e.detail.value
+    console.log(e);
   },
    //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
    formSubmit: function (e) {
@@ -76,13 +86,13 @@ Page({
             title: '请输入标题'
         });
     }
-    else if (!this.data.imgbox.length) {
-        // !this.data.imgbox.length && !e.detail.value.information
-        wx.showToast({
-            icon: 'none',
-            title: '选择至少一张图片'
-        });
-    }
+    // else if (!this.data.imgbox.length) {
+    //     // !this.data.imgbox.length && !e.detail.value.information
+    //     wx.showToast({
+    //         icon: 'none',
+    //         title: '选择至少一张图片'
+    //     });
+    // }
     else {
         // 文件图片的上传
         // this.add_fileImages(e);
@@ -164,8 +174,8 @@ add_COSfileImages: function (e) {
 
 // 上传数据到数据库中
 add_sell_scrap: function (e) {
-    let category_type = e.detail.value.fenlei
-    console.log('上传分类====', category_type)
+    // let category_type = e.detail.value.fenlei
+    // console.log('上传分类====', category_type.categoryType)
     var userInfo = wx.getStorageSync('userInfo');
     // console.log(userInfo.wxOpenId);
     let that = this;
@@ -176,18 +186,19 @@ add_sell_scrap: function (e) {
             wxOpenId: userInfo.wxOpenId,
             // phone: e.detail.value.scrap_phone,
             title: e.detail.value.title,
-            pirce: (Number(e.detail.value.pirce)),
+            // pirce: e.detail.value.pirce,
             phone:userInfo.phone,
             contact_qq:userInfo.scrap_qq,
             contact_wx: userInfo.scrap_wx,
-            status: 0,
+            status: 1,
             content: e.detail.value.details,
-            Images: that.data.product_img,
+            // Images: that.data.product_img,
             LikesNumber: 0,
             CommentsNumber: 0,
+            // time:e.detail.value.time,
             // publictiy:e.detail.value.publictiy,
             publictiy: 1,
-            categoryType: e.detail.value.fenlei,
+            categoryType: that.data.value,
             Address: e.detail.value.scrap_address,
             chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),
             latitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.latitude),
@@ -203,13 +214,6 @@ add_sell_scrap: function (e) {
                 title: "上传成功",
             })
             if (res.data.code == 1) {
-                // if (res.data.response.list == 0) {
-                //     return
-                // }
-                // this.setData({
-                //     categories: res.data.response.list,
-                // });
-                //         console.log("跳转页面")
                 wx.reLaunch({
                     //页面跳转携带参数
                     url: '/pages/index/index',

@@ -5,30 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    lists:[{
-      avatar:'https://img.vinua.cn/images/VLmW.png',
-      nickName:'海默之语',
-      job:'前端开发工程师',
-      price:'13050',
-      tag:['全职工作者','协作开发者'],
-      jineng:'HTML5，CSS，JavaScript，Vue，Node.js，jQuery，TypeScript',
-      zuopin:'龙源音乐，绿叶商城后台管理系统，秒选商城',
-      star:"5",
-      city:"上海",
-      jingyan:'前端 3年',      
-    },{
-      avatar:'https://img.vinua.cn/images/V9CA.png',
-      nickName:'tinys',
-      job:'jaca高级开发',
-      price:'17400',
-      tag:['全职自由工作者','协作开发者'],
-      jineng:'springboot,Python，Mybatis，Java,MySQL,Redis,RabbitMQ',
-      zuopin:'首农农业小程序，云乐汇小程序，惟视眼科',
-      star:"5",
-      city:"邢台",
-      jingyan:'Java 6年', 
-    }
-]
+    lists:[]
   },
 
   /**

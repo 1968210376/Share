@@ -1,11 +1,10 @@
 // index.js
 const app = getApp()
-const chooseLocation = requirePlugin('chooseLocation');
+// const chooseLocation = requirePlugin('chooseLocation');
 var util = require('../../libs/util.js')
 Page({
   data: {
     tab: 0,
-    // tabs: 0,
     items: 0,
     navHeight: 100,
     openid: '',
@@ -61,7 +60,6 @@ Page({
       }
     })
   },
-
   changeTab: function (e) { //一级导航栏切换
     var that = this
     if (e) {
@@ -80,27 +78,6 @@ Page({
     this.getCategory(reside)
 
   },
-  // changeTabs: function (e) { //二级导航栏滑动切换
-  //   var that = this
-  //   console.log("tabs===>", e.detail.current);
-  //   this.setData({
-  //     tabs: e.detail.current,
-  //     item: e.detail.current
-
-  //   })
-  //   if (that.data.categories.length !== 0) {
-
-  //     this.setData({
-  //       // categoryType: that.data.tab+that.father.length +1
-  //       categoryType: that.data.categories[e.detail.current].categoryType,
-  //     end: false
-
-  //     });
-  //   }
-  //   // console.log(this.data.categoryType);
-  //   this.getShuju()
-
-  // },
   changeItem(e) { //二级导航栏点击切换
     var that = this
     console.log('+++++++++++', e);
@@ -115,7 +92,7 @@ Page({
         end: false,
         pageIndex:1,
       })
-      console.log('items', this.data.item);
+      // console.log('items', this.data.item);
       this.getShuju()
     }
   },
@@ -142,7 +119,8 @@ Page({
         pageSize: 10,
         title: that.data.searchKey,
         loading: false,
-        categoryType: that.data.categoryType
+        categoryType: that.data.categoryType,
+        status:1
       },
       success(res) {
         console.log("shuju==>", res.data);
@@ -163,7 +141,7 @@ Page({
             if (item.target.choose_location !== "") {
               item.target.choose_location = JSON.parse(item.target.choose_location);
             }
-            if (item.target.images[0] !== "") {
+            if (item.target.images != "" && item.target.images != null) {
               item.target.images = item.target.images.split(",");
             }
           })
@@ -256,7 +234,9 @@ Page({
         pageIndex: page,
         pageSize: 10,
         title: '',
-        categoryType: that.data.categoryType
+        categoryType: that.data.categoryType,
+        status:1
+
       },
       success(res) {
         that.loading = false
@@ -278,7 +258,7 @@ Page({
             if (item.target.choose_location !== "") {
               item.target.choose_location = JSON.parse(item.target.choose_location);
             }
-            if (item.target.images[0] !== "") {
+            if (item.target.images) {
               item.target.images = item.target.images.split(",");
             }
           })
@@ -331,7 +311,9 @@ Page({
         pageIndex: page,
         pageSize: 10,
         title: '',
-        categoryType: that.data.categoryType
+        categoryType: that.data.categoryType,
+        status:1
+
       },
       success(res) {
         that.loading = false
@@ -353,7 +335,7 @@ Page({
             if (item.target.choose_location !== "") {
               item.target.choose_location = JSON.parse(item.target.choose_location);
             }
-            if (item.target.images[0] !== "") {
+            if (item.target.images != "" && item.target.images != null) {
               item.target.images = item.target.images.split(",");
             }
           })
@@ -426,15 +408,12 @@ Page({
     }
   },
   ontopRefresh() {
-    //显示顶部加载图标
-    // if (!this.loading && this.data.pageIndex < this.data.pages) {
-    // wx.showNavigationBarLoading()
-    // this.setData({
-    //   pageIndex: 0
-    // })
-    // this.getShuju(0)
-    // console.log('下拉刷新');
-    // }
+    this.setData({
+      pageIndex: 1
+    })
+    this.getShuju()
+    this.goTop()
+
   },
   onLoad() {
     var that = this
@@ -464,10 +443,7 @@ Page({
     // if (!this.loading && this.data.pageIndex < this.data.pages) {
 
     wx.showNavigationBarLoading()
-    this.setData({
-      pageIndex: 1
-    })
-    this.getShuju()
+   this.ontopRefresh()
     console.log('下拉刷新');
     // }
   },

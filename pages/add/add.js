@@ -7,10 +7,18 @@ Page({
     },
 
     onLoad: function () {},
-    wupin(e) {
+    goAdd(e) {
+        var url
+        if(e.currentTarget.dataset.index == 1){
+            url = '/pages/wupin_add/index'
+        }else if(e.currentTarget.dataset.index ==2){
+            url = '/pages/jineng_add/index'
+        }else{
+            url = '/pages/xvqiu_add/index'
+        }
         console.log(e);
         wx.navigateTo({
-          url: '/pages/wupin_add/index',
+          url:url,
           success: (result) => {},
           fail: (res) => {},
           complete: (res) => {},

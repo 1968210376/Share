@@ -4,8 +4,8 @@
     </view>
     <view class="menu-item userinfo" bindtap='to_niu_my_edit_information'>
         <view>
-        <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
-            
+            <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
+
         </view>
         <view class="userinfo-nickname">
             <text>{{nickName}}</text>
@@ -17,18 +17,26 @@
     <!-- <view class="space"></view>
     <view class="space"></view> -->
     <view style="height: 40rpx;">
-        
+
     </view>
     <view class="menu-item" style="display: flex; align-items: center; justify-content:space-around;box-shadow:inset 2px 2px 4px #fff,2px  2px 4px #eee ">
 
-        <image wx:if="{{item == 0}}" src="/images/sc(2).png" class="icon" mode="" />
-        <image wx:else src="/images/sc(1).png" class="icon" mode="" />
-        <image src="/images/ly.png" class="icon" mode="" />
-        <image src="/images/pengyouquan.png" class="icon" mode="" />
+        <!-- <image wx:if="{{item == 0}}" src="/images/sc(2).png" class="icon" mode="" /> -->
+        <view bindtap="showDetail" data-index="1">
+            <image src="/images/sc(1).png" class="icon" mode="" />
+        </view>
+        <view bindtap="showDetail" data-index="2">
+            <image src="/images/ly.png" class="icon" mode="" />
+        </view>
+        <view bindtap="showDetail" data-index="3">
+            <image src="/images/add_selected.png" class="icon" mode="" />
+        </view>
     </view>
     <swiper current="{{index}}" data-id="index" bindchange="changeItem">
         <swiper-item>
-
+            <scroll-view scroll-y style="{{navHeight}}">
+               
+            </scroll-view>
         </swiper-item>
     </swiper>
 </view>

@@ -1,18 +1,18 @@
 <view class="container">
     <view class="class {{animation ? 'dong' : '' }}" >
-        <view class="fenlei" bindtap="wupin">
+        <view class="fenlei" data-index="1" bindtap="goAdd">
         <view>
             <image src="/images/wupin.png" class="icon" mode="" />
         </view>
         物品
     </view>
-    <view class="fenlei" bindtap="wupin">
+    <view class="fenlei" data-index="2" bindtap="goAdd">
         <view>
             <image src="/images/jineng.png" class="icon" mode="" />
         </view>
         技能
     </view>
-    <view class="fenlei" bindtap="wupin">
+    <view class="fenlei" data-index="3" bindtap="goAdd">
         <view>
             <image src="/images/xq(2).png" class="icon" mode="" />
         </view>

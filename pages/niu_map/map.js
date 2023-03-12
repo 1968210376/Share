@@ -55,7 +55,7 @@ Page({
           var list = res.data.response.content
           let arr = [];
           list.forEach((mar, list) => {
-            if (mar.target.images != "") {
+            if (mar.target.images != "" &&mar.target.images != null) {
               mar.target.images = mar.target.images.split(",");
               mar.target.choose_location = JSON.parse(mar.target.choose_location);
             }
@@ -96,7 +96,7 @@ Page({
                 color: '#ff6666 ',
                 content: (mar.target.title.length > 10 ? mar.target.title.substr(0, 10) + "..." : mar.target.title),
                 price:"￥:" + mar.target.pirce,
-                image:mar.target.images != "" ? mar.target.images[0]:"",
+                image:mar.target.images != "" && mar.target.images != null ? mar.target.images[0]:"",
                 fontSize: 12,
                 borderRadius: 5,
                 borderWidth: 1,

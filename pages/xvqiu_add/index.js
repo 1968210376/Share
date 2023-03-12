@@ -8,7 +8,7 @@ Page({
     location: "定位",
     chooseLocation: "", //位置
     categories: [], //子分类
-    categoryType: 1,
+    categoryType: 3,
     reside: 1, //大分类
     value: '',
     imgbox: [], //选择图片
@@ -58,9 +58,6 @@ Page({
     
     console.log(this.data.value);
   },
-  input(e){
-    console.log(e.detail.value);
-  },
    //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
    formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
@@ -76,13 +73,13 @@ Page({
             title: '请输入标题'
         });
     }
-    else if (!this.data.imgbox.length) {
-        // !this.data.imgbox.length && !e.detail.value.information
-        wx.showToast({
-            icon: 'none',
-            title: '选择至少一张图片'
-        });
-    }
+    // else if (!this.data.imgbox.length) {
+    //     // !this.data.imgbox.length && !e.detail.value.information
+    //     wx.showToast({
+    //         icon: 'none',
+    //         title: '选择至少一张图片'
+    //     });
+    // }
     else {
         // 文件图片的上传
         // this.add_fileImages(e);
@@ -180,7 +177,7 @@ add_sell_scrap: function (e) {
             phone:userInfo.phone,
             contact_qq:userInfo.scrap_qq,
             contact_wx: userInfo.scrap_wx,
-            status: 0,
+            status: 1,
             content: e.detail.value.details,
             Images: that.data.product_img,
             LikesNumber: 0,

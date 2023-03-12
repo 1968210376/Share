@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info: ''
+    info: '',
+    count:0,
   },
   /**
    * 控制 pop 的打开关闭
@@ -71,7 +72,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    var that = this
+    this.setData({
+      count:that.data.count+1
+    })
   },
 
   /**

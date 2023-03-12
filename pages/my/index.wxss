@@ -40,37 +40,6 @@ input {
     /* background-color: rgb(109, 83, 83); */
 }
 
-/* 导航 */
-/* .asset {
-    width: 100%;
-    display: flex;
-    border-top: 1px solid #eee;
-    padding-top: 30rpx;
-    padding-bottom: 20rpx;
-    background-color: white;
-}
-
-.asset .item {
-    display: flex;
-    flex-direction: column;
-    width: 200rpx;
-    text-align: center;
-    font-size: 16px;
-    line-height: 20px;
-    color: #333;
-}
-
-.asset .right {
-    border-left: 1px solid #eee;
-}
-
-
-/* 绑定手机号 */
-/* .bind-phone-number { 
-    margin: 20rpx;
-    width: 100%;
-} */
-
 /* flex重新构建菜单 */
 .menu-item {
     width: 100vw;
@@ -125,14 +94,67 @@ input {
     margin-left: 32rpx;
 }
 
-.botombanquan{
+/* .botombanquan{
     color: #9e9a9a;
     font-size: 22rpx;
     text-align: center;
     padding: 50rpx;
     margin-top: 50rpx;
-}
+} */
 .icon{
     width: 80rpx;
     height: 80rpx;
+    border-radius: 50%;
 }
+
+
+.liushi_container {
+    width: 100vw;
+    padding: 0 20rpx;
+  }
+  
+  /* 瀑布流布局 */
+  .picture {
+    column-gap: 5rpx;
+    column-count: 2;
+    margin: 20rpx 0;
+  }
+  
+  .item {
+    width: calc(100% - 30rpx);
+    break-inside: avoid;
+    /* box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1); */
+    border-radius: 10rpx;
+    margin: 0 15rpx;
+  }
+  
+  .item .image {
+    width: 100%;
+    border-radius: 15rpx;
+  }
+  
+  .null-wrap {
+    height: 30rpx;
+  }
+  
+  .data-img {
+    width: 300rpx;
+    height: 300rpx;
+    margin: 0 auto;
+  }
+  
+
+  .center {
+    text-align: center;
+  }
+  
+  /* .right {
+    position: relative;
+    right: -20%;
+  } */
+  .flocat_rihgt{
+    float: right;
+  }
+  .list{
+    background-color: #eee;
+  }

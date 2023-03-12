@@ -35,7 +35,7 @@
       </view>
     </view>
     <view class="btnBox">
-      <view class="red price">
+      <view wx:if="{{item.target.pirce}}" class="red price">
         ￥{{item.target.pirce}}
       </view>
       <!-- <view class="btn {{item.target.is_shouCang ? gold :''}}" data-item="{{item.target.id}}" bindtap="is_shouCang"> -->
