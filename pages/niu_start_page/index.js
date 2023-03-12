@@ -14,7 +14,7 @@ Page({
     onLoad(options) {
         setTimeout(function () {
             wx.switchTab({
-                url: '/pages/index/index',
+                url: '/pages/fenlei/index',
             })
         }, 2000);
     },

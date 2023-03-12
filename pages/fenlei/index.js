@@ -73,7 +73,7 @@ Page({
       tab: e.target.dataset.tab,
       items: 0,
       end: false,
-      pageIndex:1
+      pageIndex: 1
     })
     this.getCategory(reside)
 
@@ -90,7 +90,7 @@ Page({
         items: e.target.dataset.item,
         categoryType: i,
         end: false,
-        pageIndex:1,
+        pageIndex: 1,
       })
       // console.log('items', this.data.item);
       this.getShuju()
@@ -120,7 +120,7 @@ Page({
         title: that.data.searchKey,
         loading: false,
         categoryType: that.data.categoryType,
-        status:1
+        status: 1
       },
       success(res) {
         console.log("shuju==>", res.data);
@@ -235,7 +235,7 @@ Page({
         pageSize: 10,
         title: '',
         categoryType: that.data.categoryType,
-        status:1
+        status: 1
 
       },
       success(res) {
@@ -312,7 +312,7 @@ Page({
         pageSize: 10,
         title: '',
         categoryType: that.data.categoryType,
-        status:1
+        status: 1
 
       },
       success(res) {
@@ -386,9 +386,9 @@ Page({
     // })
     // }
   },
-  scroll(e){
+  scroll(e) {
     this.setData({
-      top:e.detail.scrollTop
+      top: e.detail.scrollTop
     })
   },
   goTop(e) {
@@ -408,11 +408,8 @@ Page({
     }
   },
   ontopRefresh() {
-    this.setData({
-      pageIndex: 1
-    })
-    this.getShuju()
-    this.goTop()
+
+    this.onPullDownRefresh()
 
   },
   onLoad() {
@@ -424,15 +421,27 @@ Page({
     if (this.data.categories.length == 0) {
       that.getCategory()
     }
-    var city = wx.getStorageSync('city');
-    this.setData({
-      chooseLocation: location,
-      location: city
-    })
+    // var city = wx.getStorageSync('city');
+    // this.setData({
+    //   chooseLocation: location,
+    //   location: city
+    // })
   },
   onShow() {
 
     this.banner()
+
+    var city = wx.getStorageSync('city');
+    if (city == null || city == "") {
+      app.getUserLocation();
+      app.getLocal(app.globalData.latitude, app.globalData.longitude)
+      city = wx.getStorageSync('city');
+    }
+
+    this.setData({
+      // chooseLocation: location,
+      location: city
+    })
 
     // wx.showLoading({
     //   title: '数据加载中...',
@@ -441,9 +450,13 @@ Page({
   onPullDownRefresh() { //下拉刷新
     //显示顶部加载图标
     // if (!this.loading && this.data.pageIndex < this.data.pages) {
-
+    //  this.ontopRefresh()
     wx.showNavigationBarLoading()
-   this.ontopRefresh()
+    this.setData({
+      pageIndex: 1
+    })
+    this.getShuju()
+    this.goTop()
     console.log('下拉刷新');
     // }
   },

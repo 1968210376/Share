@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/niu_start_page/index", 
-    "pages/index/index",
     "pages/fenlei/index",
     "pages/niu_map/map",
     "pages/my/index",
@@ -31,17 +30,12 @@
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "position": "bottom",
-    "list": [{
-        "pagePath": "pages/index/index",
+    "list": [
+      {
+        "pagePath": "pages/fenlei/index",
         "iconPath": "images/home(1).png",
         "selectedIconPath": "images/home.png",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/fenlei/index",
-        "iconPath": "images/fenlei(1).png",
-        "selectedIconPath": "images/fenlei_select.png",
-        "text": "分类"
       },
       {
         "pagePath": "pages/add/add",

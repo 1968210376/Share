@@ -313,7 +313,7 @@
   position: relative;
   right: -20%;
 } */
-.flocat_rihgt{
+.float_rihgt{
   float: right;
 }
 .list{

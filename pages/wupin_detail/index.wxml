@@ -32,8 +32,10 @@
       <view>
         {{info.target.nick_name}}
       </view>
-      <view class="gray font-mini">
-        {{info.target.create_time}} | {{info.target.choose_location.district}} | {{info.target.distance?"据您"+info.target.distance:""}}
+      <view class="gray font-mini price_box">
+        {{info.target.create_time}}
+        <view wx:if="{{info.target.choose_location}}">|</view> {{info.target.choose_location.district}}
+        <view wx:if="{{info.target.choose_location}}">|</view> {{info.target.distance?"据您"+info.target.distance:""}}
       </view>
       <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
         <image style="width: 50rpx;height: 50rpx;" src="/images/Location.png" mode="aspectFill" />
@@ -41,14 +43,17 @@
         点击导航
       </view>
     </view>
+    <view class="count font-mini gray">
+      {{count}}人想要
+    </view>
     <view class="right" bindtap="is_shouCang">
-      <image wx:if="{{!is_shouCang}}" class="icon" src="/images/sc(1).png" mode="" />
-      <image wx:if="{{is_shouCang}}" src="/images/sc(2).png" class="icon" />
+      <image wx:if="{{!is_shouCang}}" class="icon" src="/images/sc(1).png" mode="widthFix" />
+      <image wx:if="{{is_shouCang}}" src="/images/sc(2).png" class="icon" mode="widthFix"/>
     </view>
   </view>
   <view class="spaces"></view>
 
-    <!-- <view>
+  <!-- <view>
       <image class="icon radius" src="{{info.target.avatar_url}}" mode="" />
 
     </view> -->

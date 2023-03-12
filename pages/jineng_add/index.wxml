@@ -19,7 +19,7 @@
             <label>内容</label>
             <textarea class="input" name="details" value="" placeholder="请输入内容" />
             <label>价格</label>
-            <input class="input" name="pirce" type="text" bindinput="checkValue" value="{{price}}" placeholder="请输入价格(例50/次、100/h)" />
+            <input class="input" name="pirce" type="digit" bindinput="checkValue" value="{{price}}" placeholder="请输入价格" />
             <label>工作时间</label>
             <!-- <view style="width: 100%;display: flex;align-items: center; justify-content: space-between;">
             <label class="switch">
@@ -27,7 +27,8 @@
                 <span>🌙</span>
             </label>   
             </view> -->
-            <input type="text"  class="input" name="time" bindinput="time" placeholder="请输入可工作时段（00：00-24：00之间）" />
+            <!-- <input type="text"  class="input" name="time" bindinput="time" placeholder="请输入可工作时段（00：00-24：00之间）" /> -->
+            <input type="datetime" class="input" name="time" bindinput="time" value="" placeholder="请输入时间限制"/>
             <label>定位</label>
             <view class="label-right" bindtap="getUserLocation">
                 <input name="scrap_address" class="input" disabled="true" value="{{chooseLocation.city}}{{chooseLocation.name}}" type="text" placeholder="请点击选择地址" />

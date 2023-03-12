@@ -41,9 +41,12 @@
   padding: 10px;
   height: 30px;
   border: none;
-  background-color: rgb(224, 231, 236);
+  background-color: rgb(238, 242, 245);
 }
-
+/* .form_item{
+  display: flex;
+  justify-content: space-between;
+} */
 .form-container .input:focus {
   outline: none;
 }

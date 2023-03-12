@@ -57,6 +57,8 @@ Page({
           list.forEach((mar, list) => {
             if (mar.target.images != "" &&mar.target.images != null) {
               mar.target.images = mar.target.images.split(",");
+            }
+            if(mar.target.choose_location!=null && mar.target.choose_location!=""){
               mar.target.choose_location = JSON.parse(mar.target.choose_location);
             }
             console.log(that.data.latitude, that.data.longitude)

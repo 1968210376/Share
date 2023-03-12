@@ -1,42 +1,101 @@
 <view class="container">
-    <view bindtap="chooseBackground" class="bg">
-        <image src="{{bgImg}}" mode="heightFix" />
-    </view>
-    <view class="menu-item userinfo" bindtap='to_niu_my_edit_information'>
-        <view>
-            <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
+  <view bindtap="chooseBackground" class="bg">
+    <image src="{{bgImg}}" mode="heightFix" />
+  </view>
+  <view class="menu-item userinfo" bindtap='to_niu_my_edit_information'>
+    <view>
+      <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
 
-        </view>
-        <view class="userinfo-nickname">
-            <text>{{nickName}}</text>
-        </view>
-        <view style="float: right;">
-            <image class="next" src="/images/next.png"></image>
-        </view>
     </view>
-    <!-- <view class="space"></view>
+    <view class="userinfo-nickname">
+      <text>{{nickName}}</text>
+    </view>
+    <view style="float: right;">
+      <image class="next" src="/images/next.png"></image>
+    </view>
+  </view>
+  <!-- <view class="space"></view>
     <view class="space"></view> -->
-    <view style="height: 40rpx;">
+  <view style="height: 40rpx;">
 
-    </view>
-    <view class="menu-item" style="display: flex; align-items: center; justify-content:space-around;box-shadow:inset 2px 2px 4px #fff,2px  2px 4px #eee ">
+  </view>
+  <view class="menu-item" style="display: flex; align-items: center; justify-content:space-around;box-shadow:inset 2px 2px 4px #fff,2px  2px 4px #eee ">
 
-        <!-- <image wx:if="{{item == 0}}" src="/images/sc(2).png" class="icon" mode="" /> -->
-        <view bindtap="showDetail" data-index="1">
-            <image src="/images/sc(1).png" class="icon" mode="" />
-        </view>
-        <view bindtap="showDetail" data-index="2">
-            <image src="/images/ly.png" class="icon" mode="" />
-        </view>
-        <view bindtap="showDetail" data-index="3">
-            <image src="/images/add_selected.png" class="icon" mode="" />
-        </view>
+    <!-- <image wx:if="{{item == 0}}" src="/images/sc(2).png" class="icon" mode="" /> -->
+    <view bindtap="showDetail" data-index="1">
+      <image src="/images/sc(1).png" class="icon" mode="" />
     </view>
-    <swiper current="{{index}}" data-id="index" bindchange="changeItem">
-        <swiper-item>
-            <scroll-view scroll-y style="{{navHeight}}">
-               
-            </scroll-view>
-        </swiper-item>
-    </swiper>
+    <view bindtap="showDetail" data-index="2">
+      <image src="/images/ly.png" class="icon" mode="" />
+    </view>
+    <view bindtap="showDetail" data-index="3">
+      <image src="/images/add_selected.png" class="icon" mode="" />
+    </view>
+  </view>
+  <scroll-view wx:if="{{isShow}}" class="liu_container list content" enable-flex scroll-y scroll-with-animation="true" style="height:{{navHeight -navHight}}px" scroll-top="{{top}}" bindscrolltolower="refresh">
+    <!-- 收藏 -->
+    <view  class="picture" wx:if="{{page_index==1}}">
+      <block wx:for="{{list}}" wx:key="index">
+        <view class="item" data-reside="{{item.target.reside}}" data-index="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
+          <view wx:if="{{item.target.images}}">
+            <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
+          </view>
+          <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
+          <view wx:if="{{!item.target.images}}" style="height: 50rpx;">
+            <!-- 11 -->
+          </view>
+          <view style="display: flex; justify-content: space-between; align-items: center;">
+            <view style="display: flex; align-items: center;">
+              <text class="font-mini">{{item.target.category_name}}</text>
+            </view>
+            <view wx:if="{{item.target.pirce}}" class="red price right">
+              ￥{{item.target.pirce}}
+            </view>
+          </view>
+        </view>
+        <view class="null-wrap"></view>
+      </block>
+    </view>
+    <!-- 评论 -->
+    <view class="pl_container" wx:if="{{page_index==2}}">
+      <view class="pl" wx:for="{{list}}" wx:key="index">
+      <view>
+        <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
+      </view>
+      <view class="gap">
+        <view class="lx gray">
+          <text>{{item.target.nick_name}}</text> <text class="font-mini "> {{item.target.create_time}}</text>
+           <text class="font-mini">ip:{{item.target.city}} </text>
+        </view>
+        <view class="padding pl_content ">
+          {{item.target.content}}
+        </view>
+      </view>
+    </view>
+    </view>
+    <!-- 我的发布 -->
+    <view class="picture" wx:if="{{page_index==3}}">
+      <block wx:for="{{list}}" wx:key="index">
+        <view class="item" data-reside="{{item.target.reside}}" data-index="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
+          <view wx:if="{{item.target.images}}">
+            <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
+          </view>
+          <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
+          <view wx:if="{{!item.target.images}}" style="height: 50rpx;">
+            <!-- 11 -->
+          </view>
+          <view style="display: flex; justify-content: space-between; align-items: center;">
+            <view style="display: flex; align-items: center;">
+              <text class="font-mini">{{item.target.category_name}}</text>
+            </view>
+            <view wx:if="{{item.target.pirce}}" class="red price right">
+              ￥{{item.target.pirce}}
+            </view>
+          </view>
+        </view>
+        <view class="null-wrap"></view>
+      </block>
+    </view>
+
+  </scroll-view>
 </view>
