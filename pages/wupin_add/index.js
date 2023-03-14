@@ -39,7 +39,7 @@ Page({
         console.log("分类",res.data.response.content);
         that.setData({
           categories: res.data.response.content,
-          reside:res.data.response.content.reside
+          reside:res.data.response.content[0].reside
         })
         if (that.data.categories[0]) {
           that.setData({
@@ -52,7 +52,7 @@ Page({
   },
 
   changeValue(e) {
-    // console.log(this.data.categories[e.detail.value]);
+    console.log(this.data.categories[e.detail.value]);
     var value = this.data.categories[e.detail.value]
     this.setData({
       value: value.categoryType,

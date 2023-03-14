@@ -100,6 +100,9 @@ Page({
     
           let d = new Date(item.target.create_time).getTime();
           item.target.create_time = util.commentTimeHandle(d);
+          if (item.target.images != "" && item.target.images != null) {
+            item.target.images = item.target.images.split(",");
+           }
           // item.target.distance = aaa;
           // if (item.target.choose_location !== "") {
           //  item.target.choose_location = JSON.parse(item.target.choose_location);

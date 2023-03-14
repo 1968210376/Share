@@ -222,6 +222,7 @@ Page({
 
     // });
     wx.showNavigationBarLoading()
+    wx.stopPullDownRefresh()
 
     wx.request({
       url: app.globalData.serverApi + '/selectMarket',
@@ -386,18 +387,10 @@ Page({
     // })
     // }
   },
-  scroll(e) {
-    this.setData({
-      top: e.detail.scrollTop
-    })
-  },
   goTop(e) {
     if (wx.pageScrollTo) {
       wx.pageScrollTo({
         scrollTop: 0
-      })
-      this.setData({
-        top: 0
       })
       // console.log('top');
     } else {
@@ -408,13 +401,10 @@ Page({
     }
   },
   ontopRefresh() {
-
     this.onPullDownRefresh()
-
   },
   onLoad() {
     var that = this
-
     this.setData({ //动态高度
       navHeight: app.globalData.navHeight,
     })
@@ -458,9 +448,13 @@ Page({
     this.getShuju()
     this.goTop()
     console.log('下拉刷新');
+    this.setData({
+      end:false
+    })
     // }
   },
   onReachBottom() {
     console.log('上拉刷新');
+    this.refresh()
   }
 })

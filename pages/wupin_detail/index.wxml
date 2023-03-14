@@ -19,7 +19,7 @@
   </view>
   <view wx:if="{{info.target.images[0]}}" class="imgBox">
     <view wx:for="{{info.target.images}}" wx:key="index">
-      <image src="{{item}}" mode="widthFix" />
+      <image 	show-menu-by-longpress src="{{item}}" mode="widthFix" />
     </view>
   </view>
   <view class="btn yellow" bindtap="toggleDialog">

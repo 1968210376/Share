@@ -1,76 +1,89 @@
-.container{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color:yellow;
-    overflow: hidden;
+.container {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: yellow;
+  overflow: hidden;
 }
-.class{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;  
+
+.class {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-.dong{
-    animation: dong .5s ease-in-out;
+
+.dong {
+  animation: dong .5s ease-in-out;
 }
-.fenlei{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+
+.fenlei {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-.icon{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+
+.icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
-.bottom{
-    width: 100vw;
-    height: 100vw;
-    background-color:sandybrown;
-    border-radius: 50%;
-    position: absolute;
+
+.bottom {
+  width: 100vw;
+  height: 100vw;
+  background-color: sandybrown;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -70vw;
+  text-align: center;
+  line-height: 40vw;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.move {
+  animation: move .5s linear;
+
+}
+
+@keyframes move {
+  0% {
+    bottom: -100vw;
+  }
+
+  20% {
+    bottom: -95vw;
+  }
+
+  40% {
+    bottom: -90vw;
+  }
+
+  60% {
+    bottom: -85vw;
+  }
+
+  80% {
+    bottom: -80vw;
+  }
+
+  100% {
     bottom: -70vw;
-    text-align: center;
-    line-height: 40vw;
-    font-size: 20px;
-    font-weight: bold;
-}
-.move{
-    animation: move .5s linear;
-
-}
-
-@keyframes move{
-  0%{
-      bottom: -100vw;
-  }
-  20%{
-      bottom: -95vw;
-  }
-  40%{
-      bottom: -90vw;
-  }
-  60%{
-      bottom: -85vw;
-  }
-  80%{
-      bottom: -80vw;
-  }
-  100%{
-      bottom: -70vw;
   }
 }
 
 
-@keyframes dong{
-    from{
+@keyframes dong {
+  from {
     justify-content: flex-end;
     opacity: 0;
-    }
-    to{
-        justify-content: space-around;
-        opacity: 1;
-    }
+  }
+
+  to {
+    justify-content: space-around;
+    opacity: 1;
+  }
 }

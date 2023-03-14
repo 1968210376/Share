@@ -39,7 +39,8 @@ Page({
       },
       success: (res) => {
         that.setData({
-          categories: res.data.response.content
+          categories: res.data.response.content,
+          reside:res.data.response.content[0].reside
         })
         if (that.data.categories[0]) {
           that.setData({
@@ -57,8 +58,7 @@ Page({
     this.setData({
       value: value,
     })
-    
-    console.log(this.data.value);
+    // console.log(this.data.value);
   },
   changeColor(e){
     if(e.detail.value === true){
@@ -199,6 +199,7 @@ add_sell_scrap: function (e) {
             // publictiy:e.detail.value.publictiy,
             publictiy: 1,
             categoryType: that.data.value,
+            categoryParentType:that.data.reside,
             Address: e.detail.value.scrap_address,
             chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),
             latitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.latitude),

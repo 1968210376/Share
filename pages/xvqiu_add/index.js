@@ -37,7 +37,9 @@ Page({
       },
       success: (res) => {
         that.setData({
-          categories: res.data.response.content
+          categories: res.data.response.content,
+          reside:res.data.response.content[0].reside
+
         })
         if (that.data.categories[0]) {
           that.setData({
@@ -177,7 +179,7 @@ add_sell_scrap: function (e) {
             phone:userInfo.phone,
             contact_qq:userInfo.scrap_qq,
             contact_wx: userInfo.scrap_wx,
-            status: 1,
+            status: 0,
             content: e.detail.value.details,
             Images: that.data.product_img,
             LikesNumber: 0,
@@ -185,6 +187,7 @@ add_sell_scrap: function (e) {
             // publictiy:e.detail.value.publictiy,
             publictiy: 1,
             categoryType: e.detail.value.fenlei,
+            categoryParentType:that.data.reside,
             Address: e.detail.value.scrap_address,
             chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),
             latitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.latitude),
@@ -209,7 +212,7 @@ add_sell_scrap: function (e) {
                 //         console.log("跳转页面")
                 wx.reLaunch({
                     //页面跳转携带参数
-                    url: '/pages/index/index',
+                    url: '/pages/fenlei/index',
                     success: function () {
                         // console.log("跳转页面成功")
                     },

@@ -24,21 +24,19 @@
       需求
     </view>
   </view>
-  <view class="space">
-
-  </view>
+  <view class="space"></view>
   <view class="tab">
  
     <view wx:for="{{categories}}" wx:key="index" class="tab-item {{items == index ? 'active' : ''}} " bindtap="changeItem" data-item="{{index}}" data-id="{{item.categoryType}}">
       {{item.categoryName}}
     </view>
   </view>
-  <view class="goTop" wx:if="{{pageIndex>1}}">
+  <view class="goTop" >
     <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
   </view>
-  <scroll-view scroll-y class="content" scroll-with-animation="true" style="height:{{navHeight -navHight}}px" scroll-top="{{top}}" bindscrolltoupper="ontopRefresh" bindscrolltolower="refresh">
+  <view class="content" >
     <!-- 内容区域 -->
-    <view wx:if="{{loading}}">
+    <view wx:if="{{loading}}" >
       加载中...
     </view>
     <view wx:if="{{tab == 0}}">
@@ -50,5 +48,5 @@
     <view wx:if="{{tab == 2}}">
       <include src="../xvqiu/xvqiu"></include>
     </view>
-  </scroll-view>
+  </view>
 </view>

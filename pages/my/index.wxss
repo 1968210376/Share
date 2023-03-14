@@ -85,6 +85,13 @@ input {
     margin: 0;
 }
 
+.menu-tab{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .space {
     width: 100vw;
     height: 16rpx;
