@@ -111,4 +111,7 @@
       color: green;
       text-align: center;
   }
-  
+  .font-mini{
+    font-size: 11px;
+    color: gray;
+  }

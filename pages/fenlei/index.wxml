@@ -31,7 +31,7 @@
       {{item.categoryName}}
     </view>
   </view>
-  <view class="goTop" >
+  <view class="goTop" wx:if="{{pageIndex>1}}">
     <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
   </view>
   <view class="content" >

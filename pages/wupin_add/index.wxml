@@ -1,49 +1,52 @@
 <scroll-view scroll-y>
   <div class="form-container">
-  <p>物品</p>
+    <p>物品</p>
     <form class="form" bindsubmit="formSubmit" bindreset="formReset">
-    <label>分类</label>
-    <view hidden>
-      选中了：<input name="fenlei" type="text" value="{{value}}" />
-    </view>
-    <view class="page-body">
-      <picker-view indicator-style="height: 50px;"  style="width: 100%; height: 130px;" bindchange="changeValue" >
-        <picker-view-column>
-          <view wx:for="{{categories}}" wx:key="index" style="line-height: 50px; text-align: center;">{{item.categoryName}}</view>
-        </picker-view-column>
-      </picker-view>
-    </view>
-    <label><text style="color: red;">*</text>标题</label>
-    <input type="text" class="input" name="title" placeholder="请输入标题" />
-    <label>内容</label>
-    <textarea class="input" name="details" value="" placeholder="请输入内容" />
-    <label>价格</label>
-    <input class="input" name="pirce" bindinput="checkValue" value="" placeholder="请输入价格" />
-    <label>定位</label>
-    <view class="label-right" bindtap="getUserLocation">
-      <input name="scrap_address" class="input" disabled="true" value="{{chooseLocation.city}}{{chooseLocation.name}}" type="text" placeholder="请点击选择地址" />
-      <image src="/images/Location.png" class="icon position" mode="" />
-    </view>
-    <!-- 图片 -->
-    <label><text style="color: red;">*</text>图片</label>
-    <input type="text" hidden name="imgbox" value="{{imgbox}}"/>
-    <view class="images_box">
-      <block wx:key="imgbox"  wx:for="{{imgbox}}">
-        <view class='img-box'>
-          <image class='img' mode="aspectFill" src='{{item}}'></image>
-          <view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
-            <image class='img' src='/images/delect.png'></image>
-          </view>
-        </view>
-      </block>
-      <view class='img-box' name="imagebox" bindtap='addPic1' wx:if="{{imgbox.length<issuePicSum}}">
-        <image class='img' src='/images/icon_add.png'></image>
+      <label><text style="color: red;">*</text>分类 <text class="font-mini gray">(点击选择)</text> </label>
+      <view hidden>
+        选中了：<input name="fenlei" type="text" value="{{categoryType}}" />
       </view>
-    </view>
-    <button form-type="submit">提交</button>
+      <input type="text" class="input" disabled bindtap="showfenleiModel" value="{{value}}" />
+      <label><text style="color: red;">*</text>标题</label>
+      <input type="text" class="input" name="title" placeholder="请输入标题" />
+      <label>内容</label>
+      <textarea class="input" name="details" value="" placeholder="请输入内容" />
+      <label>价格</label>
+      <input class="input" name="pirce" type="digit" bindinput="checkValue" value="" placeholder="请输入价格" />
+      <label>定位</label>
+      <view class="label-right" bindtap="getUserLocation">
+        <input name="scrap_address" class="input" disabled="true" value="{{chooseLocation.city}}{{chooseLocation.name}}" type="text" placeholder="请点击选择地址" />
+        <image src="/images/Location.png" class="icon position" mode="" />
+      </view>
+      <!-- 图片 -->
+      <label><text style="color: red;">*</text>图片</label>
+      <input type="text" hidden name="imgbox" value="{{imgbox}}" />
+      <view class="images_box">
+        <block wx:key="imgbox" wx:for="{{imgbox}}">
+          <view class='img-box'>
+            <image class='img' mode="aspectFill" src='{{item}}'></image>
+            <view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
+              <image class='img' src='/images/delect.png'></image>
+            </view>
+          </view>
+        </block>
+        <view class='img-box' name="imagebox" bindtap='addPic1' wx:if="{{imgbox.length<issuePicSum}}">
+          <image class='img' src='/images/icon_add.png'></image>
+        </view>
+      </view>
+      <button form-type="submit">提交</button>
 
-    <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>
-
-  </form>
-</div>
+      <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>
+      <page-container show="{{show}}" round="true" overlayStyle = 'background-color: rgba(0, 0, 0, 0.7); filter: blur(4px);' customStyle = 'height: 33%;'>
+        <view class="page-body">
+          <picker-view indicator-style="height: 50px;" style="width: 100%; height: 150px;" bindchange="changeValue">
+            <picker-view-column>
+              <view wx:for="{{categories}}" wx:key="index" style="line-height: 50px; text-align: center;">{{item.categoryName}}</view>
+            </picker-view-column>
+          </picker-view>
+        </view>
+        <button bindtap="exit">确定</button>
+      </page-container>
+    </form>
+  </div>
 </scroll-view>

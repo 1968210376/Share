@@ -1,0 +1,25 @@
+<!-- 收藏 -->
+<view class="liushi_container">
+  <view class="picture">
+    <block wx:for="{{list}}" wx:key="index">
+      <view class="item" data-reside="{{item.target.reside}}" data-index="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
+        <view wx:if="{{item.target.images}}">
+          <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
+        </view>
+        <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
+        <view wx:if="{{!item.target.images}}" style="height: 50rpx;">
+          <!-- 11 -->
+        </view>
+        <view style="display: flex; justify-content: space-between; align-items: center;">
+          <view style="display: flex; align-items: center;">
+            <text class="font-mini gray">{{item.target.category_name}}</text>
+          </view>
+          <view wx:if="{{item.target.pirce}}" class="red price right">
+            ￥{{item.target.pirce}}
+          </view>
+        </view>
+      </view>
+      <view class="null-wrap"></view>
+    </block>
+  </view>
+</view>

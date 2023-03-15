@@ -1,0 +1,25 @@
+  <!-- 评论 -->
+  <view class="pl_container">
+      <view class="pl" wx:for="{{list}}" wx:key="index" >
+       <view style="display: flex; width: 100%;" data-index="{{item.target.id}}" bindtap="show">
+        <view>
+          <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
+        </view>
+        <view class="gap">
+          <view class="lx gray">
+            <text>{{item.target.nick_name}}</text> <text class="font-mini "> {{item.target.create_time}}</text>
+            <text class="font-mini">ip:{{item.target.city}} </text>
+          </view>
+          <view class="padding pl_content ">
+            {{item.target.content}}
+          </view>
+        </view>
+       </view>
+        <view class="delete" data-id="{{item.target.id}}" wx:if="{{item.target.id === id}}" bindtap="delete">
+          删除
+        </view>
+      </view>
+    </view>
+    <view class="goTop" wx:if="{{pageIndex>1}}">
+    <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+  </view>

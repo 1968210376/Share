@@ -17,6 +17,7 @@ Page({
     categories: [], //分类
     issuePicSum: 9,
     price:'',
+    show:false,
   },
   getCategory(e) { // 获取分类
     var that = this
@@ -44,7 +45,7 @@ Page({
         if (that.data.categories[0]) {
           that.setData({
             categoryType: that.data.categories[0].categoryType,
-            value:that.data.categories[0].categoryType
+            value:that.data.categories[0].categoryName
           })
         }
       }
@@ -55,13 +56,24 @@ Page({
     console.log(this.data.categories[e.detail.value]);
     var value = this.data.categories[e.detail.value]
     this.setData({
-      value: value.categoryType,
+      value: value.categoryName,
     })
     
     //console.log(this.data.value);
   },
   input(e){
     //console.log(e.detail.value);
+  },
+  showfenleiModel(e){
+      this.setData({
+          show:true
+      })
+      console.log(e);
+  },
+  exit(e){
+      this.setData({
+          show:false
+      })
   },
    //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
    formSubmit: function (e) {
@@ -189,7 +201,7 @@ add_sell_scrap: function (e) {
             CommentsNumber: 0,
             // publictiy:e.detail.value.publictiy,
             publictiy: 1,
-            categoryType: e.detail.value.fenlei,
+            categoryType: that.data.categoryType,
             categoryParentType:that.data.reside,
             Address: e.detail.value.scrap_address,
             chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),

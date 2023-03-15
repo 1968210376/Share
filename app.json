@@ -16,7 +16,11 @@
     "pages/add/add",
     "pages/wupin_add/index",
     "pages/xvqiu_add/index",
-    "pages/jineng_add/index"
+    "pages/jineng_add/index",
+    "pages/shoucang/index",
+    "pages/pinglun/index",
+    "pages/my_fabu/index",
+    "pages/dongtai/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -38,6 +42,12 @@
         "text": "首页"
       },
       {
+        "pagePath": "pages/dongtai/index",
+        "iconPath": "images/pengyouquan(1).png",
+        "selectedIconPath": "images/pengyouquan.png",
+        "text": "动态"
+      },
+      {
         "pagePath": "pages/add/add",
         "iconPath": "images/add(1).png",
         "selectedIconPath": "images/add_selected.png",
@@ -45,8 +55,8 @@
       },
       {
         "pagePath": "pages/niu_map/map",
-        "iconPath": "images/pengyouquan(1).png",
-        "selectedIconPath": "images/pengyouquan.png",
+        "iconPath": "images/map.png",
+        "selectedIconPath": "images/map_select.png",
         "text": "周边"
       },
       {

@@ -1,4 +1,7 @@
 // pages/jineng_detail/index.js
+const util = require("../../libs/util")
+const app = getApp()
+
 Page({
 
   /**
@@ -37,7 +40,33 @@ Page({
       }
     })
   },
+ // 点击定位 2023年3月5日 牛亚博 
+ navigateToChooseLocation: function (e) {
+  // //console.log(e);
+  // let json = JSON.parse(e.currentTarget.dataset.id) 
+  let json = e.currentTarget.dataset.id
+  app.getUserLocation();
 
+  ////console.log("json===============：")
+  ////console.log(json)
+  if (json == undefined || json == null) {
+    return
+  }
+  app.clickdingwei(json);
+  // ////console.log("options：", json) 
+  // // let key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key 
+  // let key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key 
+  // let referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称 
+  // let endPoint = JSON.stringify({ //终点 
+  //   'id': 1, 
+  //   'name': json.name, 
+  //   'latitude': json.latitude, 
+  //   'longitude': json.longitude 
+  // }); 
+  // wx.navigateTo({ 
+  //   url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint 
+  // }); 
+},
   call_phone: function (e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.text, //这里是电话号码

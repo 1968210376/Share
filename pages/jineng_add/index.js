@@ -45,7 +45,7 @@ Page({
         if (that.data.categories[0]) {
           that.setData({
             categoryType: that.data.categories[0].categoryType,
-            value:that.data.categories[0].categoryType
+            value:that.data.categories[0].categoryName
           })
         }
       }
@@ -54,12 +54,23 @@ Page({
 
   changeValue(e) {
     console.log(this.data.categories[e.detail.value].categoryType);
-    var value = this.data.categories[e.detail.value].categoryType
+    var value = this.data.categories[e.detail.value].categoryName
     this.setData({
       value: value,
     })
     // console.log(this.data.value);
   },
+  showfenleiModel(e){
+    this.setData({
+        show:true
+    })
+    console.log(e);
+},
+exit(e){
+    this.setData({
+        show:false
+    })
+},
   changeColor(e){
     if(e.detail.value === true){
       this.setData({
@@ -198,7 +209,7 @@ add_sell_scrap: function (e) {
             time:e.detail.value.time,
             // publictiy:e.detail.value.publictiy,
             publictiy: 1,
-            categoryType: that.data.value,
+            categoryType: that.data.categoryType,
             categoryParentType:that.data.reside,
             Address: e.detail.value.scrap_address,
             chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),
