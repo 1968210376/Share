@@ -16,7 +16,7 @@ Page({
             wx.switchTab({
                 url: '/pages/fenlei/index',
             })
-        }, 2000);
+        }, 1000);
     },
 
     /**
