@@ -59,11 +59,16 @@ Page({
   cha_shouCang(){
     var that = this
     var info = that.data.info
+    if(info.target.market_id){
+      var id = info.target.market_id
+    }else{
+      id = info.target.id 
+    }
     wx.request({
       url: app.globalData.serverApi + '/findAllByMarketIdFormLikes',
       method: 'POST',
       data: {
-        marketId: info.target.id,
+        marketId: id,
         likesUserWxOpenId: info.target.wx_open_id, //物品发布人openid
         likesPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
       },
@@ -71,7 +76,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: (res) => {
-        // //console.log("是否收藏",res);
+        console.log("是否收藏",res);
         that.setData({
         count:res.data.response.count
         })
@@ -366,9 +371,9 @@ Page({
     var info = JSON.parse(options.info)
     //console.log(info);
     this.setData({
-      info: info
+      info: info,
+      market_id:info.target.id
     })
-    this.cha_shouCang()
     // this.show_liuyan()
   },
 
@@ -384,6 +389,7 @@ Page({
    */
   onShow() {
     this.show_liuyan()
+    this.cha_shouCang()
   },
 
   /**

@@ -1,152 +1,35 @@
 
-.menu-item .l {
-    font-size: 28rpx;
-    color: #333;
-    line-height: 104rpx;
-}
-
-.menu-item .r {
-    font-size: 32rpx;
-    color: #999;
-    line-height: 104rpx;
-}
-
-/* .menu-item .next {
-    width: 40rpx;
-    height: 40rpx;
-} */
-.next {
-    width: 40rpx;
-    height: 40rpx;
-}
-
-.menu-item button {
-    margin: 0;
-}
-
-.menu-tab{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.space {
-    width: 100vw;
-    height: 16rpx;
-    background: #F4F5F9;
-}
-
-.line {
-    width: 718px;
-    height: 1px;
-    background: #EEEEEE;
-    margin-left: 32rpx;
-}
-
-/* .botombanquan{
-    color: #9e9a9a;
-    font-size: 22rpx;
-    text-align: center;
-    padding: 50rpx;
-    margin-top: 50rpx;
-} */
-.icon{
-    width: 80rpx;
-    height: 80rpx;
-    border-radius: 50%;
-}
-
-
 .liushi_container {
-    width: 100vw;
-    padding: 0 20rpx;
-    background-color:#F4F5F9;
-  }
-  
-  /* 瀑布流布局 */
-  .picture {
-    column-gap: 5rpx;
-    column-count: 2;
-    margin: 20rpx 0;
-  }
-  
-  .item {
-    width: calc(100% - 30rpx);
-    break-inside: avoid;
-    /* box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1); */
-    border-radius: 10rpx;
-    margin: 0 15rpx;
-  }
-  
-  .item .image {
-    width: 100%;
-    border-radius: 15rpx;
-  }
-  
-  .null-wrap {
-    height: 30rpx;
-  }
-  
-  .data-img {
-    width: 300rpx;
-    height: 300rpx;
-    margin: 0 auto;
-  }
-  
+  width: 100vw;
+  background-color: #F4F5F9;
+}
 
-  .center {
-    text-align: center;
-  }
-  
-  /* .right {
-    position: relative;
-    right: -20%;
-  } */
-  .float_rihgt{
-    float: right;
-  }
-  .list{
-   background-color: #F4F5F9;
-  }
-  .content{
-  flex: 1;
-  height: 1px;
-  background-color: #f1f1f5;
-  }
-  /* .pl_container{
-    width: 90vw;
-    margin: 0 auto;
-    
-  } */
-  .pl {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    justify-content:left;
-    padding: 10rpx;
-    border-bottom: 1px solid #F4F5F9;
-    background-color: #fff;
-    margin: 10rpx;
+/* 瀑布流布局 */
+.picture {
+  column-gap: 5rpx;
+  column-count: 2;
+  margin: 20rpx 0;
 }
-.pl_content{
-    width: 100%;
-    word-break:break-all;
+
+.item {
+  width: calc(100% - 30rpx);
+  break-inside: avoid;
+  /* box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1); */
+  border-radius: 10rpx;
+  margin: 0 15rpx;
 }
-.avatar {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  border: 1px solid #ccc;
+
+.item .image {
+  width: 100%;
+  border-radius: 15rpx;
 }
+
+.null-wrap {
+  height: 30rpx;
+}
+
+
 .font-mini {
   font-size: 10px;
 }
-.lx {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 15rpx;
-  text-align: center;
-}
+

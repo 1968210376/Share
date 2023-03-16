@@ -1,45 +1,47 @@
 // pages/shoucang/index.js
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list:''
+    list: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  wupin_detail(e){
+  wupin_detail(e) {
     var that = this
     console.log(e);
-    if(e.currentTarget.dataset.reside ===1 ){
-     var info = that.data.list[e.currentTarget.dataset.index]
-       console.log("info==>", info);
-       info = JSON.stringify(info)
-       wx.navigateTo({
-         url: '/pages/wupin_detail/index?info=' + info
-       })
-    }else if(e.currentTarget.dataset.reside === 2){
-     var info = that.data.list[e.currentTarget.dataset.index]
-     console.log("info==>", info);
-     info = JSON.stringify(info)
-     wx.navigateTo({
-       url: '/pages/jineng_detail/index?info=' + info
-     })
-    }else{
-     var info = that.data.list[e.currentTarget.dataset.index]
-     console.log("info==>", info);
-     info = JSON.stringify(info)
-     wx.navigateTo({
-       url: '/pages/xvqiu_detail/index?info=' + info
-     })
+    if (e.currentTarget.dataset.reside === 1) {
+      var info = that.data.list[e.currentTarget.dataset.index]
+      console.log("info==>", info);
+      info = JSON.stringify(info)
+      wx.navigateTo({
+        url: '/pages/wupin_detail/index?info=' + info
+      })
+    } else if (e.currentTarget.dataset.reside === 2) {
+      var info = that.data.list[e.currentTarget.dataset.index]
+      console.log("info==>", info);
+      info = JSON.stringify(info)
+      wx.navigateTo({
+        url: '/pages/jineng_detail/index?info=' + info
+      })
+    } else {
+      var info = that.data.list[e.currentTarget.dataset.index]
+      console.log("info==>", info);
+      info = JSON.stringify(info)
+      wx.navigateTo({
+        url: '/pages/xvqiu_detail/index?info=' + info
+      })
     }
   },
+ 
   onLoad(options) {
     var infos = JSON.parse(options.info)
-    console.log("infos",infos);
+    console.log("infos", infos);
     this.setData({
       list: infos
     })

@@ -89,24 +89,24 @@ Page({
         success(res) {
           console.log(res);
           res.data.response.content.forEach(item => {
-            // let aaa = "";
-            // var uuu = item.target.latitude;
-            // // console.log(uuu + "0000000000")
-            // if (uuu !== "") {
-            //  aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
-            //  aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
-            //  // console.log(aaa + "```````````")
-            // }
+            let aaa = "";
+            var uuu = item.target.latitude;
+            // console.log(uuu + "0000000000")
+            if (uuu !== "") {
+              aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
+              aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
+              // console.log(aaa + "```````````")
+            }
 
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
+            item.target.distance = aaa;
+            if (item.target.choose_location !== "") {
+              item.target.choose_location = JSON.parse(item.target.choose_location);
+            }
             if (item.target.images != "" && item.target.images != null) {
               item.target.images = item.target.images.split(",");
             }
-            // item.target.distance = aaa;
-            // if (item.target.choose_location !== "") {
-            //  item.target.choose_location = JSON.parse(item.target.choose_location);
-            // }
           })
           that.setData({
             list: res.data.response.content
@@ -141,21 +141,24 @@ Page({
         success(res) {
           console.log(res);
           res.data.response.content.forEach(item => {
-            // let aaa = "";
-            // var uuu = item.target.latitude;
-            // // console.log(uuu + "0000000000")
-            // if (uuu !== "") {
-            //  aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
-            //  aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
-            //  // console.log(aaa + "```````````")
-            // }
+            let aaa = "";
+            var uuu = item.target.latitude;
+            // console.log(uuu + "0000000000")
+            if (uuu !== "") {
+              aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
+              aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
+              // console.log(aaa + "```````````")
+            }
 
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
-            // item.target.distance = aaa;
-            // if (item.target.choose_location !== "") {
-            //  item.target.choose_location = JSON.parse(item.target.choose_location);
-            // }
+            item.target.distance = aaa;
+            if (item.target.choose_location !== "") {
+              item.target.choose_location = JSON.parse(item.target.choose_location);
+            }
+            if (item.target.images != "" && item.target.images != null) {
+              item.target.images = item.target.images.split(",");
+            }
           })
           that.setData({
             list: res.data.response.content
@@ -189,21 +192,21 @@ Page({
         success(res) {
           // console.log(res);
           res.data.response.content.forEach(item => {
-            // let aaa = "";
-            // var uuu = item.target.latitude;
-            // // console.log(uuu + "0000000000")
-            // if (uuu !== "") {
-            //  aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
-            //  aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
-            //  // console.log(aaa + "```````````")
-            // }
+            let aaa = "";
+            var uuu = item.target.latitude;
+            // console.log(uuu + "0000000000")
+            if (uuu !== "") {
+              aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
+              aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
+              // console.log(aaa + "```````````")
+            }
 
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
-            // item.target.distance = aaa;
-            // if (item.target.choose_location !== "") {
-            //  item.target.choose_location = JSON.parse(item.target.choose_location);
-            // }
+            item.target.distance = aaa;
+            if (item.target.choose_location !== "") {
+              item.target.choose_location = JSON.parse(item.target.choose_location);
+            }
             if (item.target.images != "" && item.target.images != null) {
               item.target.images = item.target.images.split(",");
             }
