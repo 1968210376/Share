@@ -42,7 +42,7 @@
     <view wx:if="{{tab == 0}}">
       <include src="../wupin/wupin"></include>
     </view>
-    <view wx:if="{{tab == 1}}">
+    <view wx:if="{{tab == 1}}"> 
       <include src="../jineng/jineng"></include>
     </view>
     <view wx:if="{{tab == 2}}">
