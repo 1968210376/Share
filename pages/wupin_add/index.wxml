@@ -1,6 +1,6 @@
 <scroll-view scroll-y>
   <div class="form-container">
-    <p>物品</p>
+    
     <form class="form" bindsubmit="formSubmit" bindreset="formReset">
       <label><text style="color: red;">*</text>分类 <text class="font-mini gray">(点击选择)</text> </label>
       <view hidden>
@@ -10,7 +10,7 @@
       <label><text style="color: red;">*</text>标题</label>
       <input type="text" class="input" name="title" placeholder="请输入标题" />
       <label>内容</label>
-      <textarea class="input" name="details" value="" placeholder="请输入内容" />
+      <textarea class="inputs" name="details" value="" placeholder="请输入内容" />
       <label>价格</label>
       <input class="input" name="pirce" type="digit" bindinput="checkValue" value="" placeholder="请输入价格" />
       <label>定位</label>

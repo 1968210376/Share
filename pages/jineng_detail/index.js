@@ -1,4 +1,5 @@
 // pages/jineng_detail/index.js
+const app = getApp()
 Page({
 
   /**
@@ -7,21 +8,41 @@ Page({
   data: {
     info: '',
     count:0,
+    copy:false,
+    ping:false,
+    pingfen:3,
   },
-  /**
-   * 控制 pop 的打开关闭
-   * 该方法作用有2:
-   * 1：点击弹窗以外的位置可消失弹窗
-   * 2：用到弹出或者关闭弹窗的业务逻辑时都可调用
-   */
+count(){
+  var that = this
+  wx.request({
+    url: app.globalData.serverApi + '/addPageViews',
+    method: 'POST',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    data:{
+      marketId:that.data.info.target.id,
+      likesPostWxOpenId:that.data.info.target.wx_open_id,
+      likesUserWxOpenId: wx.getStorageSync('openid')
+    },
+    success(res){
+      console.log("count---",res);
+      that.setData({
+        count:res.data.response.count
+      })
+    }
+  })
+},
   toggleDialog() {
     this.setData({
-      showDialog: !this.data.showDialog
+      showDialog: !this.data.showDialog,
+      copy:false
     });
   },
 
   // 实现点击复制功能
   copy(e) {
+    var that = this
     console.log(e.currentTarget.dataset.text);
     wx.setClipboardData({ //复制文本
       data: e.currentTarget.dataset.text,
@@ -33,6 +54,9 @@ Page({
               icon: "none", //是否需要icon
               mask: "ture" //是否设置点击蒙版，防止点击穿透
             })
+            that.setData({
+              copy:true
+            })
           }
         })
       }
@@ -40,14 +64,28 @@ Page({
   },
 
   call_phone: function (e) {
+    var that = this
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.text, //这里是电话号码
       success: function () {
         console.log("拨打电话成功！")
+        that.setData({
+          copy:true
+        })
       },
       fail: function () {
         console.log("拨打电话失败！")
+        that.setData({
+          copy:true
+        })
       }
+    })
+  },
+  pingfen(e){
+    // console.log(e);
+    this.setData({
+      ping:true,
+      pingfen:e.detail.value,
     })
   },
   /**
@@ -55,10 +93,11 @@ Page({
    */
   onLoad(options) {
     var info = JSON.parse(options.info)
-    console.log(info);
+    console.log('info',info);
     this.setData({
       info: info
     })
+    this.count()
   },
 
   /**
@@ -73,8 +112,11 @@ Page({
    */
   onShow() {
     var that = this
-    this.setData({
-      count:that.data.count+1
+    // this.setData({
+    //   count:that.data.count+1
+    // })
+    this.data.ping ? '': this.setData({
+      pingfen:3
     })
   },
 

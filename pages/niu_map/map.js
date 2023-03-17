@@ -6,7 +6,8 @@ Page({
     longitude: 113.87523, //默认定位经度
     scale: 14,
     markers: [],
-    flag: true
+    flag: true,
+    animation: false,
   },
   onReady: function (e) {
     this.mapCtx = wx.createMapContext('map')
@@ -44,6 +45,7 @@ Page({
         longitude: that.data.longitude,
         pageIndex: 0,
         pageSize: 20,
+        status: 1
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -54,6 +56,7 @@ Page({
         if (res.data.code == 1) {
           var list = res.data.response.content
           let arr = [];
+          var length = list.length
           list.forEach((mar, list) => {
             if (mar.target.images != "" &&mar.target.images != null) {
               mar.target.images = mar.target.images.split(",");
@@ -69,37 +72,40 @@ Page({
             var item = {};
             // item.juli = aaa;
             item.id = mar.target.id;
-            item.width = 32;
-            item.height = 32;
+            item.width = 38;
+            item.height = 38;
             item.latitude = mar.target.latitude;
             item.longitude = mar.target.longitude;
-            item.iconPath = mar.target.avatar_url;
+            // item.iconPath = mar.target.avatar_url;
+            // item.iconPath = mar.target.images != "" && mar.target.images != null ? mar.target.images[0]:mar.target.avatar_url;
             item.alpha = 0.8; //透明度 0-1 
             //   title: "牛亚博",
-            item.callout = {
-                // color: '#000000 ',
-                color: '#ff6666 ',
-                content: (mar.target.title.length > 10 ? mar.target.title.substr(0, 10) + "..." : mar.target.title) + "￥:" + mar.target.pirce,
-                fontSize: 12,
-                borderRadius: 5,
-                borderWidth: 1,
-                bgColor: '#ffffffff',
-                // bgColor: '#00ffff00',
-                width: 1,
-                // borderColor: "#ff0000",
-                // borderColor: "#00ff00",
-                borderColor: "#ff6666",
-                padding: 8,
-                textAlign: 'center',
-                display: "ALWAYS",
-              },
+            // item.callout = {
+            //     // color: '#000000 ',
+            //     // color: '#ff6666 ',
+            //     // borderColor: "#ff6666",
+            //     content: (mar.target.title.length > 10 ? mar.target.title.substr(0, 10) + "..." : mar.target.title) + "￥:" + mar.target.pirce,
+            //     fontSize: 12,
+            //     borderRadius: 5,
+            //     borderWidth: 1,
+            //     bgColor: '#ffffffff',
+            //     // bgColor: '#00ffff00',
+            //     width: 1,
+            //     // borderColor: "#ff0000",
+            //     // borderColor: "#00ff00",
+            //     padding: 8,
+            //     textAlign: 'center',
+            //     display: "ALWAYS",
+            //   },
+            // if(Math.random()*length<3){
+              item.iconPath = mar.target.avatar_url;
               item.customCallout={
                 // content:999,
                 color: '#ff6666 ',
-                content: (mar.target.title.length > 10 ? mar.target.title.substr(0, 10) + "..." : mar.target.title),
+                content: (mar.target.title.length > 20 ? mar.target.title.substr(0, 20) + "..." : mar.target.title),
                 price:"￥:" + mar.target.pirce,
                 image:mar.target.images != "" && mar.target.images != null ? mar.target.images[0]:"",
-                fontSize: 12,
+                fontSize: 14,
                 borderRadius: 5,
                 borderWidth: 1,
                 bgColor: '#ffffffff',
@@ -111,8 +117,11 @@ Page({
                 padding: 8,
                 textAlign: 'center',
                 display: "ALWAYS",
+              }
+            // }
               
-              },
+
+
               // item.label = {
               //   borderColor:'#ff0033',
               //   borderWidth:1,
@@ -161,7 +170,7 @@ Page({
     })
   },
   // 视野发生变化时触发，已完成
-  regionchange: function (e) {
+  onChangeRegion: function (e) {
     var that = this
     console.log(e)
     if (e.type == 'begin') {
@@ -169,7 +178,7 @@ Page({
         flag: false
       })
     }
-    if (e.type == 'end') {
+    if (e.type == 'end' && e.causedBy === 'drag') {
       this.mapCtx.getCenterLocation({
         success: function (res) {
           // 解决拖动地图执行三次该方法 导致的多次查询周边信息
@@ -178,14 +187,34 @@ Page({
           }
           that.setData({
             longitude: res.longitude,
-            latitude: res.latitude
+            latitude: res.latitude,
+            animation: true,
+            flag: true
           })
           // 获取周边信息
           that.selectMarket()
         }
       })
     }
+    // if (e.type === 'end' && e.causedBy === 'drag') {
+		// 	const mapCtx = wx.createMapContext('map', this);
+		// 	mapCtx.getCenterLocation({
+		// 		success: res => {
+		// 			const latitude = res.latitude;
+		// 			const longitude = res.longitude;
+		// 			this.setData({
+		// 				animation: true,
+		// 				regionCallbackTxt: latitude.toFixed(6) + ',' + longitude.toFixed(6)
+		// 			});
+		// 		}
+		// 	});
+		// }
   },
+  onMarkerAnimationend () {
+		this.setData({
+			animation: false
+		});
+	},
   // 点击目标 回到初始位置 即刷新页面
   controltap: function () {
     var that = this
@@ -206,7 +235,6 @@ Page({
     //   var me = this;
     //   attribute(dragFlag, this)
     // });
-
     console.log("点击了标记点")
     console.log(res)
     console.log(res.markerId)

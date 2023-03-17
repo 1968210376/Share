@@ -115,6 +115,14 @@
 .button:active{
     background-color: #003aff;
 }
+.lx {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15rpx;
+  text-align: center;
+}
 
 /* 模拟弹窗 */
 .dialog__mask {

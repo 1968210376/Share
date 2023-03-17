@@ -55,16 +55,18 @@ Page({
   changeValue(e) {
     // console.log(this.data.categories[e.detail.value]);
     var value = this.data.categories[e.detail.value]
+    // var category_type = 
     this.setData({
       value: value.categoryName,
+      categoryType: value.categoryType
     })
-    console.log(this.data.value);
+    console.log(value);
   },
   showfenleiModel(e) {
     this.setData({
       show: true
     })
-    console.log(e);
+    // console.log("进来了");
   },
   exit(e) {
     this.setData({
@@ -186,20 +188,20 @@ Page({
         wxOpenId: userInfo.wxOpenId,
         // phone: e.detail.value.scrap_phone,
         title: e.detail.value.title,
-        pirce: (Number(e.detail.value.pirce)),
-        phone: userInfo.phone,
-        contact_qq: userInfo.scrap_qq,
-        contact_wx: userInfo.scrap_wx,
+        pirce: e.detail.value.price == undefined? '' : (Number(e.detail.value.pirce)),
+        phone: userInfo.phone == undefined ? '' : userInfo.phone,
+        contact_qq: userInfo.scrap_qq== undefined ? '' : userInfo.scrap_qq,
+        contact_wx: userInfo.scrap_wx==undefined ? '': userInfo.scrap_wx,
         status: 0,
-        content: e.detail.value.details,
-        Images: that.data.product_img,
+        content: e.detail.value.details == undefined ? '': e.detail.value.details,
+        Images: that.data.product_img == null ? '' : that.data.product_img,
         LikesNumber: 0,
         CommentsNumber: 0,
         // publictiy:e.detail.value.publictiy,
         publictiy: 1,
         categoryType: e.detail.value.fenlei,
         categoryParentType: that.data.reside,
-        Address: e.detail.value.scrap_address,
+        Address: e.detail.value.scrap_address == null ? '' : e.detail.value.scrap_address,
         chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),
         latitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.latitude),
         longitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.longitude),
@@ -209,7 +211,7 @@ Page({
       },
       success: (res) => {
         // console.log("addOrUpdateMarket===>res");
-        // console.log(res);
+        console.log("res---",res);
         wx.showToast({
           title: "上传成功",
         })
@@ -378,7 +380,7 @@ Page({
   onShow() {
     var userInfo = wx.getStorageSync('userInfo');
     // console.log("issue");
-    if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "") {
+    if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "" || userInfo.phon == "") {
       setTimeout(function () {
         wx.showToast({
           title: '请完善个人信息',

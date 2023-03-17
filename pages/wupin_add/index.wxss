@@ -1,6 +1,9 @@
+view{
+  box-sizing: border-box;
+}
 .form-container {
   width: 100vw;
-  background: linear-gradient(180deg,rgb(0, 183, 255) 10%,rgb(255, 255, 255) 10%);
+  background: rgb(244, 244, 245);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,12 +13,13 @@
 }
 
 .form {
-  width: 90%;
-  height: 80vh;
-  overflow: scroll;
+  /* width: 95%; */
+  width: 95vw;
+  height: 100vh;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 5px;
   /* justify-content: center; */
 }
 
@@ -38,10 +42,19 @@
 
 .form-container .input {
   padding: 10px;
-  width: 100%;
+  /* width: 100%; */
   height: 30px;
   border: none;
-  background-color: rgb(238, 242, 245);
+  background-color: white;
+}
+.inputs{
+  width: auto;
+  /* height: auto; */
+  /* min-height: 30px; */
+  padding: 10px;
+  border: none;
+  /* min-height: 30px; */
+  background-color: white;
 }
 /* .form_item{
   display: flex;
@@ -76,7 +89,6 @@
 }
   /* 图片 */
   .images_box{
-    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -87,8 +99,8 @@
     /* border: 5rpx;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.452); */
-    width: 150rpx;
-    height: 150rpx;
+    width: 180rpx;
+    height: 180rpx;
     margin-left: 35rpx;
     margin-top: 20rpx;
     margin-bottom: 20rpx;
@@ -96,8 +108,8 @@
   }
   /* 删除图片 */
   .img-delect{
-    width:50rpx;
-    height:50rpx;
+    width:30rpx;
+    height:30rpx;
     border-radius:50%;
     position:absolute;
     right:-20rpx;

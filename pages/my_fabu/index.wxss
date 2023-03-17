@@ -1,8 +1,7 @@
-
 .liushi_container {
   width: 100vw;
   /* padding: 0 20rpx; */
-  background-color:#F4F5F9;
+  background-color: #F4F5F9;
 }
 
 /* 瀑布流布局 */
@@ -28,15 +27,27 @@
 .null-wrap {
   height: 30rpx;
 }
+
 .font-mini {
-font-size: 10px;
+  font-size: 10px;
 }
 
-.gray{
+.gray {
   color: gray;
 }
+
 .delete {
   width: 10px;
   height: 10px;
-  float: inline-end;
+  float: right;
+}
+.goTop{
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  right: 10rpx;
+  bottom: 55rpx;
+  border-radius: 50%;
+  z-index: 999;
+  background-color:rgba(255, 255, 2555, .6)
 }

@@ -14,8 +14,8 @@ Page({
     is_shouCang: false,
     content: '',
     liuyan_value: '',
-    count:0,
-    is_clicked:true,
+    count: 0,
+    is_clicked: true,
   },
 
   // 点击定位 2023年3月5日 牛亚博 
@@ -56,13 +56,13 @@ Page({
   //     wx.showModal
   //   }
   // },
-  cha_shouCang(){
+  cha_shouCang() {
     var that = this
     var info = that.data.info
-    if(info.target.market_id){
+    if (info.target.market_id) {
       var id = info.target.market_id
-    }else{
-      id = info.target.id 
+    } else {
+      id = info.target.id
     }
     wx.request({
       url: app.globalData.serverApi + '/findAllByMarketIdFormLikes',
@@ -76,17 +76,17 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: (res) => {
-        console.log("是否收藏",res);
+        console.log("是否收藏", res);
         that.setData({
-        count:res.data.response.count
+          count: res.data.response.count
         })
-        if(res.data.response.flag!==0){
+        if (res.data.response.flag !== 0) {
           that.setData({
             is_shouCang: true
-          })  
-        } else{
+          })
+        } else {
           that.setData({
-            is_shouCang:false
+            is_shouCang: false
           })
         }
       },
@@ -100,17 +100,22 @@ Page({
   is_shouCang() {
     var that = this
     var info = that.data.info
-    if(that.data.is_clicked){
+    if (info.target.market_id) {
+      var id = info.target.market_id
+    } else {
+      id = info.target.id
+    }
+    if (that.data.is_clicked) {
       that.setData({
-        is_clicked:false
+        is_clicked: false
       })
-      if(this.data.is_shouCang == true){
+      if (this.data.is_shouCang == true) {
         // //console.log('删除');
         wx.request({
           url: app.globalData.serverApi + '/deleteLikes',
           method: 'POST',
           data: {
-            marketId: info.target.id,
+            marketId: id,
             likesUserWxOpenId: info.target.wx_open_id, //物品发布人openid
             likesPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           },
@@ -121,9 +126,9 @@ Page({
             // //console.log('删除成功',res);
             // //console.log();
             that.setData({
-              is_shouCang:false,
-              count:res.data.response.count,
-              is_clicked:true
+              is_shouCang: false,
+              count: res.data.response.count,
+              is_clicked: true
             })
           },
           fail: res => {
@@ -132,42 +137,42 @@ Page({
             })
           }
         })
-      }else{
-      // //console.log('info===>',info);
-     
-      wx.request({
-        url: app.globalData.serverApi + '/addLikes',
-        method: 'POST',
-        data: {
-          marketId: info.target.id,
-          likesUserWxOpenId: info.target.wx_open_id, //物品发布人openid
-          likesPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: (res) => {
-          //console.log('收藏成功');
-          if(res.data.code == 1){
-            that.setData({
-              is_shouCang: true,
-              count:res.data.response.count
-            }) 
+      } else {
+        // //console.log('info===>',info);
+
+        wx.request({
+          url: app.globalData.serverApi + '/addLikes',
+          method: 'POST',
+          data: {
+            marketId: info.target.id,
+            likesUserWxOpenId: info.target.wx_open_id, //物品发布人openid
+            likesPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: (res) => {
+            //console.log('收藏成功');
+            if (res.data.code == 1) {
+              that.setData({
+                is_shouCang: true,
+                count: res.data.response.count
+              })
+            }
+            // //console.log();
+            this.setData({
+              is_clicked: true
+            })
+          },
+          fail: res => {
+            wx.showToast({
+              title: "加载收藏失败",
+            })
           }
-          // //console.log();
-          this.setData({
-            is_clicked:true
-          })
-        },
-        fail: res => {
-          wx.showToast({
-            title: "加载收藏失败",
-          })
-        }
-      })
+        })
       }
     }
-    
+
   },
   /**
    * 控制 pop 的打开关闭
@@ -180,7 +185,7 @@ Page({
     this.setData({
       showDialog: !this.data.showDialog,
     });
-    if(that.data.is_shouCang == false){
+    if (that.data.is_shouCang == false) {
       that.is_shouCang()
     }
   },
@@ -222,7 +227,7 @@ Page({
       var info = this.data.info.target
       var city = wx.getStorageSync('city');
       // //console.log(city);
-       wx.request({
+      wx.request({
         url: app.globalData.serverApi + '/commentOn',
         method: 'POST',
         data: {
@@ -231,7 +236,7 @@ Page({
           commentUserWxOpenId: info.wx_open_id, //物品发布人openid
           commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           city: city,
-          status:1
+          status: 1
 
         },
         header: {
@@ -273,7 +278,7 @@ Page({
       method: 'POST',
       data: {
         marketId: info.id,
-        status:1
+        status: 1
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -326,7 +331,8 @@ Page({
             res.data.response.content.forEach(item => {
               let d = new Date(item.target.create_time).getTime();
               item.target.create_time = util.commentTimeHandle(d);
-              if (item.target.images != "") {
+              // if (item.target.images != "") {
+              if (item.target.images != "" && item.target.images != null) {
                 item.target.images = item.target.images.split(",");
                 item.target.choose_location = JSON.parse(item.target.choose_location);
               }
@@ -372,7 +378,7 @@ Page({
     //console.log(info);
     this.setData({
       info: info,
-      market_id:info.target.id
+      market_id: info.target.id
     })
     // this.show_liuyan()
   },

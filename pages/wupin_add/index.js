@@ -54,9 +54,12 @@ Page({
 
   changeValue(e) {
     console.log(this.data.categories[e.detail.value]);
+    var category_type = this.data.categories[e.detail.value].categoryType
+
     var value = this.data.categories[e.detail.value]
     this.setData({
       value: value.categoryName,
+      category_type:category_type
     })
     
     //console.log(this.data.value);

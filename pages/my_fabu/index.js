@@ -11,7 +11,9 @@ Page({
     list: '',
     pageIndex: 1,
     pageSize: 10,
-    show:false
+    show: false,
+    end: false,
+    delete:false,
   },
 
   /**
@@ -43,9 +45,9 @@ Page({
       })
     }
   },
-  show(){
+  show() {
     this.setData({
-      show:!this.data.show
+      show: !this.data.show
     })
   },
   delete(e) {
@@ -57,6 +59,9 @@ Page({
     wx.request({
       url: app.globalData.serverApi + '/deleteMarket',
       method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         id: e.currentTarget.dataset.id,
         wxOpenId: wxOpenId
@@ -65,56 +70,86 @@ Page({
         wx.showToast({
           title: '删除成功',
         })
+        that.setData({
+          pageIndex:1,
+          delete:true
+        })
         that.jiazai()
       }
     })
   },
-  jiazai() {
+  refresh() { //上拉加载
+    console.log('上拉加载');
     var that = this
-    var wxOpenId = wx.getStorageSync('userInfo').wxOpenId
-    console.log("wxOpenId",wxOpenId);
-    wx.request({
-      url: app.globalData.serverApi + '/selectMarketOpenId',
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        wxOpenId: wxOpenId,
-        pageIndex: that.data.pageIndex,
-        pageSize: that.data.pageSize,
-        // categoryType:4
-        // id:that.data.id,
-      },
-      success(res) {
-        // console.log(res);
-        res.data.response.content.forEach(item => {
-          // let aaa = "";
-          // var uuu = item.target.latitude;
-          // // console.log(uuu + "0000000000")
-          // if (uuu !== "") {
-          //  aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
-          //  aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
-          //  // console.log(aaa + "```````````")
-          // }
+    // if(!this.loading && this.data.pageIndex<this.data.pages ){
+    console.log('当前页', that.data.pageIndex);
+    this.data.end !== true ?
+      (that.setData({
+          pageIndex: that.data.pageIndex + 1
+        }),
+        that.jiazai()) :
+      wx.showToast({
+        title: '已到底！',
+      })
+  // this.setData({
 
-          let d = new Date(item.target.create_time).getTime();
-          item.target.create_time = util.commentTimeHandle(d);
-          // item.target.distance = aaa;
-          // if (item.target.choose_location !== "") {
-          //  item.target.choose_location = JSON.parse(item.target.choose_location);
-          // }
-          if (item.target.images != "" && item.target.images != null) {
-            item.target.images = item.target.images.split(",");
-          }
-        })
-        that.setData({
-          list: res.data.response.content
-        })
-      },
-      fail() {
-        console.log('请求失败');
+  // })
+  // }
+},
+goTop(e) {
+  wx.pageScrollTo ?
+    wx.pageScrollTo({
+      scrollTop: 0
+    }) : wx.showModal({
+      title: '提示',
+      content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试'
+    })
+},
+ontopRefresh() {
+  this.onPullDownRefresh()
+},
+jiazai(e) {
+  var that = this
+  var wxOpenId = wx.getStorageSync('userInfo').wxOpenId
+  console.log("wxOpenId", wxOpenId);
+  wx.request({
+    url: app.globalData.serverApi + '/selectMarketOpenId',
+    method: 'POST',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    data: {
+      wxOpenId: wxOpenId,
+      pageIndex: that.data.pageIndex,
+      pageSize: that.data.pageSize,
+      // categoryType:4
+      // id:that.data.id,
+    },
+    success(res) {
+      // console.log(res);
+      res.data.response.content < 10 ? (that.setData({
+        end: true
+      }), that.return(res)) : that.return(res)
+    },
+    fail() {
+      console.log('请求失败');
+    }
+  })
+},
+return (res) {
+  console.log("进来了");
+    var that = this
+    res.data.response.content.forEach(item => {
+      let d = new Date(item.target.create_time).getTime();
+      item.target.create_time = util.commentTimeHandle(d);
+      if (item.target.images != "" && item.target.images != null) {
+        item.target.images = item.target.images.split(",");
       }
+    })
+    var list
+   ( that.data.delete == true || that.data.pageIndex == 1) ? list = res.data.response.content : list = that.data.list.concat(res.data.response.content)
+    that.setData({
+      list: list
     })
   },
   onLoad(options) {
@@ -123,7 +158,6 @@ Page({
     this.setData({
       list: infos
     })
-
   },
 
   /**
@@ -137,7 +171,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // this.jiazai()
   },
 
   /**
@@ -157,15 +191,25 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
+  onPullDownRefresh() { //下拉刷新
+    //显示顶部加载图标
+    // if (!this.loading && this.data.pageIndex < this.data.pages) {
+    //  this.ontopRefresh()
+    wx.showNavigationBarLoading()
+    this.setData({
+      pageIndex: 1
+    })
+    this.jiazai()
+    this.goTop()
+    console.log('下拉刷新');
+    this.setData({
+      end: false
+    })
+    // }
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom() {
-
+    // console.log('上拉刷新');
+    this.refresh()
   },
 
   /**

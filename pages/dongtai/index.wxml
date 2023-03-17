@@ -1,3 +1,5 @@
-<view>
-  动态
+<view style=" display: flex; flex-direction: column;align-items: center;justify-content: center;">
+<!-- <image src="http://niuyabo-1257122371.cos.ap-chengdu.myqcloud.com/xiaochengxu/20230312/zs416z8bi340.png" mode="widthFix"/> -->
+<image src="http://niuyabo-1257122371.cos.ap-chengdu.myqcloud.com/xiaochengxu/20230305/1eolnd96p1uo0.png" mode="widthFix"/>
+  建设中，敬请期待
 </view>

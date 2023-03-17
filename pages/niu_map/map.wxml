@@ -1,19 +1,26 @@
 <!--pages/map/map.wxml-->
 
 <view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 100%;">
-  <map id="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="{{scale}}" show-location style="width: 100%; height: 100%;" bindmarkertap="markertap" bindcallouttap="clickCallout" show-scale="true" bindtap="bindtap" show-compass="true" bindregionchange="regionchange" bindcallouttap="bindcallouttap">
+  <map id="map" class="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="{{scale}}" 
+  show-location bindmarkertap="markertap" bindcallouttap="clickCallout" 
+  show-scale="true" bindtap="bindtap" show-compass="true" bindregionchange="onChangeRegion" bindcallouttap="bindcallouttap">
+
+    <view class="locationpicker-ic-marker {{animation ? 'locationpicker-animation' : ''}}" bindanimationend="onMarkerAnimationend">
+      <image class="locationpicker-img" src="./img/Big_Marker@2x.png"></image>
+    </view>
+
     <!-- bindupdated="bindupdated"  -->
     <cover-view class="cover-view" bindtap="controltap">
-      <cover-image class="station" src="../../images/position.png"></cover-image>
+      <cover-image class="station" src="./img/main_bt_position@2x.png"></cover-image>
     </cover-view>
 
     <cover-view slot="callout" wx:for="{{markers}}" wx:key="item">
-      <cover-view marker-id="{{item.id}}" style="padding:15rpx;border-radius: 15rpx;background-color: #ffffff;font-size: 26rpx;width: 300rpx;">
+      <cover-view marker-id="{{item.id}}" style="padding:15rpx;border-radius: 15rpx;background-color: #ffffff;font-size: 26rpx;width: 360rpx;">
         <cover-view style="float: left;">
-          <cover-image  wx:if="{{item.customCallout.image}}" class="" src="{{item.customCallout.image}}" style="width: 80rpx;height: 80rpx;" mode="aspectFit" />
+          <cover-image wx:if="{{item.customCallout.image}}" class="" src="{{item.customCallout.image}}" style="width: 120rpx;height: 120rpx;" mode="aspectFit" />
         </cover-view>
-        <cover-view style="float: left;color: #000000;width: 180rpx;margin-left: 10rpx;">
-          <cover-view> {{item.customCallout.content}} </cover-view>
+        <cover-view style="float: left;color: #000000;width: 220rpx;margin-left: 10rpx;">
+          <cover-view style="white-space: pre-line"> {{item.customCallout.content}} </cover-view>
           <cover-view> </cover-view>
           <cover-view style="color: #ff0000;margin-top: 5rpx;">{{item.customCallout.price}}</cover-view>
         </cover-view>

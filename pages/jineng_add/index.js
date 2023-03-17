@@ -54,9 +54,11 @@ Page({
 
   changeValue(e) {
     console.log(this.data.categories[e.detail.value].categoryType);
+    var category_type = this.data.categories[e.detail.value].categoryType
     var value = this.data.categories[e.detail.value].categoryName
     this.setData({
       value: value,
+      categoryType:category_type,
     })
     // console.log(this.data.value);
   },
@@ -198,20 +200,20 @@ add_sell_scrap: function (e) {
             // phone: e.detail.value.scrap_phone,
             title: e.detail.value.title,
             pirce: e.detail.value.pirce,
-            phone:userInfo.phone,
-            contact_qq:userInfo.scrap_qq,
-            contact_wx: userInfo.scrap_wx,
+            phone:userInfo.phone == undefined ? '':userInfo.phone,
+            contact_qq:userInfo.scrap_qq == undefined ? "" :userInfo.scrap_qq,
+            contact_wx: userInfo.scrap_wx == undefined? "" : userInfo.scrap_wx,
             status: 1,
-            content: e.detail.value.details,
+            content: e.detail.value.details == undefined ? '' : e.detail.value.details,
             // Images: that.data.product_img,
             LikesNumber: 0,
             CommentsNumber: 0,
-            time:e.detail.value.time,
+            // time:e.detail.value.time,
             // publictiy:e.detail.value.publictiy,
             publictiy: 1,
             categoryType: that.data.categoryType,
             categoryParentType:that.data.reside,
-            Address: e.detail.value.scrap_address,
+            Address: e.detail.value.scrap_address == undefined ? '' : e.detail.value.scrap_address,
             chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),
             latitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.latitude),
             longitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.longitude),
@@ -228,7 +230,7 @@ add_sell_scrap: function (e) {
             if (res.data.code == 1) {
                 wx.reLaunch({
                     //页面跳转携带参数
-                    url: '/pages/index/index',
+                    url: '/pages/fenlei/index',
                     success: function () {
                         // console.log("跳转页面成功")
                     },

@@ -1,7 +1,7 @@
   <!-- 评论 -->
   <view class="pl_container">
       <view class="pl" wx:for="{{list}}" wx:key="index" >
-       <view style="display: flex; width: 100%;" data-index="{{item.target.id}}" bindtap="show">
+       <view style="display: flex; width: 100%;height: auto;" data-index="{{item.target.id}}" bindtap="show">
         <view>
           <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
         </view>
