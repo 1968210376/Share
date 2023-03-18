@@ -62,9 +62,6 @@
         <view class="lx gray">
           <text>{{item.target.nick_name}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
         </view>
-        <view class="padding pl_content ">
-          {{item.target.content}}
-        </view>
       </view>
     </view>
     <view class="space center gray font-mini">

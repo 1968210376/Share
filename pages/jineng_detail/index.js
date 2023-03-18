@@ -9,11 +9,13 @@ Page({
     info: '',
     count: 0,
     copy: false,
-    pingfen: 3,
+    pingfen: 5,
     show: false,
     pingjia: '',
-    pageIndex:1,
-    pageSize:10,
+    pageIndex: 1,
+    pageSize: 10,
+    content: '',
+    end: false
   },
   count() {
     var that = this
@@ -39,6 +41,7 @@ Page({
   toggleDialog() {
     this.setData({
       showDialog: !this.data.showDialog,
+      copy: false,
     });
   },
 
@@ -67,18 +70,20 @@ Page({
     })
   },
   exit(e) {
+    this.data.pingjia ? '' : this.setData({
+      pingjia: "默认好评"
+    })
     this.setData({
       show: false,
-      copy: false,
     })
     var that = this
-    console.log("data:", {
-      content: that.data.pingjia,
-      marketId: that.data.info.target.id,
-      commentUserWxOpenId: that.data.info.target.wx_open_id,
-      commentPostWxOpenId: wx.getStorageSync('openid'),
-      avgsort: that.data.pingfen
-    });
+    // console.log("data:", {
+    //   content: that.data.pingjia,
+    //   marketId: that.data.info.target.id,
+    //   commentUserWxOpenId: that.data.info.target.wx_open_id,
+    //   commentPostWxOpenId: wx.getStorageSync('openid'),
+    //   avgsort: that.data.pingfen
+    // });
     wx.request({
       url: app.globalData.serverApi + '/commentScoreOn',
       method: 'POST',
@@ -91,10 +96,13 @@ Page({
         commentUserWxOpenId: that.data.info.target.wx_open_id,
         commentPostWxOpenId: wx.getStorageSync('openid'),
         avgsort: that.data.pingfen
+      },
+      success(res) {
+        that.selectCommentscore()
       }
     })
   },
-  selectCommentscore(e){
+  selectCommentscore(e) {
     var that = this
     wx.request({
       url: app.globalData.serverApi + '/selectCommentscore',
@@ -102,14 +110,19 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      data:{
+      data: {
         marketId: that.data.info.target.id,
-        pageIndex:that.data.pageIndex,
-        pageSize:that.data.pageSize,
-        status:0
+        pageIndex: that.data.pageIndex,
+        pageSize: that.data.pageSize,
+        // status:0
       },
-      success(res){
-        console.log("ping",res.data);
+      success(res) {
+        console.log("ping", res.data);
+        that.setData({
+          content: that.data.pageIndex == 1 ? res.data.response.content : that.data.content.concat(res.data.response.content),
+          end: res.data.response.content.length < res.data.response.pageSize ? true : false
+        })
+        console.log("end:===", that.data.end);
       }
     })
   },
@@ -123,9 +136,9 @@ Page({
   },
   pingjia(e) {
     console.log(e);
-    e.detail.value ? this.setData({
+    this.setData({
       pingjia: e.detail.value
-    }) : ''
+    })
   },
   call_phone: function (e) {
     var that = this
@@ -148,6 +161,19 @@ Page({
         that.toggleDialog()
       }
     })
+  },
+  goTop(e) {
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+      // console.log('top');
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -177,9 +203,9 @@ Page({
     //   count:that.data.count+1
     // })
     this.selectCommentscore()
-    this.data.ping ? '' : this.setData({
-      pingfen: 3
-    })
+    // this.data.ping ? '' : this.setData({
+    //   pingfen: 3
+    // })
   },
 
   /**
@@ -193,21 +219,32 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-   
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    wx.showNavigationBarLoading()
+    this.setData({
+      pageIndex: 1
+    })
+    this.selectCommentscore()
+    this.top()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    var that = this
+    that.data.end ? wx.showToast({
+        title: '已到底',
+      }) :
+      (this.setData({
+        pageIndex: that.data.pageIndex + 1
+      }), that.selectCommentscore())
   },
 
   /**

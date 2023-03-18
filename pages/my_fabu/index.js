@@ -56,27 +56,39 @@ Page({
     var userInfo = wx.getStorageSync('userInfo')
     var wxOpenId = userInfo.wxOpenId
     console.log("wxOpenId", wxOpenId);
-    wx.request({
-      url: app.globalData.serverApi + '/deleteMarket',
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        id: e.currentTarget.dataset.id,
-        wxOpenId: wxOpenId
-      },
+    var that = this
+    wx.showModal({
+      title: '是否删除？',
       success(res) {
-        wx.showToast({
-          title: '删除成功',
-        })
-        that.setData({
-          pageIndex:1,
-          delete:true
-        })
-        that.jiazai()
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: app.globalData.serverApi + '/deleteMarket',
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              id: e.currentTarget.dataset.id,
+              wxOpenId: wxOpenId
+            },
+            success(res) {
+              wx.showToast({
+                title: '删除成功',
+              })
+              that.setData({
+                pageIndex:1,
+                delete:true
+              })
+              that.jiazai()
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
+   
   },
   refresh() { //上拉加载
     console.log('上拉加载');

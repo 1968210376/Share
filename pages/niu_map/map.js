@@ -103,7 +103,7 @@ Page({
                 // content:999,
                 color: '#ff6666 ',
                 content: (mar.target.title.length > 20 ? mar.target.title.substr(0, 20) + "..." : mar.target.title),
-                price:"￥:" + mar.target.pirce,
+                price:"￥" + mar.target.pirce,
                 image:mar.target.images != "" && mar.target.images != null ? mar.target.images[0]:"",
                 fontSize: 14,
                 borderRadius: 5,

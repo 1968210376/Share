@@ -210,7 +210,93 @@ Page({
     })
     this.cha_shouCang()
   },
+  liuyan(res) {
+    // //console.log(res.detail.value);
+    if (res.detail.value) {
+      var that = this
+      var info = this.data.info.target
+      var city = wx.getStorageSync('city');
+      // //console.log(city);
+      wx.request({
+        url: app.globalData.serverApi + '/commentOn',
+        method: 'POST',
+        data: {
+          marketId: info.id,
+          content: res.detail.value,
+          commentUserWxOpenId: info.wx_open_id, //物品发布人openid
+          commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
+          city: city,
+          status: 1
 
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: (res) => {
+          //console.log(res);
+          wx.showToast({
+            title: res.data.response,
+          })
+          that.setData({
+            liuyan_value: ''
+          })
+          that.show_liuyan()
+        },
+        fail: res => {
+          wx.showToast({
+            title: "加载类别失败",
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '内容不允许为空',
+        icon: "error"
+      })
+    }
+  },
+  show_liuyan() {
+    // //console.log('ok');
+    var that = this
+    var info = this.data.info.target
+    // //console.log('markeId-->', info);
+    if (!info) {
+      return
+    }
+    wx.request({
+      url: app.globalData.serverApi + '/selectComment',
+      method: 'POST',
+      data: {
+        marketId: info.id,
+        status: 1
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: (res) => {
+        // //console.log(res.data);
+        //console.log(res.data);
+        if (res.data.response !== undefined) {
+          // if (res.data.response.content) {
+
+          res.data.response.content.forEach(item => {
+            let d = new Date(item.target.create_time).getTime();
+            item.target.create_time = util.commentTimeHandle(d);
+          })
+          that.setData({
+            content: res.data.response.content
+          })
+          // //console.log("pl--->", that.data.content);
+        }
+
+      },
+      fail: res => {
+        wx.showToast({
+          title: "加载留言失败",
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -222,7 +308,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.show_liuyan()
   },
 
   /**

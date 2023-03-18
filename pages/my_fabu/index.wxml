@@ -1,16 +1,16 @@
 <!-- 收藏 -->
 <view style="width: 100vw;">
-  <button bindtap="show">编辑</button>
+  <button type="warn" bindtap="show">编辑</button>
 </view>
 <view class="liushi_container">
   <view class="picture">
     <block wx:for="{{list}}" wx:key="index">
-      <image wx:if="{{show}}" src="/images/delect.png" class="delete" data-id="{{item.target.id}}" bindtap="delete" mode=""/>
+      <image wx:if="{{show}}" src="/images/delect.png" class="delete" data-id="{{item.target.id}}" bindtap="delete" mode="" />
       <view class="item" data-reside="{{item.target.reside}}" data-index="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
         <view wx:if="{{item.target.images}}">
           <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
         </view>
-        <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
+        <view style="font-size: 14px;padding-left: 10rpx;word-break: break-all;">{{ item.target.title }}</view>
         <view wx:if="{{!item.target.images}}" style="height: 50rpx;">
         </view>
         <view style="display: flex; justify-content: space-between; align-items: center;">
@@ -26,6 +26,6 @@
     </block>
   </view>
 </view>
-<view class="goTop" >
-    <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
-  </view>
+<view class="goTop">
+  <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+</view>

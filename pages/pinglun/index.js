@@ -7,12 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:'',
-    id:0,
-    wxOpenId:'',
-    pageIndex:1,
-    pageSize:13,
-    end:false,
+    list: '',
+    id: 0,
+    wxOpenId: '',
+    pageIndex: 1,
+    pageSize: 13,
+    end: false,
   },
 
   /**
@@ -34,85 +34,99 @@ Page({
       console.log("显示用户信息")
     }
   },
-show(e){
-  console.log(e.currentTarget.dataset.index);
-  var id = e.currentTarget.dataset.index
-  var that = this
-  this.setData({
-    id:id
-  })
-},
-delete(e){
-  var that = this
-  console.log(e.currentTarget.dataset.id);
-  var id = e.currentTarget.dataset.id
-  wx.request({
-    url: app.globalData.serverApi + '/deleteComment',
-    method: 'POST',
-    header: {
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    data:{
-      id:id
-    },
-    success(res){
-      wx.showToast({
-        title: '删除成功！',
-      })
-      that.jiazai()
-    }
-  })
-},
-jiazai(){
-  var that = this
-  wx.request({
-    url: app.globalData.serverApi + '/selectOpenidComment',
-    method: 'POST',
-    header: {
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    data: {
-      // status: 1,
-      pageIndex: that.data.pageIndex,
-      pageSize: that.data.pageSize,
-      commentUserWxOpenId: that.data.wxOpenId,
-      status: 1
-    },
-    success(res) {
-      console.log("res",res);
-      if(res.data.response.content.length>0){
-        console.log("pageIndex:",that.data.pageIndex);
-        res.data.response.content.forEach(item => {
-          let d = new Date(item.target.create_time).getTime();
-          item.target.create_time = util.commentTimeHandle(d);
-        })
-        that.setData({
-          list: that.data.list.concat(res.data.response.content)
-        })
-      }else{
-        that.setData({
-          end:true
-        })
-        wx.showToast({
-          title: '已到底',
-        })
-      }
-    }
-  })
-},
-goTop() {
-  if (wx.pageScrollTo) {
-    wx.pageScrollTo({
-      scrollTop: 0
+  show(e) {
+    console.log(e.currentTarget.dataset.index);
+    var id = e.currentTarget.dataset.index
+    var that = this
+    this.setData({
+      id: id
     })
-    // console.log('top');
-  } else {
+  },
+  delete(e) {
+    console.log(e);
+    e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
+      title: '不是本人的留言',
+    })
+  },
+  detele_(e) {
+    var that = this
     wx.showModal({
-      title: '提示',
-      content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
+      title: '是否删除该留言？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: app.globalData.serverApi + '/deleteComment',
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              id: e.currentTarget.dataset.id.id
+            },
+            success(res) {
+              that.setData({
+                pageIndex:1
+              })
+              that.jiazai()
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
-  }
-},
+  },
+  jiazai() {
+    var that = this
+    wx.request({
+      url: app.globalData.serverApi + '/selectOpenidComment',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        // status: 1,
+        pageIndex: that.data.pageIndex,
+        pageSize: that.data.pageSize,
+        commentUserWxOpenId: that.data.wxOpenId,
+        status: 1
+      },
+      success(res) {
+        console.log("res", res);
+        if (res.data.response.content.length > 0) {
+          console.log("pageIndex:", that.data.pageIndex);
+          res.data.response.content.forEach(item => {
+            let d = new Date(item.target.create_time).getTime();
+            item.target.create_time = util.commentTimeHandle(d);
+          })
+          that.setData({
+            list: that.data.pageIndex == 1 ? res.data.response.content : that.data.list.concat(res.data.response.content)
+          })
+        } else {
+          that.setData({
+            end: true
+          })
+          wx.showToast({
+            title: '已到底',
+          })
+        }
+      }
+    })
+  },
+  goTop() {
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+      // console.log('top');
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -124,7 +138,7 @@ goTop() {
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // this.jiazai()
   },
 
   /**
@@ -156,7 +170,7 @@ goTop() {
     this.goTop()
     console.log('下拉刷新');
     this.setData({
-      end:false
+      end: false
     })
     // }
   },
@@ -164,7 +178,7 @@ goTop() {
     console.log('上拉刷新');
     var that = this
     that.setData({
-      pageIndex:that.data.pageIndex+1
+      pageIndex: that.data.pageIndex + 1
     })
     that.jiazai()
   },

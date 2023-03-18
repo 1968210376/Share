@@ -1,7 +1,7 @@
 Component({
   properties:{
     starValue:{
-      value: 0,//父组件传过来的评分数字
+      value: 5,//父组件传过来的评分数字
       type:Number
     },
     disabled:{//是否只读，disabled="true"可评分，disabled="false"只显示（刚好写反了）
@@ -67,7 +67,7 @@ Component({
     },
   },
   attached: function () {
-    this.starValue == 0? this.setData({starValue:3}) : ''
+    this.starValue == 0? this.setData({starValue:5}) : ''
     this.setData({
       showTap: this.properties.disabled
     })

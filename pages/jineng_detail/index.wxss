@@ -33,7 +33,6 @@
     font-size: 20px;
 
 }
-
 .icon{
     width: 50rpx;
     height: 50rpx;
@@ -100,6 +99,8 @@
     margin-top: 56rpx;
     padding: 30rpx;
     text-align: center;
+    color: white;
+    border-radius: 15rpx;
 }
 .button:active{
     background-color: #003aff;
@@ -171,4 +172,63 @@
 .rate{
   width: 40%;
   margin: 10px;
+}
+.liuyan{
+  width: 100vw;
+  color: gray;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15rpx;
+}
+.font-mini{
+  font-size: 12px;
+}
+.liuyan_item{
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  padding: 10rpx;
+  background-color: white;
+  gap: 18rpx;
+  border-radius: 15rpx;
+}
+.avatar_box{
+  margin: 5rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.avatar_i{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.pinglun{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.pingfen{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.pinglun_content{
+  width: 100%;
+  overflow:visible;
+  word-break: break-all;
+  /* text-indent: 2rem; */
+}
+.data-img {
+  width: 300rpx;
+  height: 300rpx;
+  margin: 0 auto;
+}
+.center {
+  text-align: center;
 }

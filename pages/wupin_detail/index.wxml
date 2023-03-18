@@ -66,11 +66,11 @@
       <view>
         <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
       </view>
-      <view class="gap">
+      <view class="gap" bindlongtap="delete" data-id="{{item.target}}">
         <view class="lx gray">
           <text>{{item.target.nick_name}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
         </view>
-        <view class="padding pl_content ">
+        <view wx:if="{{item.target.content}}" class="padding pl_content ">
           {{item.target.content}}
         </view>
       </view>

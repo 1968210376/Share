@@ -22,7 +22,7 @@
         <cover-view style="float: left;color: #000000;width: 220rpx;margin-left: 10rpx;">
           <cover-view style="white-space: pre-line"> {{item.customCallout.content}} </cover-view>
           <cover-view> </cover-view>
-          <cover-view style="color: #ff0000;margin-top: 5rpx;">{{item.customCallout.price}}</cover-view>
+          <cover-view wx:if="{{item.customCallout.price}}" style="color: #ff0000;margin-top: 5rpx;">{{item.customCallout.price}}</cover-view>
         </cover-view>
       </cover-view>
     </cover-view>
