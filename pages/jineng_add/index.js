@@ -109,7 +109,29 @@ exit(e){
     else {
         // 文件图片的上传
         // this.add_fileImages(e);
+        
         this.add_COSfileImages(e);
+        try {
+          wx.requestSubscribeMessage({
+            tmplIds: ['DF36jxuDTuayF5f_JnIF0GQj7CwvSb9p0wx6Iy2yQus'],
+            success(res) {
+              console.log(res);
+              console.log("success")
+              wx.reLaunch({
+                //页面跳转携带参数
+                url: '/pages/fenlei/index',
+                success: function () {
+                  // console.log("跳转页面成功")
+                },
+              })
+            },
+            fail(res) {
+              console.log(res)
+            }
+          })
+        } catch (e) {
+          console.log('错误代码', e.code, '错误信息', e.message);
+        }
     }
 },
 // 文件图片上传腾讯对象存储COS
@@ -164,9 +186,9 @@ add_COSfileImages: function (e) {
                     that.data.product_img.push(fileID);
                     reslove();
                     wx.hideLoading();
-                    wx.showToast({
-                        title: "上传成功",
-                    })
+                    // wx.showToast({
+                    //     title: "上传成功",
+                    // })
                 });
             }));
         }
@@ -200,11 +222,11 @@ add_sell_scrap: function (e) {
             // phone: e.detail.value.scrap_phone,
             title: e.detail.value.title,
             pirce: e.detail.value.pirce,
-            phone:userInfo.phone == undefined ? '':userInfo.phone,
-            contact_qq:userInfo.scrap_qq == undefined ? "" :userInfo.scrap_qq,
-            contact_wx: userInfo.scrap_wx == undefined? "" : userInfo.scrap_wx,
-            status: 1,
-            content: e.detail.value.details == undefined ? '' : e.detail.value.details,
+            phone:userInfo.phone == null ? '':userInfo.phone,
+            contact_qq:userInfo.scrap_qq == null ? "" :userInfo.scrap_qq,
+            contact_wx: userInfo.scrap_wx == null? "" : userInfo.scrap_wx,
+            status: 0,
+            content: e.detail.value.details == null ? '' : e.detail.value.details,
             // Images: that.data.product_img,
             LikesNumber: 0,
             CommentsNumber: 0,
@@ -213,7 +235,7 @@ add_sell_scrap: function (e) {
             publictiy: 1,
             categoryType: that.data.categoryType,
             categoryParentType:that.data.reside,
-            Address: e.detail.value.scrap_address == undefined ? '' : e.detail.value.scrap_address,
+            Address: e.detail.value.scrap_address == null ? '' : e.detail.value.scrap_address,
             chooseLocation: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation),
             latitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.latitude),
             longitude: that.data.chooseLocation == null ? "" : JSON.stringify(that.data.chooseLocation.longitude),
@@ -224,18 +246,19 @@ add_sell_scrap: function (e) {
         success: (res) => {
             // console.log("addOrUpdateMarket===>res");
             // console.log(res);
-            wx.showToast({
-                title: "上传成功",
-            })
-            if (res.data.code == 1) {
-                wx.reLaunch({
-                    //页面跳转携带参数
-                    url: '/pages/fenlei/index',
-                    success: function () {
-                        // console.log("跳转页面成功")
-                    },
-                })
-            }
+            // wx.showToast({
+            //     title: "上传成功",
+            // })
+            // if (res.data.code == 1) {
+              
+            //     wx.reLaunch({
+            //         //页面跳转携带参数
+            //         url: '/pages/fenlei/index',
+            //         success: function () {
+            //             // console.log("跳转页面成功")
+            //         },
+            //     })
+            // }
         },
         fail: res => {
             wx.showToast({
@@ -385,7 +408,7 @@ add_sell_scrap: function (e) {
   onShow() {
     var userInfo = wx.getStorageSync('userInfo');
     // console.log("issue");
-    if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "") {
+    if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "" || userInfo.phone == "") {
       setTimeout(function () {
         wx.showToast({
           title: '请完善个人信息',

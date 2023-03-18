@@ -5,55 +5,35 @@
       <image src="{{info.target.avatar_url}}" class="avatar" mode="" />
       <text class="margin font-large">{{info.target.nick_name}}</text>
       <text>{{info.target.title}}</text>
-      <text>{{info.target.content}}</text>
       <text>更新于：{{info.target.create_time}} | 浏览：{{count}}</text>
     </view>
-    <!-- <view class="project padding">
-            <view class="gap">
-                <image src="/images/project.png" class="icon" mode="" />
-                <text class="black blod">项目作品</text>
-            </view>
-            <view class="gray gap">
-                <text>获赞0</text>
-                <text>作品3</text>
-                <image src="/images/next.png" class="icon" mode="" />
-            </view>
-        </view> -->
     <view class="content">
       <view class="width padding column">
         <view class="gap">
-          <!-- <text class="blue">{{info.target.pirce}}</text> -->
-          <!-- <text class="gray">|</text>
-                    <text class="blue">￥{{info.target.pirce * 8*30}}/月</text> -->
+          <text wx:if="{{info.target.pirce}}" class="blue">价格：￥{{info.target.pirce}}</text>
+          <view wx:if="{{info.target.address}}">
+            地址：<text>{{info.target.address}}</text>
+          </view>
         </view>
 
-        <text>可工作时间：工作日08：30-17：30</text>
+        <!-- <text>可工作时间：工作日08：30-17：30</text> -->
         <!-- <text>可工作地点：远程、线下</text> -->
-
+        <text wx:if="{{info.target.content}}">{{info.target.content}}</text>
       </view>
-
       <view class="column width border">
         <view class="gap">
           <text>好评度：</text>
           <view>
-            <image src="/images/sc(2).png" class="icon" mode="" />
-            <image src="/images/sc(2).png" class="icon" mode="" />
-            <image src="/images/sc(2).png" class="icon" mode="" />
-            <image src="/images/sc(2).png" class="icon" mode="" />
-            <image src="/images/sc(2).png" class="icon" mode="" />
-          </view>
-          <view class="gap">
-            <text>成功率：0%</text>
-            <text>0人评论</text>
+            <!-- 评分组件 展示效果：显示组件评分；没设置disabled，默认值是false，也就是只展示评分-->
+            <Rate starValue="{{info.target.avgsort}}" isShowStarValue="true" id="star" isInteger="true"></Rate>
           </view>
         </view>
       </view>
       <view class="space">
       </view>
-      <!-- <view class="column width">
-                <text>技能</text>
-                <text>{{info.target.content}}</text>
-            </view> -->
+      <view wx:if="{{info.target.images}}" class="column width">
+       <image style="border-radius:15rpx;margin:0 auto;" src="{{info.target.images}}" mode="widthFix"/>
+      </view>
     </view>
     <view class="button" bindtap="toggleDialog">聊一聊</view>>
   </scroll-view>
@@ -65,34 +45,49 @@
   <view class="dialog__mask" bindtap="toggleDialog" />
   <view class="dialog__container">
     <view wx:if="{{!copy}}" style=' display:flex; flex-direction: column; justify-content: center; padding:100rpx; gap: 10rpx;'>
-      <view class="lx" bindtap="call_phone" data-text="{{info.target.phone}}">
+      <view wx:if="{{info.target.phone}}" class="lx" bindtap="call_phone" data-text="{{info.target.phone}}">
         <image class="icon" src="/images/phone.png" mode="" />
         <text>{{info.target.phone}}</text>
       </view>
-      <view class="lx" bindtap="copy" data-text="{{info.target.contact_wx}}">
+      <view wx:if="{{info.target.contact_wx}}" class="lx" bindtap="copy" data-text="{{info.target.contact_wx}}">
         <image src="/images/wx.png" class="icon" mode="" />
         <text>{{info.target.contact_wx}}</text>
       </view>
-      <view class="lx" bindtap="copy" data-text="{{info.target.contact_qq}}">
+      <view wx:if="{{info.target.contact_qq}}" class="lx" bindtap="copy" data-text="{{info.target.contact_qq}}">
         <image src="/images/qq.png" class="icon" mode="" />
         <text>{{info.target.contact_qq}}</text>
       </view>
     </view>
-    <view wx:else style=' display:flex; flex-direction: column; justify-content: center;align-items: center; padding:100rpx; gap: 10rpx;'>
+    <!-- 效果：
+    starValue="0" 默认0分，
+    WH="48" 星星高度48rpx
+    disabled="true" 可以点击评分
+    isInteger="true" 点击评分是整颗星为单位 
+-->
+    <!-- <view wx:else style=' display:flex; flex-direction: column; justify-content: center;align-items: center; padding:100rpx; gap: 10rpx;'>
       <view>
         邀您评分
       </view>
       <view>
-        <radio-group bindchange="pingfen">
-          <radio value="1" />1分
-          <radio value="2" />2分
-          <radio value="3" />3分
-          <radio value="4" />4分
-          <radio value="5" />5分
-        </radio-group>
+
+        <Rate id="star" starValue="0" WH="48" disabled="true" bindgetStarValue="getStarValue" isInteger="true"></Rate>
         <button bindtap="toggleDialog" style="border: 1px solid #ccc;">提交</button>
       </view>
-      
-    </view>
+
+    </view> -->
   </view>
 </view>
+<page-container show="{{show}}" round="true" overlayStyle='background-color: rgba(0, 0, 0, 0.7); filter: blur(4px);' customStyle='height: 43%;'>
+  <view>
+    <view class="page-body">
+      <view>
+        服务评分
+      </view>
+      <Rate id="star" class="rate" starValue="0" WH="48" disabled="true" bindgetStarValue="getStarValue" isInteger="true"></Rate>
+      <view>
+        <textarea class="input" name="pingjia" placeholder="请输入评价" focus bindinput="pingjia" />
+      </view>
+    </view>
+    <button bindtap="exit">确定</button>
+  </view>
+</page-container>

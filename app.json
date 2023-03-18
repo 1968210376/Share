@@ -20,7 +20,8 @@
     "pages/shoucang/index",
     "pages/pinglun/index",
     "pages/my_fabu/index",
-    "pages/dongtai/index"
+    "pages/dongtai/index",
+    "pages/Rate/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

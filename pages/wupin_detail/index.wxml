@@ -9,7 +9,7 @@
   <view class="title font-bold center">
     {{info.target.title}}
   </view>
-  <view class="price_box">
+  <view wx:if="{{info.target.pirce}}" class="price_box">
     <text class="price red right">￥{{info.target.pirce}}</text>
     <!-- <text class="gray font-mini">|</text> -->
     <!-- <text class="font-mini blue"></text> -->

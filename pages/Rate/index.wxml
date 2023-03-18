@@ -1,0 +1,22 @@
+<!-- 评分组件 -->
+<view class='starbox'>
+  <text class='startext' wx:if="{{isShowStarValue}}">{{starValue}}</text>
+  <view class='imgbox imgbox1' wx:if="{{showTap}}" >
+    <block wx:for="{{stars}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+      <image class="star-image" style="width:{{WH}}rpx;height:{{WH}}rpx;left: {{item*(WH+10)}}rpx" src="{{starValue > item ?(starValue-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+        <view class="allItem" style="left:0rpx;width:{{WH}}rpx;height:{{WH}}rpx;" data-key="{{item+1}}" wx:if="{{isInteger}}" bindtap="selectAll"></view>
+        <view wx:else>
+          <view class="item" style="left:0rpx;width:{{WH/2}}rpx;height:{{WH}}rpx;" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
+          <view class="item" style="left:{{WH/2}}rpx;width:{{WH/2}}rpx;height:{{WH}}rpx;" data-key="{{item+1}}" bindtap="selectRight"></view>
+        </view>
+        
+      </image>
+    </block>
+  </view>
+  <view class='imgbox imgbox2' wx:else>
+    <block wx:for="{{stars}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+      <image class="star-image" style="width:{{WH}}rpx;height:{{WH}}rpx;left: {{item*(WH+10)}}rpx" src="{{starValue > item ?((starValue-item >= 0.5 && starValue-item < 1)?halfSrc:selectedSrc) : normalSrc}}">
+      </image>
+    </block>
+  </view>
+</view>

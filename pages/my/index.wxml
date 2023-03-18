@@ -43,11 +43,32 @@
       <image src="/images/next.png" class="next" mode="" />
     </view>
     <view class="space"></view>
-    <view class="menu-item" bindtap="showDetail" data-index="4">
+    <!-- <view class="menu-item" bindtap="showDetail" data-index="4">
       <view>
         我的动态
       </view>
       <image src="/images/next.png" class="next" mode="" />
+    </view>
+    <view class="space">
+      
+    </view> -->
+    <view class="menu-item" bindtap="showDetail"  data-index="4">
+      <button style="width: 100%;text-align:left;font-weight:normal;color:gray;margin-left:-25px;background-color: #fff;" open-type="contact" bindcontact="handleContact">
+        联系客服
+      </button>
+      <image src="/images/next.png" class="next" mode="" />
+    </view>
+    <view class="space">
+      
+    </view>
+     <view class="menu-item" bindtap="showDetail" data-index="5">
+      <view>
+        服务隐私政策
+      </view>
+      <image src="/images/next.png" class="next" mode="" />
+    </view>
+    <view class="space">
+      
     </view>
   </view>
 </view>

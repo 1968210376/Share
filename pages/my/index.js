@@ -225,13 +225,26 @@ Page({
           console.log('请求失败');
         }
       })
-    }else if(e.currentTarget.dataset.index == 4){
-      wx.switchTab({
-        url: '/pages/dongtai/index',
+    }
+    if(e.currentTarget.dataset.index == 4){
+      // wx.openCustomerServiceChat({
+      //   extInfo: {url: ''},
+      //   corpId: '',
+      //   success(res) {}
+      // })
+      // console.log(e.detail.path)
+      //   console.log(e.detail.query)
+    }
+    if(e.currentTarget.dataset.index == 5){
+      wx.navigateTo({
+        url: "/pages/niu_my_fuwuyinshi/index"
       })
-      // console.log('dongtai');
     }
 
+  },
+  handleContact (e) {
+    console.log(e.detail.path)
+    console.log(e.detail.query)
   },
   onHide() {
     this.setData({

@@ -263,6 +263,7 @@ Page({
               item.target.images = item.target.images.split(",");
             }
           })
+          res.data.response.content.length <10 ? that.setData({end:true}) : ''
           that.setData({
             list: res.data.response.content
           })

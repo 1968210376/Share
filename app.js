@@ -11,8 +11,8 @@ App({
     latitude: '',
     longitude: '',
     location: '',
-    serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
-    // serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
+    // serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
+    serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
     // serverApi: "http://150.158.107.188:8080/wx/api", //发布地址
   },
   // 点击定位
@@ -150,7 +150,7 @@ App({
             if (res.data.code == 0) {
               // console.log(res.data.message);
             }
-            let openid = res.data.response.wxOpenId
+            var openid = res.data.response.wxOpenId
             if (openid) {
               this.globalData.openid = openid
               this.globalData.userInfo = res.data.response

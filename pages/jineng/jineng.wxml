@@ -2,9 +2,7 @@
 <!-- <swiper data-item="{{tabs}}" bindchange="changeTabs" current="index" style="height:{{navHeight}}px">
   <swiper-item class="list" wx:for="{{categories}}" wx:key="index"> -->
 <!-- <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px" upper-threshold="60" bindscrolltolower="refresh" bindscrolltoupper="ontopRefresh" scroll-top="{{top}}" scroll-with-animation="true"> -->
-<view class="space">
-  
-</view>
+<view class="space"> </view>
   <view class="card" style="background-color: #fff;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
     <view class="userInfo">
       <view class="img">

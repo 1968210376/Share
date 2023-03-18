@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 15rpx;
 }
 .left{
     position: absolute;
@@ -32,19 +33,7 @@
     font-size: 20px;
 
 }
-.project{
-    width: 90vw;
-    margin: 0 auto;
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    margin-top: -20rpx;
-    padding: 10rpx;
-    border-radius: 8rpx;
-    box-shadow: #ccc 2px 2px 4px;
-    align-items: center;
-    
-}
+
 .icon{
     width: 50rpx;
     height: 50rpx;
@@ -164,4 +153,22 @@
 
 .dialog--show .dialog__mask {
     display: block;
+}
+.page-body{
+  width: 90vw;
+  height: 260px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input{
+  width: 80vw;
+  margin: 10rpx;
+  background-color: #f8f8f8;
+}
+.rate{
+  width: 40%;
+  margin: 10px;
 }

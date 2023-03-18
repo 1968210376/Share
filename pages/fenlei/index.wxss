@@ -74,11 +74,13 @@
 .content {
   background-color: #f1f1f5;
 }
-
+.title{
+  text-indent: 2rem;
+}
 .card {
   width: 90%;
   margin: 15rpx auto;
-  padding: 15rpx 0;
+  /* padding: 15rpx 0; */
   /* border: 1px solid #ccc; */
   border-radius: 5px;
   box-sizing: border-box;

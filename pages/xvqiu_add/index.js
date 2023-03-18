@@ -99,6 +99,27 @@ Page({
       // 文件图片的上传
       // this.add_fileImages(e);
       this.add_COSfileImages(e);
+      try {
+        wx.requestSubscribeMessage({
+          tmplIds: ['DF36jxuDTuayF5f_JnIF0GQj7CwvSb9p0wx6Iy2yQus'],
+          success(res) {
+            console.log(res);
+            console.log("success")
+            wx.reLaunch({
+              //页面跳转携带参数
+              url: '/pages/fenlei/index',
+              success: function () {
+                // console.log("跳转页面成功")
+              },
+            })
+          },
+          fail(res) {
+            console.log(res)
+          }
+        })
+      } catch (e) {
+        console.log('错误代码', e.code, '错误信息', e.message);
+      }
     }
   },
   // 文件图片上传腾讯对象存储COS
@@ -188,12 +209,12 @@ Page({
         wxOpenId: userInfo.wxOpenId,
         // phone: e.detail.value.scrap_phone,
         title: e.detail.value.title,
-        pirce: e.detail.value.price == undefined? '' : (Number(e.detail.value.pirce)),
-        phone: userInfo.phone == undefined ? '' : userInfo.phone,
-        contact_qq: userInfo.scrap_qq== undefined ? '' : userInfo.scrap_qq,
-        contact_wx: userInfo.scrap_wx==undefined ? '': userInfo.scrap_wx,
+        pirce: (Number(e.detail.value.pirce)),
+        phone: userInfo.phone == null ? '' : userInfo.phone,
+        contact_qq: userInfo.scrap_qq== null ? '' : userInfo.scrap_qq,
+        contact_wx: userInfo.scrap_wx==null ? '': userInfo.scrap_wx,
         status: 0,
-        content: e.detail.value.details == undefined ? '': e.detail.value.details,
+        // content: e.detail.value.details == null ? '': e.detail.value.details,
         Images: that.data.product_img == null ? '' : that.data.product_img,
         LikesNumber: 0,
         CommentsNumber: 0,
@@ -215,22 +236,22 @@ Page({
         wx.showToast({
           title: "上传成功",
         })
-        if (res.data.code == 1) {
-          // if (res.data.response.list == 0) {
-          //     return
-          // }
-          // this.setData({
-          //     categories: res.data.response.list,
-          // });
-          //         console.log("跳转页面")
-          wx.reLaunch({
-            //页面跳转携带参数
-            url: '/pages/fenlei/index',
-            success: function () {
-              // console.log("跳转页面成功")
-            },
-          })
-        }
+        // if (res.data.code == 1) {
+        //   // if (res.data.response.list == 0) {
+        //   //     return
+        //   // }
+        //   // this.setData({
+        //   //     categories: res.data.response.list,
+        //   // });
+        //   //         console.log("跳转页面")
+        //   wx.reLaunch({
+        //     //页面跳转携带参数
+        //     url: '/pages/fenlei/index',
+        //     success: function () {
+        //       // console.log("跳转页面成功")
+        //     },
+        //   })
+        // }
       },
       fail: res => {
         wx.showToast({
@@ -380,7 +401,7 @@ Page({
   onShow() {
     var userInfo = wx.getStorageSync('userInfo');
     // console.log("issue");
-    if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "" || userInfo.phon == "") {
+    if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "" || userInfo.phone == "") {
       setTimeout(function () {
         wx.showToast({
           title: '请完善个人信息',

@@ -26,16 +26,13 @@
       <image wx:if="{{is_shouCang}}" src="/images/sc(2).png" class="icon" />
     </view>
   </view>
-  <view class="title font-bold center">
+  <view class="title">
     {{info.target.title}}
   </view>
-  <view class="price_box">
+  <view wx:if="{{item.target.pirce}}" class="price_box">
     <text class="price red right">￥{{info.target.pirce}}</text>
     <!-- <text class="gray font-mini">|</text> -->
     <!-- <text class="font-mini blue"></text> -->
-  </view>
-  <view class="content">
-    {{info.target.content}}
   </view>
   <view wx:if="{{info.target.images[0]}}" class="imgBox">
     <view wx:for="{{info.target.images}}" wx:key="index">
