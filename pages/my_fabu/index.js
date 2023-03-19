@@ -81,6 +81,7 @@ Page({
                 delete:true
               })
               that.jiazai()
+              that.goTop()
             }
           })
         } else if (res.cancel) {

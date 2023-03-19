@@ -14,8 +14,8 @@ Page({
     is_shouCang: false,
     content: '',
     liuyan_value: '',
-    count:0,
-    is_clicked:true,
+    count: 0,
+    is_clicked: true,
   },
   /**
    * 控制 pop 的打开关闭
@@ -63,6 +63,11 @@ Page({
   is_shouCang() {
     var that = this
     var info = that.data.info
+    if (info.target.market_id) {
+      var id = info.target.market_id
+    } else {
+      var id = info.target.id
+    }
     if (that.data.is_clicked) {
       that.setData({
         is_clicked: false
@@ -73,7 +78,7 @@ Page({
           url: app.globalData.serverApi + '/deleteLikes',
           method: 'POST',
           data: {
-            marketId: info.target.id,
+            marketId: id,
             likesUserWxOpenId: info.target.wx_open_id, //物品发布人openid
             likesPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           },
@@ -81,7 +86,7 @@ Page({
             'content-type': 'application/x-www-form-urlencoded'
           },
           success: (res) => {
-            console.log('删除成功',res);
+            console.log('删除成功', res);
             // //console.log();
             that.setData({
               is_shouCang: false,
@@ -102,7 +107,7 @@ Page({
           url: app.globalData.serverApi + '/addLikes',
           method: 'POST',
           data: {
-            marketId: info.target.id,
+            marketId: id,
             likesUserWxOpenId: info.target.wx_open_id, //物品发布人openid
             likesPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           },
@@ -133,13 +138,13 @@ Page({
     }
 
   },
-  cha_shouCang(){
+  cha_shouCang() {
     var that = this
     var info = that.data.info
-    if(info.target.market_id){
+    if (info.target.market_id) {
       var id = info.target.market_id
-    }else{
-      var id = info.target.id 
+    } else {
+      var id = info.target.id
     }
     wx.request({
       url: app.globalData.serverApi + '/findAllByMarketIdFormLikes',
@@ -155,15 +160,15 @@ Page({
       success: (res) => {
         //console.log("是否收藏",res);
         that.setData({
-        count:res.data.response.count
+          count: res.data.response.count
         })
-        if(res.data.response.flag!==0){
+        if (res.data.response.flag !== 0) {
           that.setData({
             is_shouCang: true
-          })  
-        } else{
+          })
+        } else {
           that.setData({
-            is_shouCang:false
+            is_shouCang: false
           })
         }
       },

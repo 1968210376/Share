@@ -23,3 +23,16 @@
       </block>
     </view>
 </view>
+<!-- 空列表提示 -->
+<view wx:if="{{ list.length == 0 }}" class="center">
+    <image class="data-img" lazy-load mode="aspectFill" src="/images/no_result.png" />
+    <view>还没有数据哦~</view>
+  </view>
+  <!-- 到底了 -->
+  <!-- <view wx:if="{{end == true}}" class="center"> -->
+  <view class="center">
+    ~ 到底啦 ~
+  </view>
+<view class="goTop">
+  <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+</view>
