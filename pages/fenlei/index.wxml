@@ -3,8 +3,11 @@
   <view class="searchBox">
     <view class="location" >
       <image style="width: 50rpx;height: 50rpx;" src="/images/Location.png" mode="aspectFill" />
-      <view>
+      <view wx:if="{{location}}">
         {{location}}
+      </view>
+      <view wx:else>
+        中国
       </view>
     </view>
     <input class="search" bindconfirm="search" type="text" confirm-type="search" placeholder="搜索" />
