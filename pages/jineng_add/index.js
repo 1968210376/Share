@@ -418,6 +418,7 @@ add_sell_scrap: function (e) {
         url: "/pages/my_edit_information/index"
       })
     }
+    var isshow = wx.getStorageSync('isshow')
     // 从地图选点插件返回后，在页面的onShow生命周期函数中能够调用插件接口，取得选点结果对象
     let location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
     // console.log("location133:", location)
@@ -427,6 +428,7 @@ add_sell_scrap: function (e) {
     // JSON.parse(location)
     this.setData({
       chooseLocation: location,
+      isshow:isshow
     })
   }
 })

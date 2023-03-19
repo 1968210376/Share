@@ -43,22 +43,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/dongtai/index",
-        "iconPath": "images/pengyouquan(1).png",
-        "selectedIconPath": "images/pengyouquan.png",
-        "text": "动态"
-      },
-      {
         "pagePath": "pages/add/add",
         "iconPath": "images/add(1).png",
         "selectedIconPath": "images/add_selected.png",
-        "text": "发布"
-      },
-      {
-        "pagePath": "pages/niu_map/map",
-        "iconPath": "images/map.png",
-        "selectedIconPath": "images/map_select.png",
-        "text": "周边"
+        "text": "共享"
       },
       {
         "pagePath": "pages/my/index",

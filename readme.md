@@ -1,3 +1,16 @@
+ {
+        "pagePath": "pages/dongtai/index",
+        "iconPath": "images/pengyouquan(1).png",
+        "selectedIconPath": "images/pengyouquan.png",
+        "text": "动态"
+      },
+      {
+        "pagePath": "pages/niu_map/map",
+        "iconPath": "images/map.png",
+        "selectedIconPath": "images/map_select.png",
+        "text": "周边"
+      },
+      
  // {
       //   "pagePath": "pages/niu_market/index",
       //   "iconPath": "images/pengyouquan(1).png",

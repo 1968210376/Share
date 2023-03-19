@@ -3,10 +3,44 @@ Page({
     data: {
         // animationData: {},
         // animationDatas: {},
-        animation:false
+        animation:false,
+        isshow:false
     },
 
-    onLoad: function () {},
+    onLoad: function () {
+      this.banner();
+    },
+    banner() { //轮播图
+      var that = this
+      wx.request({
+        url: app.globalData.serverApi + '/selectAllBanner',
+        method: 'POST',
+        success(res) {
+          console.log('lunbo:', res.data.response);
+          that.setData({
+            isshow: res.data.response.length>2?true:false
+          })
+          wx.setStorageSync("isshow",that.data.isshow);
+          console.log(that.data.isshow);
+        }
+      })
+    },
+    formSubmit: function (e) {
+      var that = this
+      console.log('form发生了submit事件，携带数据为：', e.detail.value)
+      // let category_type =  JSON.parse(e.detail.value.category_type);
+      if (!e.detail.value.title) {
+        wx.showToast({
+          icon: 'none',
+          title: '请输入标题'
+        });
+      }
+    },
+    to_niu_my_fuwuyinshi: function () {
+      wx.navigateTo({
+        url: "/pages/niu_my_fuwuyinshi/index"
+      })
+    },
     goAdd(e) {
         var url
         if(e.currentTarget.dataset.index == 1){

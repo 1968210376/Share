@@ -38,7 +38,7 @@
 
     <view class="menu-item" bindtap="showDetail" data-index="3">
       <view>
-        我的发布
+        我的共享
       </view>
       <image src="/images/next.png" class="next" mode="" />
     </view>

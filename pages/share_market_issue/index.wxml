@@ -1,10 +1,6 @@
-<view class="box">
+<!-- <view class="box">
     <form bindsubmit="formSubmit" bindreset="formReset">
         <view class='pages'>
-            <!-- <view class="title">
-            可发布物品、需求、技能、服务等
-        </view> -->
-            <!-- 选择分类 -->
             <scroll-view scroll-x="true" class="tab-h">
                 <radio-group name="category_type" bindchange="getCategory">
                     <text style="margin-left:20rpx">分类:</text>
@@ -35,28 +31,6 @@
                     </label>
                 </radio-group>
             </scroll-view>
-            <!-- 
-        <scroll-view scroll-x="true" class="tab-h">
-            <radio-group name="category_type" >
-                <text style="margin-left:20rpx">分类:</text>
-                <label wx:for="{{father}}" wx:key="index" data-index="{{item.id}}" bindtap="getCategory">
-                    <radio value='{"type":{{item.categoryType}},"name":"{{item.categoryName}}"}' checked="{{item.checked}}">
-                        <text decode="{{true}}">{{item.categoryName}}</text>
-                    </radio>
-                </label>
-            </radio-group>
-        </scroll-view>
-        <scroll-view wx:if="{{array}}" scroll-x="true" class="tab-h">
-            <radio-group name="category_type" >
-                <text style="margin-left:20rpx">分类:</text>
-                <label  wx:for="{{array}}" wx:key="index" data-index="{{item.id}}" bindtap="selected">
-                    <radio value='{"type":{{item.categoryType}},"name":"{{item.categoryName}}"}' checked="{{item.checked}}">
-                        <text decode="{{true}}">{{item.categoryName}}</text>
-                    </radio>
-                </label>
-            </radio-group>
-        </scroll-view> -->
-
             <view class="space"></view>
             <view class="row-wrap">
                 <view class="label"><text style="color: red;">*</text> 名称：</view>
@@ -64,10 +38,8 @@
                     <input name="scrap_title" class="input" type="text" placeholder="请输入标题" />
                 </view>
             </view>
-
             <view class="space"></view>
             <view class="row-wrap">
-                <!-- <view class="label"><text style="color: red;">*</text> 价格￥：</view> -->
                 <view class="label"><text style="color: red;"></text> 价格￥：</view>
                 <view class="label-right">
                     <input name="scrap_price" class="input" type="digit" placeholder="请输入价格 如：1.5" />
@@ -85,7 +57,6 @@
             <view class="menu-item">
                 <view class="l"><text style="color: red;">*</text>上传图片(最多九张)</view>
             </view>
-            <!-- 图片 -->
             <view class="images_box">
                 <block wx:key="imgbox" wx:for="{{imgbox}}">
                     <view class='img-box'>
@@ -99,15 +70,6 @@
                     <image class='img' src='../../images/icon_add.png'></image>
                 </view>
             </view>
-
-            <!-- <view class="space"></view>
-        <view class="row-wrap">
-            <view class="label">联系方式：</view>
-            <view class="label-right">
-                <input name="scrap_wx" class="input" type="text" placeholder="如：QQ：2905154974（非必填）" />
-            </view>
-        </view> -->
-
             <view class="space"></view>
             <view class="row-wrap">
                 <view class="label-right">
@@ -118,15 +80,6 @@
                 </view>
             </view>
 
-            <!-- <view class="space"></view>
-        <view class="row-wrap">
-            <view class="label">状态：</view>
-            <view class="label-right">
-                <text style="color: rgb(161, 160, 159)">审核通过后方可展示首页</text>
-            </view>
-        </view> -->
-
-            <!-- 提交按钮 -->
             <view class="btn-area">
                 <button formType="submit" type="primary" plain="true" style="width:70%;;color:white;border:none;background-color: #007AFF;color: aliceblue;">
                     确认发布
@@ -138,4 +91,4 @@
         </view>
     </form>
 
-</view>
+</view> -->

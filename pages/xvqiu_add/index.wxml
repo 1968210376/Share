@@ -1,3 +1,5 @@
+<view wx:if="{{isshow}}">
+  
 <scroll-view scroll-y>
   <div class="form-container">
     <p>需求</p>
@@ -19,28 +21,40 @@
         <image src="/images/Location.png" class="icon position" mode="" />
       </view>
       <!-- 图片 -->
-      <label>图片</label>
-      <input type="text" hidden name="imgbox" value="{{imgbox}}" />
-      <view class="images_box">
-        <block wx:key="imgbox" wx:for="{{imgbox}}">
-          <view class='img-box'>
-            <image class='img' mode="aspectFill" src='{{item}}'></image>
-            <view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
-              <image class='img' src='/images/delect.png'></image>
+      <view wx:if="{{isshow}}">
+        <label>图片</label>
+        <input type="text" hidden name="imgbox" value="{{imgbox}}" />
+        <view class="images_box">
+          <block wx:key="imgbox" wx:for="{{imgbox}}">
+            <view class='img-box'>
+              <image class='img' mode="aspectFill" src='{{item}}'></image>
+              <view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
+                <image class='img' src='/images/delect.png'></image>
+              </view>
             </view>
+          </block>
+          <view class='img-box' name="imagebox" bindtap='addPic1' wx:if="{{imgbox.length<issuePicSum}}">
+            <image class='img' src='/images/icon_add.png'></image>
           </view>
-        </block>
-        <view class='img-box' name="imagebox" bindtap='addPic1' wx:if="{{imgbox.length<issuePicSum}}">
-          <image class='img' src='/images/icon_add.png'></image>
         </view>
       </view>
       <button form-type="submit">提交</button>
 
+      <view class="row-wrap">
+        <view class="label-right" style="text-align: center;line-height: 50px;">
+          <text style="color: rgb(161, 160, 159)">审核通过后方可展示首页</text>
+        </view>
+      </view>
       <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>
 
     </form>
   </div>
 </scroll-view>
+</view>
+
+<view wx:else>
+  <image src="../../images/psd.png" mode="widthFix" style="width: 100%;" />
+</view>
 <page-container show="{{show}}" round="true" overlayStyle='background-color: rgba(0, 0, 0, 0.7); filter: blur(4px);' customStyle='height: 33%;'>
   <view>
     <view class="page-body">
