@@ -28,6 +28,38 @@ Page({
       showDialog: !this.data.showDialog
     });
   },
+  delete(e) {
+    console.log(e);
+    e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
+      title: '不是本人的留言',
+    })
+  },
+  detele_(e) {
+    var that = this
+    wx.showModal({
+      title: '是否删除该留言？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: app.globalData.serverApi + '/deleteComment',
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              id: e.currentTarget.dataset.id.id
+            },
+            success(res) {
+              that.show_liuyan()
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
   is_shouCang() {
     var that = this
     var info = that.data.info

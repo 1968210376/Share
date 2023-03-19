@@ -19,9 +19,17 @@
     <view class="width padding column">
       <view class="gap">
         <text wx:if="{{info.target.pirce}}" class="blue">价格：￥{{info.target.pirce}}</text>
-        <view wx:if="{{info.target.address}}">
-          地址：<text>{{info.target.address}}</text>
+
+        <view class="location" style="width: 70%;" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
+          <view wx:if="{{info.target.choose_location}}">
+            <!-- <image style="width: 50rpx;height: 50rpx;margin-top: 10rpx;" src="/images/Location.png" mode="aspectFill" /> -->
+            地址：{{info.target.choose_location.address}}
+            </view> 
         </view>
+
+        <!-- <view wx:if="{{info.target.address}}">
+          地址：<text>{{info.target.address}}</text>
+        </view> -->
       </view>
 
       <!-- <text>可工作时间：工作日08：30-17：30</text> -->
@@ -40,7 +48,7 @@
     </view>
   </view>
   <view class="liuyan">
-    <text>评论</text>
+    <!-- <text>评论</text> -->
     <view class="liuyan_item" wx:for="{{content}}" wx:key="index">
       <view class="avatar_box">
         <image class="avatar_i" src="{{item.target.avatar_url}}" mode="widthFix" />

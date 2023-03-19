@@ -44,7 +44,15 @@ Page({
       copy: false,
     });
   },
-
+  // 点击定位 2023年3月5日 牛亚博 
+  navigateToChooseLocation: function (e) {
+    let json = e.currentTarget.dataset.id
+    app.getUserLocation();
+    if (json == undefined || json == null) {
+      return
+    }
+    app.clickdingwei(json);
+  },
   // 实现点击复制功能
   copy(e) {
     var that = this

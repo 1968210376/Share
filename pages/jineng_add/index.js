@@ -227,7 +227,7 @@ add_sell_scrap: function (e) {
             contact_wx: userInfo.scrap_wx == null? "" : userInfo.scrap_wx,
             status: 0,
             content: e.detail.value.details == null ? '' : e.detail.value.details,
-            // Images: that.data.product_img,
+            Images: that.data.product_img == null ? '' : that.data.product_img,
             LikesNumber: 0,
             CommentsNumber: 0,
             // time:e.detail.value.time,
