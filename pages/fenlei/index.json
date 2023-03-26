@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "navigation-bar": "../navigation-bar/navigation-bar"
+  },
+  "navigationStyle": "custom",
   "enablePullDownRefresh": true
-
 }

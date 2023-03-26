@@ -1,51 +1,62 @@
 <!--index.wxml-->
+<view class="bg"></view>
 <view class="container">
-  <view class="searchBox">
-    <view class="location" >
-      <image style="width: 50rpx;height: 50rpx;" src="/images/Location.png" mode="aspectFill" />
-      <view wx:if="{{location}}">
-        {{location}}
+  <view class="box">
+    <navigation-bar default-data="{{defaultData}}"></navigation-bar>
+    <view class="top">
+      <image src="/images/bg.png" class="img" />
+    </view>
+    <view class="searchBox">
+      <view class="location">
+        <image style="width: 50rpx;height: 50rpx;" src="/images/location.png" mode="widthFix" />
+        <view wx:if="{{location}}">
+          {{location}}
+        </view>
+        <view wx:else>
+          中国
+        </view>
       </view>
-      <view wx:else>
-        中国
+      <view class="input-group">
+        <!-- <label class="label">Email address</label> -->
+        <view class="input-box">
+          <input autocomplete="off" name="search" bindconfirm="search" bindblur="search" id="search" class="input" type="text" placeholder="输入关键词！" />
+          <view class="search_btn">搜索</view>
+        </view>
+      </view>
+      <!-- <input class="search" bindconfirm="search" type="text" confirm-type="search" placeholder="搜索" /> -->
+    </view>
+    <!-- 标签页标题 -->
+    <view class="tab">
+      <view class="tab-items {{tab == 0 ? 'active':''}}" bindtap="changeTab" data-tab="0">
+        <image src="/images/wupinshenqing.png" bindtap="changeTab" data-tab="0" class="icon" mode="" />
+        物品
+      </view>
+      <view class="tab-items {{tab == 1 ? 'active' : ''}}" bindtap="changeTab" data-tab="1">
+        <image src="/images/jineng.png" bindtap="changeTab" data-tab="1" class="icon" mode="" />
+        技能
+      </view>
+      <view class="tab-items {{tab == 2 ? 'active' : ''}}" bindtap="changeTab" data-tab="2">
+        <image src="/images/zhaoxuqiu.png" bindtap="changeTab" data-tab="2" class="icon" mode="" />
+        需求
       </view>
     </view>
-    <input class="search" bindconfirm="search" type="text" confirm-type="search" placeholder="搜索" />
-  </view>
-  <!-- 标签页标题 -->
-  <view class="tab">
-    <view class="tab-items {{tab == 0? 'active':''}}" bindtap="changeTab" data-tab="0">
-      <image src="/images/wupin.png" bindtap="changeTab" data-tab="0" class="icon" mode="" />
-      物品
-    </view>
-    <view class="tab-items {{tab == 1? 'active' : ''}}" bindtap="changeTab" data-tab="1">
-      <image src="/images/jineng.png" bindtap="changeTab" data-tab="1" class="icon" mode="" />
-      技能
-    </view>
-    <view class="tab-items {{tab == 2? 'active' : ''}}" bindtap="changeTab" data-tab="2">
-      <image src="/images/xq(2).png" bindtap="changeTab" data-tab="2" class="icon" mode="" />
-      需求
-    </view>
-  </view>
-  <view class="space"></view>
-  <view class="tab">
- 
-    <view wx:for="{{categories}}" wx:key="index" class="tab-item {{items == index ? 'active' : ''}} " bindtap="changeItem" data-item="{{index}}" data-id="{{item.categoryType}}">
-      {{item.categoryName}}
+    <!-- <view class="space"></view> -->
+    <view class="tab">
+      <view wx:for="{{categories}}" wx:key="index" class="tab-item {{items == index ? 'active' : ''}} " bindtap="changeItem" data-item="{{index}}" data-id="{{item.categoryType}}">
+        {{item.categoryName}}
+      </view>
     </view>
   </view>
   <view class="goTop" wx:if="{{pageIndex>1}}">
     <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
   </view>
-  <view class="content" >
+  <view class="content">
     <!-- 内容区域 -->
-    <view wx:if="{{loading}}" >
-      加载中...
-    </view>
+
     <view wx:if="{{tab == 0}}">
       <include src="../wupin/wupin"></include>
     </view>
-    <view wx:if="{{tab == 1}}"> 
+    <view wx:if="{{tab == 1}}">
       <include src="../jineng/jineng"></include>
     </view>
     <view wx:if="{{tab == 2}}">

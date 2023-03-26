@@ -15,7 +15,9 @@ Page({
     pageIndex: 1,
     pageSize: 10,
     content: '',
-    end: false
+    end: false,
+    is_img_click:false,
+
   },
   count() {
     var that = this
@@ -182,6 +184,14 @@ Page({
         content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
       })
     }
+  },
+  img_click(e) {
+    // console.log(e.target.dataset.img);
+    var that = this
+    this.setData({
+      is_img_click: !that.data.is_img_click,
+      img_src: e.target.dataset.img ? e.target.dataset.img : ''
+    })
   },
   /**
    * 生命周期函数--监听页面加载

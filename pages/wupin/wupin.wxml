@@ -19,7 +19,7 @@
               <view>
                 <image class="icon" src="{{item.target.avatar_url}}" mode="widthFix" />
               </view>
-              <text class="font-mini">{{item.target.nick_name}}</text>
+              <text class="font-mini margin_left">{{item.target.nick_name}}</text>
             </view>
             <view wx:if="{{item.target.pirce}}" class="red price right">
               ￥{{item.target.pirce}}
@@ -44,7 +44,7 @@
               <view>
                 <image class="icon" src="{{item.target.avatar_url}}" mode="widthFix" />
               </view>
-              <text class="font-mini">{{item.target.nick_name}}</text>
+              <text class="font-mini margin_left">{{item.target.nick_name}}</text>
             </view>
             <view wx:if="{{item.target.pirce}}" class="red price right">
               ￥{{item.target.pirce}}
@@ -58,14 +58,11 @@
 
   <!-- 空列表提示 -->
   <view wx:if="{{ list.length == 0 }}" class="center">
-    <image class="data-img" lazy-load mode="aspectFill" src="/images/no_result.png" />
+    <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
     <view>还没有数据哦~</view>
   </view>
   <!-- 到底了 -->
-  <!-- <view wx:if="{{end == true}}" class="center"> -->
-  <view class="center">
+  <view wx:if="{{end == true}}" class="center">
     ~ 到底啦 ~
   </view>
 </view>
-<!-- </swiper-item>
-</swiper> -->

@@ -22,8 +22,8 @@
       </view>
     </view>
     <view class="right" bindtap="is_shouCang">
-      <image wx:if="{{!is_shouCang}}" class="icon" src="/images/sc(1).png" mode="" />
-      <image wx:if="{{is_shouCang}}" src="/images/sc(2).png" class="icon" />
+      <image wx:if="{{!is_shouCang}}" class="icon" src="/images/shoucang(2).png" mode="" />
+      <image wx:if="{{is_shouCang}}" src="/images/shoucang(3).png" class="icon" />
     </view>
   </view>
 
@@ -43,7 +43,7 @@
   </view>
   <view wx:if="{{info.target.images[0]}}" class="imgBox">
     <view wx:for="{{info.target.images}}" wx:key="index">
-      <image	show-menu-by-longpress src="{{item}}" mode="widthFix" />
+      <image bindtap="img_click" data-img="{{item}}" show-menu-by-longpress src="{{item}}" mode="widthFix" />
     </view>
   </view>
   <view class="btn yellow" bindtap="toggleDialog">
@@ -80,7 +80,9 @@
     </view>
   </view>
 </view>
-
+<view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
+  <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
+</view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
   <view class="dialog__mask" bindtap="toggleDialog" />

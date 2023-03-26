@@ -1,8 +1,9 @@
+<image src="/images/beijing.jpg" class="bg" mode=""/>
 <view class="container" wx:if="{{isshow}}">
   <view class="class {{animation ? 'dong' : '' }}">
     <view class="fenlei" data-index="1" bindtap="goAdd">
       <view>
-        <image src="/images/wupin.png" class="icon" mode="" />
+        <image src="/images/wupinshenqing.png" class="icon" mode="" />
       </view>
       物品
     </view>
@@ -14,12 +15,13 @@
     </view>
     <view class="fenlei" data-index="3" bindtap="goAdd">
       <view>
-        <image src="/images/xq(2).png" class="icon" mode="" />
+        <image src="/images/zhaoxuqiu.png" class="icon" mode="" />
       </view>
       需求
     </view>
 
   </view>
+  
   <view class="bottom {{animation ? 'move' : '' }}">
     发布
   </view>

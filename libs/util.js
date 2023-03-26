@@ -5,6 +5,7 @@ const formatTime = date => {
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
+
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
@@ -36,7 +37,8 @@ function dateFormat(number, format) {
   return format;
 }
 
-// 时间转换成time时间之前 2023年3月10日
+
+// 时间转换成time时间之前
 function commentTimeHandle(dateStr) {
   // dateStr = 2018-09-06 18:47:00" 测试时间
   var publishTime = dateStr / 1000, //获取dataStr的秒数  打印结果--1536230820000

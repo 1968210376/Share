@@ -1,0 +1,8 @@
+<!-- 自定义顶部栏 -->
+<view class="nav-bar" style="height:{{navBarHeight}}px;line-height:{{navBarHeight+menuHeight*1.3}}px;">
+    <!-- <input class="search input" placeholder="输入关键词！" style="height:{{menuHeight}}px; min-height:{{menuHeight}}px; line-height:{{menuHeight}}px; left:{{menuRight}}px; top:{{menuTop}}px;"></input> -->
+  <image src="/images/logo.png" class="logo"   mode="widthFix"/>
+</view>
+
+<!-- 占位，高度与顶部栏一样 -->
+<view style="height:{{navBarHeight}}px;"></view>

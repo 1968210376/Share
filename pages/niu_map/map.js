@@ -58,10 +58,10 @@ Page({
           let arr = [];
           var length = list.length
           list.forEach((mar, list) => {
-            if (mar.target.images != "" &&mar.target.images != null) {
+            if (mar.target.images != "" && mar.target.images != null) {
               mar.target.images = mar.target.images.split(",");
             }
-            if(mar.target.choose_location!=null && mar.target.choose_location!=""){
+            if (mar.target.choose_location != null && mar.target.choose_location != "") {
               mar.target.choose_location = JSON.parse(mar.target.choose_location);
             }
             console.log(that.data.latitude, that.data.longitude)
@@ -98,44 +98,44 @@ Page({
             //     display: "ALWAYS",
             //   },
             // if(Math.random()*length<3){
-              item.iconPath = mar.target.avatar_url;
-              item.customCallout={
-                // content:999,
-                color: '#ff6666 ',
-                content: (mar.target.title.length > 20 ? mar.target.title.substr(0, 20) + "..." : mar.target.title),
-                price:"￥" + mar.target.pirce,
-                image:mar.target.images != "" && mar.target.images != null ? mar.target.images[0]:"",
-                fontSize: 14,
-                borderRadius: 5,
-                borderWidth: 1,
-                bgColor: '#ffffffff',
-                // bgColor: '#00ffff00',
-                width: 1,
-                // borderColor: "#ff0000",
-                // borderColor: "#00ff00",
-                borderColor: "#ff6666",
-                padding: 8,
-                textAlign: 'center',
-                display: "ALWAYS",
-              }
+            item.iconPath = mar.target.avatar_url;
+            item.customCallout = {
+              // content:999,
+              color: '#ff6666 ',
+              content: (mar.target.title.length > 20 ? mar.target.title.substr(0, 20) + "..." : mar.target.title),
+              price: "￥" + mar.target.pirce,
+              image: mar.target.images != "" && mar.target.images != null ? mar.target.images[0] : "",
+              fontSize: 14,
+              borderRadius: 5,
+              borderWidth: 1,
+              bgColor: '#ffffffff',
+              // bgColor: '#00ffff00',
+              width: 1,
+              // borderColor: "#ff0000",
+              // borderColor: "#00ff00",
+              borderColor: "#ff6666",
+              padding: 8,
+              textAlign: 'center',
+              display: "ALWAYS",
+            }
             // }
-              
 
 
-              // item.label = {
-              //   borderColor:'#ff0033',
-              //   borderWidth:1,
-              //   borderRadius:5,
-              //   width:34,
-              //   height:34,
-              //   anchorX:-17,
-              //   anchorY:-33,
-              //   // bgColor: '#ffffff',
-              //   color: '#ff6666',
-              //   alpha:0,
-              //   // content: aaa,
-              // },
-              arr.push(item)
+
+            // item.label = {
+            //   borderColor:'#ff0033',
+            //   borderWidth:1,
+            //   borderRadius:5,
+            //   width:34,
+            //   height:34,
+            //   anchorX:-17,
+            //   anchorY:-33,
+            //   // bgColor: '#ffffff',
+            //   color: '#ff6666',
+            //   alpha:0,
+            //   // content: aaa,
+            // },
+            arr.push(item)
           })
           that.setData({
             markers: arr,
@@ -197,24 +197,24 @@ Page({
       })
     }
     // if (e.type === 'end' && e.causedBy === 'drag') {
-		// 	const mapCtx = wx.createMapContext('map', this);
-		// 	mapCtx.getCenterLocation({
-		// 		success: res => {
-		// 			const latitude = res.latitude;
-		// 			const longitude = res.longitude;
-		// 			this.setData({
-		// 				animation: true,
-		// 				regionCallbackTxt: latitude.toFixed(6) + ',' + longitude.toFixed(6)
-		// 			});
-		// 		}
-		// 	});
-		// }
+    // 	const mapCtx = wx.createMapContext('map', this);
+    // 	mapCtx.getCenterLocation({
+    // 		success: res => {
+    // 			const latitude = res.latitude;
+    // 			const longitude = res.longitude;
+    // 			this.setData({
+    // 				animation: true,
+    // 				regionCallbackTxt: latitude.toFixed(6) + ',' + longitude.toFixed(6)
+    // 			});
+    // 		}
+    // 	});
+    // }
   },
-  onMarkerAnimationend () {
-		this.setData({
-			animation: false
-		});
-	},
+  onMarkerAnimationend() {
+    this.setData({
+      animation: false
+    });
+  },
   // 点击目标 回到初始位置 即刷新页面
   controltap: function () {
     var that = this
@@ -262,7 +262,12 @@ Page({
       url: "/pages/wupin_detail/index?id=" + e
     })
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
 
+  }
   // clickmap: function (res) {
   //   console.log(res)
   //   // this.selectMarket()

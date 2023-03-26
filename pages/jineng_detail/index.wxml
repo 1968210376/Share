@@ -44,7 +44,7 @@
     </view>
     <view wx:if="{{info.target.images}}" class="column width">
       <!-- <text>图片</text> -->
-      <image style="border-radius:15rpx;margin:0 auto;" src="{{info.target.images}}" mode="widthFix" />
+      <image bindtap="img_click" data-img="{{info.target.images}}"  style="border-radius:15rpx;margin:0 auto;" src="{{info.target.images}}" mode="widthFix" />
     </view>
   </view>
   <view class="space">
@@ -86,7 +86,9 @@
   </view>
 </view>
 
-
+<view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
+  <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
+</view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
   <view class="dialog__mask" bindtap="toggleDialog" />

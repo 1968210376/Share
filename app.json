@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/niu_start_page/index",
-    "pages/niu_haibao/index",
+    "pages/niu_haibao/index", 
     "pages/fenlei/index",
     "pages/niu_map/map",
     "pages/my/index",
@@ -22,37 +22,49 @@
     "pages/pinglun/index",
     "pages/my_fabu/index",
     "pages/dongtai/index",
-    "pages/Rate/index"
+    "pages/Rate/index",
+    "pages/navigation-bar/navigation-bar"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#38b6ff",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#29B6F6",
     "navigationBarTitleText": "心愿享",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#6e6d6b",
-    "selectedColor": "#3283fc",
+    "color": "#999",
+    "selectedColor": "#29b6f6",
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "position": "bottom",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/fenlei/index",
-        "iconPath": "images/home(1).png",
-        "selectedIconPath": "images/home.png",
+        "iconPath": "images/home(2).png",
+        "selectedIconPath": "images/home(3).png",
         "text": "首页"
       },
       {
+        "pagePath": "pages/dongtai/index",
+        "iconPath": "images/dongatai.png",
+        "selectedIconPath": "images/dongtai.png",
+        "text": "动态"
+      },
+      {
         "pagePath": "pages/add/add",
-        "iconPath": "images/add(1).png",
-        "selectedIconPath": "images/add_selected.png",
-        "text": "共享"
+        "iconPath": "images/add.png",
+        "selectedIconPath": "images/add(2).png",
+        "text": "心愿享"
+      },
+      {
+        "pagePath": "pages/niu_map/map",
+        "iconPath": "images/zhoubian(3).png",
+        "selectedIconPath": "images/zhoubian(4).png",
+        "text": "周边"
       },
       {
         "pagePath": "pages/my/index",
-        "iconPath": "images/shouye(1).png",
-        "selectedIconPath": "images/shouye.png",
+        "iconPath": "images/my(2).png",
+        "selectedIconPath": "images/my(3).png",
         "text": "我的"
       }
     ]
@@ -62,11 +74,12 @@
     "downloadFile": 10000,
     "connectSocket": 10000
   },
+
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "plugins": {
     "chooseLocation": {
-      "version": "1.0.9",
+      "version": "1.0.10",
       "provider": "wx76a9a06e5b4e693e"
     },
     "routePlan": {
@@ -84,4 +97,5 @@
     }
   },
   "lazyCodeLoading": "requiredComponents"
+
 }

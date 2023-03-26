@@ -2,7 +2,8 @@
 const app = getApp()
 // const chooseLocation = requirePlugin('chooseLocation');
 const util = require('../../libs/util.js')
-const $api = require('../../libs/request.js').Api
+// const $api = require('../../libs/request.js').Api
+const $api = require('../../libs/request').Api
 Page({
   data: {
     tab: 0,
@@ -22,6 +23,8 @@ Page({
     end: false,
     state: false,
     top: 0,
+    nbFrontColor: '#000000',
+    nbBackgroundColor: '#ffffff',
   },
   getCategory(e) { // 获取分类
     var that = this
@@ -30,20 +33,20 @@ Page({
     } else {
       var reside = that.data.categoryType
     }
-    
-    //  推荐使用箭头函数简写成,极大提升了代码的简洁性和可读性
-//  promise.then(res => res.data).then(data => data.result).then(result => console.log(result));
-    // $api.selectCategory(
-    //   {
-    //     categoryType: reside
-    //   }
-    //   ).then((res)=>{
-    //   console.log("封装接口调用===》");
-    //   console.log(res);
-    //   console.log(res.data);
-    // }).catch((error)=>{
-    //   console.log(error)
-    // });
+
+    //  推荐使用箭头函数简写成,极大提升了代码的简洁性和可读性 
+    //  promise.then(res => res.data).then(data => data.result).then(result => console.log(result)); 
+    // $api.selectCategory( 
+    //   { 
+    //     categoryType: reside 
+    //   } 
+    //   ).then((res)=>{ 
+    //   console.log("封装接口调用===》"); 
+    //   console.log(res); 
+    //   console.log(res.data); 
+    // }).catch((error)=>{ 
+    //   console.log(error) 
+    // }); 
 
     wx.request({
       url: app.globalData.serverApi + '/selectCategory',
@@ -55,8 +58,8 @@ Page({
         categoryType: reside
       },
       success: (res) => {
-        console.log("selectcategory===>res");
-        console.log(res);
+        // console.log("selectcategory===>res");
+        // console.log(res);
         // wx.setStorageSync('categories', res.data.response.content)
         that.setData({
           categories: res.data.response.content
@@ -113,9 +116,9 @@ Page({
   },
   search(e) { //搜索
     var openid = wx.getStorageSync('openid')
-    wx.showToast({
-      title: '搜索' + e.detail.value,
-    })
+    // wx.showToast({
+    //   title: '搜索' + e.detail.value,
+    // })
     this.setData({
       searchKey: e.detail.value,
       openid: openid
@@ -278,7 +281,9 @@ Page({
               item.target.images = item.target.images.split(",");
             }
           })
-          res.data.response.content.length <10 ? that.setData({end:true}) : ''
+          res.data.response.content.length < 10 ? that.setData({
+            end: true
+          }) : ''
           that.setData({
             list: res.data.response.content
           })
@@ -420,6 +425,7 @@ Page({
     this.onPullDownRefresh()
   },
   onLoad() {
+
     var that = this
     this.setData({ //动态高度
       navHeight: app.globalData.navHeight,
@@ -432,10 +438,16 @@ Page({
     //   chooseLocation: location,
     //   location: city
     // })
+    this.setData({
+      nbTitle: '新标题',
+      nbLoading: true,
+      nbFrontColor: '#ffffff',
+      nbBackgroundColor: '#000000',
+    })
   },
   onShow() {
 
-    this.banner()
+    // this.banner()
 
     var city = wx.getStorageSync('city');
     if (city == null || city == "") {
@@ -465,12 +477,18 @@ Page({
     this.goTop()
     console.log('下拉刷新');
     this.setData({
-      end:false
+      end: false
     })
     // }
   },
   onReachBottom() {
     console.log('上拉刷新');
     this.refresh()
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   }
 })

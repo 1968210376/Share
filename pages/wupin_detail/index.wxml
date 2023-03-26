@@ -19,7 +19,7 @@
   </view>
   <view wx:if="{{info.target.images[0]}}" class="imgBox">
     <view wx:for="{{info.target.images}}" wx:key="index">
-      <image 	show-menu-by-longpress src="{{item}}" mode="widthFix" />
+      <image bindtap="img_click" data-img="{{item}}" show-menu-by-longpress src="{{item}}" mode="widthFix" />
     </view>
   </view>
   <view class="btn yellow" bindtap="toggleDialog">
@@ -47,8 +47,8 @@
       {{count}}人想要
     </view>
     <view class="right" bindtap="is_shouCang">
-      <image wx:if="{{!is_shouCang}}" class="icon" src="/images/sc(1).png" mode="widthFix" />
-      <image wx:if="{{is_shouCang}}" src="/images/sc(2).png" class="icon" mode="widthFix"/>
+      <image wx:if="{{!is_shouCang}}" class="icon" src="/images/shoucang(2).png" mode="widthFix" />
+      <image wx:if="{{is_shouCang}}" src="/images/shoucang(3).png" class="icon" mode="widthFix" />
     </view>
   </view>
   <view class="spaces"></view>
@@ -76,27 +76,29 @@
       </view>
     </view>
     <view class="space center gray font-mini">
-      <image src="/images/no_result.png" class="icon" mode="" />
+      <image src="/images/no_result.png" class="icon" mode="widthFix" />
       ~到底了~
     </view>
   </view>
 </view>
-
+<view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
+  <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
+</view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
   <view class="dialog__mask" bindtap="toggleDialog" />
   <view class="dialog__container">
     <view style=' display:flex; flex-direction: column; justify-content: center; padding:100rpx; gap: 10rpx;'>
       <view wx:if="{{info.target.phone}}" class="lx" bindtap="call_phone" data-text="{{info.target.phone}}">
-        <image class="icon" src="/images/phone.png" mode="" />
+        <image class="icon" src="/images/phone.png" mode="widthFix" />
         <text>{{info.target.phone}}</text>
       </view>
       <view wx:if="{{info.target.contact_wx}}" class="lx" bindtap="copy" data-text="{{info.target.contact_wx}}">
-        <image src="/images/wx.png" class="icon" mode="" />
+        <image src="/images/wx.png" class="icon" mode="widthFix" />
         <text>{{info.target.contact_wx}}</text>
       </view>
       <view wx:if="{{info.target.contact_qq}}" class="lx" bindtap="copy" data-text="{{info.target.contact_qq}}">
-        <image src="/images/qq.png" class="icon" mode="" />
+        <image src="/images/qq.png" class="icon" mode="widthFix" />
         <text>{{info.target.contact_qq}}</text>
       </view>
     </view>

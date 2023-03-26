@@ -1,1 +1,294 @@
 /* pages/about/index.wxss */
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.card {
+  width: 100%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  box-sizing: border-box;
+  padding: 10px;
+  /* border-top: 1px solid #ccc; */
+  border-bottom: 1px solid #ccc;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.card_main {
+  width: 100%;
+  /* height: 100px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rpx;
+}
+
+.blue {
+  color: rgb(43, 96, 194);
+}
+
+.gray {
+  color: gray;
+}
+
+.font-mini {
+  font-size: .8rem;
+}
+
+.space {
+  word-spacing: 10rpx;
+}
+
+.nickname {
+  width: 100%;
+  height: 30px;
+  /* color: skyblue; */
+  line-height: 30px;
+}
+
+.content {
+  width: 100%;
+  /* height: 100px; */
+  word-break: break-all;
+}
+
+.media {
+  width: 100%;
+}
+
+.column-count-1 {
+  column-count: 1;
+  column-gap: 5rpx;
+}
+
+.column-count-2 {
+  column-count: 2;
+  column-gap: 5rpx;
+}
+
+.column-count-3 {
+  column-count: 3;
+  column-gap: 5rpx;
+}
+
+.border-top {
+  border-top: 1px solid #ddd;
+  margin-top: 5rpx;
+  padding-top: 5rpx;
+}
+
+.media image {
+  width: 100%;
+}
+
+.img_click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.hidden {
+  display: none;
+}
+
+.img_click image {
+  width: 100%;
+}
+
+.location {
+  width: 100%;
+  height: 15px;
+  line-height: 15px;
+}
+
+.time {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  line-height: 40px;
+}
+.info{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.card_btn {
+  width: 150px;
+  display: flex;
+}
+
+.card_btn>view {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 5rpx;
+  align-items: center;
+}
+
+.card_btn>view>view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 45rpx;
+  height: 45rpx;
+}
+
+.gongneng {
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #eee;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.zan {
+  width: 100%;
+  display: flex;
+  gap: 5rpx;
+}
+
+.pinglun {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.add {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  overflow: hidden;
+  z-index: 9;
+}
+
+.add image {
+  width: 100%;
+}
+
+.add_form {
+  width: 100vw;
+  height: 90vh;
+}
+
+.form {
+  width: 100vw;
+  padding: 15px;
+  box-sizing: border-box;
+  margin: 5px auto;
+  height: 90vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  background-color: #eee;
+}
+
+.label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.inputs {
+  width: auto;
+  /* height: auto; */
+  /* min-height: 30px; */
+  padding: 10px;
+  border: none;
+  /* min-height: 30px; */
+  background-color: white;
+}
+
+.input:focus {
+  outline: none;
+}
+
+button {
+  border: none;
+  height: 35px;
+  margin-top: 30px;
+  background-color: rgb(0, 183, 255);
+  color: white;
+  font-size: 16px;
+}
+
+/* 图片 */
+.images_box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: white;
+}
+
+.img-box {
+  /* border: 5rpx;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.452); */
+  width: 180rpx;
+  height: 180rpx;
+  margin-left: 35rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+
+/* 删除图片 */
+.img-delect {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  position: absolute;
+  right: -20rpx;
+  top: -20rpx;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+.yinshi {
+  font-size: 26rpx;
+  padding: 30rpx;
+  color: rgb(0, 77, 128);
+  text-align: center;
+}
+
+.position {
+  position: relative;
+  right: -90%;
+  top: -38px;
+}

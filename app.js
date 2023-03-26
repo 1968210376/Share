@@ -11,13 +11,17 @@ App({
     latitude: '',
     longitude: '',
     location: '',
+    navBarHeight: 0, // 导航栏高度
+    menuRight: 0, // 胶囊距右方间距（方保持左、右间距一致）
+    menuTop: 0, // 胶囊距顶部间距
+    menuHeight: 0, // 胶囊高度（自定义内容可与胶囊高度保证一致）
     serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
     // serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
     // serverApi: "http://150.158.107.188:8080/wx/api", //发布地址
   },
   // 点击定位
   clickdingwei: function (json) {
-    console.log("options：", json)
+    // console.log("options：", json)
     // let key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key
     let key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key
     let referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称
@@ -31,6 +35,7 @@ App({
       url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
     });
   },
+
 
   // 方法定义 lat,lng  计算距离
   GetDistance: function (lat1, lng1, lat2, lng2) {
@@ -70,7 +75,7 @@ App({
     wx.getSystemInfo({
       success: res => {
         this.globalData.navHeight = res.windowHeight; //动态获得窗口高度。当然，别忘了要在app.js中设置全局变量navHeight,以及上面主文件的js文件也是同理。
-        console.log(this.globalData.navHeight, 'this.globalData.navHeight')
+        // console.log(this.globalData.navHeight, 'this.globalData.navHeight')
       },
       fail(err) {
         console.log(err);
@@ -83,6 +88,18 @@ App({
     wx.getStorageSync('longitude');
     // this.getLocal(wx.getStorageSync('latitude'), wx.getStorageSync('longitude'));
     this.getLocal(this.globalData.latitude, this.globalData.longitude)
+    const that = this;
+    // 获取系统信息
+    const systemInfo = wx.getSystemInfoSync();
+    // 胶囊按钮位置信息
+    const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+    // console.log(systemInfo)
+    // console.log(menuButtonInfo)
+    // 导航栏高度 = 状态栏高度 + 44(所有机型都适用)
+    that.globalData.navBarHeight = systemInfo.statusBarHeight + 44;
+    that.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
+    that.globalData.menuTop = menuButtonInfo.top;
+    that.globalData.menuHeight = menuButtonInfo.height;
   },
 
   // 获取当前所在城市

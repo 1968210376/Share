@@ -16,6 +16,8 @@ Page({
     liuyan_value: '',
     count: 0,
     is_clicked: true,
+    is_img_click:false,
+
   },
   /**
    * 控制 pop 的打开关闭
@@ -332,6 +334,14 @@ Page({
           title: "加载留言失败",
         })
       }
+    })
+  },
+  img_click(e) {
+    // console.log(e.target.dataset.img);
+    var that = this
+    this.setData({
+      is_img_click: !that.data.is_img_click,
+      img_src: e.target.dataset.img ? e.target.dataset.img : ''
     })
   },
   /**

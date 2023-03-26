@@ -24,8 +24,8 @@ Component({
  
   data: {
     stars: [0, 1, 2, 3, 4],
-    normalSrc: '/images/sc(1).png',//没有点亮的星星图片
-    selectedSrc: '/images/sc(2).png',//完全点亮的星星图片
+    normalSrc: '/images/shoucang(2).png',//没有点亮的星星图片
+    selectedSrc: '/images/shoucang(3).png',//完全点亮的星星图片
     halfSrc: '',//点亮一半的星星图片
     showTap:true//是否可以点击
   },

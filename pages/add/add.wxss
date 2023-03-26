@@ -1,11 +1,18 @@
+.bg{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
 .container {
   height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: yellow;
+/* background: linear-gradient(to bottom,#29B6F6,#00ebff, #fff); */
+/* background-color: #29b6f6; */
   overflow: hidden;
+  color: rgb(5, 5, 5);
 }
 
 .class {
@@ -34,7 +41,8 @@
 .bottom {
   width: 100vw;
   height: 100vw;
-  background-color: sandybrown;
+  background-color: rgba(206, 206, 226, 0.6);
+  /* background:linear-gradient(to right ,#1cedff,#00ebff,#fff); */
   border-radius: 50%;
   position: absolute;
   bottom: -70vw;

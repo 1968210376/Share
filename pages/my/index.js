@@ -258,5 +258,10 @@ Page({
       url: "/pages/my_edit_information/index"
     })
   },
+   /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
 
+  }
 })

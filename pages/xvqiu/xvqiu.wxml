@@ -11,7 +11,7 @@
       <view class="nickName">
         {{item.target.nick_name}}
       </view>
-      <view class="time">
+      <view class="gray font-mini time">
         {{item.target.create_time}}
       </view>
     </view>
@@ -33,7 +33,7 @@
             {{item.target.content}}
           </view> -->
   </view>
-  <view wx:if="{{item.target.images[0]}}" class="fixed_box">
+  <view wx:if="{{item.target.images[0]}}" class="fixed_box {{images.length ==1? 'column-count-1' :(images.length % 3 == 0? 'column-count-3' : 'column-count-2' )}} " wx:if="{{item.target.images[0]}}">
     <view wx:for="{{item.target.images}}" wx:key="index">
       <image class="fixed_pic" src="{{item}}" mode="widthFix" />
     </view>

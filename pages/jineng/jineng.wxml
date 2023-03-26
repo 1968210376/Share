@@ -3,44 +3,49 @@
   <swiper-item class="list" wx:for="{{categories}}" wx:key="index"> -->
 <!-- <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px" upper-threshold="60" bindscrolltolower="refresh" bindscrolltoupper="ontopRefresh" scroll-top="{{top}}" scroll-with-animation="true"> -->
 <view class="space"> </view>
-  <view class="card" style="background-color: #fff;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
-    <view class="userInfo">
-      <view class="img">
-        <image src="{{item.target.avatar_url}}" />
+<view class="card" style="background-color: #fff;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
+  <view class="userInfo">
+    <view class="img">
+      <image src="{{item.target.avatar_url}}" />
+    </view>
+    <view class="info">
+      <view class="nickName">
+        {{item.target.nick_name}}
       </view>
-      <view class="info">
-        <view class="nickName">
-          {{item.target.nick_name}}
-        </view>
-        <view class="time">
-          {{item.target.create_time}}
-        </view>
+      <view class="font-mini gray time">
+        {{item.target.create_time}}
       </view>
-      <view class="weizhi">
-        <view wx:if="{{item.target.distance}}">
-          距离：{{item.target.distance}}
-        </view>
-        <view wx:if="{{item.target.choose_location}}">
-          {{item.target.choose_location.city}}{{item.target.choose_location.district}}
+    </view>
+    <view class="weizhi">
+      <view wx:if="{{item.target.distance}}">
+        距离：{{item.target.distance}}
+      </view>
+      <view wx:if="{{item.target.choose_location}}">
+        {{item.target.choose_location.city}}{{item.target.choose_location.district}}
 
-        </view>
       </view>
     </view>
-    <view class="jianJie">
+  </view>
+  <view class="jianJie">
+    <view>
       {{item.target.title}}
+
+    </view>
+    <!-- <view class="font-mini">
       {{item.target.content}}
+    </view> -->
+  </view>
+  <view class="fixed_box {{images.length ==1? 'column-count-1' :(images.length % 3 == 0? 'column-count-3' : 'column-count-2' )}} " wx:if="{{item.target.images[0]}}">
+    <view wx:for="{{item.target.images}}" wx:key="index">
+      <image class="image" lazy-load mode="widthFix" src="{{item}}" />
     </view>
-    <view class="fixed_box" wx:if="{{item.target.images[0]}}">
-      <view wx:for="{{item.target.images}}" wx:key="index" style="max-height: 600rpx;">
-        <image class="image" lazy-load mode="heightFix" src="{{item}}" />
-      </view>
+  </view>
+  <view class="btnBox">
+    <view wx:if="{{item.target.pirce}}" class="red price">
+      ￥{{item.target.pirce}}
     </view>
-    <view class="btnBox">
-      <view wx:if="{{item.target.pirce}}" class="red price">
-        ￥{{item.target.pirce}}
-      </view>
-      <!-- <view class="btn {{item.target.is_shouCang ? gold :''}}" data-item="{{item.target.id}}" bindtap="is_shouCang"> -->
-      <!-- <view class="btn">
+    <!-- <view class="btn {{item.target.is_shouCang ? gold :''}}" data-item="{{item.target.id}}" bindtap="is_shouCang"> -->
+    <!-- <view class="btn">
         <image src="/images/sc(1).png" class="icon" mode="" />
       </view>
       <view class="btn">
@@ -50,17 +55,17 @@
         <image src="/images/xy.png" class="icon" mode="" />
       </view> -->
 
-    </view>
   </view>
-  <!-- 空列表提示 -->
-  <view wx:if="{{ list.length == 0 }}" class="center">
-    <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
-    <view>还没有数据哦~</view>
-  </view>
-  <!-- 到底了 -->
-  <view wx:if="{{end == true}}" class="center">
-    ~ 到底啦 ~
-  </view>
+</view>
+<!-- 空列表提示 -->
+<view wx:if="{{ list.length == 0 }}" class="center">
+  <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+  <view>还没有数据哦~</view>
+</view>
+<!-- 到底了 -->
+<view wx:if="{{end == true}}" class="center">
+  ~ 到底啦 ~
+</view>
 
 <!-- </swiper-item>
 </swiper> -->

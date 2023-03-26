@@ -1,6 +1,9 @@
 <!--pages/niu_start_page/index.wxml-->
-<view wx:for='{{testList}}' wx:for-item="item" wx:key="item">
-    <image src="{{item}}" bindload="autoImage" style="width:{{imgWidth}};height:{{ imgHeight }}" />
+<!-- <view wx:for='{{testList}}' wx:for-item="item" wx:key="item">
+    <image src="{{item}}"  mode="aspectFill" />
 </view>
 <view class="userinfo">
+</view> -->
+<view class="container">
+  <image class="bg" src="{{testList[0]}}" mode="aspectFill"/>
 </view>

@@ -16,6 +16,7 @@ Page({
     liuyan_value: '',
     count: 0,
     is_clicked: true,
+    is_img_click:false,
   },
 
   // 点击定位 2023年3月5日 牛亚博 
@@ -56,6 +57,14 @@ Page({
   //     wx.showModal
   //   }
   // },
+  img_click(e) {
+    // console.log(e.target.dataset.img);
+    var that = this
+    this.setData({
+      is_img_click: !that.data.is_img_click,
+      img_src: e.target.dataset.img ? e.target.dataset.img : ''
+    })
+  },
   cha_shouCang() {
     var that = this
     var info = that.data.info

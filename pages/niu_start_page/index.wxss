@@ -1,1 +1,5 @@
 /* pages/niu_start_page/index.wxss */
+.bg{
+  width: 100vw;
+  height: 100vh;
+}

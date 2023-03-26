@@ -18,7 +18,7 @@ Page({
     issuePicSum: 9,
     price: '',
     show: false,
-    dingyue:false
+    dingyue: false
   },
   getCategory(e) { // 获取分类
     var that = this
@@ -184,11 +184,11 @@ Page({
           });
         }));
       }
-      
+
       Promise.all(promiseArr).then(res => { //等数组都做完后做then方法
         //console.log("图片上传完成后再执行")
         //console.log(this.data.product_img);
-        
+
         this.add_sell_scrap(e);
         this.setData({
           imgbox: [],
@@ -196,7 +196,7 @@ Page({
         })
       })
     } else {
-      
+
       this.add_sell_scrap(e);
     }
 
@@ -245,7 +245,7 @@ Page({
         })
         if (res.data.code == 1) {
           console.log("进来了");
-          
+
           // wx.reLaunch({
           //   //页面跳转携带参数
           //   url: '/pages/fenlei/index',
@@ -423,7 +423,13 @@ Page({
     // JSON.parse(location)
     this.setData({
       chooseLocation: location,
-      isshow:isshow
+      isshow: isshow
     })
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   }
 })

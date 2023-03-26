@@ -84,5 +84,11 @@ Page({
             animation:false
         })
         console.log('false');
-    }
+    },
+     /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
+  }
 })

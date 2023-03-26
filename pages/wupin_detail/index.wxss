@@ -117,13 +117,13 @@
 }
 
 .icon {
-    width: 50rpx;
-    height: 50rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .yellow {
-    background-color: rgb(235, 213, 14);
-
+    /* background-color: rgb(235, 213, 14); */
+    background-color:  #0077FF;
 }
 
 .btn {
@@ -234,4 +234,24 @@
     border: 1px solid #ccc;
     border-radius: 25rpx;
     padding: 10rpx;
+}
+.img_click {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.hidden {
+  display: none;
+}
+
+.img_click image {
+  width: 100%;
 }
