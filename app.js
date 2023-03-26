@@ -15,8 +15,8 @@ App({
     menuRight: 0, // 胶囊距右方间距（方保持左、右间距一致）
     menuTop: 0, // 胶囊距顶部间距
     menuHeight: 0, // 胶囊高度（自定义内容可与胶囊高度保证一致）
-    serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
-    // serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
+    // serverApi: "http://172.16.3.52:8080/wx/api", //内网穿透测试
+    serverApi: "https://niuyabo.xyz:8080/wx/api", //发布地址
     // serverApi: "http://150.158.107.188:8080/wx/api", //发布地址
   },
   // 点击定位

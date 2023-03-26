@@ -165,7 +165,7 @@
             <view class="form_item"  bindtap="getLocation">
                 <input disabled type="text" style="flex: 9;" placeholder="请输入位置" value="{{chooseLocation.address}}" />
                 <button style="flex: 1;background-color: #fff;">
-                    <image style="width: 80rpx;height: 80rpx;" src="/images/Location.png" mode="scaleToFit" />
+                    <image style="width: 80rpx;height: 80rpx;" src="/images/location.png" mode="scaleToFit" />
                 </button>
             </view>
             <view class="space"></view>

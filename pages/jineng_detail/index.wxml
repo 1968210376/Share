@@ -22,7 +22,7 @@
         <view class="location" style="width: 70%;" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
           <view wx:if="{{info.target.choose_location}}" style="display: flex; align-items: center;">
             地址：{{info.target.choose_location.address}}
-            <image style="width: 30px;height: 30px;" src="/images/Location.png" mode="" />
+            <image style="width: 30px;height: 30px;" src="/images/location.png" mode="" />
             </view> 
         </view>
 

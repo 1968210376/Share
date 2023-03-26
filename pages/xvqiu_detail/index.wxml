@@ -16,7 +16,7 @@
         {{info.target.create_time}} | {{info.target.choose_location.district}} | {{info.target.distance?"据您"+info.target.distance:""}}
       </view>
       <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
-        <image style="width: 50rpx;height: 50rpx;" src="/images/Location.png" mode="aspectFill" />
+        <image style="width: 50rpx;height: 50rpx;" src="/images/location.png" mode="aspectFill" />
         <!-- 点击定位 -->
         点击导航
       </view>
