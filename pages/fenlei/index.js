@@ -1,7 +1,8 @@
 // index.js
 const app = getApp()
 // const chooseLocation = requirePlugin('chooseLocation');
-var util = require('../../libs/util.js')
+const util = require('../../libs/util.js')
+const $api = require('../../libs/request.js').Api
 Page({
   data: {
     tab: 0,
@@ -29,6 +30,20 @@ Page({
     } else {
       var reside = that.data.categoryType
     }
+    
+    //  推荐使用箭头函数简写成,极大提升了代码的简洁性和可读性
+//  promise.then(res => res.data).then(data => data.result).then(result => console.log(result));
+    // $api.selectCategory(
+    //   {
+    //     categoryType: reside
+    //   }
+    //   ).then((res)=>{
+    //   console.log("封装接口调用===》");
+    //   console.log(res);
+    //   console.log(res.data);
+    // }).catch((error)=>{
+    //   console.log(error)
+    // });
 
     wx.request({
       url: app.globalData.serverApi + '/selectCategory',
@@ -40,8 +55,8 @@ Page({
         categoryType: reside
       },
       success: (res) => {
-        // console.log("selectcategory===>res");
-        // console.log(res);
+        console.log("selectcategory===>res");
+        console.log(res);
         // wx.setStorageSync('categories', res.data.response.content)
         that.setData({
           categories: res.data.response.content

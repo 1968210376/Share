@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/niu_start_page/index", 
+    "pages/niu_start_page/index",
+    "pages/niu_haibao/index",
     "pages/fenlei/index",
     "pages/niu_map/map",
     "pages/my/index",
@@ -25,9 +26,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#38b6ff",
     "navigationBarTitleText": "心愿享",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#6e6d6b",
@@ -61,7 +62,6 @@
     "downloadFile": 10000,
     "connectSocket": 10000
   },
-
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "plugins": {
@@ -84,5 +84,4 @@
     }
   },
   "lazyCodeLoading": "requiredComponents"
-
 }

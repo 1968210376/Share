@@ -105,6 +105,11 @@
   width: 100vw;
   height: 16rpx;
   background: #F4F5F9;
+  background-color: #007AFF;
+  background-color: #38b6ff;
+  background-color: #ffc107;
+  background-color: #2ecc71;
+  background-color: #f5f5f5;
 }
 
 
