@@ -123,18 +123,17 @@
 
 .yellow {
     /* background-color: rgb(235, 213, 14); */
-    background-color:  #0077FF;
+    background-color:  #4a97f0;
 }
 
 .btn {
-    width: 90vw;
-    margin: 0 auto;
+    width: 50vw;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10rpx;
     border-radius: 35rpx;
-    gap: 5rpx;
+    gap: 15rpx;
     text-align: center;
     border: 1px solid #ccc;
 }
@@ -146,6 +145,7 @@
     justify-content: left;
     padding: 10rpx;
     border-bottom: 1px solid #F4F5F9;
+    gap: 20rpx;
 }
 
 .pl_content {
@@ -255,3 +255,13 @@
 .img_click image {
   width: 100%;
 }
+
+.component{
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 10rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+

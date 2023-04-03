@@ -1,21 +1,22 @@
-<image src="/images/beijing.jpg" class="bg" mode=""/>
+<!-- <image src="/images/beijing3.png" class="bg" mode=""/> -->
+<image src="/images/beijing1.jpg" class="bg" mode=""/>
 <view class="container" wx:if="{{isshow}}">
   <view class="class {{animation ? 'dong' : '' }}">
     <view class="fenlei" data-index="1" bindtap="goAdd">
       <view>
-        <image src="/images/wupinshenqing.png" class="icon" mode="" />
+        <image src="/images/btn_bg1.png" class="icon" mode="" />
       </view>
       物品
     </view>
     <view class="fenlei" data-index="2" bindtap="goAdd">
       <view>
-        <image src="/images/jineng.png" class="icon" mode="" />
+        <image src="/images/btn_bg2.png" class="icon" mode="" />
       </view>
       技能
     </view>
     <view class="fenlei" data-index="3" bindtap="goAdd">
       <view>
-        <image src="/images/zhaoxuqiu.png" class="icon" mode="" />
+        <image src="/images/btn_bg3.png" class="icon" mode="" />
       </view>
       需求
     </view>

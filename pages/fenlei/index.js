@@ -3,7 +3,7 @@ const app = getApp()
 // const chooseLocation = requirePlugin('chooseLocation');
 const util = require('../../libs/util.js')
 // const $api = require('../../libs/request.js').Api
-const $api = require('../../libs/request').Api
+// const $api = require('../../libs/request').Api
 Page({
   data: {
     tab: 0,
@@ -33,21 +33,6 @@ Page({
     } else {
       var reside = that.data.categoryType
     }
-
-    //  推荐使用箭头函数简写成,极大提升了代码的简洁性和可读性 
-    //  promise.then(res => res.data).then(data => data.result).then(result => console.log(result)); 
-    // $api.selectCategory( 
-    //   { 
-    //     categoryType: reside 
-    //   } 
-    //   ).then((res)=>{ 
-    //   console.log("封装接口调用===》"); 
-    //   console.log(res); 
-    //   console.log(res.data); 
-    // }).catch((error)=>{ 
-    //   console.log(error) 
-    // }); 
-
     wx.request({
       url: app.globalData.serverApi + '/selectCategory',
       method: 'POST',
@@ -232,13 +217,7 @@ Page({
     } else {
       page = that.data.pageIndex
     }
-    // console.log('openid', openid);
     var that = this
-    // wx.showLoading({
-
-    //   title: '数据加载中...',
-
-    // });
     wx.showNavigationBarLoading()
     wx.stopPullDownRefresh()
 
@@ -316,11 +295,7 @@ Page({
       page = that.data.pageIndex
       console.log("page:", page);
     }
-    // console.log('openid', openid);
     var that = this
-    // wx.showLoading({
-    //   title: '数据加载中...',
-    // });
     wx.showNavigationBarLoading()
     wx.request({
       url: app.globalData.serverApi + '/selectMarket',

@@ -1,0 +1,94 @@
+/* pages/ping/ping.wxss */
+.icon{
+  width: 40rpx;
+  height: 40rpx;
+}
+.pings{
+  font-size: 12px;
+  width: 50rpx;
+  text-align: center;
+}
+
+.message{
+  padding: 10px;
+  box-sizing: border-box;
+}
+.pl {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  justify-content: left;
+  padding: 10rpx;
+  border-bottom: 1px solid #eee;
+  gap: 20rpx;
+}
+
+.pl_content {
+  width: 100%;
+  word-break: break-all;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.radius {
+  border-radius: 50%;
+}
+
+.gray {
+  color: gray;
+}
+
+.font-mini {
+  font-size: 10px;
+}
+.ping {
+  width: 80%;
+  height: 100%;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
+.pinglun_list{
+  background-color: #f5f5f5;
+  height: 100vh;
+  box-sizing: border-box;
+ overflow-y: scroll;
+}
+.pinglun_input {
+  width: 100vw;
+  height: 35px;
+  line-height: 35px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  /* box-sizing: border-box; */
+  bottom: 0;
+  /* transform: translateY(-35px); */
+  border: 1px solid #f5f5f5;
+  background-color: #fff;
+  z-index: 9;
+  text-align: center;
+  /* padding-top: px; */
+  border-radius: 15rpx 15rpx 0 0;
+}
+.pinglun_input .pinglun_btn {
+  width: 20%;
+  border-radius: 3px;
+  background-color: rgb(10, 189, 243);
+}
+
+
+.space {
+  width: 100vw;
+  height: 150px;
+  position: relative;
+  bottom: -50rpx;
+}
+
+.center {
+  text-align: center;
+}

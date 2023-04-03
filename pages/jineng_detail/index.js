@@ -16,7 +16,7 @@ Page({
     pageSize: 10,
     content: '',
     end: false,
-    is_img_click:false,
+    is_img_click: false,
 
   },
   count() {
@@ -87,13 +87,6 @@ Page({
       show: false,
     })
     var that = this
-    // console.log("data:", {
-    //   content: that.data.pingjia,
-    //   marketId: that.data.info.target.id,
-    //   commentUserWxOpenId: that.data.info.target.wx_open_id,
-    //   commentPostWxOpenId: wx.getStorageSync('openid'),
-    //   avgsort: that.data.pingfen
-    // });
     wx.request({
       url: app.globalData.serverApi + '/commentScoreOn',
       method: 'POST',

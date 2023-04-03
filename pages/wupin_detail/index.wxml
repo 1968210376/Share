@@ -22,10 +22,7 @@
       <image bindtap="img_click" data-img="{{item}}" show-menu-by-longpress src="{{item}}" mode="widthFix" />
     </view>
   </view>
-  <view class="btn yellow" bindtap="toggleDialog">
-    <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
-    <text>我想要</text>
-  </view>
+
   <view class="userinfo">
     <image class="avatar" src="{{info.target.avatar_url}}" mode="" />
     <view>
@@ -52,16 +49,22 @@
     </view>
   </view>
   <view class="spaces"></view>
+  <view>
 
-  <!-- <view>
-      <image class="icon radius" src="{{info.target.avatar_url}}" mode="" />
-
-    </view> -->
-  <view class="lx">
+    <view class="component">
+      <share info="{{info.target}}"></share>
+      <ping info="{{info.target}}"></ping>
+      <view class="btn yellow" bindtap="toggleDialog">
+        <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
+        <text>我想要</text>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="lx">
     <input class="border center" type="text" bindconfirm="liuyan" value="{{liuyan_value}}" placeholder="看上了就留言~" />
   </view>
-  <view class="spaces"></view>
-  <view class="message">
+  <view class="spaces"></view> -->
+  <!-- <view class="message">
     <view class="pl" wx:for="{{content}}" wx:key="index">
       <view>
         <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
@@ -79,7 +82,7 @@
       <image src="/images/no_result.png" class="icon" mode="widthFix" />
       ~到底了~
     </view>
-  </view>
+  </view> -->
 </view>
 <view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
   <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />

@@ -101,7 +101,7 @@ Page({
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
             item.target.distance = aaa;
-            if (item.target.choose_location !== "") {
+            if (item.target.choose_location) {
               item.target.choose_location = JSON.parse(item.target.choose_location);
             }
             if (item.target.images != "" && item.target.images != null) {

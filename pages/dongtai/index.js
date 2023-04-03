@@ -10,8 +10,8 @@ Page({
   data: {
     add: false,
     is_like: false,
-    form:false,
-    ping:false,
+    form: false,
+    ping: false,
     img_src: '',
     is_img_click: false,
     list: '',
@@ -19,12 +19,14 @@ Page({
     fileIDs: [], //上传云存储后的返回值
     product_img: [], //上传完成后的图片路径需要保存到数据库
     like: ['my', 'he'],
-    pinglun: [{
-      nickName: '红中',
-      content: '测试'
-    }],
+    pinglun: [],
     issuePicSum: 9,
-    location: ''
+    location: '',
+    ping_info: '',
+    value: '',
+    pageIndex: 1,
+    end: false,
+    delete: false,
   },
   is_like(e) {
     console.log(e, wx.getStorageSync('openid'));
@@ -40,7 +42,8 @@ Page({
         likesPostWxOpenId: wx.getStorageSync('openid'),
         likesUserWxOpenId: e.currentTarget.dataset.like.wx_open_id,
         likedFriendId: e.currentTarget.dataset.like.id,
-        status: that.data.is_like ? 1 : 0
+        status: that.data.is_like ? 1 : 0,
+        name: e.currentTarget.dataset.like.nick_name
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -76,11 +79,145 @@ Page({
       img_src: e.target.dataset.img ? e.target.dataset.img : ''
     })
   },
-  pinglun(e){
+  pinglun(e) {
+    this.setData({
+      ping: !this.data.ping,
+      ping_info: !this.data.ping ? e.currentTarget.dataset.ping : '',
+      form: false,
+    })
+    this.select_pinglun(e)
+  },
+  send_pinglun(e) {
+    // console.log(e);
+    // console.log(this.data.ping_info);
+    var that = this
+    var info = this.data.ping_info
+    var content = e.detail.value
+    this.setData({
+      value: e.detail.value
+    })
+    content == '' ? (wx.showToast({
+      title: '请输入内容',
+      icon: "error"
+    })) : (
+      wx.request({
+        url: app.globalData.serverApi + '/commentOn',
+        method: 'POST',
+        data: {
+          friendId: info.id,
+          content: content,
+          commentUserWxOpenId: info.wx_open_id, //物品发布人openid
+          commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
+          // city: info.address,
+          status: 1
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success(res) {
+          console.log(res);
+          res.data.code == 1 ? (wx.showToast({
+            title: '评论成功',
+          })) : (wx.showToast({
+            title: res.data.response,
+          }))
+          that.setData({
+            ping: false,
+            value: ''
+          })
+          that.select_pinglun()
+        },
+        fail() {
+          that.setData({
+            value: ''
+          })
+        }
+      }))
+  },
+  select_pinglun(e) {
     console.log(e);
-   this.setData({
-     ping:true
-   })
+    var that = this
+    var info = this.data.ping_info
+    // var info = e.currentTarget.dataset.ping
+    wx.request({
+      url: app.globalData.serverApi + '/selectComment',
+      method: 'POST',
+      data: {
+        friendId: info.id,
+        status: 1,
+        pageIndex: that.data.pageIndex
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        res.data.response.content.length < 10 ? that.setData({
+          end: true
+        }) : ''
+        that.setData({
+          pinglun: res.data.response.content.length == 0 ? (that.data.pageIndex == 1 ? [{
+            target: ''
+          }] : that.data.pinglun) : (that.data.pageIndex == 1 ? res.data.response.content : that.data.pinglun.concat(res.data.response.content)),
+          add: true,
+          form: false,
+          ping: false
+        })
+        console.log(that.data.pinglun);
+      }
+    })
+  },
+  load_ping() {
+    console.log('上拉加载');
+    var that = this
+    // if(!this.loading && this.data.pageIndex<this.data.pages ){
+    console.log('当前页', that.data.pageIndex);
+    if (!this.data.end) {
+      that.setData({
+        pageIndex: that.data.pageIndex + 1
+      })
+      console.log('当前页', that.data.pageIndex);
+      this.select_pinglun()
+    } else {
+      wx.showToast({
+        title: '已到底！',
+      })
+    }
+  },
+  delete(e) {
+    console.log("e===>", e);
+    e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
+      title: '不是本人的留言',
+    })
+  },
+  detele_(e) {
+    var that = this
+    wx.showModal({
+      title: '是否删除该留言？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: app.globalData.serverApi + '/deleteComment',
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+              id: e.currentTarget.dataset.id.id
+            },
+            success(res) {
+              that.setData({
+                pageIndex: 1,
+                delete: true,
+              })
+              that.select_pinglun()
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
   load() {
     var that = this
@@ -137,20 +274,16 @@ Page({
     })
   },
   add(e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
-      add: true
+      add: true,
+      form: true
     })
-  },
-  showfenleiModel(e) {
-    this.setData({
-      show: true
-    })
-    console.log(e);
   },
   exit(e) {
     this.setData({
-      show: false
+      end: false,
+      pageIndex: 1,
     })
   },
   //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
@@ -255,7 +388,8 @@ Page({
           console.log("进来了");
           that.load()
           that.setData({
-            add: false
+            add: false,
+            form: false
           })
         }
       },
@@ -264,12 +398,11 @@ Page({
           title: "失败",
         })
         that.setData({
-          add: false
+          add: false,
         })
       }
     })
   },
-  //////////////////选择多张图片//////////////////////
   // 删除照片 &&
   imgDelete1: function (e) {
     let that = this;
@@ -320,7 +453,38 @@ Page({
       url: "/pages/niu_my_fuwuyinshi/index"
     })
   },
+  delete_dongtai(e) {
+    var that = this
+    console.log(e);
+    (e.currentTarget.dataset.id.wx_open_id == wx.getStorageSync('openid')) ? (
 
+      wx.showModal({
+        title: '是否删除该动态？',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.request({
+              url: app.globalData.serverApi + '/deleteFriends/' + e.currentTarget.dataset.id.id,
+              method: 'POST',
+              data: {},
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              success(res) {
+                console.log('ok');
+                that.load()
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+
+    ) : wx.showToast({
+      title: '不是本人的动态',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

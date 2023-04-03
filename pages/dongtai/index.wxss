@@ -4,25 +4,31 @@
   width: 100vw;
   height: 100vh;
   overflow: scroll;
+  background-color: #f5f5f5;
 }
 
 .card {
-  width: 100%;
+  width: 95%;
   margin: 0px auto;
   display: flex;
   justify-content: flex-start;
   gap: 15px;
   box-sizing: border-box;
   padding: 10px;
+  background-color: #fff;
   /* border-top: 1px solid #ccc; */
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #f5f5f5;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 .avatar {
   width: 50px;
   height: 50px;
 }
-
+.kong{
+  width: 50px;
+}
 .avatar image {
   width: 100%;
   height: 100%;
@@ -34,8 +40,11 @@
   /* height: 100px; */
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 5rpx;
+  justify-content: center;
+}
+.center{
+  text-align: center;
 }
 
 .blue {
@@ -62,13 +71,18 @@
 }
 
 .content {
-  width: 100%;
+  width: 80%;
   /* height: 100px; */
   word-break: break-all;
 }
 
 .media {
-  width: 100%;
+  width: 80%;
+}
+
+.imgbox {
+  break-inside: avoid;
+  break-inside: avoid-column;
 }
 
 .column-count-1 {
@@ -85,7 +99,20 @@
   column-count: 3;
   column-gap: 5rpx;
 }
-
+.img-3{
+  display: flex;
+}
+.column-count-1 image{
+  /* height: 10rem; */
+  max-width: 16rem;
+}
+.column-count-2 image{
+  height: 8rem;
+}
+.img-3 image,.column-count-3 image{
+  width: 6rem;
+  height: 6rem;
+}
 .border-top {
   border-top: 1px solid #ddd;
   margin-top: 5rpx;
@@ -130,12 +157,14 @@
   height: 40px;
   line-height: 40px;
 }
-.info{
+
+.info {
   flex: 1;
   display: flex;
   align-items: center;
   gap: 5px;
 }
+
 .card_btn {
   width: 150px;
   display: flex;
@@ -156,15 +185,15 @@
 }
 
 .icon {
-  width: 45rpx;
-  height: 45rpx;
+  width: 35rpx;
+  height: 35rpx;
 }
 
 .gongneng {
   width: 100%;
   border-radius: 5px;
   overflow: hidden;
-  background-color: #eee;
+  background-color: #f5f5f5;
   padding: 6px;
   box-sizing: border-box;
 }
@@ -173,13 +202,14 @@
   width: 100%;
   display: flex;
   gap: 5rpx;
+  align-items: center;
 }
 
 .pinglun {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   gap: 5px;
 }
 
@@ -213,7 +243,7 @@
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  background-color: #eee;
+  background-color: #f5f5f5;
 }
 
 .label {
@@ -235,7 +265,7 @@
   outline: none;
 }
 
-button {
+.button {
   border: none;
   height: 35px;
   margin-top: 30px;
@@ -291,4 +321,55 @@ button {
   position: relative;
   right: -90%;
   top: -38px;
+}
+
+.pinglun_input {
+  width: 100vw;
+  height: 35px;
+  line-height: 35px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  border: 1px solid #f5f5f5;
+  background-color: #fff;
+  z-index: 9;
+  text-align: center;
+}
+
+.ping {
+  width: 80%;
+  height: 100%;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
+.pinglun_list{
+  height: 90vh;
+  background-color: #f5f5f5;
+}
+.pinglun_input .pinglun_btn {
+  width: 20%;
+  border-radius: 3px;
+  background-color: rgb(10, 189, 243);
+}
+
+.pinglun_li {
+  width: 90vw;
+  margin: 15px auto;
+  padding: 10px;
+  display: flex;
+  gap: 10rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+}
+.pinglun_name{
+  width: 80px;
+}
+.pinglun_content{
+  width: 100%;
+  word-break: break-all;
+}
+.no_result{
+  width: 100px;
+  margin: 10px;
 }

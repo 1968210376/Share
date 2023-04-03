@@ -1,0 +1,42 @@
+<view class="pings" bindtap="pinglun" data-ping="{{info}}">
+  <view>
+    <image class="icon" src="/images/pinglun.png" mode="widthFix" />
+  </view>
+  <view>
+    <!-- 评论 -->
+    评论
+  </view>
+</view>
+
+<page-container class="pinglun_list" show="{{show}}" bind:afterleave="exit">
+  <view class="pinglun_list">
+    <scroll-view class="message" scroll-y bindscrolltolower="load_ping">
+      <view class="pl" wx:for="{{pinglun}}" wx:key="index">
+        <view>
+          <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
+        </view>
+        <view class="gap" bindlongtap="delete" data-id="{{item.target}}">
+          <view class="lx gray">
+            <text>{{item.target.nick_name}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
+          </view>
+          <view wx:if="{{item.target.content}}" class="padding pl_content ">
+            {{item.target.content}}
+          </view>
+        </view>
+      </view>
+      <view class="space center gray font-mini">
+        <image wx:if="{{pinglun == ''}}" src="/images/no_result.png" style="width: 100px;height: 100px;margin: 0 auto;" mode="widthFix" />
+        <view wx:if="{{end}}">
+          ~到底了~
+        </view>
+      </view>
+    </scroll-view>
+    
+  </view>
+  <view class="pinglun_input">
+      <input type="text" class="ping" bindblur="send_pinglun" value="{{value}}" confirm-type="send" placeholder="请输入评论" />
+      <view class="pinglun_btn">
+        发送
+      </view>
+    </view>
+</page-container>

@@ -10,9 +10,9 @@
   flex-direction: column;
   justify-content: space-around;
 /* background: linear-gradient(to bottom,#29B6F6,#00ebff, #fff); */
-/* background-color: #29b6f6; */
   overflow: hidden;
-  color: rgb(5, 5, 5);
+  /* color: rgb(5, 5, 5); */
+  color:#fff
 }
 
 .class {
@@ -41,7 +41,8 @@
 .bottom {
   width: 100vw;
   height: 100vw;
-  background-color: rgba(206, 206, 226, 0.6);
+  background-color: rgba(93, 158, 243, 0.4);
+  /* background-color: rgba(250, 226, 183, 0.671); */
   /* background:linear-gradient(to right ,#1cedff,#00ebff,#fff); */
   border-radius: 50%;
   position: absolute;
@@ -50,6 +51,7 @@
   line-height: 40vw;
   font-size: 20px;
   font-weight: bold;
+  color: #fff;
 }
 
 .move {

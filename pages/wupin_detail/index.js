@@ -246,13 +246,12 @@ Page({
           commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           city: city,
           status: 1
-
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: (res) => {
-          //console.log(res);
+          console.log(res);
           wx.showToast({
             title: res.data.response,
           })
@@ -263,7 +262,7 @@ Page({
         },
         fail: res => {
           wx.showToast({
-            title: "加载类别失败",
+            title: "评论请求失败",
           })
         }
       })
@@ -274,48 +273,48 @@ Page({
       })
     }
   },
-  show_liuyan() {
-    // //console.log('ok');
-    var that = this
-    var info = this.data.info.target
-    // //console.log('markeId-->', info);
-    if (!info) {
-      return
-    }
-    wx.request({
-      url: app.globalData.serverApi + '/selectComment',
-      method: 'POST',
-      data: {
-        marketId: info.id,
-        status: 1
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: (res) => {
-        // //console.log(res.data);
-        //console.log(res.data);
-        if (res.data.response !== undefined) {
-          // if (res.data.response.content) {
+  // show_liuyan() {
+  //   // //console.log('ok');
+  //   var that = this
+  //   var info = this.data.info.target
+  //   // //console.log('markeId-->', info);
+  //   if (!info) {
+  //     return
+  //   }
+  //   wx.request({
+  //     url: app.globalData.serverApi + '/selectComment',
+  //     method: 'POST',
+  //     data: {
+  //       marketId: info.id,
+  //       status: 1
+  //     },
+  //     header: {
+  //       'content-type': 'application/x-www-form-urlencoded'
+  //     },
+  //     success: (res) => {
+  //       // //console.log(res.data);
+  //       //console.log(res.data);
+  //       if (res.data.response !== undefined) {
+  //         // if (res.data.response.content) {
 
-          res.data.response.content.forEach(item => {
-            let d = new Date(item.target.create_time).getTime();
-            item.target.create_time = util.commentTimeHandle(d);
-          })
-          that.setData({
-            content: res.data.response.content
-          })
-          // //console.log("pl--->", that.data.content);
-        }
+  //         res.data.response.content.forEach(item => {
+  //           let d = new Date(item.target.create_time).getTime();
+  //           item.target.create_time = util.commentTimeHandle(d);
+  //         })
+  //         that.setData({
+  //           content: res.data.response.content
+  //         })
+  //         // //console.log("pl--->", that.data.content);
+  //       }
 
-      },
-      fail: res => {
-        wx.showToast({
-          title: "加载留言失败",
-        })
-      }
-    })
-  },
+  //     },
+  //     fail: res => {
+  //       wx.showToast({
+  //         title: "加载留言失败",
+  //       })
+  //     }
+  //   })
+  // },
   delete(e) {
     console.log(e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
@@ -392,11 +391,11 @@ Page({
         }
       })
     })
-    promise.then(function (r) {
-      //console.log("++++666++++");
-      that.show_liuyan()
-      //console.log('ok: ' + r);
-    });
+    // promise.then(function (r) {
+    //   //console.log("++++666++++");
+    //   that.show_liuyan()
+    //   //console.log('ok: ' + r);
+    // });
 
   },
 
@@ -434,7 +433,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.show_liuyan()
+    // this.show_liuyan()
     this.cha_shouCang()
   },
 

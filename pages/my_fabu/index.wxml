@@ -1,12 +1,14 @@
 <!-- 收藏 -->
-<view style="width: 100vw;">
+<!-- <view style="width: 100vw;">
   <button type="warn" bindtap="show">编辑</button>
-</view>
+</view> -->
 <view class="liushi_container">
   <view class="picture">
     <block wx:for="{{list}}" wx:key="index">
+    <!-- <view>
       <image wx:if="{{show}}" src="/images/delect.png" class="delete" data-id="{{item.target.id}}" bindtap="delete" mode="" />
-      <view class="item" data-reside="{{item.target.reside}}" data-index="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
+    </view> -->
+      <view class="item" bindlongtap="delete" data-id="{{item.target.id}}" data-reside="{{item.target.reside}}" data-index="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
         <view wx:if="{{item.target.images}}">
           <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
         </view>

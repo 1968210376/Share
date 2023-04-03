@@ -1,5 +1,6 @@
 <view class="container">
-  <view class="card" wx:for="{{list}}" wx:key="index">
+<view wx:for="{{list}}" wx:key="index" >
+   <view class="card"  data-id="{{item.target}}" bindlongtap="delete_dongtai">
     <view class="avatar">
       <image src="{{item.target.avatar_url}}" mode=" widthFix" />
     </view>
@@ -10,11 +11,9 @@
       <view class="content">
         {{item.target.content}}
       </view>
-      <view class="media {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? 'column-count-3' : 'column-count-2' )}} ">
-        <block wx:for="{{item.target.images}}" wx:key="index">
-          <view class="img">
-            <image bindtap="img_click" data-img="{{item}}" src="{{item}}" mode="aspectFill" />
-          </view>
+      <view class="media {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') : 'column-count-2' )}} ">
+        <block class="imgbox" wx:for="{{item.target.images}}" wx:key="index">
+          <image bindtap="img_click" data-img="{{item}}" src="{{item}}" mode="aspectFill" />
         </block>
       </view>
 
@@ -47,8 +46,8 @@
           </view>
         </view>
       </view>
-  
-      <view class="gongneng">
+
+      <view class="gongneng" wx:if="{{item.target.likes_list}}">
         <view class="zan">
           <view>
             <image src="/images/like.png" class="icon" mode="widthFix" />
@@ -58,15 +57,11 @@
             <text>{{item.target.likes_list}}</text>
           </view>
         </view>
-        <view class="pinglun {{pinglun ? (like? 'border-top':''): ''}}">
-          <view wx:for="{{pinglun}}" wx:key="index">
-            <text class="font-mini blue">{{item.nickName}} : </text>
-            <text class="font-mini">{{item.content}}</text>
-          </view>
-        </view>
       </view>
     </view>
   </view>
+</view>
+ 
   <view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
     <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
   </view>
@@ -74,8 +69,8 @@
     <image src="/images/add(2).png" mode="widthFix" />
   </view>
 </view>
-<page-container class="add_form" show="{{add}}">
-  <form class="form" bindsubmit="formSubmit" bindreset="formReset">
+<page-container class="add_form" show="{{add}}" bind:afterleave="exit">
+  <form wx:if="{{form}}" class="form" bindsubmit="formSubmit" bindreset="formReset">
     <view>
       <view class="label">内容</view>
       <textarea class="inputs" name="content" value="" placeholder="请输入内容" />
@@ -98,7 +93,7 @@
         </view>
       </view>
     </view>
-    <button form-type="submit">提交</button>
+    <button class="button" form-type="submit">提交</button>
 
     <view class="row-wrap">
       <view class="label-right" style="text-align: center;line-height: 50px;">
@@ -107,4 +102,29 @@
     </view>
     <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>
   </form>
+  <scroll-view wx:else scroll-y class="pinglun_list" bindscrolltolower="load_ping">
+    <view wx:for="{{pinglun}}" wx:key="index"  >
+      <view  wx:if="{{item.target !== ''}}" class="pinglun_li font-mini"  bindlongtap="delete" data-id="{{item.target}}">
+        <view class="blue pinglun_name">
+        {{item.target.nick_name}} :
+      </view>
+      <view class="gray pinglun_content">
+        {{item.target.content}}
+      </view>
+      </view>
+      <view wx:else class="center">
+        <view>
+          <image src="/images/no_result.png" class="no_result" mode="widthFix"/>
+        </view>
+        暂无数据
+      </view>
+    </view>
+    <view class="pinglun_input">
+    <input type="text" class="ping" bindblur="send_pinglun" value="{{value}}" confirm-type="send" placeholder="请输入评论" />
+    <view class="pinglun_btn">
+      发送
+    </view>
+  </view>
+  </scroll-view>
+
 </page-container>

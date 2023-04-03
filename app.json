@@ -23,13 +23,15 @@
     "pages/my_fabu/index",
     "pages/dongtai/index",
     "pages/Rate/index",
-    "pages/navigation-bar/navigation-bar"
+    "pages/navigation-bar/navigation-bar",
+    "pages/share/share",
+    "pages/ping/ping"
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#29B6F6",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "心愿享",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#999",

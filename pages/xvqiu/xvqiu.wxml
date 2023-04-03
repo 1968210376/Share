@@ -1,6 +1,3 @@
-<!-- <swiper style="height:{{navHeight}}px">
-  <swiper-item > -->
-<!-- <scroll-view class="container" scroll-y="{{true}}" style="height:{{navHeight}}px"  upper-threshold="60" bindscrolltolower="refresh" bindscrolltoupper="ontopRefresh" scroll-top="{{top}}"	scroll-with-animation="true"> -->
 <view class="space"> </view>
 <view class="card" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="xvqiu_detail">
   <view class="userInfo">
@@ -29,11 +26,8 @@
     <view class="title">
       {{item.target.title}}
     </view>
-    <!-- <view>
-            {{item.target.content}}
-          </view> -->
   </view>
-  <view wx:if="{{item.target.images[0]}}" class="fixed_box {{images.length ==1? 'column-count-1' :(images.length % 3 == 0? 'column-count-3' : 'column-count-2' )}} " wx:if="{{item.target.images[0]}}">
+  <view wx:if="{{item.target.images[0]}}" class="fixed_box  {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') : 'column-count-2' )}} ">
     <view wx:for="{{item.target.images}}" wx:key="index">
       <image class="fixed_pic" src="{{item}}" mode="widthFix" />
     </view>
@@ -42,17 +36,6 @@
     <view wx:if="{{item.target.pirce}}" class="red price ">
       ￥{{item.target.pirce}}
     </view>
-    <!-- <view class="btn {{item.target.is_shouCang ? gold :''}}" data-item="{{item.target.id}}" bindtap="is_shouCang"> -->
-    <!-- <view class="btn">
-            <image src="/images/sc(1).png" class="icon" mode="" />
-          </view>
-          <view class="btn">
-            <image src="/images/ly.png" class="icon" mode="" />
-          </view>
-          <view class="btn">
-            <image src="/images/xy.png" class="icon" mode="" />
-          </view> -->
-
   </view>
 </view>
 <!-- 空列表提示 -->
@@ -64,6 +47,3 @@
 <view wx:if="{{end}}" class="center">
   ~ 到底啦 ~
 </view>
-<!-- </scroll-view> -->
-<!-- </swiper-item>
-</swiper> -->

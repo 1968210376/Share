@@ -1,5 +1,13 @@
-/* pages/niu_haibao/index.wxss */
 
+.icon{
+  width: 40rpx;
+  height: 40rpx;
+}
+.btn{
+  text-align: center;
+  font-size: 12px;
+  width: 50rpx;
+}
 /* 海报 */
 .canvasMain {
   display: flex;
@@ -12,7 +20,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 9999;
 }
  
@@ -34,7 +42,7 @@
 .canvasMain .button {
   height: 80rpx;
   width: 600rpx;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 40px;
   color: #fff;
   font-size: 16px;

@@ -38,7 +38,19 @@ Page({
       })
     }
   },
- 
+  goTop(e) {
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+      // console.log('top');
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
+      })
+    }
+  },
   onLoad(options) {
     var infos = JSON.parse(options.info)
     console.log("infos", infos);

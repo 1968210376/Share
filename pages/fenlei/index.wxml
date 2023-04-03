@@ -1,42 +1,43 @@
 <!--index.wxml-->
-<view class="bg"></view>
 <view class="container">
+  <navigation-bar default-data="{{defaultData}}"></navigation-bar>
+  <view class="searchBox">
+    <view class="location">
+      <image class="location_logo" src="/images/Location.png" mode="widthFix" />
+      <view wx:if="{{location}}">
+        {{location}}
+      </view>
+      <view wx:else>
+        中国
+      </view>
+    </view>
+    <view class="input-group">
+      <!-- <label class="label">Email address</label> -->
+      <view class="input-box">
+        <input autocomplete="off" name="search" bindconfirm="search" bindblur="search" id="search" class="input" type="text" placeholder="输入关键词！" />
+        <view class="search_btn">
+          <icon type="search"></icon>
+        </view>
+      </view>
+    </view>
+    <!-- <input class="search" bindconfirm="search" type="text" confirm-type="search" placeholder="搜索" /> -->
+  </view>
+  <view class="top">
+    <image src="/images/bg.png" class="img" mode="scaleToFill" />
+  </view>
   <view class="box">
-    <navigation-bar default-data="{{defaultData}}"></navigation-bar>
-    <view class="top">
-      <image src="/images/bg.png" class="img" />
-    </view>
-    <view class="searchBox">
-      <view class="location">
-        <image style="width: 50rpx;height: 50rpx;" src="/images/location.png" mode="widthFix" />
-        <view wx:if="{{location}}">
-          {{location}}
-        </view>
-        <view wx:else>
-          中国
-        </view>
-      </view>
-      <view class="input-group">
-        <!-- <label class="label">Email address</label> -->
-        <view class="input-box">
-          <input autocomplete="off" name="search" bindconfirm="search" bindblur="search" id="search" class="input" type="text" placeholder="输入关键词！" />
-          <view class="search_btn">搜索</view>
-        </view>
-      </view>
-      <!-- <input class="search" bindconfirm="search" type="text" confirm-type="search" placeholder="搜索" /> -->
-    </view>
     <!-- 标签页标题 -->
     <view class="tab">
       <view class="tab-items {{tab == 0 ? 'active':''}}" bindtap="changeTab" data-tab="0">
-        <image src="/images/wupinshenqing.png" bindtap="changeTab" data-tab="0" class="icon" mode="" />
+          <image src="/images/btn_bg1.png" bindtap="changeTab" data-tab="0" class="icon" mode="" />
         物品
       </view>
       <view class="tab-items {{tab == 1 ? 'active' : ''}}" bindtap="changeTab" data-tab="1">
-        <image src="/images/jineng.png" bindtap="changeTab" data-tab="1" class="icon" mode="" />
+        <image src="/images/btn_bg2.png" bindtap="changeTab" data-tab="1" class="icon" mode="" />
         技能
       </view>
       <view class="tab-items {{tab == 2 ? 'active' : ''}}" bindtap="changeTab" data-tab="2">
-        <image src="/images/zhaoxuqiu.png" bindtap="changeTab" data-tab="2" class="icon" mode="" />
+        <image src="/images/btn_bg3.png" bindtap="changeTab" data-tab="2" class="icon" mode="" />
         需求
       </view>
     </view>

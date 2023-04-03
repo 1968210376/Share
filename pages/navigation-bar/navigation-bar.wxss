@@ -3,7 +3,8 @@
   width: 100%;
   top: 0;
   color: #fff;
-  background:#56abea;
+  /* background:#56abea; */
+  background:#fff;
   text-align: center;
   z-index: 99;
 }
@@ -13,7 +14,7 @@
   width: 100px;
   top: 5px;
 }
-.nav-bar .search {
+/* .nav-bar .search {
   width: 60%;
   color: #333;
   font-size: 14px;
@@ -28,7 +29,7 @@
   transition: border-color .3s cubic-bezier(.25, .01, .25, 1) 0s,
     color .3s cubic-bezier(.25, .01, .25, 1) 0s,
     background .2s cubic-bezier(.25, .01, .25, 1) 0s;
-}
+} */
 
 /* .input:focus,
 .input-group:hover .input {

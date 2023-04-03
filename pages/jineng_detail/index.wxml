@@ -22,7 +22,9 @@
         <view class="location" style="width: 70%;" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
           <view wx:if="{{info.target.choose_location}}" style="display: flex; align-items: center;">
             地址：{{info.target.choose_location.address}}
+            <view>
             <image style="width: 30px;height: 30px;" src="/images/location.png" mode="" />
+            </view>
             </view> 
         </view>
 
@@ -107,23 +109,6 @@
         <text>{{info.target.contact_qq}}</text>
       </view>
     </view>
-    <!-- 效果：
-    starValue="0" 默认0分，
-    WH="48" 星星高度48rpx
-    disabled="true" 可以点击评分
-    isInteger="true" 点击评分是整颗星为单位 
--->
-    <!-- <view wx:else style=' display:flex; flex-direction: column; justify-content: center;align-items: center; padding:100rpx; gap: 10rpx;'>
-      <view>
-        邀您评分
-      </view>
-      <view>
-
-        <Rate id="star" starValue="0" WH="48" disabled="true" bindgetStarValue="getStarValue" isInteger="true"></Rate>
-        <button bindtap="toggleDialog" style="border: 1px solid #ccc;">提交</button>
-      </view>
-
-    </view> -->
   </view>
 </view>
 <page-container show="{{show}}" round="true" overlayStyle='background-color: rgba(0, 0, 0, 0.7); filter: blur(4px);' customStyle='height: 43%;'>

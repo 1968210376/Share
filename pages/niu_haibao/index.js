@@ -1,4 +1,5 @@
 // pages/niu_haibao/index.js
+
 Page({
 
   /**

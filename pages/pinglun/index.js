@@ -69,6 +69,7 @@ Page({
                 pageIndex:1
               })
               that.jiazai()
+              that.goTop()
             }
           })
         } else if (res.cancel) {
