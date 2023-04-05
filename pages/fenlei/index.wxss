@@ -338,7 +338,11 @@
   height: 300rpx;
   margin: 0 auto;
 }
-
+.avatar{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 5px;
+}
 .icon {
   width: 100rpx;
   height: 100rpx;

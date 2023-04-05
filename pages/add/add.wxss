@@ -42,7 +42,7 @@
   width: 100vw;
   height: 100vw;
   background-color: rgba(93, 158, 243, 0.4);
-  /* background-color: rgba(250, 226, 183, 0.3); */
+  /* background-color: rgba(250, 226, 183, 0.471); */
   /* background:linear-gradient(to right ,#1cedff,#00ebff,#fff); */
   border-radius: 50%;
   position: absolute;

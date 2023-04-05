@@ -1,4 +1,4 @@
-<!-- <image src="/images/beijing3.png" class="bg" mode=""/> -->
+<!-- <image src="/images/beijing2.png" class="bg" mode=""/> -->
 <image src="/images/beijing1.jpg" class="bg" mode=""/>
 <view class="container" wx:if="{{isshow}}">
   <view class="class {{animation ? 'dong' : '' }}">
