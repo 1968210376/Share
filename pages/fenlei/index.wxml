@@ -29,15 +29,15 @@
     <!-- 标签页标题 -->
     <view class="tab">
       <view class="tab-items {{tab == 0 ? 'active':''}}" bindtap="changeTab" data-tab="0">
-          <image src="/images/btn_bg1.png" bindtap="changeTab" data-tab="0" class="icon" mode="" />
+          <image src="/images/btn_bg1.png" bindtap="changeTab" data-tab="0" class="tab-icon" mode="" />
         物品
       </view>
       <view class="tab-items {{tab == 1 ? 'active' : ''}}" bindtap="changeTab" data-tab="1">
-        <image src="/images/btn_bg2.png" bindtap="changeTab" data-tab="1" class="icon" mode="" />
+        <image src="/images/btn_bg2.png" bindtap="changeTab" data-tab="1" class="tab-icon" mode="" />
         技能
       </view>
       <view class="tab-items {{tab == 2 ? 'active' : ''}}" bindtap="changeTab" data-tab="2">
-        <image src="/images/btn_bg3.png" bindtap="changeTab" data-tab="2" class="icon" mode="" />
+        <image src="/images/btn_bg3.png" bindtap="changeTab" data-tab="2" class="tab-icon" mode="" />
         需求
       </view>
     </view>

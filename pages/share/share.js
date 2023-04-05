@@ -39,7 +39,7 @@ Component({
     //画布 生成 海报[海报]
     onBuildPosterSaveAlbum: function (e) {
       console.log(e)
-      var image = e.currentTarget.dataset.info.images[0]
+      var image = e.currentTarget.dataset.info.images[0]?e.currentTarget.dataset.info.images[0] : '/images/logo.png'
       var title = e.currentTarget.dataset.info.title
       var pirce = e.currentTarget.dataset.info.pirce
       var content = e.currentTarget.dataset.info.content

@@ -3,8 +3,7 @@
   "projectname": "share1.3",
   "setting": {
     "compileHotReLoad": true,
-    "urlCheck": false,
-    "bigPackageSizeSupport": true
+    "urlCheck": false
   },
   "libVersion": "2.25.4"
 }

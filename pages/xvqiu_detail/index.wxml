@@ -46,26 +46,24 @@
       <image bindtap="img_click" data-img="{{item}}" show-menu-by-longpress src="{{item}}" mode="widthFix" />
     </view>
   </view>
-  <view class="btn yellow" bindtap="toggleDialog">
-    <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
-    <text>我要接单</text>
+  <view>
+    <view class="component">
+      <share info="{{info.target}}"></share>
+      <ping info="{{info.target}}"></ping>
+      <view class="btn yellow" bindtap="toggleDialog">
+        <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
+        <text>我想要</text>
+      </view>
+    </view>
   </view>
-  <view class="spaces"></view>
 
-    <!-- <view>
-      <image class="icon radius" src="{{info.target.avatar_url}}" mode="" />
-
-    </view> -->
-  <view class="lx">
-    <input class="border center" type="text" bindconfirm="liuyan" value="{{liuyan_value}}" placeholder="感兴趣就聊一聊吧~" />
-  </view>
   <view class="spaces"></view>
   <view class="message">
     <view class="pl" wx:for="{{content}}" wx:key="index">
       <view>
         <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
       </view>
-      <view class="gap" bindlongtap="delete"  data-id="{{item.target}}">
+      <view class="gap" bindlongtap="delete" data-id="{{item.target}}">
         <view class="lx gray">
           <text>{{item.target.nick_name}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
         </view>
@@ -74,10 +72,10 @@
         </view>
       </view>
     </view>
-    <view class="space center gray font-mini">
+    <!-- <view class="space center gray font-mini">
       <image src="/images/no_result.png" class="icon" mode="" />
       ~到底了~
-    </view>
+    </view> -->
   </view>
 </view>
 <view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">

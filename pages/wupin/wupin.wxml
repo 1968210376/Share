@@ -17,7 +17,7 @@
           <view style="display: flex; justify-content: space-between; align-items: center;">
             <view style="display: flex; align-items: center;">
               <view>
-                <image class="avatar" src="{{item.target.avatar_url}}" mode="widthFix" />
+                <image class="icon" src="{{item.target.avatar_url}}" mode="widthFix" />
               </view>
               <text class="font-mini margin_left">{{item.target.nick_name}}</text>
             </view>
@@ -42,7 +42,7 @@
           <view style="display: flex; justify-content: space-between; align-items: center;">
             <view style="display: flex; align-items: center;">
               <view>
-                <image class="avatar" src="{{item.target.avatar_url}}" mode="widthFix" />
+                <image class="icon" src="{{item.target.avatar_url}}" mode="widthFix" />
               </view>
               <text class="font-mini margin_left">{{item.target.nick_name}}</text>
             </view>

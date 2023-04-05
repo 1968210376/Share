@@ -1,5 +1,5 @@
 <view class="container">
-  <text class="left">信用正常</text>
+  <!-- <text class="left">信用正常</text> -->
   <view class="top">
     <image src="{{info.target.avatar_url}}" class="avatar" mode="" />
     <text class="margin font-large">{{info.target.nick_name}}</text>
@@ -11,19 +11,18 @@
       <view class="gap">
         <text>好评度：</text>
         <view>
-          <!-- 评分组件 展示效果：显示组件评分；没设置disabled，默认值是false，也就是只展示评分-->
-          <Rate starValue="{{info.target.avgsort}}" isShowStarValue="true" id="star" isInteger="true"></Rate>
+          <Rate class="star" starValue="{{info.target.avgsort}}"></Rate>
         </view>
       </view>
     </view>
-    <view class="width padding column">
+    <view wx:if="{{info.target.pirce||info.target.choose_location||info.target.content }}" class="width padding column">
       <view class="gap">
         <text wx:if="{{info.target.pirce}}" class="blue">价格：￥{{info.target.pirce}}</text>
         <view class="location" style="width: 70%;" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
           <view wx:if="{{info.target.choose_location}}" style="display: flex; align-items: center;">
             地址：{{info.target.choose_location.address}}
             <view>
-            <image style="width: 30px;height: 30px;" src="/images/location.png" mode="" />
+            <image  src="/images/location.png" class="icon" mode="" />
             </view>
             </view> 
         </view>
@@ -37,17 +36,13 @@
       <!-- <text>可工作地点：远程、线下</text> -->
       <text wx:if="{{info.target.content}}">{{info.target.content}}</text>
     </view>
-
-    <!-- <view class="space">
-      </view> -->
     <view class="button" bindtap="toggleDialog">聊一聊</view>
-    <view class="space">
+    <!-- <view class="space">
 
-    </view>
-    <view wx:if="{{info.target.images}}" class="column width">
-      <!-- <text>图片</text> -->
+    </view> -->
+    <!-- <view wx:if="{{info.target.images}}" class="column width">
       <image bindtap="img_click" data-img="{{info.target.images}}"  style="border-radius:15rpx;margin:0 auto;" src="{{info.target.images}}" mode="widthFix" />
-    </view>
+    </view> -->
   </view>
   <view class="space">
     

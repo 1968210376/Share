@@ -29,7 +29,8 @@ Page({
     delete: false,
   },
   is_like(e) {
-    console.log(e, wx.getStorageSync('openid'));
+    var info = wx.getStorageSync('userInfo')
+    console.log(e, wx.getStorageSync('openid'),info);
     var that = this
     this.setData({
       is_like: e.currentTarget.dataset.like.flag > 0 ? false : true
@@ -43,7 +44,7 @@ Page({
         likesUserWxOpenId: e.currentTarget.dataset.like.wx_open_id,
         likedFriendId: e.currentTarget.dataset.like.id,
         status: that.data.is_like ? 1 : 0,
-        name: e.currentTarget.dataset.like.nick_name
+        name: info.nickName
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -237,6 +238,7 @@ Page({
         console.log("shuju==>", res.data);
         if (res.data.response) {
           res.data.response.content.forEach(item => {
+            
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
             if (item.target.images) {

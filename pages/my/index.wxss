@@ -43,7 +43,10 @@ input {
   height: 80vh;
   background-color: #fff;
 }
-
+.icon{
+  width: 50rpx;
+  height: 50rpx;
+}
 /* flex重新构建菜单 */
 .menu-item {
   width: 90vw;
@@ -55,7 +58,11 @@ input {
   align-items: center;
   
 }
-
+.menu-item-content{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .userinfo {
   margin-top: 90rpx;
   

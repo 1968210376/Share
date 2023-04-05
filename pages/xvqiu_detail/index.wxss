@@ -139,16 +139,15 @@
 }
 
 .btn {
-    width: 90vw;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10rpx;
-    border-radius: 35rpx;
-    gap: 5rpx;
-    text-align: center;
-    border: 1px solid #ccc;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx;
+  border-radius: 35rpx;
+  gap: 15rpx;
+  text-align: center;
+  border: 1px solid #ccc;
 }
 
 .pl {
@@ -238,4 +237,11 @@
     border: 1px solid #ccc;
     border-radius: 25rpx;
     padding: 10rpx;
+}
+.component{
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 10rpx;
+  display: flex;
+  justify-content: space-around;
 }

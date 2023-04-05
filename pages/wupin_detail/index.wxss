@@ -122,8 +122,8 @@
 }
 
 .yellow {
-    background-color: rgb(235, 213, 14);
-    /* background-color:  rgb(241, 220, 99); */
+    /* background-color: rgb(235, 213, 14); */
+    background-color:  #4a97f0;
 }
 
 .btn {

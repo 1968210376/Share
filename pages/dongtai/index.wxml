@@ -1,67 +1,69 @@
 <view class="container">
-<view wx:for="{{list}}" wx:key="index" >
-   <view class="card"  data-id="{{item.target}}" bindlongtap="delete_dongtai">
-    <view class="avatar">
-      <image src="{{item.target.avatar_url}}" mode=" widthFix" />
-    </view>
-    <view class="card_main">
-      <view class="nickname blue">
-        {{item.target.nick_name}}
-      </view>
-      <view class="content">
-        {{item.target.content}}
-      </view>
-      <view class="media {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') : 'column-count-2' )}} ">
-        <block class="imgbox" wx:for="{{item.target.images}}" wx:key="index">
-          <image bindtap="img_click" data-img="{{item}}" src="{{item}}" mode="aspectFill" />
-        </block>
-      </view>
-
-      <view class="time">
-        <view class="info gray font-mini">
-          <view>
-            {{item.target.create_time}}
+  <view wx:for="{{list}}" wx:key="index">
+    <view class="card" data-id="{{item.target}}" bindlongtap="delete_dongtai">
+      <view class="card_main">
+        <view class="userinfo">
+          <view >
+            <image src="{{item.target.avatar_url}}" class="avatar" mode=" widthFix" />
           </view>
-          <view wx:if="{{item.target.address}}">
-            {{item.target.address}}
+          <view class="nickname blue">
+            {{item.target.nick_name}}
           </view>
         </view>
-        <view class="card_btn">
-          <view bindtap="is_like" data-like="{{item.target}}">
+        <view class="content">
+          {{item.target.content}}
+        </view>
+        <view class="media {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') :  (item.target.images.length == 2 ? 'img-2' :'column-count-2' ))}} ">
+          <block class="imgbox" wx:for="{{item.target.images}}" wx:key="index">
+            <image bindtap="img_click" data-img="{{item}}" lazy-load src="{{item}}" mode="aspectFill" />
+          </block>
+        </view>
+
+        <view class="time">
+          <view class="info gray font-mini">
             <view>
-              <image class="icon" wx:if="{{item.target.flag==0}}" src="/images/like.png" mode="widthFix" />
-              <image class="icon" wx:else="" src="/images/like(1).png" mode="widthFix" />
+              {{item.target.create_time}}
             </view>
-            <view>
-              赞
+            <view wx:if="{{item.target.address}}">
+              {{item.target.address}}
             </view>
           </view>
-          <view bindtap="pinglun" data-ping="{{item.target}}">
-            <view>
-              <image class="icon" src="/images/pinglun.png" mode="widthFix" />
+          <view class="card_btn">
+            <view bindtap="is_like" data-like="{{item.target}}">
+              <view>
+                <image class="icon" wx:if="{{item.target.flag==0}}" src="/images/like.png" mode="widthFix" />
+                <image class="icon" wx:else="" src="/images/like(1).png" mode="widthFix" />
+              </view>
+              <view>
+                赞
+              </view>
             </view>
-            <view>
-              评论
+            <view bindtap="pinglun" data-ping="{{item.target}}">
+              <view>
+                <image class="icon" src="/images/pinglun.png" mode="widthFix" />
+              </view>
+              <view>
+                评论
+              </view>
             </view>
           </view>
         </view>
-      </view>
 
-      <view class="gongneng" wx:if="{{item.target.likes_list}}">
-        <view class="zan">
-          <view>
-            <image src="/images/like.png" class="icon" mode="widthFix" />
-          </view>
-          <view class="space font-mini blue" wx:key="index">
-            <!-- <text class="{{index == 1? '' : 'hidden'}}">,</text> {{item}} -->
-            <text>{{item.target.likes_list}}</text>
+        <view class="gongneng" wx:if="{{item.target.counts>0}}">
+          <view class="zan">
+            <view>
+              <image src="/images/like.png" class="icon" mode="widthFix" />
+            </view>
+            <view class="space font-mini blue" wx:key="index">
+              <!-- <text class="{{index == 1? '' : 'hidden'}}">,</text> {{item}} -->
+              <text>{{item.target.likes_list}}</text>
+            </view>
           </view>
         </view>
       </view>
     </view>
   </view>
-</view>
- 
+
   <view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
     <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
   </view>
@@ -103,28 +105,28 @@
     <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>
   </form>
   <scroll-view wx:else scroll-y class="pinglun_list" bindscrolltolower="load_ping">
-    <view wx:for="{{pinglun}}" wx:key="index"  >
-      <view  wx:if="{{item.target !== ''}}" class="pinglun_li font-mini"  bindlongtap="delete" data-id="{{item.target}}">
+    <view wx:for="{{pinglun}}" wx:key="index">
+      <view wx:if="{{item.target !== ''}}" class="pinglun_li font-mini" bindlongtap="delete" data-id="{{item.target}}">
         <view class="blue pinglun_name">
-        {{item.target.nick_name}} :
-      </view>
-      <view class="gray pinglun_content">
-        {{item.target.content}}
-      </view>
+          {{item.target.nick_name}} :
+        </view>
+        <view class="gray pinglun_content">
+          {{item.target.content}}
+        </view>
       </view>
       <view wx:else class="center">
         <view>
-          <image src="/images/no_result.png" class="no_result" mode="widthFix"/>
+          <image src="/images/no_result.png" class="no_result" mode="widthFix" />
         </view>
         暂无数据
       </view>
     </view>
     <view class="pinglun_input">
-    <input type="text" class="ping" bindblur="send_pinglun" value="{{value}}" confirm-type="send" placeholder="请输入评论" />
-    <view class="pinglun_btn">
-      发送
+      <input type="text" class="ping" bindblur="send_pinglun" value="{{value}}" confirm-type="send" placeholder="请输入评论" />
+      <view class="pinglun_btn">
+        发送
+      </view>
     </view>
-  </view>
   </scroll-view>
 
 </page-container>

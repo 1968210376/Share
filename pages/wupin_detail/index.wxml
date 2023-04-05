@@ -50,7 +50,6 @@
   </view>
   <view class="spaces"></view>
   <view>
-
     <view class="component">
       <share info="{{info.target}}"></share>
       <ping info="{{info.target}}"></ping>

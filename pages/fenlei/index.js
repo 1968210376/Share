@@ -163,19 +163,18 @@ Page({
       }
     })
   },
-  banner() { //轮播图
-    var that = this
-    wx.request({
-      url: app.globalData.serverApi + '/selectAllBanner',
-      method: 'POST',
-      success(res) {
-        // console.log('lunbo:', res.data.response);
-        that.setData({
-          banner: res.data.response
-        })
-      }
-    })
-  },
+  // banner() { //轮播图
+  //   var that = this
+  //   wx.request({
+  //     url: app.globalData.serverApi + '/selectAllBanner',
+  //     method: 'POST',
+  //     success(res) {
+  //       that.setData({
+  //         banner: res.data.response
+  //       })
+  //     }
+  //   })
+  // },
   wupin_detail(e) { // 跳转物品详情页
     if (e) {
       // console.log(e);
@@ -220,7 +219,6 @@ Page({
     var that = this
     wx.showNavigationBarLoading()
     wx.stopPullDownRefresh()
-
     wx.request({
       url: app.globalData.serverApi + '/selectMarket',
       method: 'POST',
