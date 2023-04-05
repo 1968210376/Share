@@ -19,8 +19,8 @@ Component({
     show: false,
     pinglun: [],
     value: '',
-    pageIndex:1,
-    end:false,
+    pageIndex: 1,
+    end: false,
   },
 
   /**
@@ -35,59 +35,57 @@ Component({
       this.select_pinglun(e)
     },
     send_pinglun(e) {
-      // //console.log(res.detail.value);
-      if (e.detail.value) {
-        var that = this
-        var info = this.properties.info
-        var city = wx.getStorageSync('city');
-        this.setData({
-          value: e.detail.value
-        })
-        // //console.log(city);
-        console.log("info====>", info);
+      console.log("评论",e);
+      var that = this
+      var info = this.properties.info
+      console.log(info);
+      var content = e.detail.value.input ? e.detail.value.input : e.detail.value
+      this.setData({
+        value: e.detail.value
+      })
+      content == '' ? (wx.showToast({
+        title: '请输入内容',
+        icon: "error"
+      })) : (
         wx.request({
           url: app.globalData.serverApi + '/commentOn',
           method: 'POST',
           data: {
             marketId: info.id,
-            content: e.detail.value,
+            content: content,
             commentUserWxOpenId: info.wx_open_id, //物品发布人openid
             commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
-            city: city,
+            city: wx.getStorageSync('city'),
             status: 1
           },
           header: {
             'content-type': 'application/x-www-form-urlencoded'
           },
-          success: (res) => {
+          success(res) {
             console.log(res);
-            wx.showToast({
+            res.data.code == 1 ? (wx.showToast({
+              title: '评论成功',
+            })) : (wx.showToast({
               title: res.data.response,
-            })
+            }))
             that.setData({
-              liuyan_value: '',
+              ping: false,
               value: ''
             })
             that.select_pinglun()
           },
-          fail: res => {
-            wx.showToast({
-              title: "评论请求失败",
+          fail() {
+            that.setData({
+              value: ''
             })
           }
-        })
-      } else {
-        wx.showToast({
-          title: '内容不允许为空',
-          icon: "error"
-        })
-      }
+        }))
     },
     select_pinglun(e) {
       console.log(e);
       var that = this
       var info = this.properties.info
-      console.log("info",info);
+      console.log("info", info);
       // var info = e.currentTarget.dataset.ping
       wx.request({
         url: app.globalData.serverApi + '/selectComment',
@@ -101,11 +99,15 @@ Component({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
+          res.data.response.content.forEach(item => {
+            let d = new Date(item.target.create_time).getTime();
+            item.target.create_time = util.commentTimeHandle(d);
+          })
           res.data.response.content.length < 10 ? that.setData({
             end: true
           }) : ''
           that.setData({
-            pinglun: res.data.response.content.length == 0 ? (that.data.pageIndex == 1 ? '': that.data.pinglun) : (that.data.pageIndex == 1 ? res.data.response.content : that.data.pinglun.concat(res.data.response.content)),
+            pinglun: res.data.response.content.length == 0 ? (that.data.pageIndex == 1 ? '' : that.data.pinglun) : (that.data.pageIndex == 1 ? res.data.response.content : that.data.pinglun.concat(res.data.response.content)),
           })
           console.log(that.data.pinglun);
         }

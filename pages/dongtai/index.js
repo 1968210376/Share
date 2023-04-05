@@ -89,11 +89,11 @@ Page({
     this.select_pinglun(e)
   },
   send_pinglun(e) {
-    // console.log(e);
+    console.log("评论",e);
     // console.log(this.data.ping_info);
     var that = this
     var info = this.data.ping_info
-    var content = e.detail.value
+    var content = e.detail.value.input ? e.detail.value.input : e.detail.value
     this.setData({
       value: e.detail.value
     })

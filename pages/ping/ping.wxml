@@ -17,7 +17,9 @@
         </view>
         <view class="gap" bindlongtap="delete" data-id="{{item.target}}">
           <view class="lx gray">
-            <text>{{item.target.nick_name}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
+            <view>{{item.target.nick_name}}</view>
+            <view class="font-mini ">· {{item.target.create_time}}</view>
+            <view class="font-mini">ip:{{item.target.city}} </view>
           </view>
           <view wx:if="{{item.target.content}}" class="padding pl_content ">
             {{item.target.content}}
@@ -31,12 +33,14 @@
         </view>
       </view>
     </scroll-view>
-    
+
   </view>
-  <view class="pinglun_input">
-      <input type="text" class="ping" bindblur="send_pinglun" value="{{value}}" confirm-type="send" placeholder="请输入评论" />
-      <view class="pinglun_btn">
+  <form bindsubmit="send_pinglun">
+    <view class="pinglun_input">
+      <input type="text" class="ping" name="input" value="{{value}}" bindconfirm="send_pinglun" confirm-type="send" placeholder="请输入评论" />
+      <button class="pinglun_btn" form-type="submit">
         发送
-      </view>
+      </button>
     </view>
+  </form>
 </page-container>

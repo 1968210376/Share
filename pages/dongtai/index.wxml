@@ -3,7 +3,7 @@
     <view class="card" data-id="{{item.target}}" bindlongtap="delete_dongtai">
       <view class="card_main">
         <view class="userinfo">
-          <view >
+          <view>
             <image src="{{item.target.avatar_url}}" class="avatar" mode=" widthFix" />
           </view>
           <view class="nickname blue">
@@ -121,12 +121,14 @@
         暂无数据
       </view>
     </view>
-    <view class="pinglun_input">
-      <input type="text" class="ping" bindblur="send_pinglun" value="{{value}}" confirm-type="send" placeholder="请输入评论" />
-      <view class="pinglun_btn">
-        发送
+    <form bindsubmit="send_pinglun">
+      <view class="pinglun_input">
+        <input type="text" class="ping" name="input" value="{{value}}" bindconfirm="send_pinglun" confirm-type="send" placeholder="请输入评论" />
+        <button class="pinglun_btn" form-type="submit">
+          发送
+        </button>
       </view>
-    </view>
+    </form>
   </scroll-view>
 
 </page-container>
