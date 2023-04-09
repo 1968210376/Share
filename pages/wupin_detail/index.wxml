@@ -33,13 +33,14 @@
         {{info.target.create_time}}
         <view wx:if="{{info.target.choose_location}}">|</view> {{info.target.choose_location.district}}
         <view wx:if="{{info.target.choose_location}}">|</view> {{info.target.distance?"据您"+info.target.distance:""}}
+        <image class="icon" src="/images/location.png" mode="widthFix" />
       </view>
       <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
       <view>
-        <image class="icon" src="/images/location.png" mode="widthFix" />
+        <!-- <image class="icon" src="/images/location.png" mode="widthFix" /> -->
       </view>
         <!-- 点击定位 -->
-        点击导航
+        <!-- 点击导航 -->
       </view>
     </view>
     <view class="count font-mini gray">
@@ -51,6 +52,7 @@
     </view>
   </view>
   <view class="spaces"></view>
+
   <view>
     <view class="component">
       <share info="{{info.target}}"></share>

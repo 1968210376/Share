@@ -229,7 +229,7 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: (res) => {
-          // console.log(res);
+          console.log(res);
           wx.showToast({
             title: res.data.response,
           })
