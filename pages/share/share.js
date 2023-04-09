@@ -4,11 +4,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    info:{
-      value:{
+    info: {
+      value: {
 
       },
-      type:Object
+      type: Object
     }
   },
 
@@ -38,14 +38,15 @@ Component({
     //海报生成
     //画布 生成 海报[海报]
     onBuildPosterSaveAlbum: function (e) {
-      console.log(e)
-      var image = e.currentTarget.dataset.info.images[0]?e.currentTarget.dataset.info.images[0] : '/images/logo.png'
-      var title = e.currentTarget.dataset.info.title
-      var pirce = e.currentTarget.dataset.info.pirce
-      var content = e.currentTarget.dataset.info.content
-      var content1 = e.currentTarget.dataset.info.content1
+      // console.log(e)
+      var image = e.currentTarget.dataset.info.images[0] ? e.currentTarget.dataset.info.images[0] : '/images/logo.png'
+      var title = e.currentTarget.dataset.info.title ? e.currentTarget.dataset.info.title : ''
+      var pirce = e.currentTarget.dataset.info.pirce ? e.currentTarget.dataset.info.pirce : ''
+      // e.currentTarget.dataset.info.content ? Math.ceil(text.length/150)
+      var content = e.currentTarget.dataset.info.content ? e.currentTarget.dataset.info.content : ''
+      title = title.length > 10 ? title.slice(0, 10) + '...' : title
+      content = content.length > 10 ? content.slice(0, 10) + '...' : content
       var name = e.currentTarget.dataset.info.nick_name
-
       var that = this;
       var posterDatas = that.data.posterDatas
       var canvas = posterDatas.canvas
@@ -146,18 +147,11 @@ Component({
         ctx.fillText(title, 150, 250);
         ctx.textAlign = "left"
         ctx.font = "bold 12px Arial"; //字体大小
-        if (content != "") {
-          ctx.fillText(content, 30, 310);
-        }
-        if (content1 !== undefined && content1!== null) {
-          ctx.fillText(content1, 30, 330);
-        }
+        content ? ctx.fillText(content, 30, 310) : '';
         // ctx.textAlign = "center"
         ctx.fillStyle = "#ff6666"; //字体颜色
         ctx.font = "bold 16px Arial"; //字体大小
-        if (pirce != "") {
-          ctx.fillText("￥" + pirce, 30, 360);
-        }
+        pirce ? ctx.fillText("￥" + pirce, 30, 360) : '';
         // 关闭loading
         wx.hideLoading();
         //显示海报
@@ -273,8 +267,8 @@ Component({
   },
   pageLifetimes: {
     // 组件所在页面的生命周期函数
-    show:function() {
-     
+    show: function () {
+
     },
     hide: () => {}
   },

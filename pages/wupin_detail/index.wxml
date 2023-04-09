@@ -17,9 +17,9 @@
   <view class="content">
     {{info.target.content}}
   </view>
-  <view wx:if="{{info.target.images[0]}}" class="imgBox">
+  <view bindtap="img_click" data-imgs="{{info.target.images}}" wx:if="{{info.target.images[0]}}" class="imgBox">
     <view wx:for="{{info.target.images}}" wx:key="index">
-      <image bindtap="img_click" data-img="{{item}}" show-menu-by-longpress src="{{item}}" mode="widthFix" />
+      <image bindtap="img_click_url" data-url="{{item}}" show-menu-by-longpress src="{{item}}" mode="widthFix" />
     </view>
   </view>
 
@@ -35,7 +35,9 @@
         <view wx:if="{{info.target.choose_location}}">|</view> {{info.target.distance?"据您"+info.target.distance:""}}
       </view>
       <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
-        <image style="width: 50rpx;height: 50rpx;" src="/images/location.png" mode="aspectFill" />
+      <view>
+        <image class="icon" src="/images/location.png" mode="widthFix" />
+      </view>
         <!-- 点击定位 -->
         点击导航
       </view>
@@ -59,33 +61,10 @@
       </view>
     </view>
   </view>
-  <!-- <view class="lx">
-    <input class="border center" type="text" bindconfirm="liuyan" value="{{liuyan_value}}" placeholder="看上了就留言~" />
-  </view>
-  <view class="spaces"></view> -->
-  <!-- <view class="message">
-    <view class="pl" wx:for="{{content}}" wx:key="index">
-      <view>
-        <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
-      </view>
-      <view class="gap" bindlongtap="delete" data-id="{{item.target}}">
-        <view class="lx gray">
-          <text>{{item.target.nick_name}}</text> <text class="font-mini ">· {{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
-        </view>
-        <view wx:if="{{item.target.content}}" class="padding pl_content ">
-          {{item.target.content}}
-        </view>
-      </view>
-    </view>
-    <view class="space center gray font-mini">
-      <image src="/images/no_result.png" class="icon" mode="widthFix" />
-      ~到底了~
-    </view>
-  </view> -->
 </view>
-<view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
+<!-- <view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
   <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
-</view>
+</view> -->
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
   <view class="dialog__mask" bindtap="toggleDialog" />

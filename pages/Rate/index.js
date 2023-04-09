@@ -32,7 +32,7 @@ Component({
   methods: {
     //点击左边,半颗星
     selectLeft: function (e) {
-      console.log("left");
+      // console.log("left");
       var key = e.currentTarget.dataset.key
       if (this.data.starValue == 0.5 && e.currentTarget.dataset.key == 0.5) {
         //只有一颗星的时候,再次点击,变为0颗
@@ -47,7 +47,7 @@ Component({
     },
     //点击右边,整颗星
     selectRight: function (e) {
-      console.log("right");
+      // console.log("right");
       var key = e.currentTarget.dataset.key
       this.setData({
         starValue: key
@@ -58,7 +58,7 @@ Component({
     },
     //点击整颗星
     selectAll(e) {
-      console.log("all");
+      // console.log("all");
       var key = e.currentTarget.dataset.key;
       if (this.data.starValue == 1 && e.currentTarget.dataset.key == 1) {
         //只有一颗星的时候,再次点击,变为0颗

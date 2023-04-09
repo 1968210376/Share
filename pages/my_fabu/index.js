@@ -21,24 +21,24 @@ Page({
    */
   wupin_detail(e) {
     var that = this
-    console.log(e);
+    // console.log(e);
     if (e.currentTarget.dataset.reside === 1) {
       var info = that.data.list[e.currentTarget.dataset.index]
-      console.log("info==>", info);
+      // console.log("info==>", info);
       info = JSON.stringify(info)
       wx.navigateTo({
         url: '/pages/wupin_detail/index?info=' + info
       })
     } else if (e.currentTarget.dataset.reside === 2) {
       var info = that.data.list[e.currentTarget.dataset.index]
-      console.log("info==>", info);
+      // console.log("info==>", info);
       info = JSON.stringify(info)
       wx.navigateTo({
         url: '/pages/jineng_detail/index?info=' + info
       })
     } else {
       var info = that.data.list[e.currentTarget.dataset.index]
-      console.log("info==>", info);
+      // console.log("info==>", info);
       info = JSON.stringify(info)
       wx.navigateTo({
         url: '/pages/xvqiu_detail/index?info=' + info
@@ -52,16 +52,16 @@ Page({
   },
   delete(e) {
     var that = this
-    console.log(e);
+    // console.log(e);
     var userInfo = wx.getStorageSync('userInfo')
     var wxOpenId = userInfo.wxOpenId
-    console.log("wxOpenId", wxOpenId);
+    // console.log("wxOpenId", wxOpenId);
     var that = this
     wx.showModal({
       title: '是否删除？',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          // console.log('用户点击确定')
           wx.request({
             url: app.globalData.serverApi + '/deleteMarket',
             method: 'POST',
@@ -92,10 +92,10 @@ Page({
    
   },
   refresh() { //上拉加载
-    console.log('上拉加载');
+    // console.log('上拉加载');
     var that = this
     // if(!this.loading && this.data.pageIndex<this.data.pages ){
-    console.log('当前页', that.data.pageIndex);
+    // console.log('当前页', that.data.pageIndex);
     this.data.end !== true ?
       (that.setData({
           pageIndex: that.data.pageIndex + 1
@@ -124,7 +124,7 @@ ontopRefresh() {
 jiazai(e) {
   var that = this
   var wxOpenId = wx.getStorageSync('userInfo').wxOpenId
-  console.log("wxOpenId", wxOpenId);
+  // console.log("wxOpenId", wxOpenId);
   wx.request({
     url: app.globalData.serverApi + '/selectMarketOpenId',
     method: 'POST',
@@ -150,7 +150,7 @@ jiazai(e) {
   })
 },
 return (res) {
-  console.log("进来了");
+  // console.log("进来了");
     var that = this
     res.data.response.content.forEach(item => {
       let d = new Date(item.target.create_time).getTime();
@@ -167,7 +167,7 @@ return (res) {
   },
   onLoad(options) {
     var infos = JSON.parse(options.info)
-    console.log(infos);
+    // console.log(infos);
     this.setData({
       list: infos
     })
@@ -214,7 +214,7 @@ return (res) {
     })
     this.jiazai()
     this.goTop()
-    console.log('下拉刷新');
+    // console.log('下拉刷新');
     this.setData({
       end: false
     })

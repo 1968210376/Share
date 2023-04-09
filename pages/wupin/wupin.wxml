@@ -1,7 +1,5 @@
 <!--主文件html中代码：-->
-<!-- <swiper data-item="{{tabs}}" bindchange="changeTabs" current="{{item}}" style="height:{{navHeight}}px">
-  <swiper-item class="list" wx:for="{{categories}} " wx:key="index"> -->
-<!-- <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px" upper-threshold="60" bindscrolltolower="refresh" bindscrolltoupper="ontopRefresh" scroll-top="{{top}}"	scroll-with-animation="true"> -->
+
 <view class="liushi_container">
   <view style="float: left;">
     <view class="picture">
@@ -17,7 +15,6 @@
           <view style="display: flex; justify-content: space-between; align-items: center;">
             <view style="display: flex; align-items: center;">
               <view>
-                <!-- <image class="icon" src="{{item.target.avatar_url}}" mode="widthFix" /> -->
                 <image class="avatar" src="{{item.target.avatar_url}}" mode="widthFix" />
               </view>
               <text class="font-mini margin_left">{{item.target.nick_name}}</text>
@@ -43,7 +40,6 @@
           <view style="display: flex; justify-content: space-between; align-items: center;">
             <view style="display: flex; align-items: center;">
               <view>
-                <!-- <image class="icon" src="{{item.target.avatar_url}}" mode="widthFix" /> -->
                 <image class="avatar" src="{{item.target.avatar_url}}" mode="widthFix" />
               </view>
               <text class="font-mini margin_left">{{item.target.nick_name}}</text>

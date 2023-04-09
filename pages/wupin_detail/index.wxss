@@ -123,19 +123,22 @@
 
 .yellow {
     /* background-color: rgb(235, 213, 14); */
-    background-color:  #4a97f0;
+    /* background-color:  #4a97f0; */
+    background-color: rgb(235, 213, 14);
+
 }
 
 .btn {
-    width: 50vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10rpx;
-    border-radius: 35rpx;
-    gap: 15rpx;
-    text-align: center;
-    border: 1px solid #ccc;
+  width: 350rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx;
+  margin-right: 35rpx;
+  border-radius: 35rpx;
+  gap: 15rpx;
+  text-align: center;
+  border: 1px solid #ccc;
 }
 
 .pl {
@@ -225,7 +228,6 @@
 .location {
     width: 150rpx;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
 }
 

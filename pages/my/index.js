@@ -15,21 +15,25 @@ Page({
     navHeight: 100,
     isShow: false,
     page_index: 1,
+    animation: false
   },
 
   onShow(options) {
     // console.log('显示');
+    this.setData({
+      animation: true
+    })
     var that = this
     var user = wx.getStorageSync('userInfo')
-    console.log("my/index.js获取本地userInfo:", wx.getStorageSync('userInfo'));
+    // console.log("my/index.js获取本地userInfo:", wx.getStorageSync('userInfo'));
     if (user != "") {
       that.setData({
         nickName: user.nickName !== null ? user.nickName : this.data.nickName,
         avatarUrl: user.avatarUrl !== null ? user.avatarUrl : this.data.avatarUrl,
         // id:user.id,
-        wxOpenId: user.wxOpenId
+        wxOpenId: user.wxOpenId,
       })
-      console.log("显示用户信息")
+      // console.log("显示用户信息")
     }
 
     this.setData({ //动态高度
@@ -39,24 +43,24 @@ Page({
   },
   wupin_detail(e) {
     var that = this
-    console.log(e);
+    // console.log(e);
     if (e.currentTarget.dataset.reside === 1) {
       var info = that.data.list[e.currentTarget.dataset.index]
-      console.log("info==>", info);
+      // console.log("info==>", info);
       info = JSON.stringify(info)
       wx.navigateTo({
         url: '/pages/wupin_detail/index?info=' + info
       })
     } else if (e.currentTarget.dataset.reside === 2) {
       var info = that.data.list[e.currentTarget.dataset.index]
-      console.log("info==>", info);
+      // console.log("info==>", info);
       info = JSON.stringify(info)
       wx.navigateTo({
         url: '/pages/jineng_detail/index?info=' + info
       })
     } else {
       var info = that.data.list[e.currentTarget.dataset.index]
-      console.log("info==>", info);
+      // console.log("info==>", info);
       info = JSON.stringify(info)
       wx.navigateTo({
         url: '/pages/xvqiu_detail/index?info=' + info
@@ -65,7 +69,7 @@ Page({
   },
   showDetail(e) {
     var that = this
-    console.log(that.data);
+    // console.log(that.data);
     that.setData({
       isShow: true
     })
@@ -87,7 +91,7 @@ Page({
           //  status:1
         },
         success(res) {
-          console.log(res);
+          // console.log(res);
           res.data.response.content.forEach(item => {
             let aaa = "";
             var uuu = item.target.latitude;
@@ -139,26 +143,10 @@ Page({
           status: 1
         },
         success(res) {
-          console.log(res);
+          // console.log(res);
           res.data.response.content.forEach(item => {
-            // let aaa = "";
-            // var uuu = item.target.latitude;
-            // // console.log(uuu + "0000000000")
-            // if (uuu !== "") {
-            //   aaa = app.GetDistance(wx.getStorageSync("latitude"), wx.getStorageSync("longitude"), item.target.latitude, item.target.longitude);
-            //   aaa = (aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m"));
-            //   // console.log(aaa + "```````````")
-            // }
-
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
-            // item.target.distance = aaa;
-            // if (item.target.choose_location !== "") {
-            //   item.target.choose_location = JSON.parse(item.target.choose_location);
-            // }
-            // if (item.target.images != "" && item.target.images != null) {
-            //   item.target.images = item.target.images.split(",");
-            // }
           })
           that.setData({
             list: res.data.response.content
@@ -171,7 +159,7 @@ Page({
           })
         }
       })
-    } 
+    }
     if (e.currentTarget.dataset.index == 3) {
       that.setData({
         page_index: 3
@@ -226,30 +214,26 @@ Page({
         }
       })
     }
-    if(e.currentTarget.dataset.index == 4){
-      // wx.openCustomerServiceChat({
-      //   extInfo: {url: ''},
-      //   corpId: '',
-      //   success(res) {}
-      // })
-      // console.log(e.detail.path)
-      //   console.log(e.detail.query)
-    }
-    if(e.currentTarget.dataset.index == 5){
+    // if (e.currentTarget.dataset.index == 4) {
+
+    // }
+    if (e.currentTarget.dataset.index == 5) {
       wx.navigateTo({
         url: "/pages/niu_my_fuwuyinshi/index"
       })
     }
 
   },
-  handleContact (e) {
-    console.log(e.detail.path)
-    console.log(e.detail.query)
+  handleContact(e) {
+    // console.log(e.detail.path)
+    // console.log(e.detail.query)
   },
   onHide() {
     this.setData({
-      isShow: false
+      isShow: false,
+      animation: false
     })
+
     // console.log('false');
   },
   // 跳转到个人信息页面
@@ -258,7 +242,7 @@ Page({
       url: "/pages/my_edit_information/index"
     })
   },
-   /**
+  /**
    * 用户点击右上角分享
    */
   onShareAppMessage() {

@@ -32,37 +32,21 @@ Page({
       return
     }
     app.clickdingwei(json);
-    // ////console.log("options：", json) 
-    // // let key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key 
-    // let key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key 
-    // let referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称 
-    // let endPoint = JSON.stringify({ //终点 
-    //   'id': 1, 
-    //   'name': json.name, 
-    //   'latitude': json.latitude, 
-    //   'longitude': json.longitude 
-    // }); 
-    // wx.navigateTo({ 
-    //   url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint 
-    // }); 
   },
-
-  // want() {
-  //   var want = !this.data.want
-  //   this.setData({
-  //     want: want
-  //   })
-  //   // //console.log(this.data.want);
-  //   if (want) {
-  //     wx.showModal
-  //   }
-  // },
   img_click(e) {
-    // console.log(e.target.dataset.img);
     var that = this
+    var img = that.data.img_src
+    // console.log(e);
+    var imgs = e.currentTarget.dataset.imgs
+    wx.previewImage({
+      current: img, // 当前显示图片的http链接 String
+      urls: imgs // 需要预览的图片http链接列表 Array
+    })
+  },
+  img_click_url(e) {
+    // console.log(e);
     this.setData({
-      is_img_click: !that.data.is_img_click,
-      img_src: e.target.dataset.img ? e.target.dataset.img : ''
+      img_src: e.currentTarget.dataset.url ? e.currentTarget.dataset.url : ''
     })
   },
   cha_shouCang() {
@@ -85,7 +69,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: (res) => {
-        console.log("是否收藏", res);
+        // console.log("是否收藏", res);
         that.setData({
           count: res.data.response.count
         })
@@ -183,12 +167,6 @@ Page({
     }
 
   },
-  /**
-   * 控制 pop 的打开关闭
-   * 该方法作用有2:
-   * 1：点击弹窗以外的位置可消失弹窗
-   * 2：用到弹出或者关闭弹窗的业务逻辑时都可调用
-   */
   toggleDialog() {
     var that = this
     this.setData({
@@ -251,7 +229,7 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: (res) => {
-          console.log(res);
+          // console.log(res);
           wx.showToast({
             title: res.data.response,
           })
@@ -273,50 +251,8 @@ Page({
       })
     }
   },
-  // show_liuyan() {
-  //   // //console.log('ok');
-  //   var that = this
-  //   var info = this.data.info.target
-  //   // //console.log('markeId-->', info);
-  //   if (!info) {
-  //     return
-  //   }
-  //   wx.request({
-  //     url: app.globalData.serverApi + '/selectComment',
-  //     method: 'POST',
-  //     data: {
-  //       marketId: info.id,
-  //       status: 1
-  //     },
-  //     header: {
-  //       'content-type': 'application/x-www-form-urlencoded'
-  //     },
-  //     success: (res) => {
-  //       // //console.log(res.data);
-  //       //console.log(res.data);
-  //       if (res.data.response !== undefined) {
-  //         // if (res.data.response.content) {
-
-  //         res.data.response.content.forEach(item => {
-  //           let d = new Date(item.target.create_time).getTime();
-  //           item.target.create_time = util.commentTimeHandle(d);
-  //         })
-  //         that.setData({
-  //           content: res.data.response.content
-  //         })
-  //         // //console.log("pl--->", that.data.content);
-  //       }
-
-  //     },
-  //     fail: res => {
-  //       wx.showToast({
-  //         title: "加载留言失败",
-  //       })
-  //     }
-  //   })
-  // },
   delete(e) {
-    console.log(e);
+    // console.log(e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
       title: '不是本人的留言',
     })
@@ -327,7 +263,7 @@ Page({
       title: '是否删除该留言？',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          // console.log('用户点击确定')
           wx.request({
             url: app.globalData.serverApi + '/deleteComment',
             method: 'POST',
@@ -391,12 +327,6 @@ Page({
         }
       })
     })
-    // promise.then(function (r) {
-    //   //console.log("++++666++++");
-    //   that.show_liuyan()
-    //   //console.log('ok: ' + r);
-    // });
-
   },
 
   /**

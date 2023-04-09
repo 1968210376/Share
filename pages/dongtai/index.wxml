@@ -1,5 +1,5 @@
 <view class="container">
-  <view wx:for="{{list}}" wx:key="index">
+  <view wx:for="{{list}}"  wx:key="index">
     <view class="card" data-id="{{item.target}}" bindlongtap="delete_dongtai">
       <view class="card_main">
         <view class="userinfo">
@@ -13,9 +13,9 @@
         <view class="content">
           {{item.target.content}}
         </view>
-        <view class="media {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') :  (item.target.images.length == 2 ? 'img-2' :'column-count-2' ))}} ">
-          <block class="imgbox" wx:for="{{item.target.images}}" wx:key="index">
-            <image bindtap="img_click" data-img="{{item}}" lazy-load src="{{item}}" mode="aspectFill" />
+        <view bindtap="img_click" data-imgs="{{item.target.images}}" class="media {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') :  (item.target.images.length == 2 ? 'img-2' :'column-count-2' ))}} ">
+          <block class="imgbox" wx:for="{{item.target.images}}"  wx:key="index">
+            <image bindtap="img_click_url" data-url="{{item}}" lazy-load src="{{item}}" mode="aspectFill" />
           </block>
         </view>
 
@@ -64,9 +64,9 @@
     </view>
   </view>
 
-  <view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
+  <!-- <view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
     <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
-  </view>
+  </view> -->
   <view bindtap="add" class="add">
     <image src="/images/add(2).png" mode="widthFix" />
   </view>

@@ -16,7 +16,7 @@ Page({
     liuyan_value: '',
     count: 0,
     is_clicked: true,
-    is_img_click:false,
+    is_img_click: false,
 
   },
   /**
@@ -31,7 +31,7 @@ Page({
     });
   },
   delete(e) {
-    console.log(e);
+    // console.log(e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
       title: '不是本人的留言',
     })
@@ -42,7 +42,7 @@ Page({
       title: '是否删除该留言？',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          // console.log('用户点击确定')
           wx.request({
             url: app.globalData.serverApi + '/deleteComment',
             method: 'POST',
@@ -88,7 +88,7 @@ Page({
             'content-type': 'application/x-www-form-urlencoded'
           },
           success: (res) => {
-            console.log('删除成功', res);
+            // console.log('删除成功', res);
             // //console.log();
             that.setData({
               is_shouCang: false,
@@ -117,8 +117,8 @@ Page({
             'content-type': 'application/x-www-form-urlencoded'
           },
           success: (res) => {
-            console.log('收藏成功');
-            console.log(res);
+            // console.log('收藏成功');
+            // console.log(res);
             if (res.data.code == 1) {
               that.setData({
                 is_shouCang: true,
@@ -175,7 +175,7 @@ Page({
         }
       },
       fail: res => {
-        console.log(res);
+        // console.log(res);
         wx.showToast({
           title: "加载收藏失败",
         })
@@ -184,7 +184,7 @@ Page({
   },
   // 实现点击复制功能
   copy(e) {
-    console.log(e.currentTarget.dataset.text);
+    // console.log(e.currentTarget.dataset.text);
     wx.setClipboardData({ //复制文本
       data: e.currentTarget.dataset.text,
       success: function (res) {
@@ -213,19 +213,6 @@ Page({
       return
     }
     app.clickdingwei(json);
-    // ////console.log("options：", json) 
-    // // let key = 'YPJBZ-3VICP-OYWDV-VQDUT-FCI7J-MPFYK'; //使用在腾讯位置服务申请的key 
-    // let key = 'PMWBZ-KDRLX-H3C4C-ZAH36-WB2YT-GYBN5'; //使用在腾讯位置服务申请的key 
-    // let referer = 'wx6d3c8ce12b2a4f0c'; //调用插件的app的名称 
-    // let endPoint = JSON.stringify({ //终点 
-    //   'id': 1, 
-    //   'name': json.name, 
-    //   'latitude': json.latitude, 
-    //   'longitude': json.longitude 
-    // }); 
-    // wx.navigateTo({ 
-    //   url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint 
-    // }); 
   },
   call_phone: function (e) {
     wx.makePhoneCall({
@@ -243,7 +230,7 @@ Page({
    */
   onLoad(options) {
     var info = JSON.parse(options.info)
-    console.log(info);
+    // console.log(info);
     this.setData({
       info: info
     })
@@ -337,11 +324,19 @@ Page({
     })
   },
   img_click(e) {
-    // console.log(e.target.dataset.img);
     var that = this
+    var img = that.data.img_src
+    // console.log(img);
+    var imgs = e.currentTarget.dataset.imgs
+    wx.previewImage({
+      current: img, // 当前显示图片的http链接 String
+      urls: imgs // 需要预览的图片http链接列表 Array
+    })
+  },
+  img_click_url(e) {
+    // console.log(e);
     this.setData({
-      is_img_click: !that.data.is_img_click,
-      img_src: e.target.dataset.img ? e.target.dataset.img : ''
+      img_src: e.currentTarget.dataset.url ? e.currentTarget.dataset.url : ''
     })
   },
   /**

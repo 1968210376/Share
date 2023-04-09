@@ -13,17 +13,15 @@
         {{info.target.nick_name}}
       </view>
       <view class="gray font-mini">
-        {{info.target.create_time}} | {{info.target.choose_location.district}} | {{info.target.distance?"据您"+info.target.distance:""}}
+        {{info.target.create_time}} {{info.target.choose_location.district}} {{info.target.distance?"据您"+info.target.distance:""}}
       </view>
       <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
-        <image style="width: 50rpx;height: 50rpx;" src="/images/location.png" mode="aspectFill" />
+        <view>
+          <image class="icon" src="/images/location.png" mode="widthFix" />
+        </view>
         <!-- 点击定位 -->
         点击导航
       </view>
-    </view>
-    <view class="right" bindtap="is_shouCang">
-      <image wx:if="{{!is_shouCang}}" class="icon" src="/images/shoucang(2).png" mode="" />
-      <image wx:if="{{is_shouCang}}" src="/images/shoucang(3).png" class="icon" />
     </view>
   </view>
 
@@ -36,19 +34,24 @@
   <view class="title">
     {{info.target.title}}
   </view>
-  <view wx:if="{{item.target.pirce}}" class="price_box">
-    <text class="price red right">￥{{info.target.pirce}}</text>
-    <!-- <text class="gray font-mini">|</text> -->
-    <!-- <text class="font-mini blue"></text> -->
-  </view>
-  <view wx:if="{{info.target.images[0]}}" class="imgBox">
+
+  <view bindtap="img_click" data-imgs="{{info.target.images}}" wx:if="{{info.target.images[0]}}" class="imgBox">
     <view wx:for="{{info.target.images}}" wx:key="index">
-      <image bindtap="img_click" data-img="{{item}}" show-menu-by-longpress src="{{item}}" mode="widthFix" />
+      <image bindtap="img_click_url" data-url="{{item}}" show-menu-by-longpress src="{{item}}" mode="widthFix" />
     </view>
   </view>
   <view>
     <view class="component">
       <share info="{{info.target}}"></share>
+      <view class="zj" bindtap="is_shouCang">
+        <view>
+          <image wx:if="{{!is_shouCang}}" class="icon" src="/images/sc(1).png" mode="" />
+          <image wx:if="{{is_shouCang}}" src="/images/shoucang(3).png" class="icon" />
+        </view>
+        <view>
+          收藏
+        </view>
+      </view>
       <ping info="{{info.target}}"></ping>
       <view class="btn yellow" bindtap="toggleDialog">
         <image class="icon" src="/images/xy (2).png" mode="aspectFit" />

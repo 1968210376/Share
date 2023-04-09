@@ -1,30 +1,32 @@
-.bg{
+.bg {
   width: 100vw;
   height: 100vh;
   position: absolute;
 }
+
 .container {
   height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   overflow: hidden;
   /* color: rgb(5, 5, 5); */
-  background: linear-gradient(to bottom,#29b6f6,#fff);
-  color:rgb(248, 248, 250);
+  /* background: linear-gradient(to bottom,#29b6f6,#fff); */
+  color: rgb(248, 248, 250);
   font-size: 1.1rem;
   font-weight: bold;
+  justify-content: space-around;
 }
 
 .class {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-bottom: 230px;
 }
 
 .dong {
-  animation: dong .5s ease-in-out;
+  animation: move .5s ease-in-out;
 }
 
 .fenlei {
@@ -37,18 +39,31 @@
 .icon {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
+}
+
+.title {
+  width: 100vw;
+  height: 100vw;
+  text-align: center;
+  font-family: serif;
+  word-break: break-all;
+  font-size: 22vw;
+  margin-top: 15px;
 }
 
 .bottom {
-  width: 100vw;
-  height: 100vw;
+  width: 50vw;
+  height: 50vw;
   border-radius: 50%;
   /* background: #29b6f6; */
-  background: linear-gradient(to bottom,#29b6f6,#fff,#fff,#fff);
+  /* background: radial-gradient(#398dd1, rgb(97, 144, 182)); */
+  /* background:rgba(255,255,255,.1); */
+  /* border: 5px rgba(0,0,0,.1) solid; */
   position: absolute;
-  bottom: -80vw;
   text-align: center;
+  bottom: -32vw;
+  left: 25%;
   line-height: 25vw;
   font-size: 20px;
   font-weight: bold;
@@ -56,45 +71,31 @@
 }
 
 .move {
-  animation: move .5s linear;
+  animation: move .5s ease-in-out;
 
+}
+
+.bo {
+  animation: move .5s ease-in-out;
 }
 
 @keyframes move {
   0% {
-    bottom: -100vw;
+    transform: translateY(100vh);
+    opacity: 0;
+    scale: 0.01;
   }
 
-  20% {
-    bottom: -95vw;
-  }
-
-  40% {
-    bottom: -90vw;
-  }
-
-  60% {
-    bottom: -85vw;
-  }
-
-  80% {
-    bottom: -80vw;
+  50% {
+    transform: translateY(50vh);
+    opacity: .5;
+    scale: .5;
   }
 
   100% {
-    bottom: -70vw;
-  }
-}
-
-
-@keyframes dong {
-  from {
-    justify-content: flex-end;
-    opacity: 0;
-  }
-
-  to {
-    justify-content: space-around;
+    transform: translateY(0);
     opacity: 1;
+    scale: 1;
   }
 }
+

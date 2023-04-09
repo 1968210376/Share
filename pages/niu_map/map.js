@@ -29,7 +29,7 @@ Page({
   selectMarket: function () {
     var that = this
     var userInfo = wx.getStorageSync('userInfo');
-    console.log(that.data.latitude, that.data.longitude)
+    // console.log(that.data.latitude, that.data.longitude)
     wx.request({
       url: app.globalData.serverApi + '/selectMarket',
       method: 'POST',
@@ -51,8 +51,8 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: (res) => {
-        console.log("selectmarket===>res");
-        console.log(res);
+        // console.log("selectmarket===>res");
+        // console.log(res);
         if (res.data.code == 1) {
           var list = res.data.response.content
           let arr = [];
@@ -64,7 +64,7 @@ Page({
             if (mar.target.choose_location != null && mar.target.choose_location != "") {
               mar.target.choose_location = JSON.parse(mar.target.choose_location);
             }
-            console.log(that.data.latitude, that.data.longitude)
+            // console.log(that.data.latitude, that.data.longitude)
             // 调用 return的距离单位为km
             let aaa = app.GetDistance(that.data.latitude, that.data.longitude, mar.target.latitude, mar.target.longitude);
             aaa = aaa >= 1 ? (aaa.toFixed(1) + "km") : ((aaa * 1000).toFixed(0) + "m");
@@ -119,47 +119,11 @@ Page({
               display: "ALWAYS",
             }
             // }
-
-
-
-            // item.label = {
-            //   borderColor:'#ff0033',
-            //   borderWidth:1,
-            //   borderRadius:5,
-            //   width:34,
-            //   height:34,
-            //   anchorX:-17,
-            //   anchorY:-33,
-            //   // bgColor: '#ffffff',
-            //   color: '#ff6666',
-            //   alpha:0,
-            //   // content: aaa,
-            // },
             arr.push(item)
           })
           that.setData({
             markers: arr,
           })
-          // that.setData({
-          //   mapCtx: wx.createMapContext('map')
-          // })
-          // let {
-          //   mapCtx
-          // } = this.data
-          // let points = []
-          // // result.forEach(item => {
-          // //   let obj = {
-          // //     latitude: item.lat,
-          // //     longitude: item.lng
-          // //   }
-          // //   points.push(obj)
-          // // })
-          // mapCtx.includePoints({
-          //   padding: [10, , 10000, 100000],
-          //   // points,
-          //   arr,
-          // })
-
         }
       },
       fail: res => {
@@ -196,19 +160,6 @@ Page({
         }
       })
     }
-    // if (e.type === 'end' && e.causedBy === 'drag') {
-    // 	const mapCtx = wx.createMapContext('map', this);
-    // 	mapCtx.getCenterLocation({
-    // 		success: res => {
-    // 			const latitude = res.latitude;
-    // 			const longitude = res.longitude;
-    // 			this.setData({
-    // 				animation: true,
-    // 				regionCallbackTxt: latitude.toFixed(6) + ',' + longitude.toFixed(6)
-    // 			});
-    // 		}
-    // 	});
-    // }
   },
   onMarkerAnimationend() {
     this.setData({
@@ -235,20 +186,20 @@ Page({
     //   var me = this;
     //   attribute(dragFlag, this)
     // });
-    console.log("点击了标记点")
-    console.log(res)
-    console.log(res.markerId)
+    // console.log("点击了标记点")
+    // console.log(res)
+    // console.log(res.markerId)
     this.to_wupin_detail(res.markerId)
   },
   // 点击气泡时触发
   bindcallouttap: function (res) {
-    console.log(res)
-    console.log(res.markerId)
+    // console.log(res)
+    // console.log(res.markerId)
     if (!this.data.flag) {
       console.log("false")
     } else {
       this.to_wupin_detail(res.markerId)
-      console.log("true")
+      // console.log("true")
     }
     this.setData({
       flag: true
@@ -257,7 +208,7 @@ Page({
   },
   // 根据id进入详情页
   to_wupin_detail: function (e) {
-    console.log(e)
+    // console.log(e)
     wx.navigateTo({
       url: "/pages/wupin_detail/index?id=" + e
     })

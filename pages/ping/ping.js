@@ -35,10 +35,10 @@ Component({
       this.select_pinglun(e)
     },
     send_pinglun(e) {
-      console.log("评论",e);
+      // console.log("评论",e);
       var that = this
       var info = this.properties.info
-      console.log(info);
+      // console.log(info);
       var content = e.detail.value.input ? e.detail.value.input : e.detail.value
       this.setData({
         value: e.detail.value
@@ -62,7 +62,7 @@ Component({
             'content-type': 'application/x-www-form-urlencoded'
           },
           success(res) {
-            console.log(res);
+            // console.log(res);
             res.data.code == 1 ? (wx.showToast({
               title: '评论成功',
             })) : (wx.showToast({
@@ -82,10 +82,10 @@ Component({
         }))
     },
     select_pinglun(e) {
-      console.log(e);
+      // console.log(e);
       var that = this
       var info = this.properties.info
-      console.log("info", info);
+      // console.log("info", info);
       // var info = e.currentTarget.dataset.ping
       wx.request({
         url: app.globalData.serverApi + '/selectComment',
@@ -109,20 +109,20 @@ Component({
           that.setData({
             pinglun: res.data.response.content.length == 0 ? (that.data.pageIndex == 1 ? '' : that.data.pinglun) : (that.data.pageIndex == 1 ? res.data.response.content : that.data.pinglun.concat(res.data.response.content)),
           })
-          console.log(that.data.pinglun);
+          // console.log(that.data.pinglun);
         }
       })
     },
     load_ping() {
-      console.log('上拉加载');
+      // console.log('上拉加载');
       var that = this
       // if(!this.loading && this.data.pageIndex<this.data.pages ){
-      console.log('当前页', that.data.pageIndex);
+      // console.log('当前页', that.data.pageIndex);
       if (!this.data.end) {
         that.setData({
           pageIndex: that.data.pageIndex + 1
         })
-        console.log('当前页', that.data.pageIndex);
+        // console.log('当前页', that.data.pageIndex);
         this.select_pinglun()
       } else {
         wx.showToast({
@@ -131,7 +131,7 @@ Component({
       }
     },
     delete(e) {
-      console.log("e===>", e);
+      // console.log("e===>", e);
       e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
         title: '不是本人的留言',
       })
@@ -142,7 +142,7 @@ Component({
         title: '是否删除该留言？',
         success(res) {
           if (res.confirm) {
-            console.log('用户点击确定')
+            // console.log('用户点击确定')
             wx.request({
               url: app.globalData.serverApi + '/deleteComment',
               method: 'POST',

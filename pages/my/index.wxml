@@ -2,9 +2,9 @@
   <!-- <view bindtap="chooseBackground" class="bg">
     <image src="{{bgImg}}" mode="heightFix" />
   </view> -->
-  <view class="userinfo menu-item" bindtap='to_niu_my_edit_information'>
+  <view class="userinfo menu-item  {{animation ? 'tan' : '' }}" bindtap='to_niu_my_edit_information'>
     <view>
-      <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
+      <image class="userinfo-avatar " src="{{avatarUrl}}"></image>
       <view class="userinfo-nickname">
         <text>{{nickName}}</text>
       </view>
@@ -20,10 +20,10 @@
 
   <view class="menu">
     <view class="space"></view>
-    <view class="menu-item" bindtap="showDetail" data-index="1">
+    <view class="menu-item {{animation ? 'tan' : '' }}" bindtap="showDetail" data-index="1">
       <view class="menu-item-content">
         <view>
-          <image src="/images/shoucang(3).png" class="icon" mode="" />
+          <image src="/images/shoucang(3).png" class="icon " mode="" />
         </view>
         <view>
           我的收藏
@@ -33,10 +33,10 @@
     </view>
     <view class="space"></view>
 
-    <view class="menu-item" bindtap="showDetail" data-index="2">
+    <view class="menu-item {{animation ? 'tan' : '' }}" bindtap="showDetail" data-index="2">
       <view class="menu-item-content">
         <view>
-          <image src="/images/ly.png" class="icon" mode="" />
+          <image src="/images/ly.png" class="icon " mode="" />
         </view>
         <view>
           我的留言
@@ -46,10 +46,10 @@
     </view>
     <view class="space"></view>
 
-    <view class="menu-item" bindtap="showDetail" data-index="3">
+    <view class="menu-item {{animation ? 'tan' : '' }}" bindtap="showDetail" data-index="3">
       <view class="menu-item-content">
         <view>
-          <image src="/images/share(1).png" class="icon" mode="" />
+          <image src="/images/share(1).png" class="icon " mode="" />
         </view>
         <view>
           我的共享
@@ -58,12 +58,12 @@
       <image src="/images/next.png" class="next" mode="" />
     </view>
     <view class="space"></view>
-    <view class="menu-item" bindtap="showDetail" data-index="4">
+    <view class="menu-item {{animation ? 'tan' : '' }}" bindtap="showDetail" data-index="4">
       <view class="menu-item-content">
         <view>
-          <image src="/images/kf.png" class="icon" mode="" />
+          <image src="/images/kf.png" class="icon " mode="" />
         </view>
-        <button style="width: 100%;text-align:left;font-weight:normal;color:gray;margin-left:-25px;background-color: transparent;" open-type="contact" bindcontact="handleContact">
+        <button style="width: 100vw;text-align:left;font-weight:normal;color:gray;margin-left:-25px;background-color: transparent;" open-type="contact" bindcontact="handleContact">
           联系客服
         </button>
       </view>
@@ -73,10 +73,10 @@
     <view class="space">
 
     </view>
-    <view class="menu-item" bindtap="showDetail" data-index="5">
+    <view class="menu-item {{animation ? 'tan' : '' }}" bindtap="showDetail" data-index="5">
       <view class="menu-item-content">
         <view>
-          <image src="/images/ys.png" class="icon" mode="" />
+          <image src="/images/ys.png" class="icon " mode="" />
         </view>
         <view>
           服务隐私政策

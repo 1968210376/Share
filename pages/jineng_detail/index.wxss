@@ -55,10 +55,17 @@
 .blue{
     color:rgb(91, 91, 243);
 }
+.red{
+  color: #ff0000;
+}
 .gap{
     display: flex;
     gap: 15rpx;
     align-items: center;
+}
+.right{
+  position: absolute;
+  right: 30px;
 }
 .content{
     width: 100vw;
@@ -98,8 +105,8 @@
     padding-top: 16rpx;
 }
 .button{
-    width: 50vw;
-    background-color: #4197fa;
+    width: 90vw;
+    background-color: #5ea3f1;
     margin: 50rpx auto;
     padding: 30rpx;
     text-align: center;

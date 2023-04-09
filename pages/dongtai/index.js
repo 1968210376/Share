@@ -30,12 +30,12 @@ Page({
   },
   is_like(e) {
     var info = wx.getStorageSync('userInfo')
-    console.log(e, wx.getStorageSync('openid'),info);
+    // console.log(e, wx.getStorageSync('openid'),info);
     var that = this
     this.setData({
       is_like: e.currentTarget.dataset.like.flag > 0 ? false : true
     })
-    console.log(this.data.is_like);
+    // console.log(this.data.is_like);
     this.data.is_like ? (wx.request({
       url: app.globalData.serverApi + '/friendsLikes',
       method: 'POST',
@@ -50,7 +50,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success(res) {
-        console.log("赞", res.data);
+        // console.log("赞", res.data);
         res.data.code == 1 ? that.load() : ''
       }
     })) : (
@@ -65,7 +65,7 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
-          console.log("取消赞", res.data);
+          // console.log("取消赞", res.data);
           res.data.code == 1 ? that.load() : ''
         }
       })
@@ -73,11 +73,19 @@ Page({
 
   },
   img_click(e) {
-    // console.log(e.target.dataset.img);
     var that = this
+    var img = that.data.img_src
+    // console.log(img);
+    var imgs = e.currentTarget.dataset.imgs
+    wx.previewImage({
+      current: img, // 当前显示图片的http链接 String
+      urls: imgs // 需要预览的图片http链接列表 Array
+    })
+  },
+  img_click_url(e) {
+    // console.log(e);
     this.setData({
-      is_img_click: !that.data.is_img_click,
-      img_src: e.target.dataset.img ? e.target.dataset.img : ''
+      img_src: e.currentTarget.dataset.url ? e.currentTarget.dataset.url : ''
     })
   },
   pinglun(e) {
@@ -89,7 +97,7 @@ Page({
     this.select_pinglun(e)
   },
   send_pinglun(e) {
-    console.log("评论",e);
+    // console.log("评论",e);
     // console.log(this.data.ping_info);
     var that = this
     var info = this.data.ping_info
@@ -110,13 +118,13 @@ Page({
           commentUserWxOpenId: info.wx_open_id, //物品发布人openid
           commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           // city: info.address,
-          status: 1
+          status: 0
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success(res) {
-          console.log(res);
+          // console.log(res);
           res.data.code == 1 ? (wx.showToast({
             title: '评论成功',
           })) : (wx.showToast({
@@ -136,7 +144,7 @@ Page({
       }))
   },
   select_pinglun(e) {
-    console.log(e);
+    // console.log(e);
     var that = this
     var info = this.data.ping_info
     // var info = e.currentTarget.dataset.ping
@@ -163,20 +171,20 @@ Page({
           form: false,
           ping: false
         })
-        console.log(that.data.pinglun);
+        // console.log(that.data.pinglun);
       }
     })
   },
   load_ping() {
-    console.log('上拉加载');
+    // console.log('上拉加载');
     var that = this
     // if(!this.loading && this.data.pageIndex<this.data.pages ){
-    console.log('当前页', that.data.pageIndex);
+    // console.log('当前页', that.data.pageIndex);
     if (!this.data.end) {
       that.setData({
         pageIndex: that.data.pageIndex + 1
       })
-      console.log('当前页', that.data.pageIndex);
+      // console.log('当前页', that.data.pageIndex);
       this.select_pinglun()
     } else {
       wx.showToast({
@@ -185,7 +193,7 @@ Page({
     }
   },
   delete(e) {
-    console.log("e===>", e);
+    // console.log("e===>", e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
       title: '不是本人的留言',
     })
@@ -196,7 +204,7 @@ Page({
       title: '是否删除该留言？',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          // console.log('用户点击确定')
           wx.request({
             url: app.globalData.serverApi + '/deleteComment',
             method: 'POST',
@@ -235,10 +243,10 @@ Page({
         publictiy: 1
       },
       success(res) {
-        console.log("shuju==>", res.data);
+        // console.log("shuju==>", res.data);
         if (res.data.response) {
           res.data.response.content.forEach(item => {
-            
+
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
             if (item.target.images) {
@@ -259,7 +267,7 @@ Page({
     })
   },
   load_like(e) {
-    console.log(e);
+    // console.log(e);
     let that = this;
     wx.request({
       url: app.globalData.serverApi + '/friendsLikes',
@@ -291,7 +299,7 @@ Page({
   //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
   formSubmit: function (e) {
     var that = this
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
     if (!e.detail.value.content) {
       wx.showToast({
         icon: 'none',
@@ -375,7 +383,7 @@ Page({
         content: e.detail.value.content,
         images: that.data.product_img,
         address: city,
-        publictiy: 1,
+        publictiy: 0,
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -387,7 +395,7 @@ Page({
           title: "上传成功",
         })
         if (res.data.code == 1) {
-          console.log("进来了");
+          // console.log("进来了");
           that.load()
           that.setData({
             add: false,
@@ -456,15 +464,12 @@ Page({
     })
   },
   delete_dongtai(e) {
-    var that = this
-    console.log(e);
+    var that = this;
     (e.currentTarget.dataset.id.wx_open_id == wx.getStorageSync('openid')) ? (
-
       wx.showModal({
         title: '是否删除该动态？',
         success(res) {
           if (res.confirm) {
-            console.log('用户点击确定')
             wx.request({
               url: app.globalData.serverApi + '/deleteFriends/' + e.currentTarget.dataset.id.id,
               method: 'POST',
@@ -473,7 +478,6 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success(res) {
-                console.log('ok');
                 that.load()
               }
             })

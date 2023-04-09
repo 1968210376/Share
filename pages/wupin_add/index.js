@@ -38,7 +38,7 @@ Page({
         categoryType: reside
       },
       success: (res) => {
-        console.log("分类", res.data.response.content);
+        // console.log("分类", res.data.response.content);
         that.setData({
           categories: res.data.response.content,
           reside: res.data.response.content[0].reside
@@ -54,7 +54,7 @@ Page({
   },
 
   changeValue(e) {
-    console.log(this.data.categories[e.detail.value]);
+    // console.log(this.data.categories[e.detail.value]);
     var value = this.data.categories[e.detail.value]
     this.setData({
       value: value.categoryName,
@@ -70,7 +70,7 @@ Page({
     this.setData({
       show: true
     })
-    console.log(e);
+    // console.log(e);
   },
   exit(e) {
     this.setData({
@@ -80,7 +80,7 @@ Page({
   //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
   formSubmit: function (e) {
     var that = this
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
     // let category_type =  JSON.parse(e.detail.value.category_type);
     if (!e.detail.value.fenlei) {
       wx.showToast({
@@ -244,7 +244,7 @@ Page({
           title: "上传成功",
         })
         if (res.data.code == 1) {
-          console.log("进来了");
+          // console.log("进来了");
 
           // wx.reLaunch({
           //   //页面跳转携带参数

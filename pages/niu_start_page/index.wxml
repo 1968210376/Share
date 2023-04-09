@@ -5,5 +5,5 @@
 <view class="userinfo">
 </view> -->
 <view class="container">
-  <image class="bg" src="{{testList[0]}}" mode="aspectFill"/>
+  <image class="bg" src="{{testList[0]}}" mode="aspectFill" />
 </view>

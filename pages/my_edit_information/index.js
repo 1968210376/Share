@@ -32,7 +32,7 @@ Page({
     var user = wx.getStorageSync('userInfo');
     // console.log("userInfo:" + userInfo)
     // var user = app.globalData.userInfo;
-    console.log("获取本地userInfo:", user);
+    // console.log("获取本地userInfo:", user);
     let that = this
     if (user) {
       this.setData({
@@ -56,7 +56,7 @@ Page({
     this.setData({
       avatarUrl,
     })
-    console.log("头像信息的临时路径：" + avatarUrl)
+    // console.log("头像信息的临时路径：" + avatarUrl)
     // 保存到本地
     var userInfo = wx.getStorageSync('userInfo');
     userInfo.avatarUrl = this.data.avatarUrl
@@ -80,16 +80,16 @@ Page({
     });
     var that = this
     let suffix = /\.\w+$/.exec(avatarUrl); //正则表达式返回文件的扩展名
-    console.log("item:", avatarUrl);
-    console.log("suffix:", suffix);
+    // console.log("item:", avatarUrl);
+    // console.log("suffix:", suffix);
     var filePath = avatarUrl;
     // var filename = filePath.substr(filePath.lastIndexOf('/') + 1);
     // 获取时间作为文件夹名
     var time = util.dateFormat(new Date(), "YMD");
-    console.log("时间：", time);
-    console.log("随机：", Math.random().toString())
+    // console.log("时间：", time);
+    // console.log("随机：", Math.random().toString())
     var filename = Number(Math.random().toString().substr(3, 6) + new Date().getTime()).toString(36) + suffix;
-    console.log("filename:", filename)
+    // console.log("filename:", filename)
     cos.postObject({
       Bucket: 'niuyabo-1257122371',
       Region: 'ap-chengdu',
@@ -99,19 +99,19 @@ Page({
         console.log(JSON.stringify(info));
       }
     }, function (err, data) {
-      console.log(err || data);
-      console.log("data:", data);
-      console.log("err:", err);
+      // console.log(err || data);
+      // console.log("data:", data);
+      // console.log("err:", err);
       // json = JSON.parse(info)
       var res = data;
       // console.log(JSON.stringify(info).Location)
       res = res.Location;
       var fileID = "http://" + res;
-      console.log("fileID:", fileID);
+      // console.log("fileID:", fileID);
       that.setData({
         fileIDs: that.data.fileIDs.concat(fileID)
       })
-      console.log("fileIDs:", that.data.fileIDs) //输出上传后图片的返回地址
+      // console.log("fileIDs:", that.data.fileIDs) //输出上传后图片的返回地址
       wx.hideLoading();
       wx.showToast({
         title: "上传成功",
@@ -129,7 +129,7 @@ Page({
   saveupdataniuuser: function (userInfo) {
     // 保存到数据库
     var userInfo = wx.getStorageSync('userInfo');
-    console.log(userInfo.wxOpenId);
+    // console.log(userInfo.wxOpenId);
     wx.request({
       url: app.globalData.serverApi + '/updataniuuser',
       method: 'POST',
@@ -150,20 +150,20 @@ Page({
         wx.showToast({
           title: '提交成功！',
         })
-        console.log("saveupdataniuuser===>res");
-        console.log(res);
+        // console.log("saveupdataniuuser===>res");
+        // console.log(res);
       }
     })
   },
 
   //昵称确认 保存本地
   confirm: function (e) {
-    console.log(e);
+    // console.log(e);
     let that = this
     this.setData({
       hiddenmodalputnickName: true,
     })
-    console.log("昵称：" + that.data.nickName);
+    // console.log("昵称：" + that.data.nickName);
     setTimeout(function () {
       that.setData({
         nickName: that.data.nickName,
@@ -197,8 +197,8 @@ Page({
     userInfo.gender = that.data.gender
     app.globalData.userInfo = userInfo
     wx.setStorageSync('userInfo', userInfo)
-    console.log("niu_my_edit_info==>userInfo")
-    console.log(userInfo)
+    // console.log("niu_my_edit_info==>userInfo")
+    // console.log(userInfo)
     // 保存到数据库
     that.saveupdataniuuser(userInfo);
   },
@@ -237,7 +237,7 @@ Page({
     // console.log("输入内容===>" + e.detail.value);
     // var that=this
     this.data.nickName = e.detail.value
-    console.log("输入的修改昵称===》" + e.detail.value)
+    // console.log("输入的修改昵称===》" + e.detail.value)
     // this.setData({
     //     nickName: e.detail.value,
     // })
@@ -291,12 +291,12 @@ Page({
   //联系方式确认 保存本地
   confirms: function (e) {
     if (this.phone !== '') {
-      console.log(e);
+      // console.log(e);
       let that = this
       this.setData({
         showModal: true,
       })
-      console.log("联系方式 phone:" + that.data.phone, "contact_qq:", that.data.contact_qq, "contact_wx:", that.data.contact_wx);
+      // console.log("联系方式 phone:" + that.data.phone, "contact_qq:", that.data.contact_qq, "contact_wx:", that.data.contact_wx);
       var userInfo = wx.getStorageSync('userInfo');
       userInfo.phone = that.data.phone
       userInfo.contact_qq = that.data.contact_qq
@@ -306,16 +306,6 @@ Page({
       // 保存到数据库
       this.saveupdataniuuser(userInfo);
     }
-
-    // setTimeout(function () {
-    //     that.setData({
-    //         phone: that.data.phone,
-    //         contact_qq:that.data.contact_qq,
-    //         contact_wx:that.data.contact_wx
-    //     })
-    // }, 200);
-    // 保存到本地
-
   },
   //手机号输入框光标失去焦点触发保存局域
   setToPhone: function (e) {
@@ -342,10 +332,7 @@ Page({
     this.setData({
       contact_qq: e.detail.value
     })
-    console.log("输入的QQ号===》" + e.detail.value)
-    // this.setData({
-    //     nickName: e.detail.value,
-    // })
+
   },
   //wx号输入框光标失去焦点触发保存局域
   setToWx: function (e) {
@@ -354,10 +341,8 @@ Page({
     this.setData({
       contact_wx: e.detail.value
     })
-    console.log("输入的微信号===》" + e.detail.value)
-    // this.setData({
-    //     nickName: e.detail.value,
-    // })
+    // console.log("输入的微信号===》" + e.detail.value)
+  
   },
   /**
    * 用户点击右上角分享

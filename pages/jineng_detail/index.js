@@ -33,7 +33,7 @@ Page({
         likesUserWxOpenId: wx.getStorageSync('openid')
       },
       success(res) {
-        console.log("count---", res);
+        // console.log("count---", res);
         that.setData({
           count: res.data.response.count
         })
@@ -58,7 +58,7 @@ Page({
   // 实现点击复制功能
   copy(e) {
     var that = this
-    console.log(e.currentTarget.dataset.text);
+    // console.log(e.currentTarget.dataset.text);
     wx.setClipboardData({ //复制文本
       data: e.currentTarget.dataset.text,
       success: function (res) {
@@ -120,17 +120,17 @@ Page({
         // status:0
       },
       success(res) {
-        console.log("ping", res.data);
+        // console.log("ping", res.data);
         that.setData({
           content: that.data.pageIndex == 1 ? res.data.response.content : that.data.content.concat(res.data.response.content),
           end: res.data.response.content.length < res.data.response.pageSize ? true : false
         })
-        console.log("end:===", that.data.end);
+        // console.log("end:===", that.data.end);
       }
     })
   },
   getStarValue(e) {
-    console.log(e);
+    // console.log(e);
     e.detail.params ? this.setData({
       pingfen: e.detail.params
     }) : this.setData({
@@ -138,7 +138,7 @@ Page({
     })
   },
   pingjia(e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       pingjia: e.detail.value
     })

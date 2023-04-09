@@ -67,7 +67,7 @@ Page({
     var that = this
     if (e) {
       var reside = parseInt(e.target.dataset.tab) + 1
-      console.log(reside);
+      // console.log(reside);
 
     } else {
       var reside = 1
@@ -83,7 +83,7 @@ Page({
   },
   changeItem(e) { //二级导航栏点击切换
     var that = this
-    console.log('+++++++++++', e);
+    // console.log('+++++++++++', e);
 
     if (e.target.dataset !== '') {
 
@@ -126,7 +126,7 @@ Page({
         status: 1
       },
       success(res) {
-        console.log("shuju==>", res.data);
+        // console.log("shuju==>", res.data);
         if (res.data.response) {
           res.data.response.content.forEach(item => {
             let aaa = "";
@@ -198,7 +198,7 @@ Page({
   xvqiu_detail(e) {
     // console.log(e);
     var info = this.data.list[e.currentTarget.dataset.id]
-    console.log(info);
+    // console.log(info);
     info = JSON.stringify(info)
     wx.navigateTo({
       url: '/pages/xvqiu_detail/index?info=' + info
@@ -236,7 +236,7 @@ Page({
       },
       success(res) {
         that.loading = false
-        console.log("shuju==>", res.data);
+        // console.log("shuju==>", res.data);
         if (res.data.response) {
           res.data.response.content.forEach(item => {
             let aaa = "";
@@ -312,7 +312,7 @@ Page({
       },
       success(res) {
         that.loading = false
-        console.log("shuju==>", res.data);
+        // console.log("shuju==>", res.data);
         if (res.data.response.content.length !== 0) {
           res.data.response.content.forEach(item => {
             let aaa = "";
@@ -365,10 +365,10 @@ Page({
     })
   },
   refresh() { //上拉加载
-    console.log('上拉加载');
+    // console.log('上拉加载');
     var that = this
     // if(!this.loading && this.data.pageIndex<this.data.pages ){
-    console.log('当前页', that.data.pageIndex);
+    // console.log('当前页', that.data.pageIndex);
     if (!this.data.end) {
       this.getShujus(this.data.pageIndex + 1)
     } else {
@@ -448,14 +448,14 @@ Page({
     })
     this.getShuju()
     this.goTop()
-    console.log('下拉刷新');
+    // console.log('下拉刷新');
     this.setData({
       end: false
     })
     // }
   },
   onReachBottom() {
-    console.log('上拉刷新');
+    // console.log('上拉刷新');
     this.refresh()
   },
   /**

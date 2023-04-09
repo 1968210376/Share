@@ -128,14 +128,13 @@
 
 .img-2 image,
 .column-count-2 image {
-  width: 8rem;
-  height: 8rem;
+  height: 10rem;
 }
 
 .img-3 image,
 .column-count-3 image {
-  width: 6rem;
-  height: 6rem;
+  /* width: 6rem; */
+  height: 7rem;
 }
 
 .border-top {
@@ -146,9 +145,10 @@
 
 .media image {
   width: 100%;
+  border-radius: 8rpx;
 }
 
-.img_click {
+/* .img_click {
   position: absolute;
   top: 0;
   left: 0;
@@ -159,15 +159,15 @@
   align-items: center;
   justify-content: center;
   z-index: 99;
-}
+} */
 
 .hidden {
   display: none;
 }
-
+/* 
 .img_click image {
   width: 100%;
-}
+} */
 
 .location {
   width: 100%;

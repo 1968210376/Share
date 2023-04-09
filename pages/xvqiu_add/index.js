@@ -18,7 +18,7 @@ Page({
     issuePicSum: 9,
     price: '',
     show: false,
-    isshow:false
+    isshow: false
   },
   getCategory(e) { // 获取分类
     var that = this
@@ -61,7 +61,7 @@ Page({
       value: value.categoryName,
       categoryType: value.categoryType
     })
-    console.log(value);
+    // console.log(value);
   },
   showfenleiModel(e) {
     this.setData({
@@ -76,7 +76,7 @@ Page({
   },
   //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
     // let category_type =  JSON.parse(e.detail.value.category_type);
     if (!e.detail.value.fenlei) {
       wx.showToast({
@@ -104,8 +104,8 @@ Page({
         wx.requestSubscribeMessage({
           tmplIds: ['DF36jxuDTuayF5f_JnIF0GQj7CwvSb9p0wx6Iy2yQus'],
           success(res) {
-            console.log(res);
-            console.log("success")
+            // console.log(res);
+            // console.log("success")
             wx.reLaunch({
               //页面跳转携带参数
               url: '/pages/fenlei/index',
@@ -140,16 +140,16 @@ Page({
         promiseArr.push(new Promise((reslove, reject) => {
           let item = that.data.imgbox[i];
           let suffix = /\.\w+$/.exec(item)[0]; //正则表达式返回文件的扩展名
-          console.log("item:", item);
-          console.log("suffix:", suffix);
+          // console.log("item:", item);
+          // console.log("suffix:", suffix);
           var filePath = item;
           // var filename = filePath.substr(filePath.lastIndexOf('/') + 1);
           // 获取时间作为文件夹名
           var time = util.dateFormat(new Date(), "YMD");
-          console.log("时间：", time);
-          console.log("随机：", Math.random().toString())
+          // console.log("时间：", time);
+          // console.log("随机：", Math.random().toString())
           var filename = Number(Math.random().toString().substr(3, 6) + new Date().getTime()).toString(36) + suffix;
-          console.log("filename:", filename)
+          // console.log("filename:", filename)
           cos.postObject({
             Bucket: 'niuyabo-1257122371',
             Region: 'ap-chengdu',
@@ -159,19 +159,19 @@ Page({
               console.log(JSON.stringify(info));
             }
           }, function (err, data) {
-            console.log(err || data);
-            console.log("data:", data);
-            console.log("err:", err);
+            // console.log(err || data);
+            // console.log("data:", data);
+            // console.log("err:", err);
             // json = JSON.parse(info)
             var res = data;
             // console.log(JSON.stringify(info).Location)
             res = res.Location;
             var fileID = "http://" + res;
-            console.log("fileID:", fileID);
+            // console.log("fileID:", fileID);
             that.setData({
               fileIDs: that.data.fileIDs.concat(fileID)
             })
-            console.log("fileIDs:", that.data.fileIDs) //输出上传后图片的返回地址
+            // console.log("fileIDs:", that.data.fileIDs) //输出上传后图片的返回地址
             that.data.product_img.push(fileID);
             reslove();
             wx.hideLoading();
@@ -182,8 +182,8 @@ Page({
         }));
       }
       Promise.all(promiseArr).then(res => { //等数组都做完后做then方法
-        console.log("图片上传完成后再执行")
-        console.log(this.data.product_img);
+        // console.log("图片上传完成后再执行")
+        // console.log(this.data.product_img);
         this.add_sell_scrap(e);
         this.setData({
           imgbox: [],
@@ -199,7 +199,7 @@ Page({
   // 上传数据到数据库中
   add_sell_scrap: function (e) {
     let category_type = e.detail.value.fenlei
-    console.log('上传分类====', category_type)
+    // console.log('上传分类====', category_type)
     var userInfo = wx.getStorageSync('userInfo');
     // console.log(userInfo.wxOpenId);
     let that = this;
@@ -212,8 +212,8 @@ Page({
         title: e.detail.value.title,
         pirce: (Number(e.detail.value.pirce)),
         phone: userInfo.phone == null ? '' : userInfo.phone,
-        contact_qq: userInfo.scrap_qq== null ? '' : userInfo.scrap_qq,
-        contact_wx: userInfo.scrap_wx==null ? '': userInfo.scrap_wx,
+        contact_qq: userInfo.scrap_qq == null ? '' : userInfo.scrap_qq,
+        contact_wx: userInfo.scrap_wx == null ? '' : userInfo.scrap_wx,
         status: 0,
         // content: e.detail.value.details == null ? '': e.detail.value.details,
         Images: that.data.product_img == null ? '' : that.data.product_img,
@@ -233,7 +233,7 @@ Page({
       },
       success: (res) => {
         // console.log("addOrUpdateMarket===>res");
-        console.log("res---",res);
+        // console.log("res---",res);
         wx.showToast({
           title: "上传成功",
         })
@@ -370,7 +370,7 @@ Page({
   },
 
   checkValue(e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       price: e.detail.value
     })
@@ -423,10 +423,10 @@ Page({
     // JSON.parse(location)
     this.setData({
       chooseLocation: location,
-      isshow:isshow
+      isshow: isshow
     })
   },
-   /**
+  /**
    * 用户点击右上角分享
    */
   onShareAppMessage() {

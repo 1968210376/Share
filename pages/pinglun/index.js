@@ -20,22 +20,22 @@ Page({
    */
   onLoad(options) {
     var infos = JSON.parse(options.info)
-    console.log(infos);
+    // console.log(infos);
     this.setData({
       list: infos
     })
     var that = this
     var user = wx.getStorageSync('userInfo')
-    console.log("my/index.js获取本地userInfo:", wx.getStorageSync('userInfo'));
+    // console.log("my/index.js获取本地userInfo:", wx.getStorageSync('userInfo'));
     if (user != "") {
       that.setData({
         wxOpenId: user.wxOpenId
       })
-      console.log("显示用户信息")
+      // console.log("显示用户信息")
     }
   },
   show(e) {
-    console.log(e.currentTarget.dataset.index);
+    // console.log(e.currentTarget.dataset.index);
     var id = e.currentTarget.dataset.index
     var that = this
     this.setData({
@@ -43,7 +43,7 @@ Page({
     })
   },
   delete(e) {
-    console.log(e);
+    // console.log(e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
       title: '不是本人的留言',
     })
@@ -54,7 +54,7 @@ Page({
       title: '是否删除该留言？',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          // console.log('用户点击确定')
           wx.request({
             url: app.globalData.serverApi + '/deleteComment',
             method: 'POST',
@@ -94,9 +94,9 @@ Page({
         status: 1
       },
       success(res) {
-        console.log("res", res);
+        // console.log("res", res);
         if (res.data.response.content.length > 0) {
-          console.log("pageIndex:", that.data.pageIndex);
+          // console.log("pageIndex:", that.data.pageIndex);
           res.data.response.content.forEach(item => {
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
@@ -169,14 +169,14 @@ Page({
     })
     this.jiazai()
     this.goTop()
-    console.log('下拉刷新');
+    // console.log('下拉刷新');
     this.setData({
       end: false
     })
     // }
   },
   onReachBottom() {
-    console.log('上拉刷新');
+    // console.log('上拉刷新');
     var that = this
     that.setData({
       pageIndex: that.data.pageIndex + 1

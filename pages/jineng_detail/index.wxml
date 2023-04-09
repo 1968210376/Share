@@ -13,20 +13,20 @@
         <view>
           <Rate class="star" starValue="{{info.target.avgsort}}"></Rate>
         </view>
+        <view wx:if="{{info.target.pirce}}" class="red right">￥{{info.target.pirce}}</view>
+
       </view>
     </view>
     <view wx:if="{{info.target.pirce||info.target.choose_location||info.target.content }}" class="width padding column">
       <view class="gap">
-        <text wx:if="{{info.target.pirce}}" class="blue">价格：￥{{info.target.pirce}}</text>
         <view class="location" style="width: 70%;" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
-          <view wx:if="{{info.target.choose_location}}" style="display: flex; align-items: center;">
+          <view wx:if="{{info.target.choose_location}}" class="font-mini" style="display: flex; align-items: center;">
             地址：{{info.target.choose_location.address}}
             <view>
-            <image  src="/images/location.png" class="icon" mode="" />
+              <image src="/images/location.png" class="icon" mode="" />
             </view>
-            </view> 
+          </view>
         </view>
-
         <!-- <view wx:if="{{info.target.address}}">
           地址：<text>{{info.target.address}}</text>
         </view> -->
@@ -45,7 +45,7 @@
     </view> -->
   </view>
   <view class="space">
-    
+
   </view>
   <view class="liuyan">
     <text>评论</text>
@@ -69,9 +69,7 @@
       </view>
     </view>
   </view>
-  <view class="space">
 
-  </view>
   <!-- 空列表提示 -->
   <view wx:if="{{ content.length == 0 }}" class="center gray">
     <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />

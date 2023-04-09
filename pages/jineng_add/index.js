@@ -53,7 +53,7 @@ Page({
   },
 
   changeValue(e) {
-    console.log(this.data.categories[e.detail.value].categoryType);
+    // console.log(this.data.categories[e.detail.value].categoryType);
     var category_type = this.data.categories[e.detail.value].categoryType
     var value = this.data.categories[e.detail.value].categoryName
     this.setData({
@@ -66,7 +66,7 @@ Page({
     this.setData({
         show:true
     })
-    console.log(e);
+    // console.log(e);
 },
 exit(e){
     this.setData({
@@ -82,11 +82,11 @@ exit(e){
   },
   time(e){
     var time = e.detail.value
-    console.log(e);
+    // console.log(e);
   },
    //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
    formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
     // let category_type =  JSON.parse(e.detail.value.category_type);
     if (!e.detail.value.fenlei) {
         wx.showToast({
@@ -151,16 +151,16 @@ add_COSfileImages: function (e) {
             promiseArr.push(new Promise((reslove, reject) => {
                 let item = that.data.imgbox[i];
                 let suffix = /\.\w+$/.exec(item)[0]; //正则表达式返回文件的扩展名
-                console.log("item:", item);
-                console.log("suffix:", suffix);
+                // console.log("item:", item);
+                // console.log("suffix:", suffix);
                 var filePath = item;
                 // var filename = filePath.substr(filePath.lastIndexOf('/') + 1);
                 // 获取时间作为文件夹名
                 var time = util.dateFormat(new Date(), "YMD");
-                console.log("时间：", time);
-                console.log("随机：", Math.random().toString())
+                // console.log("时间：", time);
+                // console.log("随机：", Math.random().toString())
                 var filename = Number(Math.random().toString().substr(3, 6) + new Date().getTime()).toString(36) + suffix;
-                console.log("filename:", filename)
+                // console.log("filename:", filename)
                 cos.postObject({
                     Bucket: 'niuyabo-1257122371',
                     Region: 'ap-chengdu',
@@ -170,19 +170,19 @@ add_COSfileImages: function (e) {
                         console.log(JSON.stringify(info));
                     }
                 }, function (err, data) {
-                    console.log(err || data);
-                    console.log("data:", data);
-                    console.log("err:", err);
+                    // console.log(err || data);
+                    // console.log("data:", data);
+                    // console.log("err:", err);
                     // json = JSON.parse(info)
                     var res = data;
                     // console.log(JSON.stringify(info).Location)
                     res = res.Location;
                     var fileID = "http://" + res;
-                    console.log("fileID:", fileID);
+                    // console.log("fileID:", fileID);
                     that.setData({
                         fileIDs: that.data.fileIDs.concat(fileID)
                     })
-                    console.log("fileIDs:", that.data.fileIDs) //输出上传后图片的返回地址
+                    // console.log("fileIDs:", that.data.fileIDs) //输出上传后图片的返回地址
                     that.data.product_img.push(fileID);
                     reslove();
                     wx.hideLoading();
@@ -193,8 +193,8 @@ add_COSfileImages: function (e) {
             }));
         }
         Promise.all(promiseArr).then(res => { //等数组都做完后做then方法
-            console.log("图片上传完成后再执行")
-            console.log(this.data.product_img);
+            // console.log("图片上传完成后再执行")
+            // console.log(this.data.product_img);
             this.add_sell_scrap(e);
             this.setData({
                 imgbox: [],
@@ -244,21 +244,7 @@ add_sell_scrap: function (e) {
             'content-type': 'application/x-www-form-urlencoded'
         },
         success: (res) => {
-            // console.log("addOrUpdateMarket===>res");
-            // console.log(res);
-            // wx.showToast({
-            //     title: "上传成功",
-            // })
-            // if (res.data.code == 1) {
-              
-            //     wx.reLaunch({
-            //         //页面跳转携带参数
-            //         url: '/pages/fenlei/index',
-            //         success: function () {
-            //             // console.log("跳转页面成功")
-            //         },
-            //     })
-            // }
+
         },
         fail: res => {
             wx.showToast({
@@ -376,7 +362,7 @@ add_sell_scrap: function (e) {
   },
 
   checkValue(e){
-    console.log(e);
+    // console.log(e);
     this.setData({
       price:e.detail.value
     })
