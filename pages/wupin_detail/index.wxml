@@ -95,7 +95,7 @@
   </form>
 </view>
 <!-- <ping info="{{info.target}}"></ping> -->
-<scroll-view class="message" scroll-y bindscrolltolower="load_ping">
+<view class="message">
   <view class="pl" wx:for="{{content}}" wx:key="index">
     <view>
       <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
@@ -112,7 +112,7 @@
   <view class="center gray" wx:if="{{end && content.length !== 0}}">
     已到底
   </view>
-  <view class="center gray"  wx:if="{{content == ''}}">
+  <view class="center gray" wx:if="{{content == ''}}">
     <view>
       <image src="/images/no_result.png" class="icon_noresult" mode="widthFix" />
     </view>
@@ -121,7 +121,10 @@
   <view class="space">
 
   </view>
-</scroll-view>
+</view>>
+<view class="goTop" wx:if="{{pageIndex>1}}">
+  <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+</view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
   <view class="dialog__mask" bindtap="toggleDialog" />

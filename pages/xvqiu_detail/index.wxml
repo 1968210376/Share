@@ -87,7 +87,7 @@
     </form>
   </view>
 <!-- <ping info="{{info.target}}"></ping> -->
-<scroll-view class="message" scroll-y bindscrolltolower="load_ping">
+<view class="message">
   <view class="pl" wx:for="{{content}}" wx:key="index">
     <view>
       <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
@@ -113,7 +113,10 @@
   <view class="space">
     
   </view>
-</scroll-view>
+</view>
+<view class="goTop" wx:if="{{pageIndex>1}}">
+  <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+</view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
   <view class="dialog__mask" bindtap="toggleDialog" />

@@ -239,11 +239,11 @@ Page({
   },
   liuyan(e) {
     // //console.log(res.detail.value);
-    if (e.detail.value.input) {
+    if (e.detail.value) {
       var that = this
       var info = this.data.info.target
       var city = wx.getStorageSync('city');
-      var content = e.detail.value.input 
+      var content = e.detail.value.input ? e.detail.value.input : e.detail.value
       // //console.log(city);
       wx.request({
         url: app.globalData.serverApi + '/commentOn',
@@ -263,7 +263,6 @@ Page({
           // console.log(res);
           wx.showToast({
             title: res.data.response,
-            
           })
           that.setData({
             liuyan_value: '',
@@ -293,7 +292,7 @@ Page({
       that.setData({
         pageIndex: that.data.pageIndex + 1
       })
-      console.log('当前页', that.data.pageIndex);
+      // console.log('当前页', that.data.pageIndex);
       this.show_liuyan()
     } else {
       wx.showToast({
@@ -314,7 +313,8 @@ Page({
       method: 'POST',
       data: {
         marketId: info.id,
-        status: 1
+        status: 1,
+        pageIndex:that.data.pageIndex
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -322,9 +322,7 @@ Page({
       success: (res) => {
         // //console.log(res.data);
         //console.log(res.data);
-        if (res.data.response !== undefined) {
-          // if (res.data.response.content) {
-
+        if (res.data.response) {
           res.data.response.content.forEach(item => {
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
@@ -333,7 +331,7 @@ Page({
             end:res.data.response.content.length == 10 ? false : true,
             content: that.data.pageIndex==1 ? res.data.response.content : that.data.content.concat(res.data.response.content) ,
           })
-          // //console.log("pl--->", that.data.content);
+          // console.log("pl--->", that.data.content);
         }
 
       },
@@ -343,6 +341,19 @@ Page({
         })
       }
     })
+  },
+  goTop(e) {
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+      // console.log('top');
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
+      })
+    }
   },
   img_click(e) {
     var that = this
@@ -406,7 +417,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    this.load_ping()
   },
 
   /**

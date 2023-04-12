@@ -230,8 +230,8 @@ Page({
       },
       success: (res) => {
         // //console.log(res.data);
-        console.log(res.data);
-        if (res.data.response !== undefined) {
+        // console.log(res.data);
+        if (res.data.response) {
           // if (res.data.response.content) {
 
           res.data.response.content.forEach(item => {
@@ -308,11 +308,24 @@ Page({
       that.setData({
         pageIndex: that.data.pageIndex + 1
       })
-      console.log('当前页', that.data.pageIndex);
+      // console.log('当前页', that.data.pageIndex);
       this.show_liuyan()
     } else {
       wx.showToast({
         title: '已到底！',
+      })
+    }
+  },
+  goTop(e) {
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+      // console.log('top');
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
       })
     }
   },
@@ -464,7 +477,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    this.load_ping()
   },
 
   /**

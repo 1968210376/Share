@@ -346,3 +346,13 @@ button {
 .icon_noresult {
   width: 80px;
 }
+.goTop{
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  right: 10rpx;
+  bottom: 185rpx;
+  border-radius: 50%;
+  z-index: 999;
+  background:rgba(255, 255, 2555, .6)
+}
