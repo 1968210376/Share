@@ -25,13 +25,13 @@ Page({
     ping_info: '',
     value: '',
     pageIndex: 1,
-    pageSize:10,
+    pageSize: 10,
     end: false,
     ping_end: false,
     delete: false,
     ping_pageIndex: 1,
-    ping_pageSize:10,
-    height:0
+    ping_pageSize: 10,
+    height: 0
   },
   is_like(e) {
     var info = wx.getStorageSync('userInfo')
@@ -97,9 +97,9 @@ Page({
   },
   pinglun(e) {
     this.setData({
-      ping_info:e.currentTarget.dataset.ping ? e.currentTarget.dataset.ping : this.data.ping_info,
+      ping_info: e.currentTarget.dataset.ping ? e.currentTarget.dataset.ping : this.data.ping_info,
       form: false,
-      add:true
+      add: true
     })
     this.select_pinglun()
   },
@@ -137,11 +137,11 @@ Page({
           }))
           that.setData({
             ping: false,
-            ping_pageIndex:1,
+            ping_pageIndex: 1,
             value: '',
-            height:0
+            height: 0
           })
-          
+
           that.select_pinglun()
         },
         fail() {
@@ -162,8 +162,8 @@ Page({
       data: {
         friendId: info.id,
         status: 1,
-        pageIndex:that.data.ping_pageIndex,
-        pageSize:12
+        pageIndex: that.data.ping_pageIndex,
+        pageSize: 12
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -178,8 +178,8 @@ Page({
             item.target.create_time = util.commentTimeHandle(d);
           })
           that.setData({
-            ping_end:res.data.response.content.length == 12 ? false : true,
-            pinglun: that.data.ping_pageIndex==1 ? res.data.response.content : that.data.pinglun.concat(res.data.response.content) ,
+            ping_end: res.data.response.content.length == 12 ? false : true,
+            pinglun: that.data.ping_pageIndex == 1 ? res.data.response.content : that.data.pinglun.concat(res.data.response.content),
           })
           //console.log("pl--->", that.data.content);
         }
@@ -234,7 +234,7 @@ Page({
             success(res) {
               that.setData({
                 // pageIndex: 1,
-                ping_pageIndex:1,
+                ping_pageIndex: 1,
                 delete: true,
               })
               that.select_pinglun()
@@ -292,21 +292,21 @@ Page({
     this.setData({
       ping_end: false,
       ping_pageIndex: 1,
-      add:false
+      add: false
     })
   },
-    // 置顶 获取滚动条当前位置
-    onPageScroll: function (e) {
-      // console.log(e)
-      if (e.scrollTop > 100) {
-          this.setData({
-              floorstatus: true
-          });
-      } else {
-          this.setData({
-              floorstatus: false
-          });
-      }
+  // 置顶 获取滚动条当前位置
+  onPageScroll: function (e) {
+    // console.log(e)
+    if (e.scrollTop > 100) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
   },
   goTop(e) {
     var that = this

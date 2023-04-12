@@ -48,7 +48,7 @@
       </view>
     </view>
   </view>
-  <view class="goTop" wx:if="{{pageIndex>1}}">
+  <view class="goTop" hidden='{{!floorstatus}}'>
     <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
   </view>
   <view class="content">

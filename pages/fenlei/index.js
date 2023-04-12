@@ -51,7 +51,7 @@ Page({
         })
         if (that.data.categories[0]) {
           that.setData({
-            categoryType:  res.data.response.content[0].categoryType
+            categoryType: res.data.response.content[0].categoryType
           })
         } else {
           that.setData({
@@ -66,12 +66,12 @@ Page({
     var that = this
     if (e) {
       var reside = parseInt(e.target.dataset.tab) + 1
-      console.log(reside-1);
+      console.log(reside - 1);
     } else {
       var reside = 1
     }
     this.setData({
-      tab: reside-1,
+      tab: reside - 1,
       items: 0,
       end: false,
       pageIndex: 1
@@ -306,12 +306,19 @@ Page({
         title: '',
         categoryType: that.data.categoryType,
         status: 1
-
       },
       success(res) {
         that.loading = false
         // console.log("shuju==>", res.data);
         if (res.data.response.content.length !== 0) {
+
+          if (res.data.response.content.length < that.data.pageSize) {
+            that.setData({
+              end: true
+            })
+          }
+          console.log('没有数据');
+
           res.data.response.content.forEach(item => {
             let aaa = "";
             var uuu = item.target.latitude;
@@ -453,10 +460,25 @@ Page({
     })
     // }
   },
+
   onReachBottom() {
     // console.log('上拉刷新');
     this.refresh()
   },
+  // 置顶 获取滚动条当前位置
+  onPageScroll: function (e) {
+    // console.log(e)
+    if (e.scrollTop > 100) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
+
   /**
    * 用户点击右上角分享
    */
