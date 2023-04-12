@@ -343,6 +343,7 @@ button {
   z-index: 99;
   background-color: #fff;
   border-top: 1px solid #f8f8f8;
+  margin-left: -20px;
 }
 .goTop{
   width: 80rpx;
