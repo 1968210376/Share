@@ -1,6 +1,6 @@
 <view class="container">
 <view >
-  <image class="top" src="/images/dongtaibg.png" mode="widthFix"/>
+  <image class="top" src="https://niuyabo-1257122371.cos.ap-chengdu.myqcloud.com/tupian/dongtaibg.png" mode="widthFix"/>
 </view>
   <view wx:for="{{list}}" wx:key="index">
     <view class="card" data-id="{{item.target}}" bindlongtap="delete_dongtai">

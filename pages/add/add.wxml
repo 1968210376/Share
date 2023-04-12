@@ -40,5 +40,5 @@
   </view>
 </view>
 <view wx:else="">
-  <image src="../../images/psd.png" mode="widthFix" style="width: 100%;" />
+  <image src="https://niuyabo-1257122371.cos.ap-chengdu.myqcloud.com/tupian/psd.png" mode="widthFix" style="width: 100%;" />
 </view>
