@@ -194,7 +194,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 10rpx;
-  margin-right: 35rpx;
+  /* margin-right: 35rpx; */
   border-radius: 35rpx;
   gap: 15rpx;
   text-align: center;

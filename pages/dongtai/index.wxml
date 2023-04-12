@@ -67,7 +67,7 @@
     </view>
   </view>
   <view class="btn">
-    <view bindtap="goTop">
+    <view bindtap="goTop" hidden='{{!floorstatus}}'>
       <view class="goTop">
         <image class="goTop" src="/images/goTOP.png" mode="widthFix" />
       </view>

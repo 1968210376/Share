@@ -18,8 +18,8 @@ Component({
   data: {
     //海报
     posterDatas: {
-      width: 300, //画布宽度
-      height: 450, //画布高度
+      width: 350, //画布宽
+      height: 550, //画布高度
       // 缓冲区，无需手动设定
       pic: null,
       buttonType: 1,
@@ -112,7 +112,7 @@ Component({
         // ctx.drawImage(res[0], 0, 0, posterDatas.width, 370);
         // 图片地址 x y 宽300 高450
         // b=背景图
-        ctx.drawImage(res[2], 0, 0, 300, 450);
+        ctx.drawImage(res[2], 0, 0, 350, 550);
         // 图片
         // 图片尺寸超过300x300的限制
         // var originWidth = res[0].width
@@ -133,25 +133,25 @@ Component({
         // ctx.drawImage(res[0], 200,200,20,20,0, 0, 300, 300);
         // ctx.drawImage(res[0], maxWidth,0, originWidth, originHeight, 13, 10, maxWidth, maxHeight);
         // ctx.drawImage(res[0], (maxWidth-targetWidth)/2+13, 10, targetWidth, targetHeight);
-        ctx.drawImage(res[0], 13, 10, 274, 200);
+        ctx.drawImage(res[0], 13, 10, 324, 270);
         // 二维码
-        ctx.drawImage(res[1], 200, 290, 70, 70);
+        ctx.drawImage(res[1], 250, 370, 70, 70);
         //名称
         //底部说明
         ctx.font = "bold 12px Arial"; //字体大小
         ctx.textAlign = "center"
         ctx.fillStyle = "#666"; //字体颜色
         ctx.font = "bold 10px Arial"; //字体大小
-        ctx.fillText("来自：" + name + "的分享", 150, 230);
+        ctx.fillText("来自：" + name + "的分享", 175, 300);
         ctx.font = "bold 15px Arial"; //字体大小
-        ctx.fillText(title, 150, 250);
+        ctx.fillText(title, 175, 330);
         ctx.textAlign = "left"
         ctx.font = "bold 12px Arial"; //字体大小
-        content ? ctx.fillText(content, 30, 310) : '';
+        content ? ctx.fillText(content, 30, 360) : '';
         // ctx.textAlign = "center"
         ctx.fillStyle = "#ff6666"; //字体颜色
         ctx.font = "bold 16px Arial"; //字体大小
-        pirce ? ctx.fillText("￥" + pirce, 30, 360) : '';
+        pirce ? ctx.fillText("￥" + pirce, 30, 410) : '';
         // 关闭loading
         wx.hideLoading();
         //显示海报

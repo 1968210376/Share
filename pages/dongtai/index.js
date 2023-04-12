@@ -233,7 +233,8 @@ Page({
             },
             success(res) {
               that.setData({
-                pageIndex: 1,
+                // pageIndex: 1,
+                ping_pageIndex:1,
                 delete: true,
               })
               that.select_pinglun()
@@ -293,6 +294,19 @@ Page({
       ping_pageIndex: 1,
       add:false
     })
+  },
+    // 置顶 获取滚动条当前位置
+    onPageScroll: function (e) {
+      // console.log(e)
+      if (e.scrollTop > 100) {
+          this.setData({
+              floorstatus: true
+          });
+      } else {
+          this.setData({
+              floorstatus: false
+          });
+      }
   },
   goTop(e) {
     var that = this
