@@ -1,4 +1,7 @@
 <view class="container">
+<view>
+  <image src="../../images/dt.png" style="width: 100%;" mode="widthFix"/>
+</view>
   <view wx:for="{{list}}"  wx:key="index">
     <view class="card" data-id="{{item.target}}" bindlongtap="delete_dongtai">
       <view class="card_main">
@@ -35,7 +38,7 @@
                 <image class="icon" wx:else="" src="/images/like(1).png" mode="widthFix" />
               </view>
               <view>
-                赞
+                <!-- 赞 -->
               </view>
             </view>
             <view bindtap="pinglun" data-ping="{{item.target}}">
@@ -43,7 +46,7 @@
                 <image class="icon" src="/images/pinglun.png" mode="widthFix" />
               </view>
               <view>
-                评论
+                <!-- 评论 -->
               </view>
             </view>
           </view>
