@@ -352,7 +352,11 @@ Page({
               id: e.currentTarget.dataset.id.id
             },
             success(res) {
+              that.setData({
+                pageIndex:1
+              })
               that.show_liuyan()
+              that.goTop()
             }
           })
         } else if (res.cancel) {

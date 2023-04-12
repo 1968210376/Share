@@ -6,36 +6,5 @@
     "urlCheck": false,
     "bigPackageSizeSupport": true
   },
-  "libVersion": "2.25.4",
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "",
-          "pathName": "pages/niu_start_page/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/dongtai/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/dongtai/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null,
-          "partialCompile": {
-            "enabled": true,
-            "pages": []
-          }
-        }
-      ]
-    }
-  }
+  "libVersion": "2.25.4"
 }

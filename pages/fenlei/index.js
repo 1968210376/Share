@@ -44,14 +44,14 @@ Page({
       },
       success: (res) => {
         // console.log("selectcategory===>res");
-        // console.log(res);
+        console.log(res);
         // wx.setStorageSync('categories', res.data.response.content)
         that.setData({
           categories: res.data.response.content
         })
         if (that.data.categories[0]) {
           that.setData({
-            categoryType: that.data.categories[0].categoryType
+            categoryType:  res.data.response.content[0].categoryType
           })
         } else {
           that.setData({
@@ -59,7 +59,6 @@ Page({
           })
         }
         this.getShuju()
-
       }
     })
   },
@@ -67,13 +66,12 @@ Page({
     var that = this
     if (e) {
       var reside = parseInt(e.target.dataset.tab) + 1
-      // console.log(reside);
-
+      console.log(reside-1);
     } else {
       var reside = 1
     }
     this.setData({
-      tab: e.target.dataset.tab,
+      tab: reside-1,
       items: 0,
       end: false,
       pageIndex: 1
@@ -83,7 +81,7 @@ Page({
   },
   changeItem(e) { //二级导航栏点击切换
     var that = this
-    // console.log('+++++++++++', e);
+    console.log('+++++++++++', e);
 
     if (e.target.dataset !== '') {
 
@@ -446,9 +444,10 @@ Page({
     this.setData({
       pageIndex: 1
     })
+    this.changeTab()
     this.getShuju()
     this.goTop()
-    // console.log('下拉刷新');
+    console.log('下拉刷新');
     this.setData({
       end: false
     })

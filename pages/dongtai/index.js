@@ -25,15 +25,22 @@ Page({
     ping_info: '',
     value: '',
     pageIndex: 1,
+    pageSize:10,
     end: false,
+    ping_end: false,
     delete: false,
+    ping_pageIndex: 1,
+    ping_pageSize:10,
+    height:0
   },
   is_like(e) {
     var info = wx.getStorageSync('userInfo')
     // console.log(e, wx.getStorageSync('openid'),info);
     var that = this
     this.setData({
-      is_like: e.currentTarget.dataset.like.flag > 0 ? false : true
+      is_like: e.currentTarget.dataset.like.flag > 0 ? false : true,
+      pageSize: that.data.list.length,
+      pageIndex: 1
     })
     // console.log(this.data.is_like);
     this.data.is_like ? (wx.request({
@@ -90,11 +97,11 @@ Page({
   },
   pinglun(e) {
     this.setData({
-      ping: !this.data.ping,
-      ping_info: !this.data.ping ? e.currentTarget.dataset.ping : '',
+      ping_info:e.currentTarget.dataset.ping ? e.currentTarget.dataset.ping : this.data.ping_info,
       form: false,
+      add:true
     })
-    this.select_pinglun(e)
+    this.select_pinglun()
   },
   send_pinglun(e) {
     // console.log("评论",e);
@@ -102,9 +109,7 @@ Page({
     var that = this
     var info = this.data.ping_info
     var content = e.detail.value.input ? e.detail.value.input : e.detail.value
-    this.setData({
-      value: e.detail.value
-    })
+
     content == '' ? (wx.showToast({
       title: '请输入内容',
       icon: "error"
@@ -117,7 +122,7 @@ Page({
           content: content,
           commentUserWxOpenId: info.wx_open_id, //物品发布人openid
           commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
-          // city: info.address,
+          city: info.address,
           status: 1
         },
         header: {
@@ -132,8 +137,11 @@ Page({
           }))
           that.setData({
             ping: false,
-            value: ''
+            ping_pageIndex:1,
+            value: '',
+            height:0
           })
+          
           that.select_pinglun()
         },
         fail() {
@@ -143,10 +151,10 @@ Page({
         }
       }))
   },
-  select_pinglun(e) {
-    // console.log(e);
+  select_pinglun() {
     var that = this
     var info = this.data.ping_info
+    // console.log(info);
     // var info = e.currentTarget.dataset.ping
     wx.request({
       url: app.globalData.serverApi + '/selectComment',
@@ -154,24 +162,33 @@ Page({
       data: {
         friendId: info.id,
         status: 1,
-        pageIndex: that.data.pageIndex
+        pageIndex:that.data.ping_pageIndex,
+        pageSize:12
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      success(res) {
-        res.data.response.content.length < 10 ? that.setData({
-          end: true
-        }) : ''
-        that.setData({
-          pinglun: res.data.response.content.length == 0 ? (that.data.pageIndex == 1 ? [{
-            target: ''
-          }] : that.data.pinglun) : (that.data.pageIndex == 1 ? res.data.response.content : that.data.pinglun.concat(res.data.response.content)),
-          add: true,
-          form: false,
-          ping: false
+      success: (res) => {
+        // //console.log(res.data);
+        // console.log(res.data);
+        if (res.data.response) {
+          // if (res.data.response.content) {
+          res.data.response.content.forEach(item => {
+            let d = new Date(item.target.create_time).getTime();
+            item.target.create_time = util.commentTimeHandle(d);
+          })
+          that.setData({
+            ping_end:res.data.response.content.length == 12 ? false : true,
+            pinglun: that.data.ping_pageIndex==1 ? res.data.response.content : that.data.pinglun.concat(res.data.response.content) ,
+          })
+          //console.log("pl--->", that.data.content);
+        }
+
+      },
+      fail: res => {
+        wx.showToast({
+          title: "加载留言失败",
         })
-        // console.log(that.data.pinglun);
       }
     })
   },
@@ -180,9 +197,9 @@ Page({
     var that = this
     // if(!this.loading && this.data.pageIndex<this.data.pages ){
     // console.log('当前页', that.data.pageIndex);
-    if (!this.data.end) {
+    if (!this.data.ping_end) {
       that.setData({
-        pageIndex: that.data.pageIndex + 1
+        ping_pageIndex: that.data.ping_pageIndex + 1
       })
       // console.log('当前页', that.data.pageIndex);
       this.select_pinglun()
@@ -239,48 +256,28 @@ Page({
       data: {
         wxOpenId: wx.getStorageSync('openid'),
         pageIndex: 1,
-        pageSize: 10,
+        pageSize: that.data.pageSize,
         publictiy: 1
       },
       success(res) {
         console.log("shuju==>", res.data);
         if (res.data.response) {
           res.data.response.content.forEach(item => {
-
             let d = new Date(item.target.create_time).getTime();
             item.target.create_time = util.commentTimeHandle(d);
             if (item.target.images) {
               item.target.images = item.target.images.split(",");
             }
           })
-          // res.data.response.content.length < 10 ? that.setData({
-          //   end: true
-          // }) : ''
           that.setData({
-            list: res.data.response.content
+            end: res.data.response.content.length == 10 ? false : true,
+            list: that.data.pageIndex == 1 ? res.data.response.content : that.data.list.concat(res.data.response.content),
           })
           // console.log("list====>", that.data.list);
         } else {
           console.log('没有数据');
         }
       }
-    })
-  },
-  load_like(e) {
-    // console.log(e);
-    let that = this;
-    wx.request({
-      url: app.globalData.serverApi + '/friendsLikes',
-      method: 'POST',
-      data: {
-        likesPostWxOpenId: wx.getStorageSync('openid'),
-        likesUserWxOpenId: e.currentTarget.dataset.wx_open_id,
-        likedFriendId: e.currentTarget.dataset.id,
-        status: 1
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
     })
   },
   add(e) {
@@ -292,9 +289,27 @@ Page({
   },
   exit(e) {
     this.setData({
-      end: false,
-      pageIndex: 1,
+      ping_end: false,
+      ping_pageIndex: 1,
+      add:false
     })
+  },
+  goTop(e) {
+    var that = this
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+      // console.log('top');
+      // that.setData({
+      //   pageIndex:1
+      // })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新版微信后重试',
+      })
+    }
   },
   //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
   formSubmit: function (e) {
@@ -397,9 +412,11 @@ Page({
         if (res.data.code == 1) {
           // console.log("进来了");
           that.load()
+          that.goTop()
           that.setData({
             add: false,
-            form: false
+            form: false,
+            pageIndex: 1
           })
         }
       },
@@ -478,7 +495,11 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success(res) {
+                that.setData({
+                  pageIndex: 1
+                })
                 that.load()
+                that.goTop()
               }
             })
           } else if (res.cancel) {
@@ -519,6 +540,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.setData({
+      pageIndex: 1
+    })
     this.load()
   },
 
@@ -540,14 +564,33 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    console.log("下拉刷新");
+    wx.stopPullDownRefresh()
+    this.setData({
+      pageIndex: 1,
+      pageSize: 10
+    })
+    this.load()
+    this.goTop()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    console.log('上拉加载');
+    var that = this
+    if (!this.data.end) {
+      that.setData({
+        // pageIndex: that.data.pageIndex + 1
+        pageSize: that.data.pageSize + 10
+      })
+      this.load()
+    } else {
+      wx.showToast({
+        title: '已到底！',
+      })
+    }
   },
 
   /**

@@ -126,9 +126,8 @@
   min-height: 80vh;
 }
 .title{
-  /* text-indent: 2rem; */
-  /* font-size: 16px; */
-  padding: 0 0px;
+  text-indent: 2rem;
+  padding: 0 15px;
 }
 
 .card {
@@ -237,7 +236,7 @@
   display: flex;
   flex-direction: column;
   gap: 10rpx;
-  /* font-size: 14px; */
+  font-size: 14px;
 }
 
 .jineng {

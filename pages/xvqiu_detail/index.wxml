@@ -17,7 +17,7 @@
       </view>
       <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
         <view>
-          <image class="icon" src="/images/location.png" mode="widthFix" />
+          <image class="icon" src="/images/location(3).png" mode="widthFix" />
         </view>
         <!-- 点击定位 -->
         点击导航

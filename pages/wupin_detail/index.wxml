@@ -121,7 +121,7 @@
   <view class="space">
 
   </view>
-</view>>
+</view>
 <view class="goTop" wx:if="{{pageIndex>1}}">
   <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
 </view>
