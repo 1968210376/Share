@@ -118,7 +118,7 @@ Page({
           commentUserWxOpenId: info.wx_open_id, //物品发布人openid
           commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           // city: info.address,
-          status: 0
+          status: 1
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'

@@ -18,6 +18,7 @@ Page({
     is_clicked: true,
     is_img_click: false,
     pageIndex:1,
+    end:false,
   },
 
   // 点击定位 2023年3月5日 牛亚博 
@@ -280,7 +281,8 @@ Page({
             title: res.data.response,
           })
           that.setData({
-            liuyan_value: ''
+            liuyan_value: '',
+            pageIndex:1,
           })
           that.show_liuyan()
         },

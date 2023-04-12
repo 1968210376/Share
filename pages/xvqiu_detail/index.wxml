@@ -110,6 +110,9 @@
     </view>
     没有数据
   </view>
+  <view class="space">
+    
+  </view>
 </scroll-view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">

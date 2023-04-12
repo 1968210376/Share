@@ -21,7 +21,7 @@
         <label>定位</label>
         <view class="label-right" bindtap="getUserLocation">
           <input name="scrap_address" class="input" disabled="true" value="{{chooseLocation.city}}{{chooseLocation.name}}" type="text" placeholder="请点击选择地址" />
-          <image src="/images/location.png" class="icon position" mode="" />
+          <image src="/images/location(3).png" class="icon position" mode="" />
         </view>
         <!-- 图片 -->
         <view wx:if="{{isshow}}">

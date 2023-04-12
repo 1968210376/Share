@@ -17,6 +17,8 @@ Page({
     count: 0,
     is_clicked: true,
     is_img_click: false,
+    pageIndex:1,
+    end:false,
   },
   /**
    * 控制 pop 的打开关闭
@@ -261,9 +263,11 @@ Page({
           // console.log(res);
           wx.showToast({
             title: res.data.response,
+            
           })
           that.setData({
-            liuyan_value: ''
+            liuyan_value: '',
+            pageIndex:1,
           })
           that.show_liuyan()
         },
@@ -277,6 +281,23 @@ Page({
       wx.showToast({
         title: '内容不允许为空',
         icon: "error"
+      })
+    }
+  },
+  load_ping() {
+    console.log('上拉加载');
+    var that = this
+    // if(!this.loading && this.data.pageIndex<this.data.pages ){
+    // console.log('当前页', that.data.pageIndex);
+    if (!this.data.end) {
+      that.setData({
+        pageIndex: that.data.pageIndex + 1
+      })
+      console.log('当前页', that.data.pageIndex);
+      this.show_liuyan()
+    } else {
+      wx.showToast({
+        title: '已到底！',
       })
     }
   },
@@ -309,7 +330,8 @@ Page({
             item.target.create_time = util.commentTimeHandle(d);
           })
           that.setData({
-            content: res.data.response.content
+            end:res.data.response.content.length == 10 ? false : true,
+            content: that.data.pageIndex==1 ? res.data.response.content : that.data.content.concat(res.data.response.content) ,
           })
           // //console.log("pl--->", that.data.content);
         }
