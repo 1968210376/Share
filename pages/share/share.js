@@ -44,8 +44,12 @@ Component({
       var pirce = e.currentTarget.dataset.info.pirce ? e.currentTarget.dataset.info.pirce : ''
       // e.currentTarget.dataset.info.content ? Math.ceil(text.length/150)
       var content = e.currentTarget.dataset.info.content ? e.currentTarget.dataset.info.content : ''
-      title = title.length > 10 ? title.slice(0, 10) + '...' : title
-      content = content.length > 10 ? content.slice(0, 10) + '...' : content
+      title = title.length > 20 ? title.slice(0, 20) + '...' : title
+      var content1 = ''
+      if(content.length > 15){
+        content1 = content.length > 30 ? content.slice(15, 30) + '...' : content.slice(15, 30)
+      }
+      content = content.length > 15 ? content.slice(0, 15) : content
       var name = e.currentTarget.dataset.info.nick_name
       var that = this;
       var posterDatas = that.data.posterDatas
@@ -135,23 +139,26 @@ Component({
         // ctx.drawImage(res[0], (maxWidth-targetWidth)/2+13, 10, targetWidth, targetHeight);
         ctx.drawImage(res[0], 13, 10, 324, 270);
         // 二维码
-        ctx.drawImage(res[1], 250, 370, 70, 70);
+        ctx.drawImage(res[1], 250, 370, 80, 80);
         //名称
         //底部说明
         ctx.font = "bold 12px Arial"; //字体大小
         ctx.textAlign = "center"
         ctx.fillStyle = "#666"; //字体颜色
-        ctx.font = "bold 10px Arial"; //字体大小
-        ctx.fillText("来自：" + name + "的分享", 175, 300);
+        ctx.font = "bold 13px Arial"; //字体大小
+        ctx.fillText("来自：" + name + "的分享", 175, 305);
         ctx.font = "bold 15px Arial"; //字体大小
-        ctx.fillText(title, 175, 330);
+        ctx.fillText(title, 175, 340);
         ctx.textAlign = "left"
-        ctx.font = "bold 12px Arial"; //字体大小
-        content ? ctx.fillText(content, 30, 360) : '';
+        ctx.font = "bold 13px Arial"; //字体大小
+        content ? ctx.fillText(content, 30, 380) : '';
+        if(content1){
+          ctx.fillText(content1, 30, 400)
+        }
         // ctx.textAlign = "center"
         ctx.fillStyle = "#ff6666"; //字体颜色
         ctx.font = "bold 16px Arial"; //字体大小
-        pirce ? ctx.fillText("￥" + pirce, 30, 410) : '';
+        pirce ? ctx.fillText("￥" + pirce, 30, 430) : '';
         // 关闭loading
         wx.hideLoading();
         //显示海报
