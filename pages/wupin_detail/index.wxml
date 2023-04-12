@@ -31,16 +31,13 @@
       </view>
       <view class="gray font-mini price_box">
         {{info.target.create_time}}
-        <view wx:if="{{info.target.choose_location}}">|</view> {{info.target.choose_location.district}}
-        <view wx:if="{{info.target.choose_location}}">|</view> {{info.target.distance?"据您"+info.target.distance:""}}
-        <image class="icon" src="/images/location.png" mode="widthFix" />
-      </view>
-      <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
-      <view>
-        <!-- <image class="icon" src="/images/location.png" mode="widthFix" /> -->
-      </view>
-        <!-- 点击定位 -->
-        <!-- 点击导航 -->
+        {{info.target.choose_location.district}}
+        <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
+          {{info.target.distance?"据您"+info.target.distance:""}}
+          <view>
+            <image class="icon" src="/images/location(3).png" mode="widthFix" />
+          </view>
+        </view>
       </view>
     </view>
     <view class="count font-mini gray">
@@ -52,11 +49,19 @@
     </view>
   </view>
   <view class="spaces"></view>
-
-  <view>
+  <view class="components">
     <view class="component">
+      <view>
+        <button style="width: 100%;height: 100%; margin: 0;padding: 0;" open-type="share">
+          <view class="center">
+            <image src="/images/share(1).png" class="icon" mode="widthFix" />
+          </view>
+          <view class="share font-mini">
+            分享
+          </view>
+        </button>
+      </view>
       <share info="{{info.target}}"></share>
-      <ping info="{{info.target}}"></ping>
       <view class="btn yellow" bindtap="toggleDialog">
         <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
         <text>我想要</text>
@@ -64,9 +69,59 @@
     </view>
   </view>
 </view>
-<!-- <view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
-  <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
-</view> -->
+<view class="spaces">
+
+</view>
+<view class="space title">
+  留言
+</view>
+<view class="pings" bindtap="pinglun" data-ping="{{info}}">
+  <form bindsubmit="liuyan">
+    <view class="input_box">
+      <view>
+        <image class="icon" src="/images/pinglun.png" mode="widthFix" />
+      </view>
+      <view class="input">
+        <input type="text" name="input" bindconfirm="liuyan" cursor-spacing="10" value="{{liuyan_value}}" placeholder="请输入留言" />
+      </view>
+      <view>
+        <button style="width: 100%;height: 100%; background: transparent; " form-type="submit">
+          <view>
+            <image src="/images/send.png" class="icon" mode="widthFix" />
+          </view>
+        </button>
+      </view>
+    </view>
+  </form>
+</view>
+<!-- <ping info="{{info.target}}"></ping> -->
+<scroll-view class="message" scroll-y bindscrolltolower="load_ping">
+  <view class="pl" wx:for="{{content}}" wx:key="index">
+    <view>
+      <image class="avatar" src="{{item.target.avatar_url}}" mode="" />
+    </view>
+    <view class="gap" bindlongtap="delete" data-id="{{item.target}}">
+      <view class="lx gray">
+        <text>{{item.target.nick_name}}</text> <text class="font-mini ">{{item.target.create_time}}</text> <text class="font-mini">ip:{{item.target.city}} </text>
+      </view>
+      <view wx:if="{{item.target.content}}" class="padding pl_content ">
+        {{item.target.content}}
+      </view>
+    </view>
+  </view>
+  <view class="center gray" wx:if="{{end && content.length !== 0}}">
+    已到底
+  </view>
+  <view class="center gray"  wx:if="{{content == ''}}">
+    <view>
+      <image src="/images/no_result.png" class="icon_noresult" mode="widthFix" />
+    </view>
+    没有数据
+  </view>
+  <view class="space">
+
+  </view>
+</scroll-view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
   <view class="dialog__mask" bindtap="toggleDialog" />

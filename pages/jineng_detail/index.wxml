@@ -14,16 +14,15 @@
           <Rate class="star" starValue="{{info.target.avgsort}}"></Rate>
         </view>
         <view wx:if="{{info.target.pirce}}" class="red right">￥{{info.target.pirce}}</view>
-
       </view>
     </view>
-    <view wx:if="{{info.target.pirce||info.target.choose_location||info.target.content }}" class="width padding column">
+    <view wx:if="{{info.target.pirce||info.target.choose_location||info.target.content }}" class="width padding column ">
       <view class="gap">
-        <view class="location" style="width: 70%;" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
+        <view class="location"  wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
           <view wx:if="{{info.target.choose_location}}" class="font-mini" style="display: flex; align-items: center;">
-            地址：{{info.target.choose_location.address}}
+            <text>地址：{{info.target.choose_location.address}}</text>
             <view>
-              <image src="/images/location.png" class="icon" mode="" />
+              <image src="/images/location.png" class="icon" mode="widthFix" />
             </view>
           </view>
         </view>
@@ -34,6 +33,7 @@
 
       <!-- <text>可工作时间：工作日08：30-17：30</text> -->
       <!-- <text>可工作地点：远程、线下</text> -->
+      <text wx:if="{{info.target.content}}">技能描述</text>
       <text wx:if="{{info.target.content}}">{{info.target.content}}</text>
     </view>
     <view class="button" bindtap="toggleDialog">聊一聊</view>
@@ -48,7 +48,7 @@
 
   </view>
   <view class="liuyan">
-    <text>评论</text>
+    <text class="title">技能评价</text>
     <view class="liuyan_item" wx:for="{{content}}" wx:key="index">
       <view class="avatar_box">
         <image class="avatar_i" src="{{item.target.avatar_url}}" mode="widthFix" />

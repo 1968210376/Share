@@ -1,10 +1,10 @@
 <!-- 海报 -->
 <view class="btn" data-info="{{info}}" catchtap='onBuildPosterSaveAlbum'>
   <view>
-    <image src="/images/share(1).png" class="icon" mode="" />
+    <image src="/images/hb.png" class="icon" mode="" />
   </view>
   <view>
-    分享
+    海报
   </view>
 </view>
 

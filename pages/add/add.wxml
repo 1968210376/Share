@@ -28,7 +28,7 @@
     </view>
     <view class="fenlei" data-index="3" bindtap="goAdd">
       <view>
-        <image src="/images/xq(7).png" class="icon" mode="" />
+        <image src="/images/xq(2).png" class="icon" mode="" />
       </view>
       需求
     </view>

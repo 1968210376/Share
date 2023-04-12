@@ -16,7 +16,8 @@ Page({
     liuyan_value: '',
     count: 0,
     is_clicked: true,
-    is_img_click:false,
+    is_img_click: false,
+    pageIndex:1,
   },
 
   // 点击定位 2023年3月5日 牛亚博 
@@ -207,19 +208,64 @@ Page({
       }
     })
   },
-  liuyan(res) {
+  show_liuyan() {
+    // //console.log('ok');
+    var that = this
+    var info = this.data.info.target
+    // console.log('markeId-->', info);
+    if (!info) {
+      return
+    }
+    wx.request({
+      url: app.globalData.serverApi + '/selectComment',
+      method: 'POST',
+      data: {
+        marketId: info.id,
+        status: 1,
+        pageIndex:that.data.pageIndex
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: (res) => {
+        // //console.log(res.data);
+        console.log(res.data);
+        if (res.data.response !== undefined) {
+          // if (res.data.response.content) {
+
+          res.data.response.content.forEach(item => {
+            let d = new Date(item.target.create_time).getTime();
+            item.target.create_time = util.commentTimeHandle(d);
+          })
+          that.setData({
+            end:res.data.response.content.length == 10 ? false : true,
+            content: that.data.pageIndex==1 ? res.data.response.content : that.data.content.concat(res.data.response.content) ,
+          })
+          // //console.log("pl--->", that.data.content);
+        }
+
+      },
+      fail: res => {
+        wx.showToast({
+          title: "加载留言失败",
+        })
+      }
+    })
+  },
+  liuyan(e) {
     // //console.log(res.detail.value);
-    if (res.detail.value) {
+    if (e.detail.value.input) {
       var that = this
       var info = this.data.info.target
       var city = wx.getStorageSync('city');
+      var content = e.detail.value.input 
       // //console.log(city);
       wx.request({
         url: app.globalData.serverApi + '/commentOn',
         method: 'POST',
         data: {
           marketId: info.id,
-          content: res.detail.value,
+          content: content,
           commentUserWxOpenId: info.wx_open_id, //物品发布人openid
           commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           city: city,
@@ -229,7 +275,7 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: (res) => {
-          console.log(res);
+          // console.log(res);
           wx.showToast({
             title: res.data.response,
           })
@@ -248,6 +294,23 @@ Page({
       wx.showToast({
         title: '内容不允许为空',
         icon: "error"
+      })
+    }
+  },
+  load_ping() {
+    console.log('上拉加载');
+    var that = this
+    // if(!this.loading && this.data.pageIndex<this.data.pages ){
+    // console.log('当前页', that.data.pageIndex);
+    if (!this.data.end) {
+      that.setData({
+        pageIndex: that.data.pageIndex + 1
+      })
+      console.log('当前页', that.data.pageIndex);
+      this.show_liuyan()
+    } else {
+      wx.showToast({
+        title: '已到底！',
       })
     }
   },
@@ -363,7 +426,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // this.show_liuyan()
+    this.show_liuyan()
     this.cha_shouCang()
   },
 

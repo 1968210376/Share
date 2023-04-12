@@ -17,7 +17,6 @@ Page({
     count: 0,
     is_clicked: true,
     is_img_click: false,
-
   },
   /**
    * 控制 pop 的打开关闭
@@ -236,30 +235,30 @@ Page({
     })
     this.cha_shouCang()
   },
-  liuyan(res) {
+  liuyan(e) {
     // //console.log(res.detail.value);
-    if (res.detail.value) {
+    if (e.detail.value.input) {
       var that = this
       var info = this.data.info.target
       var city = wx.getStorageSync('city');
+      var content = e.detail.value.input 
       // //console.log(city);
       wx.request({
         url: app.globalData.serverApi + '/commentOn',
         method: 'POST',
         data: {
           marketId: info.id,
-          content: res.detail.value,
+          content: content,
           commentUserWxOpenId: info.wx_open_id, //物品发布人openid
           commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
           city: city,
           status: 1
-
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: (res) => {
-          //console.log(res);
+          // console.log(res);
           wx.showToast({
             title: res.data.response,
           })
@@ -270,7 +269,7 @@ Page({
         },
         fail: res => {
           wx.showToast({
-            title: "加载类别失败",
+            title: "评论请求失败",
           })
         }
       })

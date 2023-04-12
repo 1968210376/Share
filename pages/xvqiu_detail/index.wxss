@@ -7,7 +7,6 @@
 .container {
   width: 90vw;
   margin: 0 auto;
-  overflow: hidden;
 }
 
 .detail {
@@ -38,8 +37,8 @@
 }
 
 .avatar {
-  width: 80rpx;
-  height: 80rpx;
+  width: 50rpx;
+  height: 50rpx;
   border-radius: 50%;
   border: 1px solid #ccc;
 }
@@ -114,6 +113,68 @@
   border-radius: 20rpx;
 }
 
+.titles {
+  font-weight: bold;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.pings {
+  font-size: 14px;
+  width: 100vw;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.pings>form {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.input_box {
+  width: 100%;
+  margin: 0 auto;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 25rpx;
+  border: 1px solid #ccc;
+  display: flex;
+  box-sizing: border-box;
+  padding: 5px;
+  gap: 15px;
+  align-items: center;
+  color: #ccc;
+  position: relative;
+}
+
+.input_box>view {
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+button {
+  background: transparent;
+}
+
+.input {
+  width: 80%;
+  text-align: left;
+}
+
+.icons {
+  margin-right: 15px;
+}
+
+.message {
+  margin: 15px;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
 .lx {
   width: 100%;
   display: flex;
@@ -169,11 +230,11 @@
 
 .pl {
   display: flex;
-  align-items: center;
   font-size: 14px;
   justify-content: left;
   padding: 10rpx;
   border-bottom: 1px solid #F4F5F9;
+  gap: 15rpx;
 }
 
 .pl_content {
@@ -272,4 +333,16 @@
   padding: 10rpx;
   display: flex;
   justify-content: space-around;
+}
+
+.components {
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+  background-color: #fff;
+  border-top: 1px solid #f8f8f8;
+}
+
+.icon_noresult {
+  width: 80px;
 }

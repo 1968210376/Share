@@ -10,7 +10,7 @@
     width: 100vw;
     height: 35vh;
     /* background: linear-gradient(#29B6F6,#fff); */
-    background-color: #4197fa;
+    background-color: #5ea3f1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,7 +29,7 @@
     width: 150rpx;
     height: 150rpx;
     margin: 0 auto;
-    border: 1px solid #eee;
+    /* border: 1px solid #eee; */
     border-radius: 50%;
 }
 .margin{
@@ -114,7 +114,7 @@
     border-radius: 15rpx;
 }
 .button:active{
-    background-color: #003aff;
+    background-color: #2859fa;
 }
 .lx {
   width: 100%;
@@ -190,9 +190,12 @@
   background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   gap: 15rpx;
+}
+.title{
+  margin: 10px 20px;
 }
 .font-mini{
   font-size: 12px;
@@ -205,6 +208,7 @@
   background-color: white;
   gap: 18rpx;
   border-radius: 15rpx;
+  font-size: 14px;
 }
 .avatar_box{
   margin: 5rpx;
@@ -214,8 +218,8 @@
   justify-content: center;
 }
 .avatar_i{
-  width: 50px;
-  height: 50px;
+  width: 60rpx;
+  height: 60rpx;
   border-radius: 50%;
 }
 .pinglun{

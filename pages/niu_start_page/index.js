@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        testList: ["/images/beijing5.png"], //显示的背景图片
+        testList: ["/images/beijing.png"], //显示的背景图片
     },
     /**
      * 生命周期函数--监听页面加载

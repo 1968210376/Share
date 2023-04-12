@@ -383,7 +383,7 @@ Page({
         content: e.detail.value.content,
         images: that.data.product_img,
         address: city,
-        publictiy: 0,
+        publictiy: 1,
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'

@@ -41,7 +41,8 @@ Component({
       // console.log(info);
       var content = e.detail.value.input ? e.detail.value.input : e.detail.value
       this.setData({
-        value: e.detail.value
+        value: e.detail.value,
+        show:false
       })
       content == '' ? (wx.showToast({
         title: '请输入内容',
@@ -72,7 +73,7 @@ Component({
               ping: false,
               value: ''
             })
-            that.select_pinglun()
+            // that.select_pinglun()
           },
           fail() {
             that.setData({
@@ -123,7 +124,7 @@ Component({
           pageIndex: that.data.pageIndex + 1
         })
         // console.log('当前页', that.data.pageIndex);
-        this.select_pinglun()
+        // this.select_pinglun()
       } else {
         wx.showToast({
           title: '已到底！',
@@ -156,7 +157,7 @@ Component({
                 that.setData({
                   pageIndex: 1,
                 })
-                that.select_pinglun()
+                // that.select_pinglun()
               }
             })
           } else if (res.cancel) {
@@ -171,5 +172,10 @@ Component({
         pageIndex: 1,
       })
     },
+  },
+  lifetimes:{
+    attached: function () {
+      // this.select_pinglun(this.properties.info)
+    }
   }
 })

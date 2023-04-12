@@ -236,7 +236,7 @@ Page({
       },
       success(res) {
         that.loading = false
-        console.log("shuju==>", res.data);
+        // console.log("shuju==>", res.data);
         if (res.data.response) {
           res.data.response.content.forEach(item => {
             let aaa = "";
