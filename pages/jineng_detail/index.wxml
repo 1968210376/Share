@@ -1,8 +1,8 @@
 <view class="container">
   <!-- <text class="left">信用正常</text> -->
-  <swiper wx:if="{{info.target.images}}" class="banner">
+  <swiper wx:if="{{info.target.images}}" class="banner" style="text-align: center;" indicator-dots="true" indicator-active-color="#fff">
     <swiper-item bindtap="img_click" data-imgs="{{info.target.images}}" wx:for="{{info.target.images}}" wx:key="index">
-      <image bindtap="img_click_url" data-url="{{item}}" lazy-load src="{{item}}" mode="aspectFill" class="banner" />
+      <image bindtap="img_click_url" data-url="{{item}}" lazy-load src="{{item}}" mode="heightFix" class="banner"  />
     </swiper-item>
   </swiper>
   <view class="content">
