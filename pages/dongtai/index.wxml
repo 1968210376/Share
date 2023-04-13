@@ -160,7 +160,7 @@
     </view> -->
     <form bindsubmit="send_pinglun">
       <view class="pinglun_input">
-        <input type="text" class="ping" name="input" value="{{value}}" bindconfirm="send_pinglun" confirm-type="send" placeholder="请输入评论" />
+        <input type="text" class="ping" name="input" value="{{value}}" bindinput="content" bindconfirm="send_pinglun" confirm-type="send" placeholder="请输入评论" />
         <button class="pinglun_btn" form-type="submit">
           发送
         </button>

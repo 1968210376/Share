@@ -17,8 +17,8 @@ Page({
     count: 0,
     is_clicked: true,
     is_img_click: false,
-    pageIndex:1,
-    end:false,
+    pageIndex: 1,
+    end: false,
   },
 
   // 点击定位 2023年3月5日 牛亚博 
@@ -223,7 +223,7 @@ Page({
       data: {
         marketId: info.id,
         status: 1,
-        pageIndex:that.data.pageIndex
+        pageIndex: that.data.pageIndex
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -239,8 +239,8 @@ Page({
             item.target.create_time = util.commentTimeHandle(d);
           })
           that.setData({
-            end:res.data.response.content.length == 10 ? false : true,
-            content: that.data.pageIndex==1 ? res.data.response.content : that.data.content.concat(res.data.response.content) ,
+            end: res.data.response.content.length == 10 ? false : true,
+            content: that.data.pageIndex == 1 ? res.data.response.content : that.data.content.concat(res.data.response.content),
           })
           // //console.log("pl--->", that.data.content);
         }
@@ -253,13 +253,17 @@ Page({
       }
     })
   },
+  content(e) {
+    this.setData({
+      liuyan_value: e.detail.value.replace(/\s*/g, "")
+    })
+  },
   liuyan(e) {
-    // //console.log(res.detail.value);
-    if (e.detail.value.input) {
+    let content = this.data.liuyan_value
+    if (content) {
       var that = this
       var info = this.data.info.target
       var city = wx.getStorageSync('city');
-      var content = e.detail.value.input 
       // //console.log(city);
       wx.request({
         url: app.globalData.serverApi + '/commentOn',
@@ -282,7 +286,7 @@ Page({
           })
           that.setData({
             liuyan_value: '',
-            pageIndex:1,
+            pageIndex: 1,
           })
           that.show_liuyan()
         },
@@ -353,7 +357,7 @@ Page({
             },
             success(res) {
               that.setData({
-                pageIndex:1
+                pageIndex: 1
               })
               that.show_liuyan()
               that.goTop()

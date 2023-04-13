@@ -103,52 +103,57 @@ Page({
     })
     this.select_pinglun()
   },
+  content(e) {
+    this.setData({
+      value: e.detail.value.replace(/\s*/g, "")
+    })
+  },
   send_pinglun(e) {
     // console.log("评论",e);
     // console.log(this.data.ping_info);
     var that = this
     var info = this.data.ping_info
-    var content = e.detail.value.input ? e.detail.value.input : e.detail.value
+    let content = this.data.value
+    content ? (
+        wx.request({
+          url: app.globalData.serverApi + '/commentOn',
+          method: 'POST',
+          data: {
+            friendId: info.id,
+            content: content,
+            commentUserWxOpenId: info.wx_open_id, //物品发布人openid
+            commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
+            city: info.address,
+            status: 1
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success(res) {
+            // console.log(res);
+            res.data.code == 1 ? (wx.showToast({
+              title: '评论成功',
+            })) : (wx.showToast({
+              title: res.data.response,
+            }))
+            that.setData({
+              ping: false,
+              ping_pageIndex: 1,
+              value: '',
+              height: 0
+            })
 
-    content == '' ? (wx.showToast({
-      title: '请输入内容',
-      icon: "error"
-    })) : (
-      wx.request({
-        url: app.globalData.serverApi + '/commentOn',
-        method: 'POST',
-        data: {
-          friendId: info.id,
-          content: content,
-          commentUserWxOpenId: info.wx_open_id, //物品发布人openid
-          commentPostWxOpenId: wx.getStorageSync('openid'), //评论人openid
-          city: info.address,
-          status: 1
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success(res) {
-          // console.log(res);
-          res.data.code == 1 ? (wx.showToast({
-            title: '评论成功',
-          })) : (wx.showToast({
-            title: res.data.response,
-          }))
-          that.setData({
-            ping: false,
-            ping_pageIndex: 1,
-            value: '',
-            height: 0
-          })
-
-          that.select_pinglun()
-        },
-        fail() {
-          that.setData({
-            value: ''
-          })
-        }
+            that.select_pinglun()
+          },
+          fail() {
+            that.setData({
+              value: ''
+            })
+          }
+        })) :
+      (wx.showToast({
+        title: '内容不允许为空',
+        icon: "error"
       }))
   },
   select_pinglun() {

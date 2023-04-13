@@ -1,9 +1,4 @@
 /* pages/wupin_detail/index.wxss */
-::-webkit-scrollbar {
-  border: 0;
-  display: none;
-}
-
 .container {
   width: 90vw;
   margin: 0 auto;
@@ -45,6 +40,12 @@
 
 .radius {
   border-radius: 50%;
+}
+
+.info_box {
+  display: flex;
+  gap: 10rpx;
+  align-items: center;
 }
 
 .userinfo {
@@ -324,35 +325,37 @@ button {
   border-radius: 25rpx;
   padding: 10rpx;
   box-sizing: border-box;
-
 }
 
 .component {
   width: 100vw;
-  box-sizing: border-box;
   padding: 10rpx;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-around;
 }
 
 .components {
+  width: 100vw;
   position: fixed;
   bottom: 0;
-  z-index: 99;
+  left: 0;
   background-color: #fff;
-  border-top: 1px solid #f8f8f8;
+  z-index: 9;
+  border-top: 1px solid #eee;
 }
 
 .icon_noresult {
   width: 80px;
 }
-.goTop{
+
+.goTop {
   width: 80rpx;
   height: 80rpx;
   position: fixed;
   right: 10rpx;
   bottom: 185rpx;
   border-radius: 50%;
-  z-index: 999;
-  background:rgba(255, 255, 2555, .6)
+  z-index: 9;
+  background: rgba(255, 255, 2555, .6)
 }

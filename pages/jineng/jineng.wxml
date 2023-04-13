@@ -4,6 +4,21 @@
 <!-- <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px" upper-threshold="60" bindscrolltolower="refresh" bindscrolltoupper="ontopRefresh" scroll-top="{{top}}" scroll-with-animation="true"> -->
 <view class="space"> </view>
 <view class="card" style="background-color: #fff;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
+  <!-- <view class="card" style="background-color: #fff;width: 95%;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail"> 
+ 
+ <view style="padding:10px;"> 
+   <view style="float: left;"> 
+     <image src="../../images/bg.png" mode="aspectFill" style="width: 100px;height: 100px;" /> 
+   </view> 
+
+   <view style="float: left;margin-left: 10px;"> 
+     <p>标题标题标题标题标题标题标题</p> 
+   </view> 
+ 
+   <p>内容内容内容内容内容内容内容内容</p> 
+   <p>价格￥999</p> 
+
+ </view>  -->
   <view class="userInfo">
     <view class="img">
       <image src="{{item.target.avatar_url}}" />

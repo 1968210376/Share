@@ -12,12 +12,14 @@
       <view>
         {{info.target.nick_name}}
       </view>
-      <view class="gray font-mini">
-        {{info.target.create_time}} 
-        <p wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
-        {{info.target.choose_location.district}} {{info.target.distance?"据您"+info.target.distance:""}}
-        <image class="icon" src="/images/location(3).png" mode="widthFix" />
-        </p>
+      <view class="gray font-mini info_box">
+        <text>{{info.target.create_time}}</text>
+        <view class="info_box" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
+          <text>{{info.target.choose_location.district}} {{info.target.distance?"据您"+info.target.distance:""}}</text>
+          <view>
+            <image class="icon" src="/images/location(3).png" mode="widthFix" />
+          </view>
+        </view>
       </view>
       <!-- <view class="location" wx:if="{{info.target.choose_location}}" data-id="{{info.target.choose_location}}" bindtap="navigateToChooseLocation">
         <view>
@@ -65,30 +67,30 @@
   <view class="spaces">
 
   </view>
-  
+
 </view>
 <view class="space titles">
-    留言
-  </view>
-  <view class="pings" bindtap="pinglun" data-ping="{{info}}">
-    <form bindsubmit="liuyan">
-      <view class="input_box">
-        <view>
-          <image class="icon" src="/images/pinglun.png" mode="widthFix" />
-        </view>
-        <view class="input">
-          <input type="text" name="input" bindconfirm="liuyan" cursor-spacing="10" value="{{liuyan_value}}" placeholder="请输入留言" />
-        </view>
-        <view>
-          <button style="width: 100%;height: 100%; background: transparent; " form-type="submit">
-            <view>
-              <image src="/images/send.png" class="icon" mode="widthFix" />
-            </view>
-          </button>
-        </view>
+  留言
+</view>
+<view class="pings">
+  <form bindsubmit="liuyan">
+    <view class="input_box">
+      <view>
+        <image class="icon" src="/images/pinglun.png" mode="widthFix" />
       </view>
-    </form>
-  </view>
+      <view class="input">
+        <input type="text" name="input" bindconfirm="liuyan" bindinput="content" cursor-spacing="10" value="{{liuyan_value}}" placeholder="请输入留言" />
+      </view>
+      <view>
+        <button style="width: 100%;height: 100%; background: transparent; " form-type="submit">
+          <view>
+            <image src="/images/send.png" class="icon" mode="widthFix" />
+          </view>
+        </button>
+      </view>
+    </view>
+  </form>
+</view>
 <!-- <ping info="{{info.target}}"></ping> -->
 <view class="message">
   <view class="pl" wx:for="{{content}}" wx:key="index">
@@ -107,14 +109,14 @@
   <view class="center gray" wx:if="{{end && content.length !== 0}}">
     已到底
   </view>
-  <view class="center gray"  wx:if="{{content == ''}}">
+  <view class="center gray" wx:if="{{content == ''}}">
     <view>
       <image src="/images/no_result.png" class="icon_noresult" mode="widthFix" />
     </view>
     没有数据
   </view>
   <view class="space">
-    
+
   </view>
 </view>
 <view class="goTop" wx:if="{{pageIndex>1}}">

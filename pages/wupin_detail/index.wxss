@@ -94,7 +94,7 @@
 .price_box {
   display: flex;
   align-items: center;
-  gap: 5rpx;
+  gap: 15rpx;
 }
 
 .price {
@@ -296,7 +296,7 @@ button {
 }
 
 .location {
-  width: 150rpx;
+  /* width: 150rpx; */
   display: flex;
   align-items: center;
 }
@@ -340,9 +340,9 @@ button {
 .components {
   position: fixed;
   bottom: 0;
-  z-index: 99;
+  z-index: 9;
   background-color: #fff;
-  border-top: 1px solid #f8f8f8;
+  border-top: 1px solid #eee;
   margin-left: -20px;
 }
 .goTop{
@@ -352,6 +352,6 @@ button {
   right: 10rpx;
   bottom: 185rpx;
   border-radius: 50%;
-  z-index: 999;
+  z-index: 9;
   background:rgba(255, 255, 2555, .6)
 }

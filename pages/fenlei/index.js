@@ -424,21 +424,17 @@ Page({
     })
   },
   onShow() {
-
     // this.banner()
-
     var city = wx.getStorageSync('city');
     if (city == null || city == "") {
       app.getUserLocation();
       app.getLocal(app.globalData.latitude, app.globalData.longitude)
       city = wx.getStorageSync('city');
     }
-
     this.setData({
       // chooseLocation: location,
       location: city
     })
-
     // wx.showLoading({
     //   title: '数据加载中...',
     // });

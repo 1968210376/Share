@@ -127,6 +127,7 @@
 }
 .title{
   /* text-indent: 2rem; */
+  width: 90%;
   padding: 5px 10px;
 }
 
@@ -234,7 +235,6 @@
   /* padding: 5rpx;
   margin: 5rpx; */
   display: flex;
-  flex-direction: column;
   gap: 10rpx;
   font-size: 15px;
   letter-spacing: 1px;
