@@ -3,22 +3,57 @@
   <swiper-item class="list" wx:for="{{categories}}" wx:key="index"> -->
 <!-- <scroll-view scroll-y="{{true}}" style="height:{{navHeight}}px" upper-threshold="60" bindscrolltolower="refresh" bindscrolltoupper="ontopRefresh" scroll-top="{{top}}" scroll-with-animation="true"> -->
 <view class="space"> </view>
-<view class="card" style="background-color: #fff;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
-  <!-- <view class="card" style="background-color: #fff;width: 95%;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail"> 
- 
- <view style="padding:10px;"> 
-   <view style="float: left;"> 
-     <image src="../../images/bg.png" mode="aspectFill" style="width: 100px;height: 100px;" /> 
-   </view> 
+<!-- <view class="card" style="background-color: #fff;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail"> -->
+<view class="card" style="background-color: #fff;width: 95%;" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
 
-   <view style="float: left;margin-left: 10px;"> 
-     <p>标题标题标题标题标题标题标题</p> 
-   </view> 
- 
-   <p>内容内容内容内容内容内容内容内容</p> 
-   <p>价格￥999</p> 
+  <view style="padding:5px;">
+    <view style="float: left;" wx:if="{{item.target.images.length>0}}">
+      <image src="{{item.target.images[0]}}" mode="aspectFill" style="width: 120px;height: 120px;margin: 5rpx;" />
+    </view>
 
- </view>  -->
+    <view wx:if="{{item.target.images.length>0}}" style="float: left;margin-left: 10px;overflow: hidden;width: 200px;height: 80px;line-height: 20px;font-size: 15px;letter-spacing: 1px;">
+      {{item.target.title}}
+    </view>
+    <view wx:else style="float: left;margin-left: 10px;overflow: hidden;width: 100%;height: auto;line-height: 20px;font-size: 15px;max-height: 80px;letter-spacing: 1px;">
+      {{item.target.title}}
+    </view>
+    <view wx:if="{{item.target.pirce}}" class="red price" style=" margin-left: 20rpx;">
+      ￥{{item.target.pirce}}
+      <view style="float: right;">
+        <p wx:if="{{item.target.distance}}" style="text-align: right;" class="gray font-mini">
+          {{item.target.distance}}
+        </p>
+      </view>
+    </view>
+    <view style="float: left; margin-left: 20rpx;">
+      <image src="{{item.target.avatar_url}}" style="width: 50rpx;height: 50rpx;" />
+    </view>
+    <view style="line-height: 50rpx;margin-left: 20rpx;float: left;" class="gray time font-mini">
+      {{item.target.nick_name}}
+    </view>
+    <view style="float: right;" class="gray time font-mini">
+      {{item.target.create_time}}
+    </view>
+  </view>
+  <!-- <view class="font-mini gray time">
+    <view style="float: left;">
+      <image src="{{item.target.avatar_url}}" style="width: 50rpx;height: 50rpx;" />
+    </view>
+    <view style="line-height: 50rpx;margin-left: 20rpx;float: left;">
+      {{item.target.nick_name}}
+      {{item.target.create_time}}
+    </view>
+    <view style="float: right;">
+     
+      <p wx:if="{{item.target.choose_location}}">
+        {{item.target.choose_location.city}}
+      </p>
+      <p wx:if="{{item.target.distance}}">
+        {{item.target.distance}}
+      </p>
+    </view>
+  </view> -->
+  <!-- 
   <view class="userInfo">
     <view class="img">
       <image src="{{item.target.avatar_url}}" />
@@ -37,7 +72,6 @@
       </view>
       <view wx:if="{{item.target.choose_location}}">
         {{item.target.choose_location.city}}{{item.target.choose_location.district}}
-
       </view>
     </view>
   </view>
@@ -45,19 +79,16 @@
     <view class="title">
       {{item.target.title}}
     </view>
-    <!-- <view class="font-mini">
-      {{item.target.content}}
-    </view> -->
   </view>
   <view class="fixed_box  {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') : 'column-count-2' )}} " wx:if="{{item.target.images[0]}}">
     <view wx:for="{{item.target.images}}" wx:key="index">
       <image class="image" lazy-load mode="widthFix" src="{{item}}" />
     </view>
-  </view>
+  </view> -->
   <view class="btnBox">
-    <view wx:if="{{item.target.pirce}}" class="red price">
+    <!-- <view wx:if="{{item.target.pirce}}" class="red price">
       ￥{{item.target.pirce}}
-    </view>
+    </view> -->
     <!-- <view class="btn {{item.target.is_shouCang ? gold :''}}" data-item="{{item.target.id}}" bindtap="is_shouCang"> -->
     <!-- <view class="btn">
         <image src="/images/sc(1).png" class="icon" mode="" />
