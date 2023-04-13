@@ -156,7 +156,7 @@
 
 .userInfo {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   gap: 15rpx;
 }
@@ -204,7 +204,7 @@
 
 .info {
   flex: 2;
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }
 
 .tags {

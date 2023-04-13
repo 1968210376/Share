@@ -1,54 +1,68 @@
-<!-- <view style="background-color: #fff; width: 100%;">  -->
+<view style="background-color: #fff; width: 100%;">
 
-<view class="space"> </view>
-<view class="card" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="xvqiu_detail">
-  <!-- <view style="border-bottom: 1rpx solid rgb(236, 230, 230); " wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="xvqiu_detail">  -->
-    <!-- <view class="card">  -->
-  <view class="userInfo">
-    <view class="img">
-      <image src="{{item.target.avatar_url}}" />
-    </view>
-    <view class="info">
-      <view class="nickName">
-        {{item.target.nick_name}}
-      </view>
-      <view class="gray font-mini time">
-        {{item.target.create_time}}
-      </view>
-    </view>
-    <view class="weizhi">
+  <view class="space"> </view>
+  <!-- <view class="card" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="xvqiu_detail"> -->
+  <view style="border-bottom: 3rpx solid #F4F5F9; " wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="xvqiu_detail">
+    <view class="card" style="width: 92%;">
+      <view class="userInfo">
+        <view class="img">
+          <image src="{{item.target.avatar_url}}" />
+        </view>
+        <view class="info">
+          <view class="nickName">
+            {{item.target.nick_name}}
+          </view>
+          <view class="gray font-mini time">
+            {{item.target.create_time}}
+            <!-- <p wx:if="{{item.target.distance}}">
+              距离 {{item.target.distance}}
+            </p> -->
+            <!-- <p wx:if="{{item.target.choose_location}}">
+        {{item.target.choose_location.city}}{{item.target.choose_location.district}}
+      </p> -->
+          </view>
+
+        </view>
+        <!-- <view class="weizhi">
       <view wx:if="{{item.target.distance}}">
         距离：{{item.target.distance}}
       </view>
       <view wx:if="{{item.target.choose_location}}">
         {{item.target.choose_location.city}}{{item.target.choose_location.district}}
       </view>
-    </view>
-  </view>
-  <view class="jianJie">
-    <view class="title">
-      {{item.target.title}}
-    </view>
-    <view wx:if="{{item.target.pirce}}" class="red price ">
+    </view> -->
+        <view wx:if="{{item.target.pirce}}" class="red price ">
+          ￥{{item.target.pirce}}
+          <view class="gray font-mini time" style="text-align: right;" wx:if="{{item.target.distance}}">
+               {{item.target.distance}}
+            </view>
+        </view>
+      </view>
+      <view class="jianJie">
+        <view class="title" style="width: 100%;">
+          {{item.target.title}}
+        </view>
+        <!-- <view wx:if="{{item.target.pirce}}" class="red price ">
       ￥{{item.target.pirce}}
-    </view>
-  </view>
-  <view wx:if="{{item.target.images[0]}}" class="fixed_box  {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') : 'column-count-2' )}} ">
-    <view wx:for="{{item.target.images}}" wx:key="index">
-      <image class="fixed_pic" src="{{item}}" mode="widthFix" />
-    </view>
-  </view>
-  <!-- <view class="btnBox">
+    </view> -->
+      </view>
+      <view wx:if="{{item.target.images[0]}}" class="fixed_box  {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') : 'column-count-2' )}} ">
+        <view wx:for="{{item.target.images}}" wx:key="index">
+          <image class="fixed_pic" src="{{item}}" mode="widthFix" />
+        </view>
+      </view>
+      <!-- <view class="btnBox">
     
   </view> -->
+    </view>
+  </view>
+  <!-- 空列表提示 -->
+  <view wx:if="{{ list.length == 0 }}" class="center">
+    <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+    <view>还没有数据哦~</view>
+  </view>
+  <!-- 到底了 -->
+  <view wx:if="{{end}}" class="center">
+    ~ 到底啦 ~
+  </view>
 </view>
-<!-- 空列表提示 -->
-<view wx:if="{{ list.length == 0 }}" class="center">
-  <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
-  <view>还没有数据哦~</view>
-</view>
-<!-- 到底了 -->
-<view wx:if="{{end}}" class="center">
-  ~ 到底啦 ~
-</view>
-<!-- </view> -->
