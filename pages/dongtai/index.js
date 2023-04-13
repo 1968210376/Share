@@ -424,12 +424,25 @@ Page({
       },
       success: (res) => {
         // //console.log("addOrUpdateMarket===>res");
-        // //console.log(res);
-        wx.showToast({
-          title: "上传成功",
-        })
+        console.log(res);
+       
         if (res.data.code == 1) {
           // console.log("进来了");
+          wx.showToast({
+            title: "发布成功",
+          })
+          that.load()
+          that.goTop()
+          that.setData({
+            add: false,
+            form: false,
+            pageIndex: 1
+          })
+        }else{
+          wx.showToast({
+            title: res.data.message,
+            icon:"error"
+          })
           that.load()
           that.goTop()
           that.setData({
