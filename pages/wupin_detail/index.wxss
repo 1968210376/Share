@@ -110,7 +110,8 @@
 }
 
 .imgBox image {
-  border-radius: 20rpx;
+  width: 90vw;
+  border-radius: 10rpx;
 }
 
 .pings {

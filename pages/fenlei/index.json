@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "navigation-bar": "../navigation-bar/navigation-bar"
+    "navigation-bar": "../navigation-bar/navigation-bar",
+    "Rate": "../Rate/index"
   },
   "navigationStyle": "custom",
   "enablePullDownRefresh": true

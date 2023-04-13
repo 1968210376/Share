@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "share":"/pages/share/share",
-    "ping":"/pages/ping/ping"
+    "share":"/pages/share/share"
   }
 }

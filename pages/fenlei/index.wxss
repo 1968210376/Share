@@ -2,6 +2,7 @@
 .container {
   font-size: 16px;
 }
+
 .searchBox {
   width: 100vw;
   position: fixed;
@@ -13,34 +14,39 @@
   background-color: #fff;
   box-sizing: border-box;
   padding: 8px 0;
-  z-index: 1; 
+  z-index: 1;
 }
+
 .location {
   width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.location_logo{
+
+.location_logo {
   width: 50rpx;
   height: 50rpx;
   margin: 0 auto;
 }
-.input-group{
+
+.input-group {
   width: 75%;
 }
-.input-box{
+
+.input-box {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid transparent;
-  transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+  transition: border-color .3s cubic-bezier(.25, .01, .25, 1) 0s, color .3s cubic-bezier(.25, .01, .25, 1) 0s, background .2s cubic-bezier(.25, .01, .25, 1) 0s;
   border-radius: 15rpx;
   /* background-color: rgb(241, 238, 238); */
   background-color: transparent;
   box-shadow: inset 1px 1px 1px #eee, 1px 1px 1px #eee;
   box-sizing: border-box;
 }
+
 .input {
   width: 80%;
   text-align: center;
@@ -49,17 +55,20 @@
   height: 30px;
   padding: 0 1rem;
   color: #000;
-  font-size:14px;
+  font-size: 14px;
   border-right: 1px solid #eee;
 }
-.search_btn{
+
+.search_btn {
   width: 20%;
   text-align: center;
   display: flex;
   justify-content: center;
   background-color: #fff;
 }
-.input-box:hover, .input-group:hover .input-box {
+
+.input-box:hover,
+.input-group:hover .input-box {
   outline: none;
   border-color: #000;
 }
@@ -68,7 +77,7 @@
   color: #000;
 }
 
-.top{
+.top {
   width: 100vw;
   height: 60vw;
   z-index: -1;
@@ -78,16 +87,18 @@
   flex-direction: column;
   justify-content: center;
 }
-.top .img{
+
+.top .img {
   width: 100vw;
   height: 100%;
-  /* border-radius: 5px; */
 }
-.box{
+
+.box {
   border-radius: 15px 15px 0 0;
   margin-top: -16px;
   overflow: hidden;
 }
+
 .tab {
   width: 100%;
   display: flex;
@@ -105,10 +116,9 @@
   padding: 10rpx;
 
 }
-.tab-items{
+
+.tab-items {
   flex: 1;
-  /* text-align: center;
-  padding: 10rpx; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,17 +126,17 @@
   gap: 10rpx;
   position: relative;
 }
+
 .active {
   color: #03a9f4;
-  /* border-bottom: 1px solid #007AFF; */
 }
 
 .content {
   background-color: rgb(248, 245, 245);
   min-height: 80vh;
 }
-.title{
-  /* text-indent: 2rem; */
+
+.title {
   width: 90%;
   padding: 5px 10px;
 }
@@ -134,12 +144,9 @@
 .card {
   width: 90%;
   margin: 15rpx auto;
-  /* padding: 15rpx 0; */
-  /* border: 1px solid #ccc; */
   border-radius: 5px;
   box-sizing: border-box;
-  /* box-shadow: #ccc 2px 2px 2px; */
-  background-color: #fff ;
+  background-color: #fff;
   padding: 10rpx;
   display: flex;
   flex-direction: column;
@@ -156,7 +163,6 @@
 
 .userInfo {
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   gap: 15rpx;
 }
@@ -171,15 +177,16 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.flex_box image{
+
+.flex_box image {
   border-radius: 25rpx 25rpx 0 0;
 }
+
 .img image {
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
   border: 1px solid #ccc;
-  /* box-shadow: #ccc 2px 2px 4px; */
 }
 
 .flex_column {
@@ -204,7 +211,6 @@
 
 .info {
   flex: 2;
-  /* margin-left: 5px; */
 }
 
 .tags {
@@ -218,10 +224,11 @@
   border: 1px solid #ccc;
   padding: 5rpx;
 }
-.jingyan{
+
+.jingyan {
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
 }
 
 .btnBox {
@@ -231,9 +238,6 @@
 }
 
 .jianJie {
-  /* text-indent: 2rem; */
-  /* padding: 5rpx;
-  margin: 5rpx; */
   display: flex;
   gap: 10rpx;
   font-size: 15px;
@@ -246,7 +250,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.border_bottom{
+
+.border_bottom {
   padding-bottom: 10rpx;
   margin-bottom: 10rpx;
   border-bottom: 1px solid #ccc;
@@ -258,13 +263,6 @@
   /* display: flex;  */
   margin: 35rpx auto;
 }
-
-/* .imgBox view {
-  width: 150rpx;
-  height: 150rpx;
-  margin-right: 30rpx;
-} */
-
 
 .red {
   color: rgb(224, 45, 45);
@@ -291,6 +289,10 @@
 
 .gray {
   color: gray;
+}
+
+.white {
+  color: #fff;
 }
 
 .price {
@@ -321,6 +323,8 @@
   /* box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1); */
   border-radius: 10rpx;
   margin: 0 15rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
 }
 
 .item .image {
@@ -340,25 +344,29 @@
   height: 300rpx;
   margin: 0 auto;
 }
-.avatar{ 
-  width: 50rpx; 
-  height: 50rpx; 
-  margin: 5px; 
+
+.avatar {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 5px;
   border-radius: 50%;
-} 
-.tab-icon{
+}
+
+.tab-icon {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
 }
+
 .icon {
   width: 50rpx;
   height: 50rpx;
   /* border: 1px solid #eee; */
   border-radius: 50%;
 }
-.icon_bg{
-  width:50%;
+
+.icon_bg {
+  width: 50%;
   height: 100%;
   /* height: 100rpx; */
   position: absolute;
@@ -373,13 +381,15 @@
   position: relative;
   right: -20%;
 } */
-.float_rihgt{
+.float_rihgt {
   float: right;
 }
-.list{
+
+.list {
   background-color: #eee;
 }
-.goTop{
+
+.goTop {
   width: 80rpx;
   height: 80rpx;
   position: fixed;
@@ -387,12 +397,17 @@
   bottom: 55rpx;
   border-radius: 50%;
   z-index: 999;
-  background-color:rgba(255, 255, 2555, .6)
+  background-color: rgba(255, 255, 2555, .6)
 }
 
-.margin_left{
+.fixed_pic {
+  border-radius: 8rpx;
+}
+
+.margin_left {
   margin-left: 15rpx;
 }
+
 .column-count-1 {
   column-count: 1;
   column-gap: 5rpx;
@@ -407,17 +422,118 @@
   column-count: 3;
   column-gap: 5rpx;
 }
-.img-3{
+
+.img-3 {
   display: flex;
 }
-.column-count-1 image{
-  /* height: 10rem; */
-  max-width: 16rem;
+
+.column-count-1 image {
+  max-height: 10rem;
+  width: 90vw;
 }
-.column-count-2 image{
+
+.column-count-2 image {
   height: 8rem;
 }
-.img-3 image,.column-count-3 image{
+
+.img-3 image,
+.column-count-3 image {
   width: 6rem;
   height: 6rem;
+}
+
+.jncard {
+  /* width: 100%; */
+  background-color: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  margin: 20rpx;
+  border-radius: 15rpx;
+}
+
+.jnup {
+  display: flex;
+  padding: 10rpx;
+  box-sizing: border-box;
+  gap: 20rpx;
+}
+
+.jnimg {
+  width: 170rpx;
+  height: 170rpx;
+}
+
+.jnimg image {
+  width: 100%;
+  height: 100%;
+}
+
+.jncontent {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 15rpx;
+  line-height: 20px;
+  letter-spacing: 3rpx;
+}
+
+.jntitle {
+  overflow: hidden;
+  /* 溢出时不显示溢出的内容 */
+  text-overflow: ellipsis;
+  /* 发生溢出时使用省略号代替 */
+  display: -webkit-box;
+  /* chrome浏览器的私有属性。显示为box。 */
+  -webkit-box-orient: vertical;
+  /* 垂直排列元素 */
+}
+
+.hang2 {
+  -webkit-line-clamp: 2;
+  /* 显示多少行 */
+}
+
+.hang4 {
+  -webkit-line-clamp: 4;
+  /* 显示多少行 */
+}
+
+.nickName {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.jninfo {
+  display: flex;
+  gap: 20rpx;
+  align-items: center;
+  line-height: 30rpx;
+}
+
+.right {
+  position: absolute;
+  right: 30px;
+}
+
+/* .star {
+  position: absolute;
+  left: 0rpx;
+  bottom: 10px;
+  margin: 10rpx;
+  box-sizing: border-box;
+} */
+.star {
+  margin: 10rpx;
+  display: flex;
+  gap: 15rpx;
+}
+
+.iconstar {
+  width: 30rpx;
+  height: 30rpx;
 }

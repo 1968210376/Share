@@ -17,7 +17,7 @@ Page({
     content: '',
     end: false,
     is_img_click: false,
-
+    img_src:''
   },
   count() {
     var that = this
@@ -179,11 +179,19 @@ Page({
     }
   },
   img_click(e) {
-    // console.log(e.target.dataset.img);
     var that = this
+    var img = that.data.img_src
+    // console.log(img);
+    var imgs = e.currentTarget.dataset.imgs
+    wx.previewImage({
+      current: img, // 当前显示图片的http链接 String
+      urls: imgs // 需要预览的图片http链接列表 Array
+    })
+  },
+  img_click_url(e) {
+    // console.log(e);
     this.setData({
-      is_img_click: !that.data.is_img_click,
-      img_src: e.target.dataset.img ? e.target.dataset.img : ''
+      img_src: e.currentTarget.dataset.url ? e.currentTarget.dataset.url : ''
     })
   },
   /**

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "Rate": "../Rate/index"
+    "Rate": "../Rate/index",
+    "share":"/pages/share/share"
   }
 }

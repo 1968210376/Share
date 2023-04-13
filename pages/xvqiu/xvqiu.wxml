@@ -10,7 +10,15 @@
         </view>
         <view class="info">
           <view class="nickName">
-            {{item.target.nick_name}}
+            <view>
+              {{item.target.nick_name}}
+            </view>
+            <view class="gray font-mini location" wx:if="{{item.target.distance}}">
+            <view>
+              <image src="/images/location(3).png" mode="widthFix" class="iconstar"/>
+            </view>
+              {{item.target.distance}}
+            </view>
           </view>
           <view class="gray font-mini time">
             {{item.target.create_time}}
@@ -21,7 +29,6 @@
         {{item.target.choose_location.city}}{{item.target.choose_location.district}}
       </p> -->
           </view>
-
         </view>
         <!-- <view class="weizhi">
       <view wx:if="{{item.target.distance}}">
@@ -33,13 +40,11 @@
     </view> -->
         <view wx:if="{{item.target.pirce}}" class="red price ">
           ￥{{item.target.pirce}}
-          <view class="gray font-mini time" style="text-align: right;" wx:if="{{item.target.distance}}">
-               {{item.target.distance}}
-            </view>
+
         </view>
       </view>
       <view class="jianJie">
-        <view class="title" style="width: 100%;">
+        <view class="jntitle hang4" style="width: 100%;">
           {{item.target.title}}
         </view>
         <!-- <view wx:if="{{item.target.pirce}}" class="red price ">
@@ -48,7 +53,7 @@
       </view>
       <view wx:if="{{item.target.images[0]}}" class="fixed_box  {{item.target.images.length ==1? 'column-count-1' :(item.target.images.length % 3 == 0? (item.target.images.length == 3 ? 'img-3' : 'column-count-3') : 'column-count-2' )}} ">
         <view wx:for="{{item.target.images}}" wx:key="index">
-          <image class="fixed_pic" src="{{item}}" mode="widthFix" />
+          <image class="fixed_pic" src="{{item}}" mode="aspectFill" />
         </view>
       </view>
       <!-- <view class="btnBox">

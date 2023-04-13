@@ -19,6 +19,7 @@ Page({
     is_img_click: false,
     pageIndex: 1,
     end: false,
+    img_src:''
   },
   /**
    * 控制 pop 的打开关闭

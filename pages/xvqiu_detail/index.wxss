@@ -111,7 +111,8 @@
 }
 
 .imgBox image {
-  border-radius: 20rpx;
+  width: 90vw;
+  border-radius: 10rpx;
 }
 
 .titles {
@@ -213,16 +214,15 @@ button {
 
 .yellow {
   background-color: rgb(235, 213, 14);
-
 }
 
 .btn {
-  width: 280rpx;
+  width: 350rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10rpx;
-  margin-right: 35rpx;
+  /* margin-right: 35rpx; */
   border-radius: 35rpx;
   gap: 15rpx;
   text-align: center;
