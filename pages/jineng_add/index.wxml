@@ -22,8 +22,8 @@
           <image src="/images/location(3).png" class="icon position" mode="" />
         </view>
         <!-- 图片 -->
-        <view wx:if="{{isshow}}">
-          <label>图片</label>
+        <view>
+          <label><text style="color: red;">*</text>图片</label>
           <input type="text" hidden name="imgbox" value="{{imgbox}}" />
           <view class="images_box">
             <block wx:key="imgbox" wx:for="{{imgbox}}">
