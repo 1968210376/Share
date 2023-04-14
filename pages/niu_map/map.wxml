@@ -2,7 +2,7 @@
 
 <view class="" hover-class="none" hover-stop-propagation="false" style="width: 100%; height: 100%;">
   <map id="map" class="map" longitude="{{longitude}}" latitude=" {{latitude}}" markers="{{markers}}" scale="{{scale}}" 
-  show-location bindmarkertap="markertap" bindcallouttap="clickCallout" 
+  show-location bindmarkertap="markertap" 
   show-scale="true" bindtap="bindtap" show-compass="true" bindregionchange="onChangeRegion" bindcallouttap="bindcallouttap">
 
     <view class="locationpicker-ic-marker {{animation ? 'locationpicker-animation' : ''}}" bindanimationend="onMarkerAnimationend">
@@ -14,7 +14,7 @@
       <cover-image class="station" src="./img/main_bt_position@2x.png"></cover-image>
     </cover-view>
 
-    <cover-view slot="callout" wx:for="{{markers}}" wx:key="item">
+    <cover-view slot="callout" wx:for="{{markers}}" wx:key="index">
       <cover-view marker-id="{{item.id}}" style="padding:15rpx;border-radius: 15rpx;background-color: #ffffff;font-size: 26rpx;width: 360rpx;">
         <cover-view style="float: left;">
           <cover-image wx:if="{{item.customCallout.image}}" class="" src="{{item.customCallout.image}}" style="width: 120rpx;height: 120rpx;" mode="aspectFit" />

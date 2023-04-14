@@ -29,7 +29,7 @@
     <!-- 标签页标题 -->
     <view class="tab">
       <view class="tab-items {{tab == 0 ? 'active':''}}" bindtap="changeTab" data-tab="0">
-          <image src="/images/btn_bg1.png" bindtap="changeTab" data-tab="0" class="tab-icon" mode="" />
+        <image src="/images/btn_bg1.png" bindtap="changeTab" data-tab="0" class="tab-icon" mode="" />
         物品
       </view>
       <view class="tab-items {{tab == 1 ? 'active' : ''}}" bindtap="changeTab" data-tab="1">
@@ -48,10 +48,13 @@
       </view>
     </view>
   </view>
-  <view class="goTop" hidden='{{!floorstatus}}'>
-    <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+  <view bindtap="goTop" class="goTop" hidden='{{!floorstatus}}'>
+    <view>
+      <image class="icon" src="/images/goTOP.png" mode="widthFix" />
+    </view>
+    <text>返回顶部</text>
   </view>
-  <view class="content">
+  <view class="content" style="height: {{height}};">
     <!-- 内容区域 -->
     <view wx:if="{{tab == 0}}">
       <include src="../wupin/wupin"></include>

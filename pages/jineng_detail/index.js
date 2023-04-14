@@ -17,7 +17,8 @@ Page({
     content: '',
     end: false,
     is_img_click: false,
-    img_src:''
+    img_src: '',
+    floorstatus: false,
   },
   count() {
     var that = this
@@ -199,7 +200,7 @@ Page({
    */
   onLoad(options) {
     var info = JSON.parse(options.info)
-    console.log('info', info);
+    // console.log('info', info);
     this.setData({
       info: info
     })
@@ -258,14 +259,24 @@ Page({
    */
   onReachBottom() {
     var that = this
-    that.data.end ? wx.showToast({
-        title: '已到底',
-      }) :
+    that.data.end ? '' :
       (this.setData({
         pageIndex: that.data.pageIndex + 1
       }), that.selectCommentscore())
   },
-
+  // 置顶 获取滚动条当前位置
+  onPageScroll: function (e) {
+    // console.log(e)
+    if (e.scrollTop > 100) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
   /**
    * 用户点击右上角分享
    */

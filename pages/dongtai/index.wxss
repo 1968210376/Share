@@ -359,8 +359,8 @@
 
 .pinglun_input {
   width: 100vw;
-  height: 35px;
-  line-height: 35px;
+  height: 40px;
+  line-height: 40px;
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -372,14 +372,13 @@
   z-index: 9;
   text-align: center;
   /* padding-top: px; */
-  border-radius: 15rpx 15rpx 0 0;
 }
 
 .pinglun_input .pinglun_btn {
   /* width: 20%; */
   flex: 1;
-  border-radius: 3px;
   background-color: rgb(10, 189, 243);
+  border-radius: 0;
 }
 
 .pinglun_list {
@@ -422,18 +421,21 @@
 }
 
 .btn {
-  width: 90rpx;
+  /* width: 90rpx; */
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   position: fixed;
   bottom: 50px;
+  padding: 15rpx;
+  box-sizing: border-box;
   right: 10px;
-  background: rgba(255, 255, 2555, .6);
+  background: rgba(255, 255, 2555, .8);
   gap: 20rpx;
   border-radius: 10rpx;
   font-size: 10px;
-  text-align: center;
   color: gray;
 }
 

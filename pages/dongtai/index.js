@@ -209,9 +209,9 @@ Page({
       // console.log('当前页', that.data.pageIndex);
       this.select_pinglun()
     } else {
-      wx.showToast({
-        title: '已到底！',
-      })
+      // wx.showToast({
+      //   title: '已到底！',
+      // })
     }
   },
   delete(e) {
@@ -619,9 +619,9 @@ Page({
       })
       this.load()
     } else {
-      wx.showToast({
-        title: '已到底！',
-      })
+      // wx.showToast({
+      //   title: '已到底！',
+      // })
     }
   },
 

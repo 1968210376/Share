@@ -2,7 +2,7 @@
   <!-- <text class="left">信用正常</text> -->
   <swiper wx:if="{{info.target.images}}" class="banner" style="text-align: center;" indicator-dots="true" indicator-active-color="#fff">
     <swiper-item bindtap="img_click" data-imgs="{{info.target.images}}" wx:for="{{info.target.images}}" wx:key="index">
-      <image bindtap="img_click_url" data-url="{{item}}" lazy-load src="{{item}}" mode="heightFix" class="banner"  />
+      <image bindtap="img_click_url" data-url="{{item}}" lazy-load src="{{item}}" mode="heightFix" class="banner" />
     </swiper-item>
   </swiper>
   <view class="content">
@@ -22,15 +22,15 @@
           </view>
         </view>
       </view>
-    
+
     </view>
     <view class="gap liuyan_item">
-        <text>好评度：</text>
-        <view>
-          <Rate class="star" WH="38" starValue="{{info.target.avgsort}}"></Rate>
-        </view>
-        <view wx:if="{{info.target.pirce}}" class="red right">￥{{info.target.pirce}}</view>
+      <text>好评度：</text>
+      <view>
+        <Rate class="star" WH="38" starValue="{{info.target.avgsort ? info.target.avgsort : 5}}"></Rate>
       </view>
+      <view wx:if="{{info.target.pirce}}" class="red right">￥{{info.target.pirce}}</view>
+    </view>
   </view>
   <view class="space">
 
@@ -76,14 +76,14 @@
         </view>
       </view>
     </view>
-    <!-- 空列表提示 -->
-    <view wx:if="{{ content.length == 0 }}" class="center gray">
-      <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
-      <view>还没有数据哦~</view>
+    <view class="center gray" wx:if="{{end && content.length !== 0}}">
+      已到底
     </view>
-    <!-- 到底了 -->
-    <view wx:if="{{end == true}}" class="center gray">
-      ~ 到底啦 ~
+    <view class="center gray" wx:if="{{content == ''}}">
+      <view>
+        <image src="/images/no_result.png" class="avatar" mode="widthFix" />
+      </view>
+      没有数据
     </view>
     <view class="spaces">
 
@@ -91,25 +91,28 @@
   </view>
 </view>
 
-<view bindtap="img_click" class="img_click {{is_img_click == false ? 'hidden' : ''}}">
-  <image show-menu-by-longpress src="{{img_src}}" mode="widthFix" />
-</view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
   <view class="dialog__mask" bindtap="toggleDialog" />
   <view class="dialog__container">
     <view wx:if="{{!copy}}" style=' display:flex; flex-direction: column; justify-content: center; padding:100rpx; gap: 10rpx;'>
       <view wx:if="{{info.target.phone}}" class="lx" bindtap="call_phone" data-text="{{info.target.phone}}">
-        <image class="icon" src="/images/phone.png" mode="" />
-        <text>{{info.target.phone}}</text>
+        <view>
+          <image class="icon" src="/images/phone.png" mode="widthFix" />
+        </view>
+        <text>手机号：{{info.target.phone}}</text>
       </view>
       <view wx:if="{{info.target.contact_wx}}" class="lx" bindtap="copy" data-text="{{info.target.contact_wx}}">
-        <image src="/images/wx.png" class="icon" mode="" />
-        <text>{{info.target.contact_wx}}</text>
+        <view>
+          <image src="/images/wx.png" class="icon" mode="widthFix" />
+        </view>
+        <text>微信号：{{info.target.contact_wx}}</text>
       </view>
       <view wx:if="{{info.target.contact_qq}}" class="lx" bindtap="copy" data-text="{{info.target.contact_qq}}">
-        <image src="/images/qq.png" class="icon" mode="" />
-        <text>{{info.target.contact_qq}}</text>
+        <view>
+          <image src="/images/qq.png" class="icon" mode="widthFix" />
+        </view>
+        <text>QQ号:{{info.target.contact_qq}}</text>
       </view>
     </view>
   </view>
@@ -128,6 +131,9 @@
     <button bindtap="exit">确定</button>
   </view>
 </page-container>
-<view class="goTop" wx:if="{{pageIndex>1}}">
-  <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+<view bindtap="goTop" class="goTop" hidden='{{!floorstatus}}'>
+  <view>
+    <image class="icon" src="/images/goTOP.png" mode="widthFix" />
+  </view>
+  <text>返回顶部</text>
 </view>

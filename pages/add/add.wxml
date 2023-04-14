@@ -1,5 +1,5 @@
 <!-- <image src="/images/beijing3.png" class="bg" mode=""/> -->
-<image src="/images/beijing4.png" class="bg" mode="" />
+<image src="/images/beijing3.png" class="bg" mode="" />
 <view class="container" wx:if="{{isshow}}">
   <view class="title {{animation ? 'move' : '' }}">
     <view>
@@ -32,12 +32,11 @@
       </view>
       需求
     </view>
-
   </view>
 
-  <view class="bottom {{animation ? 'bo' : '' }}">
+  <!-- <view class="bottom {{animation ? 'bo' : '' }}">
     发布
-  </view>
+  </view> -->
 </view>
 <view wx:else="">
   <image src="https://niuyabo-1257122371.cos.ap-chengdu.myqcloud.com/tupian/psd.png" mode="widthFix" style="width: 100%;" />

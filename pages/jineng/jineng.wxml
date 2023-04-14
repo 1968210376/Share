@@ -1,51 +1,53 @@
-<!--主文件html中代码：-->
-<view class="space"> </view>
-<view class="jncard" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
-  <view class="jnup">
-    <view class="jnimg" wx:if="{{item.target.images.length>0}}">
-      <image src="{{item.target.images[0]}}" mode="aspectFill" />
-    </view>
-    <view class="jncontent">
-      <view class="jntitle {{item.target.content ? 'hang2' : 'hang4'}}">
-        {{item.target.title}}
+<view>
+  <!--主文件html中代码：-->
+  <view class="space"> </view>
+  <view class="jncard" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="jineng_detail">
+    <view class="jnup">
+      <view class="jnimg" wx:if="{{item.target.images.length>0}}">
+        <image src="{{item.target.images[0]}}" mode="aspectFill" />
       </view>
-      <view class="jntitle font-mini gray hang2">
-        {{item.target.content}}
-      </view>
-    </view>
-  </view>
-  <view>
-    <view class="jninfo">
-      <view>
-        <image src="{{item.target.avatar_url}}" class="icon" mode="widthFix" />
-      </view>
-      <view class="gray time font-mini">
-        {{item.target.nick_name}}
-      </view>
-      <view class="gray time font-mini">
-        {{item.target.create_time}}
-      </view>
-      <view class="star font-mini gray">
-        <view>
-          <image src="/images/shoucang(3).png" mode="widthFix" class="iconstar" />
+      <view class="jncontent">
+        <view class="jntitle {{item.target.content ? 'hang2' : 'hang4'}}">
+          {{item.target.title}}
         </view>
-        <view>
-          {{item.target.avgsort}}
+        <view class="jntitle font-mini gray hang2">
+          {{item.target.content}}
         </view>
       </view>
-      <view class="right red" wx:if="{{item.target.pirce}}">
-        ￥{{item.target.pirce}}
-      </view>
     </view>
+    <view>
+      <view class="jninfo">
+        <view>
+          <image src="{{item.target.avatar_url}}" class="icon" mode="widthFix" />
+        </view>
+        <view class="gray time font-mini">
+          {{item.target.nick_name}}
+        </view>
+        <view class="gray time font-mini">
+          {{item.target.create_time}}
+        </view>
+        <view class="star font-mini gray">
+          <view>
+            <image src="/images/shoucang(3).png" mode="widthFix" class="iconstar" />
+          </view>
+          <view>
+            {{item.target.avgsort ? item.target.avgsort : 5}}
+          </view>
+        </view>
+        <view class="right red" wx:if="{{item.target.pirce}}">
+          ￥{{item.target.pirce}}
+        </view>
+      </view>
 
+    </view>
   </view>
-</view>
-<!-- 空列表提示 -->
-<view wx:if="{{ list.length == 0 }}" class="center">
-  <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
-  <view>还没有数据哦~</view>
-</view>
-<!-- 到底了 -->
-<view wx:if="{{end == true}}" class="center">
-  ~ 到底啦 ~
+  <!-- 空列表提示 -->
+  <view wx:if="{{ list.length == 0 }}" class="center">
+    <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+    <view>还没有数据哦~</view>
+  </view>
+  <!-- 到底了 -->
+  <view wx:if="{{end == true}}" class="center gray">
+    ~ 到底啦 ~
+  </view>
 </view>

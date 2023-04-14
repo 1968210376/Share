@@ -66,6 +66,18 @@
       </view>
     </view>
   </view>
+  <view class="center gray" wx:if="{{end && list.length !== 0}}">
+        已到底
+      </view>
+      <view class="center gray" wx:if="{{list == ''}}">
+        <view>
+          <image src="/images/no_result.png" class="icon_noresult" mode="widthFix" />
+        </view>
+        没有数据
+      </view>
+      <view class="space">
+
+      </view>
   <view class="btn">
     <view bindtap="goTop" hidden='{{!floorstatus}}'>
       <view class="goTop">
@@ -142,22 +154,6 @@
 
       </view>
     </view>
-    <!-- <view wx:for="{{pinglun}}" wx:key="index">
-      <view wx:if="{{item.target}}" class="pinglun_li font-mini" bindlongtap="delete" data-id="{{item.target}}">
-        <view class="blue pinglun_name">
-          {{item.target.nick_name}} :
-        </view>
-        <view class="gray pinglun_content">
-          {{item.target.content}}
-        </view>
-      </view>
-      <view wx:else class="center">
-        <view>
-          <image src="/images/no_result.png" class="no_result" mode="widthFix" />
-        </view>
-        暂无数据
-      </view>
-    </view> -->
     <form bindsubmit="send_pinglun">
       <view class="pinglun_input">
         <input type="text" class="ping" name="input" value="{{value}}" bindinput="content" bindconfirm="send_pinglun" confirm-type="send" placeholder="请输入评论" />

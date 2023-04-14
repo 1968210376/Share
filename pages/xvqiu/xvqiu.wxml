@@ -1,5 +1,4 @@
 <view style="background-color: #fff; width: 100%;">
-
   <view class="space"> </view>
   <!-- <view class="card" wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="xvqiu_detail"> -->
   <view style="border-bottom: 3rpx solid #F4F5F9; " wx:for="{{list}}" data-id="{{index}}" wx:key="index" bindtap="xvqiu_detail">
@@ -67,7 +66,7 @@
     <view>还没有数据哦~</view>
   </view>
   <!-- 到底了 -->
-  <view wx:if="{{end}}" class="center">
+  <view wx:if="{{end}}" class="center gray">
     ~ 到底啦 ~
   </view>
 </view>

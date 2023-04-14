@@ -25,6 +25,7 @@ Page({
     top: 0,
     nbFrontColor: '#000000',
     nbBackgroundColor: '#ffffff',
+    floorstatus: false,
   },
   getCategory(e) { // 获取分类
     var that = this
@@ -44,7 +45,7 @@ Page({
       },
       success: (res) => {
         // console.log("selectcategory===>res");
-        console.log(res);
+        // console.log(res);
         // wx.setStorageSync('categories', res.data.response.content)
         that.setData({
           categories: res.data.response.content
@@ -66,7 +67,7 @@ Page({
     var that = this
     if (e) {
       var reside = parseInt(e.target.dataset.tab) + 1
-      console.log(reside - 1);
+      // console.log(reside - 1);
     } else {
       var reside = 1
     }
@@ -81,7 +82,7 @@ Page({
   },
   changeItem(e) { //二级导航栏点击切换
     var that = this
-    console.log('+++++++++++', e);
+    // console.log('+++++++++++', e);
 
     if (e.target.dataset !== '') {
 
@@ -234,7 +235,7 @@ Page({
       },
       success(res) {
         that.loading = false
-        console.log("shuju==>", res.data);
+        // console.log("shuju==>", res.data);
         if (res.data.response) {
           res.data.response.content.forEach(item => {
             let aaa = "";
@@ -286,10 +287,10 @@ Page({
     this.loading = true
     if (e) {
       var page = e
-      console.log("e:", e);
+      // console.log("e:", e);
     } else {
       page = that.data.pageIndex
-      console.log("page:", page);
+      // console.log("page:", page);
     }
     var that = this
     wx.showNavigationBarLoading()
@@ -377,9 +378,9 @@ Page({
     if (!this.data.end) {
       this.getShujus(this.data.pageIndex + 1)
     } else {
-      wx.showToast({
-        title: '已到底！',
-      })
+      // wx.showToast({
+      //   title: '已到底！',
+      // })
     }
     // this.setData({
 
@@ -450,7 +451,7 @@ Page({
     this.changeTab()
     this.getShuju()
     this.goTop()
-    console.log('下拉刷新');
+    // console.log('下拉刷新');
     this.setData({
       end: false
     })

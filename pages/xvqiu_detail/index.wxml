@@ -119,8 +119,11 @@
 
   </view>
 </view>
-<view class="goTop" wx:if="{{pageIndex>1}}">
-  <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+<view bindtap="goTop" class="goTop" hidden='{{!floorstatus}}'>
+  <view>
+    <image class="icon" src="/images/goTOP.png" mode="widthFix" />
+  </view>
+  <text>返回顶部</text>
 </view>
 <!-- 模拟弹窗 -->
 <view class="dialog {{ showDialog ? 'dialog--show' : '' }}">
@@ -128,16 +131,22 @@
   <view class="dialog__container">
     <view style=' display:flex; flex-direction: column; justify-content: center; padding:100rpx; gap: 10rpx;'>
       <view wx:if="{{info.target.phone}}" class="lx" bindtap="call_phone" data-text="{{info.target.phone}}">
-        <image class="icon" src="/images/phone.png" mode="" />
-        <text>{{info.target.phone}}</text>
+        <view>
+          <image class="icon" src="/images/phone.png" mode="widthFix" />
+        </view>
+        <text>手机号：{{info.target.phone}}</text>
       </view>
       <view wx:if="{{info.target.contact_wx}}" class="lx" bindtap="copy" data-text="{{info.target.contact_wx}}">
-        <image src="/images/wx.png" class="icon" mode="" />
-        <text>{{info.target.contact_wx}}</text>
+        <view>
+          <image src="/images/wx.png" class="icon" mode="widthFix" />
+        </view>
+        <text>微信号：{{info.target.contact_wx}}</text>
       </view>
       <view wx:if="{{info.target.contact_qq}}" class="lx" bindtap="copy" data-text="{{info.target.contact_qq}}">
-        <image src="/images/qq.png" class="icon" mode="" />
-        <text>{{info.target.contact_qq}}</text>
+        <view>
+          <image src="/images/qq.png" class="icon" mode="widthFix" />
+        </view>
+        <text>QQ号：{{info.target.contact_qq}}</text>
       </view>
     </view>
   </view>

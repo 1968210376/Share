@@ -1,4 +1,5 @@
 // var QQMapWX = require('../../libs/qqmap-wx-jssdk.min.js')
+const util = require("../../libs/util")
 const app = getApp()
 Page({
   data: {
@@ -8,6 +9,7 @@ Page({
     markers: [],
     flag: true,
     animation: false,
+    info: '',
   },
   onReady: function (e) {
     this.mapCtx = wx.createMapContext('map')
@@ -136,12 +138,12 @@ Page({
   // 视野发生变化时触发，已完成
   onChangeRegion: function (e) {
     var that = this
-    console.log(e)
-    if (e.type == 'begin') {
-      that.setData({
-        flag: false
-      })
-    }
+    // console.log(e)
+    // if (e.type == 'begin') {
+    //   that.setData({
+    //     flag: false
+    //   })
+    // }
     if (e.type == 'end' && e.causedBy === 'drag') {
       this.mapCtx.getCenterLocation({
         success: function (res) {
@@ -193,26 +195,71 @@ Page({
   },
   // 点击气泡时触发
   bindcallouttap: function (res) {
-    // console.log(res)
+    // console.log("res",res)
     // console.log(res.markerId)
-    if (!this.data.flag) {
-      console.log("false")
-    } else {
-      this.to_wupin_detail(res.markerId)
-      // console.log("true")
-    }
-    this.setData({
-      flag: true
-    })
-    // this.to_wupin_detail(res.markerId)
+    // if (!this.data.flag) {
+    //   console.log("false")
+    // } else {
+    //   this.to_wupin_detail(res.markerId)
+    //   // console.log("true")
+    // }
+    // this.setData({
+    //   flag: true
+    // })
+    this.to_wupin_detail(res.markerId)
   },
   // 根据id进入详情页
-  to_wupin_detail: function (e) {
-    // console.log(e)
-    wx.navigateTo({
-      url: "/pages/wupin_detail/index?id=" + e
+  async to_wupin_detail(e) {
+    var that = this
+    let info = await that.selctmarketid(e)
+    // console.log("info-----", that.data.info);
+  },
+  selctmarketid: function (e) {
+    var that = this
+    //console.log("+++555+++++");
+    // 根据id查询信息
+    return new Promise((resolve) => {
+      wx.request({
+        url: app.globalData.serverApi + '/selectMarket',
+        method: 'POST',
+        data: {
+          id: e,
+          wxOpenId: wx.getStorageSync('openid'),
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success(res) {
+          resolve(res.data.response.content[0])
+          // console.log("------------------");
+          // console.log(res.data);
+          if (res.data.response.content) {
+            res.data.response.content.forEach(item => {
+              let d = new Date(item.target.create_time).getTime();
+              item.target.create_time = util.commentTimeHandle(d);
+              // if (item.target.images != "") {
+              if (item.target.images != "" && item.target.images != null) {
+                item.target.images = item.target.images.split(",");
+                item.target.choose_location = JSON.parse(item.target.choose_location);
+              }
+            })
+            let info = res.data.response.content[0]
+            let url
+            let type = res.data.response.content[0].target.category_type
+            type <= 5 ? url = 'wupin' : (type <= 9 ? url = 'jineng' : url = 'xvqiu')
+            // console.log(url);
+            info = JSON.stringify(info)
+            wx.navigateTo({
+              url: "/pages/" + url + "_detail/index?info=" + info
+            })
+          } else {
+            console.log(res);
+          }
+        }
+      })
     })
   },
+
   /**
    * 用户点击右上角分享
    */

@@ -19,7 +19,8 @@ Page({
     is_img_click: false,
     pageIndex: 1,
     end: false,
-    img_src:''
+    img_src: '',
+    floorstatus: false,
   },
   /**
    * 控制 pop 的打开关闭
@@ -304,9 +305,9 @@ Page({
       // console.log('当前页', that.data.pageIndex);
       this.show_liuyan()
     } else {
-      wx.showToast({
-        title: '已到底！',
-      })
+      // wx.showToast({
+      //   title: '已到底！',
+      // })
     }
   },
   show_liuyan() {
@@ -428,7 +429,19 @@ Page({
   onReachBottom() {
     this.load_ping()
   },
-
+  // 置顶 获取滚动条当前位置
+  onPageScroll: function (e) {
+    // console.log(e)
+    if (e.scrollTop > 100) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
   /**
    * 用户点击右上角分享
    */

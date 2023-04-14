@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    floorstatus: false,
     info: '',
     // want: false,
     showDialog: false,
@@ -54,11 +55,10 @@ Page({
   cha_shouCang() {
     var that = this
     var info = that.data.info
-    if (info.target.market_id) {
-      var id = info.target.market_id
-    } else {
-      id = info.target.id
-    }
+    var id
+    id = that.data.market_id
+    // console.log("id", id);
+    // console.log("info", info);
     wx.request({
       url: app.globalData.serverApi + '/findAllByMarketIdFormLikes',
       method: 'POST',
@@ -315,9 +315,9 @@ Page({
       // console.log('当前页', that.data.pageIndex);
       this.show_liuyan()
     } else {
-      wx.showToast({
-        title: '已到底！',
-      })
+      // wx.showToast({
+      //   title: '已到底！',
+      // })
     }
   },
   goTop(e) {
@@ -372,46 +372,37 @@ Page({
   // 根据id查询信息 2023年3月5日 牛亚博
   selctmarketid: function (options) {
     var that = this
-    const promise = new Promise(function (resolve, reject) {
-      //console.log("+++555+++++");
-      // 根据id查询信息
-      wx.request({
-        url: app.globalData.serverApi + '/selectMarket',
-        method: 'POST',
-        data: {
-          id: options.id,
-          wxOpenId: wx.getStorageSync('openid'),
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: (res) => {
-          //console.log("------------------");
-          //console.log(res.data);
-          if (res.data.response.content) {
-            res.data.response.content.forEach(item => {
-              let d = new Date(item.target.create_time).getTime();
-              item.target.create_time = util.commentTimeHandle(d);
-              // if (item.target.images != "") {
-              if (item.target.images != "" && item.target.images != null) {
-                item.target.images = item.target.images.split(",");
-                item.target.choose_location = JSON.parse(item.target.choose_location);
-              }
-            })
-            that.setData({
-              info: res.data.response.content[0]
-            })
-            //console.log("pl--->", that.data.info);
-            resolve('200 OK');
-
-          }
-        },
-        fail: res => {
-          wx.showToast({
-            title: "加载留言失败",
+    //console.log("+++555+++++");
+    // 根据id查询信息
+    wx.request({
+      url: app.globalData.serverApi + '/selectMarket',
+      method: 'POST',
+      data: {
+        id: options.id,
+        wxOpenId: wx.getStorageSync('openid'),
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success(res) {
+        //console.log("------------------");
+        //console.log(res.data);
+        if (res.data.response.content) {
+          res.data.response.content.forEach(item => {
+            let d = new Date(item.target.create_time).getTime();
+            item.target.create_time = util.commentTimeHandle(d);
+            // if (item.target.images != "") {
+            if (item.target.images != "" && item.target.images != null) {
+              item.target.images = item.target.images.split(",");
+              item.target.choose_location = JSON.parse(item.target.choose_location);
+            }
           })
+          that.setData({
+            info: res.data.response.content[0]
+          })
+          console.log("pl--->", that.data.info);
         }
-      })
+      }
     })
   },
 
@@ -423,18 +414,26 @@ Page({
     //console.log("*************");
     //console.log(options)
     var that = this
-    if (options.id) {
-      //console.log("++++++++++++++++++++");
-      that.selctmarketid(options);
-      return
+    // if (options.id) {
+    //   //console.log("++++++++++++++++++++");
+    //   that.setData({
+    //     market_id: options.id
+    //   })
+    //   that.selctmarketid(options);
+    //   // return
+    // }
+    if (options.info) {
+      options.info = decodeURIComponent(options.info)
+      // console.log(options.info);
+      var info = JSON.parse(options.info)
+      // console.log(info);
+      this.setData({
+        info: info,
+        market_id: info.target.id
+      })
     }
-    options.info = decodeURIComponent(options.info)
-    var info = JSON.parse(options.info)
     //console.log(info);
-    this.setData({
-      info: info,
-      market_id: info.target.id
-    })
+
     // this.show_liuyan()
   },
 
@@ -444,7 +443,19 @@ Page({
   onReady() {
 
   },
-
+  // 置顶 获取滚动条当前位置
+  onPageScroll: function (e) {
+    // console.log(e)
+    if (e.scrollTop > 100) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
   /**
    * 生命周期函数--监听页面显示
    */
