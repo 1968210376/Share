@@ -291,16 +291,17 @@ Page({
   //联系方式确认 保存本地
   confirms: function (e) {
     let that = this
-    if (that.data.phone != "" && that.data.phone != 'undefined' && that.data.phone !=null) {
+    if (that.data.phone != '' && that.data.phone != null) {
       // console.log(e);
+      
       that.setData({
         showModal: true,
       })
       console.log("联系方式 phone:" + that.data.phone, "contact_qq:", that.data.contact_qq, "contact_wx:", that.data.contact_wx);
       var userInfo = wx.getStorageSync('userInfo');
       userInfo.phone = that.data.phone
-      userInfo.contact_qq = that.data.contact_qq
-      userInfo.contact_wx = that.data.contact_wx
+      userInfo.contact_qq = that.data.contact_qq==null?"":that.data.contact_qq
+      userInfo.contact_wx = that.data.contact_wx==null?"":that.data.contact_wx
       app.globalData.userInfo = userInfo
       wx.setStorageSync('userInfo', userInfo)
       // 保存到数据库
@@ -310,7 +311,7 @@ Page({
         showModal: true,
       })
       wx.showToast({
-        icon:'none',
+        icon:"none",
         title: '手机号不能为空',
       })
     }

@@ -13,7 +13,7 @@
         <input type="text" class="input" name="title" placeholder="请输入标题" />
         <view wx:if="{{isshow}}">
           <label>内容</label>
-          <textarea fixed='true' contenteditable="true" auto-height="true" style="min-height: 200rpx;" class="inputs" name="details" value="" placeholder="请输入内容" maxlength="-1" />
+          <textarea class="inputs" name="details" value="" placeholder="请输入内容" />
         </view>
 
         <label>价格</label>

@@ -5,7 +5,7 @@
     <view class="card" style="width: 92%;">
       <view class="userInfo">
         <view class="img">
-          <image src="{{item.target.avatar_url}}" style="border: none;" />
+          <image src="{{item.target.avatar_url}}" style="border: none;"/>
         </view>
         <view class="info">
           <view class="nickName">
@@ -66,7 +66,7 @@
     <view>还没有数据哦~</view>
   </view>
   <!-- 到底了 -->
-  <view wx:if="{{end}}" class="center gray">
+  <view wx:if="{{end}}" class="center">
     ~ 到底啦 ~
   </view>
 </view>

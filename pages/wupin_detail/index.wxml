@@ -48,7 +48,7 @@
       <image wx:if="{{is_shouCang}}" src="/images/shoucang(3).png" class="icon_big" mode="widthFix" />
     </view>
   </view>
-  <view class="space"></view>
+  <!-- <view class="spaces"></view> -->
   <view class="components">
     <view class="component">
       <view>

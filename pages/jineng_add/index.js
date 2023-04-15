@@ -99,13 +99,13 @@ exit(e){
             title: '请输入标题'
         });
     }
-    else if (!this.data.imgbox.length) {
-        // !this.data.imgbox.length && !e.detail.value.information
-        wx.showToast({
-            icon: 'none',
-            title: '选择至少一张图片'
-        });
-    }
+    // else if (!this.data.imgbox.length) {
+    //     // !this.data.imgbox.length && !e.detail.value.information
+    //     wx.showToast({
+    //         icon: 'none',
+    //         title: '选择至少一张图片'
+    //     });
+    // }
     else {
         // 文件图片的上传
         // this.add_fileImages(e);

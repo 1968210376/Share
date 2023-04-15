@@ -11,16 +11,6 @@
         {{info.target.title}}
       </view>
     </view>
-
-    <view class="gap liuyan_item" >
-      <text>好评度：</text>
-      <view>
-        <Rate class="star" WH="38" starValue="{{info.target.avgsort ? info.target.avgsort : 5}}"></Rate>
-      </view>
-      <view wx:if="{{info.target.pirce}}" class="red right">￥{{info.target.pirce}}</view>
-    </view>
-  </view>
-
     <view wx:if="{{info.target.choose_location||info.target.content }}" class="liuyan liuyan_item">
       <text wx:if="{{info.target.content}}" class="titles">技能描述</text>
       <text wx:if="{{info.target.content}}">{{info.target.content}}</text>
@@ -32,16 +22,16 @@
           </view>
         </view>
       </view>
-    </view>
 
-    <!-- <view class="gap liuyan_item">
+    </view>
+    <view class="gap liuyan_item">
       <text>好评度：</text>
       <view>
         <Rate class="star" WH="38" starValue="{{info.target.avgsort ? info.target.avgsort : 5}}"></Rate>
       </view>
       <view wx:if="{{info.target.pirce}}" class="red right">￥{{info.target.pirce}}</view>
     </view>
-  </view> -->
+  </view>
   <view class="space">
 
   </view>

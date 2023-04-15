@@ -59,8 +59,8 @@
       </view>
       <share info="{{info.target}}"></share>
       <view class="btn yellow" bindtap="toggleDialog">
-        <!-- <image class="icon" src="/images/xy (2).png" mode="aspectFit" /> -->
-        <text>联系TA</text>
+        <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
+        <text>我想要</text>
       </view>
     </view>
   </view>

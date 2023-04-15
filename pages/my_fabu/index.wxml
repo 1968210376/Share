@@ -35,7 +35,7 @@
   </view>
   <!-- 到底了 -->
   <!-- <view wx:if="{{end == true}}" class="center"> -->
-  <view class="center gray">
+  <view class="center">
     ~ 到底啦 ~
   </view>
 <view class="goTop">

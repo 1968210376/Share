@@ -47,7 +47,7 @@
     <view>还没有数据哦~</view>
   </view>
   <!-- 到底了 -->
-  <view wx:if="{{end == true}}" class="center gray">
+  <view wx:if="{{end == true}}" class="center">
     ~ 到底啦 ~
   </view>
 </view>
