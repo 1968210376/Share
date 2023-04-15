@@ -5,7 +5,7 @@
     <view class="card" style="width: 92%;">
       <view class="userInfo">
         <view class="img">
-          <image src="{{item.target.avatar_url}}" />
+          <image src="{{item.target.avatar_url}}" style="border: none;" />
         </view>
         <view class="info">
           <view class="nickName">

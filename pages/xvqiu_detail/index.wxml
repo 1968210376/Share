@@ -52,15 +52,15 @@
           <view class="center">
             <image src="/images/share(1).png" class="icon" mode="widthFix" />
           </view>
-          <view class="share font-mini">
+          <view class="share font-mini" style="font-weight: normal;font-size: 12px;">
             分享
           </view>
         </button>
       </view>
       <share info="{{info.target}}"></share>
       <view class="btn yellow" bindtap="toggleDialog">
-        <image class="icon" src="/images/xy (2).png" mode="aspectFit" />
-        <text>我想要</text>
+        <!-- <image class="icon" src="/images/xy (2).png" mode="aspectFit" /> -->
+        <text>联系TA</text>
       </view>
     </view>
   </view>

@@ -4,7 +4,10 @@
         <view class="l">我的头像</view>
         <view class="r">
             <image class="next" src="/images/next.png"></image>
-            <image class="userinfo-avatar avatar" src="{{avatarUrl}}"></image>
+            <image class="userinfo-avatar avatar" src="{{avatarUrl == ''?'../../images/0.png':avatarUrl}}"></image>
+            <view  style="line-height: 50px;font-weight: normal;font-size: 12px;color: gray;" wx:if="{{avatarUrl==''}}">
+              请上传头像
+            </view>
         </view>
     </button>
 </view>

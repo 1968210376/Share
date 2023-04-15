@@ -48,11 +48,11 @@
   <view class="components">
     <view class="component">
       <view>
-        <button style="width: 100%;height: 100%; margin: 0;padding: 0;" open-type="share">
+        <button style="width: 100%;height: 100%; margin: 0;padding: 0;background-color: white;" open-type="share">
           <view class="center">
             <image src="/images/share(1).png" class="icon" mode="widthFix" />
           </view>
-          <view class="share font-mini">
+          <view class="share font-mini" style="font-weight: normal;font-size: 12px;">
             分享
           </view>
         </button>

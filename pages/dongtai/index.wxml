@@ -78,7 +78,7 @@
       <view class="space">
 
       </view>
-  <view class="btn">
+  <view class="btn" style="bottom: 20px;">
     <view bindtap="goTop" hidden='{{!floorstatus}}'>
       <view class="goTop">
         <image class="goTop" src="/images/goTOP.png" mode="widthFix" />
