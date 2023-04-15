@@ -290,13 +290,13 @@ Page({
   },
   //联系方式确认 保存本地
   confirms: function (e) {
-    if (this.phone !== '') {
+    let that = this
+    if (that.data.phone != "" && that.data.phone != 'undefined' && that.data.phone !=null) {
       // console.log(e);
-      let that = this
-      this.setData({
+      that.setData({
         showModal: true,
       })
-      // console.log("联系方式 phone:" + that.data.phone, "contact_qq:", that.data.contact_qq, "contact_wx:", that.data.contact_wx);
+      console.log("联系方式 phone:" + that.data.phone, "contact_qq:", that.data.contact_qq, "contact_wx:", that.data.contact_wx);
       var userInfo = wx.getStorageSync('userInfo');
       userInfo.phone = that.data.phone
       userInfo.contact_qq = that.data.contact_qq
@@ -305,6 +305,14 @@ Page({
       wx.setStorageSync('userInfo', userInfo)
       // 保存到数据库
       this.saveupdataniuuser(userInfo);
+    }else{
+      that.setData({
+        showModal: true,
+      })
+      wx.showToast({
+        icon:'none',
+        title: '手机号不能为空',
+      })
     }
   },
   //手机号输入框光标失去焦点触发保存局域

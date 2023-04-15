@@ -4,7 +4,7 @@
   </view> -->
   <view class="userinfo menu-item " bindtap='to_niu_my_edit_information'>
     <view>
-      <image class="userinfo-avatar " src="{{avatarUrl == ''?'../../images/0.png':avatarUrl}}"></image>
+      <image class="userinfo-avatar " src="{{avatarUrl}}"></image>
       <view class="userinfo-nickname">
         <text>{{nickName}}</text>
       </view>
