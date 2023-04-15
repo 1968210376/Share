@@ -32,7 +32,7 @@
           <view wx:if="{{item.target.images[0]}}">
             <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
           </view>
-          <view>{{ item.target.title }}</view>
+          <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
           <!-- <view wx:if="{{!item.target.images}}" style="height: 50rpx;">
           </view> -->
           <view style="display: flex; justify-content: space-between; align-items: center;">

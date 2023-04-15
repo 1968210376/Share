@@ -46,7 +46,7 @@ Component({
       })
       content == '' ? (wx.showToast({
         title: '请输入内容',
-        icon: "error"
+        icon: "none"
       })) : (
         wx.request({
           url: app.globalData.serverApi + '/commentOn',

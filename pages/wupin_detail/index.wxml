@@ -44,8 +44,8 @@
       {{count}}人想要
     </view>
     <view class="right" bindtap="is_shouCang">
-      <image wx:if="{{!is_shouCang}}" class="icon_big" src="/images/shoucang(2).png" mode="widthFix" />
-      <image wx:if="{{is_shouCang}}" src="/images/shoucang(3).png" class="icon_big" mode="widthFix" />
+      <image wx:if="{{!is_shouCang}}" class="icon_big" src="/images/shoucang(2).png" mode="widthFix" style="width: 25px;" />
+      <image wx:if="{{is_shouCang}}" src="/images/shoucang(3).png" class="icon_big" mode="widthFix"  style="width: 25px;" />
     </view>
   </view>
   <!-- <view class="spaces"></view> -->

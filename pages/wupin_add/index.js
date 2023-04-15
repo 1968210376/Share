@@ -79,8 +79,7 @@ Page({
   },
   //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
   formSubmit: function (e) {
-    var that = this
-    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
     // let category_type =  JSON.parse(e.detail.value.category_type);
     if (!e.detail.value.fenlei) {
       wx.showToast({
@@ -92,7 +91,7 @@ Page({
         icon: 'none',
         title: '请输入标题'
       });
-    } else if (!this.data.imgbox.length) {
+    } else if (!e.detail.value.imgbox.length) {
       // !this.data.imgbox.length && !e.detail.value.information
       wx.showToast({
         icon: 'none',

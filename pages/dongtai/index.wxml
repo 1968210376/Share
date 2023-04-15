@@ -1,7 +1,7 @@
 <view class="container">
-<view >
-  <image class="top" src="https://niuyabo-1257122371.cos.ap-chengdu.myqcloud.com/tupian/dongtaibg.png" mode="widthFix"/>
-</view>
+  <view>
+    <image class="top" src="https://niuyabo-1257122371.cos.ap-chengdu.myqcloud.com/tupian/dongtaibg.png" mode="widthFix" />
+  </view>
   <view wx:for="{{list}}" wx:key="index">
     <view class="card" data-id="{{item.target}}" bindlongtap="delete_dongtai">
       <view class="card_main">
@@ -67,17 +67,17 @@
     </view>
   </view>
   <view class="center gray" wx:if="{{end && list.length !== 0}}">
-        已到底
-      </view>
-      <view class="center gray" wx:if="{{list == ''}}">
-        <view>
-          <image src="/images/no_result.png" class="icon_noresult" mode="widthFix" />
-        </view>
-        没有数据
-      </view>
-      <view class="space">
+    已到底
+  </view>
+  <view class="center gray" wx:if="{{list == ''}}">
+    <view>
+      <image src="/images/no_result.png" class="icon_noresult" mode="widthFix" />
+    </view>
+    没有数据
+  </view>
+  <view class="space">
 
-      </view>
+  </view>
   <view class="btn">
     <view bindtap="goTop" hidden='{{!floorstatus}}'>
       <view class="goTop">
@@ -126,7 +126,7 @@
     </view>
     <view class="yinshi" bindtap="to_niu_my_fuwuyinshi">《用户服务协议》 及 《隐私政策》</view>
   </form>
-  <scroll-view wx:else scroll-y class="pinglun_list" bindscrolltolower="load_ping" scroll-top="{{height}}"px>
+  <scroll-view wx:else scroll-y class="pinglun_list" bindscrolltolower="load_ping" scroll-top="{{height}}" px>
     <view class="message">
       <view class="pl" wx:for="{{pinglun}}" wx:key="index">
         <view>

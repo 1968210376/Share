@@ -12,8 +12,10 @@
         <input type="text" class="input" name="title" placeholder="请输入标题" />
         <view wx:if="{{isshow}}">
           <label>内容</label>
-          <textarea class="inputs" name="details" value="" placeholder="请输入内容" />
+          <!-- <textarea class="inputs" name="details" value="" placeholder="请输入内容" /> -->
+          <textarea fixed='true' contenteditable="true" auto-height="true" style="min-height: 200rpx;" class="inputs" name="details" value="" placeholder="请输入内容" maxlength="-1" /> 
         </view>
+        
         <label>价格</label>
         <input class="input" name="pirce" type="digit" bindinput="checkValue" value="" placeholder="请输入价格" />
         <label>定位</label>
@@ -22,8 +24,8 @@
           <image src="/images/location(3).png" class="icon position" mode="" />
         </view>
         <!-- 图片 -->
-        <view wx:if="{{isshow}}">
-          <label>图片</label>
+        <view>
+          <label><text style="color: red;">*</text>图片</label>
           <input type="text" hidden name="imgbox" value="{{imgbox}}" />
           <view class="images_box">
             <block wx:key="imgbox" wx:for="{{imgbox}}">

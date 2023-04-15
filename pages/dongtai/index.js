@@ -153,7 +153,7 @@ Page({
         })) :
       (wx.showToast({
         title: '内容不允许为空',
-        icon: "error"
+        icon: "none"
       }))
   },
   select_pinglun() {

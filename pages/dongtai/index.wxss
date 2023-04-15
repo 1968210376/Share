@@ -215,7 +215,9 @@
   width: 35rpx;
   height: 35rpx;
 }
-
+.icon_noresult{
+  width: 100px;
+}
 .gongneng {
   width: 100%;
   border-radius: 5px;
