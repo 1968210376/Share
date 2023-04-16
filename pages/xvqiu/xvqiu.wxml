@@ -61,12 +61,12 @@
     </view>
   </view>
   <!-- 空列表提示 -->
-  <view wx:if="{{ list.length == 0 }}" class="center">
+  <view wx:if="{{ list.length == 0 }}" class="center gray">
     <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
     <view>还没有数据哦~</view>
   </view>
   <!-- 到底了 -->
-  <view wx:if="{{end}}" class="center">
+  <view wx:if="{{end}}" class="center gray">
     ~ 到底啦 ~
   </view>
 </view>

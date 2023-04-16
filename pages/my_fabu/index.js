@@ -78,7 +78,8 @@ Page({
               })
               that.setData({
                 pageIndex:1,
-                delete:true
+                delete:true,
+                end:false
               })
               that.jiazai()
               that.goTop()

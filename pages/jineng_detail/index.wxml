@@ -17,6 +17,12 @@
       <view>
         <Rate class="star" WH="38" starValue="{{info.target.avgsort ? info.target.avgsort : 5}}"></Rate>
       </view>
+      <view style="margin-left: 150px;align-items: center;">
+        <image src="../../images/liulan.png" style="width: 20px;height: 20px;" mode="" />
+      </view>
+      <view style="font-size: 12px;align-items: center;line-height: 20px;margin-left: -5px;">
+        {{count}}
+      </view>
       <view wx:if="{{info.target.pirce}}" class="red right">￥{{info.target.pirce}}</view>
     </view>
   </view>
