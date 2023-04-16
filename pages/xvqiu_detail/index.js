@@ -239,6 +239,17 @@ Page({
   onLoad(options) {
     var info = JSON.parse(options.info)
     // console.log(info);
+    var categories = wx.getStorageSync('categories')
+      console.log(categories);
+      var categroyName = "心愿享"
+      categories.forEach(item => {
+        if (item.categoryType == info.target.category_type) {
+          categroyName = item.categoryName
+        }
+      })
+      wx.setNavigationBarTitle({
+        title: categroyName
+      })
     this.setData({
       info: info
     })

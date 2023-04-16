@@ -58,12 +58,12 @@ App({
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      data: {
-        categoryType: reside
-      },
+      // data: {
+      //   categoryType: reside
+      // },
       success: (res) => {
-        // console.log("selectcategory===>res"); 
-        // console.log(res); 
+        console.log("selectcategory===>res"); 
+        console.log(res); 
         wx.setStorageSync('categories', res.data.response.content)
       }
     })
@@ -74,6 +74,7 @@ App({
       this.getwxopenid();
     }
     this.banner();
+    this.selectcategory();
     wx.getSystemInfo({
       success: res => {
         this.globalData.navHeight = res.windowHeight; //动态获得窗口高度。当然，别忘了要在app.js中设置全局变量navHeight,以及上面主文件的js文件也是同理。

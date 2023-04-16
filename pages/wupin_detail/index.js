@@ -336,7 +336,7 @@ Page({
   delete(e) {
     // console.log(e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
-      icon:"none",
+      icon: "none",
       title: '不是本人的留言',
     })
   },
@@ -429,8 +429,22 @@ Page({
     // })
     if (options.info) {
       options.info = decodeURIComponent(options.info)
-      // console.log(options.info);
+      console.log(options.info);
       var info = JSON.parse(options.info)
+      console.log(info);
+      
+      var categories = wx.getStorageSync('categories')
+      console.log(categories);
+      var categroyName = "心愿享"
+      categories.forEach(item => {
+        if (item.categoryType == info.target.category_type) {
+          categroyName = item.categoryName
+        }
+      })
+      wx.setNavigationBarTitle({
+        title: categroyName
+      })
+
       // console.log(info);
       this.setData({
         info: info,
