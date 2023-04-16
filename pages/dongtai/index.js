@@ -31,7 +31,15 @@ Page({
     delete: false,
     ping_pageIndex: 1,
     ping_pageSize: 10,
-    height: 0
+    height: 0,
+    isshow: false
+  },
+  isshow() {
+    var that = this
+    that.setData({
+      isshow: wx.getStorageSync('isshow')
+    })
+    console.log(that.data.isshow);
   },
   is_like(e) {
     var info = wx.getStorageSync('userInfo')
@@ -217,6 +225,7 @@ Page({
   delete(e) {
     // console.log("e===>", e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
+      icon: "none",
       title: '不是本人的留言',
     })
   },
@@ -425,7 +434,7 @@ Page({
       success: (res) => {
         // //console.log("addOrUpdateMarket===>res");
         console.log(res);
-       
+
         if (res.data.code == 1) {
           // console.log("进来了");
           wx.showToast({
@@ -438,10 +447,10 @@ Page({
             form: false,
             pageIndex: 1
           })
-        }else{
+        } else {
           wx.showToast({
             title: res.data.message,
-            icon:"error"
+            icon: "error"
           })
           that.load()
           that.goTop()
@@ -541,6 +550,7 @@ Page({
       })
 
     ) : wx.showToast({
+      icon: "none",
       title: '不是本人的动态',
     })
   },
@@ -548,6 +558,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.isshow()
     var userInfo = wx.getStorageSync('userInfo');
     if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "" || userInfo.phone == "") {
       setTimeout(function () {

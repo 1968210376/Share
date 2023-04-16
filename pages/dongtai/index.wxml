@@ -85,7 +85,7 @@
       </view>
       <text>返回顶部</text>
     </view>
-    <view bindtap="add">
+    <view bindtap="add" wx:if="{{isshow}}">
       <view class="add">
         <image src="/images/add.png" mode="widthFix" />
       </view>
@@ -157,7 +157,7 @@
     <form bindsubmit="send_pinglun">
       <view class="pinglun_input">
         <input type="text" class="ping" name="input" value="{{value}}" bindinput="content" bindconfirm="send_pinglun" confirm-type="send" placeholder="请输入评论" />
-        <button class="pinglun_btn" form-type="submit">
+        <button class="pinglun_btn" form-type="submit" style="font-weight: normal;font-size: 1rem;">
           发送
         </button>
       </view>

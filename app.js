@@ -2,6 +2,8 @@
 // 2023年3月3日 牛亚博 修改
 var QQMapWX = require('./libs/qqmap-wx-jssdk.min.js')
 var qqmapsdk;
+var app = getApp()
+
 App({
   globalData: {
     userInfo: null,
@@ -71,6 +73,7 @@ App({
     if (this.globalData.userInfo == null) {
       this.getwxopenid();
     }
+    this.banner();
     wx.getSystemInfo({
       success: res => {
         this.globalData.navHeight = res.windowHeight; //动态获得窗口高度。当然，别忘了要在app.js中设置全局变量navHeight,以及上面主文件的js文件也是同理。
@@ -100,7 +103,27 @@ App({
     that.globalData.menuTop = menuButtonInfo.top;
     that.globalData.menuHeight = menuButtonInfo.height;
   },
-
+  banner() { //轮播图
+    var that = this
+    wx.request({
+      url: that.globalData.serverApi + '/selectAllBanner',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        status: 1
+      },
+      success(res) {
+        console.log('lunbo:', res.data.response);
+        // that.setData({
+        //   isshow: res.data.response.length > 2 ? true : false
+        // })
+        wx.setStorageSync("isshow", res.data.response.length > 2 ? true : false);
+        // console.log(that.data.isshow);
+      }
+    })
+  },
   // 获取当前所在城市
   getLocal: function (latitude, longitude) {
     var that = this

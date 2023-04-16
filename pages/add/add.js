@@ -8,21 +8,12 @@ Page({
   },
 
   onLoad: function () {
-    this.banner();
+    this.isshow();
   },
-  banner() { //轮播图
+  isshow() {
     var that = this
-    wx.request({
-      url: app.globalData.serverApi + '/selectAllBanner',
-      method: 'POST',
-      success(res) {
-        // console.log('lunbo:', res.data.response);
-        that.setData({
-          isshow: res.data.response.length > 2 ? true : false
-        })
-        wx.setStorageSync("isshow", that.data.isshow);
-        // console.log(that.data.isshow);
-      }
+    that.setData({
+      isshow: wx.getStorageSync('isshow')
     })
   },
   goAdd(e) {

@@ -45,6 +45,7 @@ Page({
   delete(e) {
     // console.log(e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
+      icon:"none",
       title: '不是本人的留言',
     })
   },

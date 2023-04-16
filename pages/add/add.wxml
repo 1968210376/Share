@@ -1,5 +1,6 @@
 <!-- <image src="/images/beijing3.png" class="bg" mode=""/> -->
 <image src="/images/beijing3.png" class="bg" mode="" />
+<image wx:if="{{!isshow}}" src="https://niuyabo-1257122371.cos.ap-chengdu.myqcloud.com/tupian/psd.png" class="bg" />
 <view class="container" wx:if="{{isshow}}">
   <view class="title {{animation ? 'move' : '' }}">
     <view>
