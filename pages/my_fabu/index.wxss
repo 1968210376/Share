@@ -40,21 +40,27 @@
   height: 10px;
   float: right;
 }
-.goTop{
-  width: 80rpx;
-  height: 80rpx;
+.goTop {
+  width: 90rpx;
+  height: 140rpx;
+  text-align: center;
   position: fixed;
   right: 10rpx;
-  bottom: 55rpx;
-  border-radius: 50%;
+  bottom: 85rpx;
+  border-radius: 15rpx;
+  font-size: 10px;
   z-index: 999;
-  background-color:rgba(255, 255, 2555, .6)
+  color: gray;
+  background-color: rgba(255, 255, 2555, .8)
+}
+.goTop image{
+  width: 100%;
 }
 .center {
   text-align: center;
 }
 .data-img {
-  width: 300rpx;
+  width: 200rpx;
   height: 300rpx;
   margin: 0 auto;
 }

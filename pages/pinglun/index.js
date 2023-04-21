@@ -13,6 +13,7 @@ Page({
     pageIndex: 1,
     pageSize: 13,
     end: false,
+    floorstatus:false
   },
 
   /**
@@ -45,7 +46,7 @@ Page({
   delete(e) {
     // console.log(e);
     e.currentTarget.dataset.id.comment_post_wx_open_id == wx.getStorageSync('openid') ? this.detele_(e) : wx.showToast({
-      icon:"none",
+      icon: "none",
       title: '不是本人的留言',
     })
   },
@@ -67,7 +68,7 @@ Page({
             },
             success(res) {
               that.setData({
-                pageIndex:1
+                pageIndex: 1
               })
               that.jiazai()
               that.goTop()
@@ -109,14 +110,11 @@ Page({
           that.setData({
             end: true
           })
-          wx.showToast({
-            title: '已到底',
-          })
         }
       }
     })
   },
-  goTop() {
+  goTop(e) {
     if (wx.pageScrollTo) {
       wx.pageScrollTo({
         scrollTop: 0
@@ -183,6 +181,19 @@ Page({
       pageIndex: that.data.pageIndex + 1
     })
     that.jiazai()
+  },
+  // 置顶 获取滚动条当前位置
+  onPageScroll: function (e) {
+    // console.log(e)
+    if (e.scrollTop > 100) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
   },
 
   /**

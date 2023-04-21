@@ -38,6 +38,9 @@
   <view class="center gray">
     ~ 到底啦 ~
   </view>
-<view class="goTop">
-  <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
-</view>
+  <view bindtap="goTop" class="goTop" hidden='{{!floorstatus}}'>
+    <view>
+      <image class="icon" src="/images/goTOP.png" mode="widthFix" />
+    </view>
+    <text>返回顶部</text>
+  </view>

@@ -79,7 +79,7 @@ Page({
   },
   //////////////////提交数据保存到数据库 文件保存到存储//////////////////////
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
     // let category_type =  JSON.parse(e.detail.value.category_type);
     if (!e.detail.value.fenlei) {
       wx.showToast({
@@ -104,8 +104,8 @@ Page({
         wx.requestSubscribeMessage({
           tmplIds: ['DF36jxuDTuayF5f_JnIF0GQj7CwvSb9p0wx6Iy2yQus'],
           success(res) {
-            console.log(res);
-            console.log("success")
+            // console.log(res);
+            // console.log("success")
             wx.reLaunch({
               //页面跳转携带参数
               url: '/pages/fenlei/index',

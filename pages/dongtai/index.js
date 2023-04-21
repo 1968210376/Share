@@ -39,7 +39,7 @@ Page({
     that.setData({
       isshow: wx.getStorageSync('isshow')
     })
-    console.log(that.data.isshow);
+    // console.log(that.data.isshow);
   },
   is_like(e) {
     var info = wx.getStorageSync('userInfo')
@@ -275,7 +275,7 @@ Page({
         publictiy: 1
       },
       success(res) {
-        console.log("shuju==>", res.data);
+        // console.log("shuju==>", res.data);
         if (res.data.response) {
           res.data.response.content.forEach(item => {
             let d = new Date(item.target.create_time).getTime();
@@ -433,7 +433,7 @@ Page({
       },
       success: (res) => {
         // //console.log("addOrUpdateMarket===>res");
-        console.log(res);
+        // console.log(res);
 
         if (res.data.code == 1) {
           // console.log("进来了");
@@ -607,7 +607,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    console.log("下拉刷新");
+    // console.log("下拉刷新");
     wx.stopPullDownRefresh()
     this.setData({
       pageIndex: 1,
@@ -621,7 +621,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    console.log('上拉加载');
+    // console.log('上拉加载');
     var that = this
     if (!this.data.end) {
       that.setData({

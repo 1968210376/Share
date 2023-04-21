@@ -22,12 +22,7 @@ Page({
     img_src: '',
     floorstatus: false,
   },
-  /**
-   * 控制 pop 的打开关闭
-   * 该方法作用有2:
-   * 1：点击弹窗以外的位置可消失弹窗
-   * 2：用到弹出或者关闭弹窗的业务逻辑时都可调用
-   */
+
   toggleDialog() {
     this.setData({
       showDialog: !this.data.showDialog
@@ -226,7 +221,7 @@ Page({
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.text, //这里是电话号码
       success: function () {
-        console.log("拨打电话成功！")
+        // console.log("拨打电话成功！")
       },
       fail: function () {
         console.log("拨打电话失败！")
@@ -240,7 +235,7 @@ Page({
     var info = JSON.parse(options.info)
     // console.log(info);
     var categories = wx.getStorageSync('categories')
-      console.log(categories);
+      // console.log(categories);
       var categroyName = "心愿享"
       categories.forEach(item => {
         if (item.categoryType == info.target.category_type) {
@@ -306,7 +301,7 @@ Page({
     }
   },
   load_ping() {
-    console.log('上拉加载');
+    // console.log('上拉加载');
     var that = this
     // if(!this.loading && this.data.pageIndex<this.data.pages ){
     // console.log('当前页', that.data.pageIndex);

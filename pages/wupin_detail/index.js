@@ -304,7 +304,7 @@ Page({
     }
   },
   load_ping() {
-    console.log('上拉加载');
+    // console.log('上拉加载');
     var that = this
     // if(!this.loading && this.data.pageIndex<this.data.pages ){
     // console.log('当前页', that.data.pageIndex);
@@ -401,7 +401,7 @@ Page({
           that.setData({
             info: res.data.response.content[0]
           })
-          console.log("pl--->", that.data.info);
+          // console.log("pl--->", that.data.info);
         }
       }
     })
@@ -429,12 +429,12 @@ Page({
     // })
     if (options.info) {
       options.info = decodeURIComponent(options.info)
-      console.log(options.info);
+      // console.log(options.info);
       var info = JSON.parse(options.info)
-      console.log(info);
+      // console.log(info);
       
       var categories = wx.getStorageSync('categories')
-      console.log(categories);
+      // console.log(categories);
       var categroyName = "心愿享"
       categories.forEach(item => {
         if (item.categoryType == info.target.category_type) {

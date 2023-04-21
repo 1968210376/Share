@@ -297,7 +297,7 @@ Page({
       that.setData({
         showModal: true,
       })
-      console.log("联系方式 phone:" + that.data.phone, "contact_qq:", that.data.contact_qq, "contact_wx:", that.data.contact_wx);
+      // console.log("联系方式 phone:" + that.data.phone, "contact_qq:", that.data.contact_qq, "contact_wx:", that.data.contact_wx);
       var userInfo = wx.getStorageSync('userInfo');
       userInfo.phone = that.data.phone
       userInfo.contact_qq = that.data.contact_qq==null?"":that.data.contact_qq
@@ -324,7 +324,7 @@ Page({
       this.setData({
         phone: e.detail.value
       })
-      console.log("输入的手机号===》" + e.detail.value)
+      // console.log("输入的手机号===》" + e.detail.value)
     } else {
       wx.showToast({
         title: '手机号不能为空',

@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: ''
+    list: '',
+    floorstatus:false
   },
 
   /**
@@ -100,7 +101,19 @@ Page({
   onReachBottom() {
 
   },
-
+ // 置顶 获取滚动条当前位置
+ onPageScroll: function (e) {
+  // console.log(e)
+  if (e.scrollTop > 100) {
+    this.setData({
+      floorstatus: true
+    });
+  } else {
+    this.setData({
+      floorstatus: false
+    });
+  }
+},
   /**
    * 用户点击右上角分享
    */

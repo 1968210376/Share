@@ -1,38 +1,41 @@
 <view class="liushi_container">
-   <!-- 收藏 -->
- <view class="picture">
-      <block class="card" wx:for="{{list}}" wx:key="index">
-        <view class="item " data-reside="{{item.target.reside}}" data-index="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
-          <view wx:if="{{item.target.images}}">
-            <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
+  <!-- 收藏 -->
+  <view class="picture">
+    <block class="card" wx:for="{{list}}" wx:key="index">
+      <view class="item " data-reside="{{item.target.reside}}" data-index="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
+        <view wx:if="{{item.target.images}}">
+          <image class="image" lazy-load mode="widthFix" src="{{item.target.images[0]}}" />
+        </view>
+        <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
+        <view wx:if="{{!item.target.images}}" style="height: 50rpx;">
+          <!-- 11 -->
+        </view>
+        <view style="display: flex; justify-content: space-between; align-items: center;">
+          <view style="display: flex; align-items: center;">
+            <text class="font-mini">{{item.target.category_name}}</text>
           </view>
-          <view style="font-size: 14px;padding-left: 10rpx;">{{ item.target.title }}</view>
-          <view wx:if="{{!item.target.images}}" style="height: 50rpx;">
-            <!-- 11 -->
-          </view>
-          <view style="display: flex; justify-content: space-between; align-items: center;">
-            <view style="display: flex; align-items: center;">
-              <text class="font-mini">{{item.target.category_name}}</text>
-            </view>
-            <view wx:if="{{item.target.pirce}}" class="red price right">
-              ￥{{item.target.pirce}}
-            </view>
+          <view wx:if="{{item.target.pirce}}" class="red price right">
+            ￥{{item.target.pirce}}
           </view>
         </view>
-        <view class="null-wrap"></view>
-      </block>
-    </view>
+      </view>
+      <view class="null-wrap"></view>
+    </block>
+  </view>
 </view>
 <!-- 空列表提示 -->
 <view wx:if="{{ list.length == 0 }}" class="center gray">
-    <image class="data-img" lazy-load mode="aspectFill" src="/images/no_result.png" />
-    <view>还没有数据哦~</view>
+  <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
+  <view>还没有数据哦~</view>
+</view>
+<!-- 到底了 -->
+<!-- <view wx:if="{{end == true}}" class="center"> -->
+<view class="center gray">
+  ~ 到底啦 ~
+</view>
+<view bindtap="goTop" class="goTop" hidden='{{!floorstatus}}'>
+  <view>
+    <image class="icon" src="/images/goTOP.png" mode="widthFix" />
   </view>
-  <!-- 到底了 -->
-  <!-- <view wx:if="{{end == true}}" class="center"> -->
-  <view class="center gray">
-    ~ 到底啦 ~
-  </view>
-<view class="goTop">
-  <image class="goTop" bindtap="goTop" src="/images/goTOP.png" mode="widthFix" />
+  <text>返回顶部</text>
 </view>

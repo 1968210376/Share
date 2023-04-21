@@ -149,7 +149,7 @@ Page({
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.text, //这里是电话号码
       success: function () {
-        console.log("拨打电话成功！")
+        // console.log("拨打电话成功！")
         that.setData({
           copy: true,
           show: true
@@ -157,7 +157,7 @@ Page({
         that.toggleDialog()
       },
       fail: function () {
-        console.log("拨打电话失败！")
+        // console.log("拨打电话失败！")
         that.setData({
           copy: true,
           show: true
@@ -202,7 +202,7 @@ Page({
     var info = JSON.parse(options.info)
     // console.log('info', info);
     var categories = wx.getStorageSync('categories')
-      console.log(categories);
+      // console.log(categories);
       var categroyName = "心愿享"
       categories.forEach(item => {
         if (item.categoryType == info.target.category_type) {
