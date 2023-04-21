@@ -15,7 +15,8 @@
     <!-- <text class="font-mini blue"></text> -->
   </view>
   <view class="content">
-    {{info.target.content}}
+    <!-- {{info.target.content}} -->
+    <text wx:if="{{info.target.content}}">{{info.target.content}}</text>
   </view>
   <view bindtap="img_click" data-imgs="{{info.target.images}}" wx:if="{{info.target.images[0]}}" class="imgBox">
     <view wx:for="{{info.target.images}}" wx:key="index">

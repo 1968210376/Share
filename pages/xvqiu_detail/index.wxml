@@ -37,7 +37,9 @@
   </view>
 
   <view class="title">
-    {{info.target.title}}
+    <!-- {{info.target.title}} -->
+    <text wx:if="{{info.target.title}}">{{info.target.title}}</text>
+
   </view>
 
   <view bindtap="img_click" data-imgs="{{info.target.images}}" wx:if="{{info.target.images[0]}}" class="imgBox">
