@@ -23,8 +23,17 @@
     <!-- <input class="search" bindconfirm="search" type="text" confirm-type="search" placeholder="搜索" /> -->
   </view>
   <view class="top">
-    <image src="/images/bg.png" class="img" mode="scaleToFill" />
+    <!-- <image src="/images/bg.png" class="img" mode="scaleToFill" /> -->
+    <swiper autoplay="false" interval="5000" circular="true" wx:if="{{banner}}" style="width: 100%;height: 100%;">
+      <!-- <navigator url="{{item.link}}" open-type="switchTab" > -->
+        <swiper-item wx:for="{{banner}}" wx:key="index" data-link="{{item.link}}" data-status="{{item.status}}" bindtap="bannerTab">
+          <image class="img" src="{{item.image}}" mode="scaleToFill" />
+        </swiper-item>
+      <!-- </navigator> -->
+    </swiper>
+
   </view>
+
   <view class="box">
     <!-- 标签页标题 -->
     <view class="tab">

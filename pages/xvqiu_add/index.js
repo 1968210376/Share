@@ -402,10 +402,11 @@ Page({
   onShow() {
     var userInfo = wx.getStorageSync('userInfo');
     // console.log("issue");
-    if (userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "" || userInfo.phone == "") {
+    if ( !userInfo.avatarUrl || userInfo.avatarUrl == "" || userInfo.nickName == "" || userInfo.wxOpenId == "" || userInfo.phone == "") {
       setTimeout(function () {
         wx.showToast({
           title: '请完善个人信息',
+          icon:"none"
         })
       }, 1000);
       wx.redirectTo({

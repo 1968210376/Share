@@ -1,6 +1,6 @@
 const app = getApp()
 var util = require('../../libs/util.js')
-
+var COS = require('../../libs/cos-wx-sdk-v5.js')
 Page({
   data: {
     nickName: "编辑个人信息",
@@ -17,6 +17,53 @@ Page({
     page_index: 1,
     animation: false
   },
+  // getUserProfile(e) {
+  //   wx.getUserProfile({
+  //     desc: '用于完善个人资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+  //     success: (res) => {
+  //       console.log(res.userInfo);
+  //       var userInfo = wx.getStorageSync('userInfo');
+  //       userInfo.avatarUrl =res.userInfo.avatarUrl
+  //       userInfo.nickName = res.userInfo.nickName
+  //       app.globalData.userInfo = userInfo
+  //       userInfo.gender = res.userInfo.gender==0?1:0
+  //       wx.setStorageSync('userInfo', userInfo)
+  //       this.saveupdataniuuser(userInfo);
+  //       this.onShow();
+  //     }
+  //   })
+  // },
+  
+    // 把userinfo信息保存到数据库
+    saveupdataniuuser: function (userInfo) {
+      // 保存到数据库
+      var userInfo = wx.getStorageSync('userInfo');
+      // console.log(userInfo.wxOpenId);
+      wx.request({
+        url: app.globalData.serverApi + '/updataniuuser',
+        method: 'POST',
+        data: {
+          wxOpenId: userInfo.wxOpenId,
+          nickName: userInfo.nickName,
+          gender: userInfo.gender,
+          avatarUrl: userInfo.avatarUrl,
+          phone: userInfo.phone==null?"":userInfo.phone,
+          contact_qq: userInfo.contact_qq==null?"":userInfo.contact_qq,
+          contact_wx: userInfo.contact_wx==null?"":userInfo.contact_wx
+  
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: (res) => {
+          wx.showToast({
+            title: '提交成功！',
+          })
+          // console.log("saveupdataniuuser===>res");
+          // console.log(res);
+        }
+      })
+    },
 
   onShow(options) {
     // console.log('显示');

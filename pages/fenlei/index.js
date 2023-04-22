@@ -185,6 +185,22 @@ Page({
       })
     }
   },
+  bannerTab(e) {
+    console.log(e);
+    // wx.navigateTo({
+    //   url: e.currentTarget.dataset.link
+    // })
+    if (e.currentTarget.dataset.status == 2) {
+      wx.switchTab({
+        url: e.currentTarget.dataset.link
+      })
+    } else {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.link
+      })
+    }
+
+  },
   jineng_detail(e) { //跳转技能详情页
     // console.log(e);
     var info = this.data.list[e.currentTarget.dataset.id]
@@ -432,10 +448,17 @@ Page({
       app.getLocal(app.globalData.latitude, app.globalData.longitude)
       city = wx.getStorageSync('city');
     }
+    var banner = wx.getStorageSync("banner");
+    console.log(banner);
+    // banner[0].image = "/images/bg.png"
     this.setData({
       // chooseLocation: location,
+      banner: banner,
       location: city
     })
+
+
+
     // wx.showLoading({
     //   title: '数据加载中...',
     // });

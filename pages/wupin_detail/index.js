@@ -413,7 +413,7 @@ Page({
   // 2023年3月5日 牛亚博
   onLoad(options) {
     //console.log("*************");
-    //console.log(options)
+    console.log(options.info)
     var that = this
     // if (options.id) {
     //   //console.log("++++++++++++++++++++");

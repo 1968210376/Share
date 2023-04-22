@@ -56,6 +56,7 @@ Page({
       setTimeout(function () {
         wx.showToast({
           title: '请完善个人信息',
+          icon:"none"
         })
       }, 1000);
       wx.redirectTo({

@@ -10,9 +10,9 @@
   gap: 30rpx;
 }
 
-.title {
-  /* text-indent: 2rem; */
-}
+/* .title {
+  text-indent: 2rem;
+} */
 
 .alert {
   /* background: rgb(240, 9, 9); */

@@ -6,7 +6,12 @@
     <view>
       <image class="userinfo-avatar " src="{{avatarUrl}}"></image>
       <view class="userinfo-nickname">
+        <!-- <view wx:if="{{avatarUrl=='/images/0.png'}}">
+          <button  style="font-size: 14px;font-weight: normal;" catchtap="getUserProfile">点击授权登录</button>
+        </view>
+        <text wx:else>{{nickName}}</text> -->
         <text>{{nickName}}</text>
+
       </view>
     </view>
 

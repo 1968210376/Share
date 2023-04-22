@@ -32,7 +32,7 @@ Page({
     var user = wx.getStorageSync('userInfo');
     // console.log("userInfo:" + userInfo)
     // var user = app.globalData.userInfo;
-    // console.log("获取本地userInfo:", user);
+    console.log("获取本地userInfo:", user);
     let that = this
     if (user) {
       this.setData({
@@ -56,7 +56,7 @@ Page({
     this.setData({
       avatarUrl,
     })
-    // console.log("头像信息的临时路径：" + avatarUrl)
+    console.log("头像信息的临时路径：" + avatarUrl)
     // 保存到本地
     var userInfo = wx.getStorageSync('userInfo');
     userInfo.avatarUrl = this.data.avatarUrl
@@ -137,10 +137,10 @@ Page({
         wxOpenId: userInfo.wxOpenId,
         nickName: userInfo.nickName,
         gender: userInfo.gender,
-        avatarUrl: userInfo.avatarUrl,
-        phone: userInfo.phone,
-        contact_qq: userInfo.contact_qq,
-        contact_wx: userInfo.contact_wx
+        avatarUrl: userInfo.avatarUrl == null? "":userInfo.avatarUrl,
+        phone: userInfo.phone == null ? "" : userInfo.phone,
+        contact_qq: userInfo.contact_qq == null ? "" : userInfo.contact_qq,
+        contact_wx: userInfo.contact_wx == null ? "" : userInfo.contact_wx
 
       },
       header: {
@@ -293,25 +293,25 @@ Page({
     let that = this
     if (that.data.phone != '' && that.data.phone != null) {
       // console.log(e);
-      
+
       that.setData({
         showModal: true,
       })
       // console.log("联系方式 phone:" + that.data.phone, "contact_qq:", that.data.contact_qq, "contact_wx:", that.data.contact_wx);
       var userInfo = wx.getStorageSync('userInfo');
       userInfo.phone = that.data.phone
-      userInfo.contact_qq = that.data.contact_qq==null?"":that.data.contact_qq
-      userInfo.contact_wx = that.data.contact_wx==null?"":that.data.contact_wx
+      userInfo.contact_qq = that.data.contact_qq == null ? "" : that.data.contact_qq
+      userInfo.contact_wx = that.data.contact_wx == null ? "" : that.data.contact_wx
       app.globalData.userInfo = userInfo
       wx.setStorageSync('userInfo', userInfo)
       // 保存到数据库
       this.saveupdataniuuser(userInfo);
-    }else{
+    } else {
       that.setData({
         showModal: true,
       })
       wx.showToast({
-        icon:"none",
+        icon: "none",
         title: '手机号不能为空',
       })
     }
@@ -351,7 +351,7 @@ Page({
       contact_wx: e.detail.value
     })
     // console.log("输入的微信号===》" + e.detail.value)
-  
+
   },
   /**
    * 用户点击右上角分享
