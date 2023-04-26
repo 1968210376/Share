@@ -6,12 +6,7 @@
     <view>
       <image class="userinfo-avatar " src="{{avatarUrl}}"></image>
       <view class="userinfo-nickname">
-        <!-- <view wx:if="{{avatarUrl=='/images/0.png'}}">
-          <button  style="font-size: 14px;font-weight: normal;" catchtap="getUserProfile">点击授权登录</button>
-        </view>
-        <text wx:else>{{nickName}}</text> -->
         <text>{{nickName}}</text>
-
       </view>
     </view>
 
@@ -68,11 +63,10 @@
         <view>
           <image src="/images/kf.png" class="icon " mode="" />
         </view>
-        <button style="width: 100vw;text-align:left;font-weight:normal;color:gray;margin-left:-25px;background-color: transparent;" open-type="contact" bindcontact="handleContact">
+        <button style="width: 100vw;position: absolute;text-align:left;font-weight:normal;color:gray;margin-left:10px;background-color: transparent;" open-type="contact" bindcontact="handleContact">
           联系客服
         </button>
       </view>
-
       <image src="/images/next.png" class="next" mode="" />
     </view>
     <view class="space">
