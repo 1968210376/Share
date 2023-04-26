@@ -1,7 +1,7 @@
 <!--主文件html中代码：-->
 
 <view class="liushi_container">
-  <view style="float: left;">
+  <view>
     <view class="picture">
       <block wx:for="{{list}}" wx:key="index" wx:if="{{index%2==0}}">
         <view class="item" data-id="{{index}}" bindtap="wupin_detail" style="background-color: #fff;">
@@ -42,7 +42,7 @@
               </view>
               <text class="font-mini margin_left">{{item.target.nick_name}}</text>
             </view>
-            <view wx:if="{{item.target.pirce}}" class="red price right">
+            <view wx:if="{{item.target.pirce}}" class="red price ">
               ￥{{item.target.pirce}}
             </view>
           </view>
@@ -57,6 +57,10 @@
     <image class="data-img" lazy-load mode="widthFix" src="/images/no_result.png" />
     <view>还没有数据哦~</view>
   </view>
+
+<view style="clear: both;">
+  
+</view>
   <!-- 到底了 -->
   <view wx:if="{{end == true}}" class="center gray">
     ~ 到底啦 ~
