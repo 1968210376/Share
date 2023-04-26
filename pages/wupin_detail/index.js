@@ -395,7 +395,9 @@ Page({
             // if (item.target.images != "") {
             if (item.target.images != "" && item.target.images != null) {
               item.target.images = item.target.images.split(",");
-              item.target.choose_location = JSON.parse(item.target.choose_location);
+              if (item.target.choose_location) {
+                item.target.choose_location = JSON.parse(item.target.choose_location);
+              }
             }
           })
           that.setData({
@@ -432,7 +434,7 @@ Page({
       // console.log(options.info);
       var info = JSON.parse(options.info)
       // console.log(info);
-      
+
       var categories = wx.getStorageSync('categories')
       // console.log(categories);
       var categroyName = "心愿享"
