@@ -25,7 +25,8 @@
     "pages/Rate/index",
     "pages/navigation-bar/navigation-bar",
     "pages/share/share",
-    "pages/ping/ping"
+    "pages/ping/ping",
+    "pages/ai/ai"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -141,8 +141,10 @@ Page({
       })
       let promiseArr = [];
       var cos = new COS({
-        SecretId: 'AKIDrb9SYPbMn1zmOno25EGcpnW8VgnpdFsN',
-        SecretKey: 'TrCsPO7artiKo37wWrwmOuAE8rLchWCm',
+        // SecretId: 'AKIDrb9SYPbMn1zmOno25EGcpnW8VgnpdFsN',
+        SecretId:'AKID9CGYacVVZ0GPK3hJrMk2BAyfDd2OhqnX',
+        SecretKey: 'znQq0zoOlwuhPvGPPfl0Ed3PaVAysjO2',
+        // SecretKey: 'TrCsPO7artiKo37wWrwmOuAE8rLchWCm',
       });
       for (let i = 0; i < that.data.imgbox.length; i++) {
         // var thats = this
@@ -160,8 +162,9 @@ Page({
           var filename = Number(Math.random().toString().substr(3, 6) + new Date().getTime()).toString(36) + suffix;
           // console.log("filename:", filename)
           cos.postObject({
-            Bucket: 'niuyabo-1257122371',
-            Region: 'ap-chengdu',
+            // Bucket: 'niuyabo-1257122371',
+            Bucket: 'dangzg-1305155827',
+            Region: 'ap-nanjing',
             Key: 'xiaochengxu/' + time + '/' + filename,
             FilePath: filePath,
             onProgress: function (info) {
@@ -175,7 +178,7 @@ Page({
             var res = data;
             // console.log(JSON.stringify(info).Location)
             res = res.Location;
-            var fileID = "http://" + res;
+            var fileID = "https://" + res;
             // console.log("fileID:", fileID);
             that.setData({
               fileIDs: that.data.fileIDs.concat(fileID)

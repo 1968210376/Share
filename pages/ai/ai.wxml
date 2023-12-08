@@ -1,0 +1,33 @@
+<!--pages/ai/ai.wxml-->
+<view class="container">
+  <view class="content">
+    <view class="chat-list" wx:for="{{chatList}}" wx:key="index">
+      <!-- Left -->
+      <view class="chat-sender"  wx:if="{{item.role=='assistant'}}">
+        <view>
+          <image src="/images/assistant.png" class="avatar"></image>
+        </view>
+        <view>
+          <view class="chat-left_triangle"></view>
+          <span> {{item.content}}</span>
+        </view>
+      </view>
+      <!-- Right -->
+      <view class="chat-receiver" wx:if="{{item.role=='user'}}">
+        <view>
+          <image src="{{userinfo.avatarUrl}}" class="avatar"></image>
+        </view>
+        <view>
+          <view class="chat-right_triangle"></view>
+          <span>{{item.content}}</span>
+        </view>
+      </view>
+    </view>
+  </view>
+ <form bindreset="cleanInput">
+  <view class="input">
+    <input type="text" placeholder="请输入你的问题" class="send_message" maxlength="1024" bindblur="saveContent" bindconfirm="sendMessage"/>
+    <button class="send" hover-class="send-hover" bind:tap="sendMessage" form-type="reset">发送</button>
+  </view>
+ </form>
+</view>

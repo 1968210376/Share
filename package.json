@@ -1,0 +1,25 @@
+{
+  "name": "share1.0",
+  "version": "1.0.0",
+  "description": "心愿享小程序",
+  "main": "使用原生微信小程序开发，实现微信登录、分类检索、物品、技能、需求的发布、个人动态的发布、点赞、评论等功能。",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1968210376/Share.git"
+  },
+  "keywords": [
+    "share"
+  ],
+  "author": "dangzg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1968210376/Share/issues"
+  },
+  "homepage": "https://github.com/1968210376/Share#readme"
+}

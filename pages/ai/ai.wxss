@@ -1,0 +1,94 @@
+/* pages/ai/ai.wxss */
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* 对话内容 */
+.content {
+  width: 100vw;
+  height: 91vh;
+  /* border: 1px solid black; */
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: antiquewhite;
+  overflow-y: scroll;
+}
+.chat-sender{
+  clear:both;
+  font-size: 80%;
+}
+.chat-sender view:nth-of-type(1){
+  float: left;
+}
+.chat-sender view:nth-of-type(2){
+  background-color: white;
+  /*float: left;*/
+  margin: 0 50px 10px 50px;
+  padding: 10px 10px 10px 10px;
+  border-radius:7px;
+  text-indent: -12px;
+}
+.chat-receiver{
+  clear:both;
+  font-size: 80%;
+}
+.chat-receiver view:nth-of-type(1){
+  float: right;
+}
+.chat-receiver view:nth-of-type(2){
+  /*float:right;*/
+  background-color: #b2e281;
+  margin: 0px 50px 10px 50px;
+  padding: 10px 10px 10px 10px;
+  border-radius:7px;
+}
+.chat-receiver view:first-child img,
+.chat-sender view:first-child img{
+  width: 40px;
+  height: 40px;
+  /*border-radius: 10%;*/
+}
+.chat-left_triangle{
+  height: 0px;
+  width: 0px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+  position: relative;
+  left: -22px;
+  top: 3px;
+}
+.chat-right_triangle{
+  height: 0px;
+  width: 0px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #b2e281;
+  position: relative;
+  right:-22px;
+  top:3px;
+}
+.avatar{
+    width: 80rpx;height: 80rpx;
+    border-radius: 50rpx;
+}
+
+/* 下方对话框 */
+.input {
+  width: 100vw;
+  border: 1px gainsboro solid;
+  display: flex;
+}
+.send_message {
+  flex: 5;
+  padding: 10px;
+}
+.send {
+  flex: 1;
+  color: white;
+  background-color: #28a745;
+}
+.send-hover {
+  background-color: #20c997;
+}
